@@ -1,0 +1,597 @@
+/* OrderModal — reorder dialog */
+
+.eoe-empty {
+	padding: var(--size-4-8) var(--size-4-2);
+	color: var(--text-muted);
+	text-align: center;
+}
+
+/* Keeps Save/Cancel on screen in a folder with many items.
+
+   Obsidian's own `.modal` is already `display: flex; flex-direction: column;
+   max-height: var(--dialog-max-height)` (85vh) with `overflow: auto`, and its
+   `.modal-content` is `flex: 1 1 auto` — but with no `min-height: 0`. A flex
+   item's automatic minimum size is its content height, so `.modal-content`
+   could never shrink below the total height of everything in it: once the
+   breadcrumb, toolbar, list, hint and footer added up past 85vh, the modal
+   itself scrolled instead, and the footer went off the bottom edge where a
+   long list pushed it. The fix is entirely on this side — declaring the
+   min-height Obsidian's rule omits, so the content column can shrink and
+   hand that shrinking to the one child built to absorb it (`.eoe-list`,
+   which already scrolls). Scoped by `.eoe-modal`, a class this dialog puts
+   on its own `modalEl`, so no other modal in the app is touched. */
+.eoe-modal .modal-content {
+	display: flex;
+	flex-direction: column;
+	min-height: 0;
+}
+
+/* Everything in the content column except the list holds its natural height:
+   the list is the only part that can usefully give ground, and a shrinking
+   footer or breadcrumb would be a worse outcome than a shorter list. */
+.eoe-breadcrumb,
+.eoe-hint,
+.eoe-footer {
+	flex-shrink: 0;
+}
+
+/* Breadcrumb trail (M8c): a stepped vertical hierarchy, one folder per line,
+   each indented one step past the one above — replacing M8b's single
+   horizontal line, which had no good answer for a long ancestor sitting next
+   to a long current folder (see .eoe-breadcrumb-crumb below for the specific
+   bug that forced the rewrite). Compact — var(--font-ui-small) and a tight
+   line-height — because up to five of these lines sit above the row list. */
+.eoe-breadcrumb {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: var(--size-4-2);
+	font-size: var(--font-ui-small);
+	line-height: 1.3;
+}
+
+/* One line of the trail. Flex row so the tee glyph and the crumb/current/
+   ellipsis it precedes sit side by side; must not wrap, since a wrapped tee
+   would land under the middle of the previous line's text instead of under
+   its start. */
+.eoe-breadcrumb-row {
+	display: flex;
+	align-items: center;
+	flex-wrap: nowrap;
+	/* Obsidian sizes buttons like inputs (--input-height is 28-40px depending
+	   on platform and appearance settings), which made every line of the
+	   trail roughly twice as tall as its text and pushed the row list down by
+	   more than the whole feature is worth. Vertical space is the entire cost
+	   of the stepped layout, so the line height is stated here rather than
+	   left to whatever the tallest child happens to bring with it. */
+	min-height: 0;
+}
+
+/* Indent steps. `position` (see renderBreadcrumbs) is the *rendered* line,
+   not the folder's real depth in the vault, so this is a small fixed set —
+   one class per possible rendered position, not one per possible vault
+   depth — built from a single Obsidian size variable so the steps stay
+   visually equal. Depth 0 (the vault root's line) gets none. The set has to
+   cover positions 0 through MAX_VISIBLE_CRUMBS - 1 (OrderModal.ts) — raising
+   that constant without adding the matching rule here leaves the extra line
+   un-indented. */
+.eoe-breadcrumb-depth-0 {
+	padding-left: 0;
+}
+
+.eoe-breadcrumb-depth-1 {
+	padding-left: var(--size-4-4);
+}
+
+.eoe-breadcrumb-depth-2 {
+	padding-left: calc(var(--size-4-4) * 2);
+}
+
+.eoe-breadcrumb-depth-3 {
+	padding-left: calc(var(--size-4-4) * 3);
+}
+
+.eoe-breadcrumb-depth-4 {
+	padding-left: calc(var(--size-4-4) * 4);
+}
+
+.eoe-breadcrumb-tee {
+	flex-shrink: 0;
+	margin-right: var(--size-2-1);
+	color: var(--text-faint);
+}
+
+/* Obsidian styles a bare <button> inside a modal with a background and
+   box-shadow (meant for its own dialogs' primary actions); all of that is
+   reset here so a crumb reads as a flat, muted, text-like control instead.
+
+   display: flex is not a layout preference here — it's the actual fix for a
+   real bug, confirmed on screen twice: overflow/text-overflow/text-align set
+   directly on a <button> do nothing, because a button's text lives in an
+   anonymous inner box that the browser generates and centres itself, and
+   text-overflow only ever applies to the box that *directly* contains the
+   inline text — which is that anonymous box, not the button. A shrunken
+   crumb rendered as the *middle* of its own name ("testvault" as "stvau"),
+   with no ellipsis, no matter what was set on the button. A flex container
+   has no such anonymous box; its content is laid out as flex items instead,
+   which is what makes `.eoe-breadcrumb-label` below — a real element that
+   directly contains the text — the thing that actually gets to truncate.
+
+   min-width: 0 is the other half of making that truncation reachable: the
+   button is itself a flex item of `.eoe-breadcrumb-row`, and a flex item's
+   default minimum width is its content's width, not 0 — without overriding
+   it here, the button would refuse to shrink below its label's full,
+   untruncated width no matter what `.eoe-breadcrumb-label` sets, and the row
+   would overflow instead of truncating. flex: 1 1 auto then has the button
+   fill whatever width the row leaves after the tee, so the hover highlight
+   (below) covers the whole line — a click target the width of a tree row,
+   not just a tight box around the text.
+
+   Making it a flex container is necessary but not sufficient: a <button>
+   centres its own content, and `display: flex` only changes *how* — the
+   label went from a centred anonymous box to a centred flex item, still
+   sitting in the middle of a full-width row while the adjacent <span>
+   segments (the ellipsis, the current folder) sat correctly at the start.
+   That same "buttons behave, spans don't" split is the signature of this
+   whole family of bugs. Obsidian sets no justify-content on buttons, so
+   nothing of ours was competing with the browser's own centring — it had to
+   be declared, not overridden. justify-content covers the flex-item case and
+   text-align the anonymous-box one; they address different mechanisms and
+   only one of them is doing the work on any given engine.
+
+   Written as a descendant selector purely for specificity. Obsidian's own
+   modal-button styling is element-qualified (`.modal button` and friends,
+   0-1-1), which outranks a lone class (0-1-0) — the flat look below was
+   silently losing to it, and the crumbs rendered with Obsidian's button
+   background still on. Two classes (0-2-0) wins without resorting to
+   !important. */
+.eoe-breadcrumb .eoe-breadcrumb-crumb {
+	display: flex;
+	min-width: 0;
+	flex: 1 1 auto;
+	justify-content: flex-start;
+	text-align: left;
+	/* Stated outright rather than inherited or left at the browser default:
+	   Obsidian gives buttons an input-sized height and its own font metrics,
+	   and a <button> does not inherit font-size from its parent the way a
+	   <span> does. Every one of these is undoing a value that would otherwise
+	   make a crumb taller than the line of text it contains. */
+	height: auto;
+	min-height: 0;
+	padding: var(--size-2-1) var(--size-4-1);
+	border: none;
+	border-radius: var(--radius-s);
+	background-color: transparent;
+	box-shadow: none;
+	color: var(--text-muted);
+	font-family: inherit;
+	font-size: var(--font-ui-small);
+	line-height: inherit;
+	cursor: pointer;
+}
+
+.eoe-breadcrumb .eoe-breadcrumb-crumb:hover {
+	background-color: var(--background-modifier-hover);
+	color: var(--text-normal);
+	box-shadow: none;
+}
+
+/* The element that actually truncates — see the structural explanation
+   above. min-width: 0 lets it shrink below its text's natural width inside
+   the flex button (without it, a long name just pushes the button wider
+   instead of truncating); overflow/text-overflow/white-space turn that
+   shrinking into an ellipsis instead of a hard clip. */
+.eoe-breadcrumb-label {
+	overflow: hidden;
+	min-width: 0;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+/* The folder actually being edited: "you are here", on its own line same as
+   every ancestor. Reads against --text-normal rather than the ancestors'
+   muted --text-muted, and gets no hover affordance since clicking it would
+   do nothing — it's not a button. It's a <span>, so — unlike a crumb — it
+   directly contains its own text and needs no inner element to truncate
+   correctly; same overflow/text-overflow/white-space treatment as
+   .eoe-breadcrumb-label above, for the same reason: a long current name
+   should end in an ellipsis, not get clipped at a hard edge.
+
+   No width cap here (the horizontal version's .eoe-breadcrumb-current had
+   one, to make ancestors share the strip): every line now has the full
+   modal width to itself, so there's nothing left to share. */
+.eoe-breadcrumb-current {
+	overflow: hidden;
+	min-width: 0;
+	padding: var(--size-2-1) var(--size-4-1);
+	color: var(--text-normal);
+	font-size: inherit;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+/* The collapsed run standing in for hidden mid-chain ancestors, on its own
+   line like everything else. Same padding as a crumb but never clickable —
+   its tooltip (the hidden folders' names) is the only way it names what it
+   stands for — so flex-shrink: 0 rather than the crumb's flex: 1 1 auto:
+   '…' never needs to give up room to anything. */
+.eoe-breadcrumb-ellipsis {
+	flex-shrink: 0;
+	padding: var(--size-2-1) var(--size-4-1);
+	color: var(--text-muted);
+	font-size: inherit;
+}
+
+/* The "sort by" control, living at the right-hand end of the breadcrumb
+   trail's last row rather than in a strip of its own — see OrderModal.ts's
+   renderSortByButton for why (that strip cost ~33px of the dialog's scarcest
+   dimension to hold one button, while this line sat half empty right above
+   it) and for why it opens a Menu rather than being a <select>.
+
+   `margin-left: auto` is what pins it to the right end: the row is a flex
+   line holding the current folder's label, which is free to grow, so without
+   this the button would sit immediately after the text. The label already
+   carries `overflow: hidden` + `min-width: 0` + ellipsis (see
+   `.eoe-breadcrumb-current`), so a long folder name truncates rather than
+   pushing the button out of the dialog.
+
+   Flat and muted, the same treatment as .eoe-breadcrumb-crumb and for the
+   same specificity reason: Obsidian's own modal button styling
+   (`.modal button`, 0-1-1) outranks a lone class (0-1-0) and would leave
+   this looking like one of Obsidian's own boxy dialog buttons — heavier
+   than a one-shot rearrangement control has any business looking. Written
+   as a descendant selector (0-2-0) purely to win that specificity fight
+   without `!important`; see .eoe-breadcrumb-crumb's comment for the fuller
+   story of the bug this pattern works around.
+
+   No flex/inner-span split here unlike .eoe-breadcrumb-crumb: this button's
+   label is the fixed, short string "Sort by" — nothing here ever truncates
+   or needs text-align, so there's no anonymous-box bug to route around in
+   the first place (see .eoe-breadcrumb-crumb's own comment above for what
+   that bug looks like when it does bite: a shrunken button rendering as the
+   *middle* of its text, with no ellipsis, because text-overflow/text-align
+   set directly on a <button> are silently ignored by the browser). */
+.eoe-breadcrumb-row .eoe-sort-by-button {
+	height: auto;
+	min-height: 0;
+	margin-left: auto;
+	padding: var(--size-2-1) var(--size-4-2);
+	border: 1px solid var(--background-modifier-border);
+	border-radius: var(--radius-s);
+	background-color: transparent;
+	box-shadow: none;
+	color: var(--text-muted);
+	font-family: inherit;
+	font-size: var(--font-ui-small);
+	cursor: pointer;
+}
+
+.eoe-breadcrumb-row .eoe-sort-by-button:hover {
+	background-color: var(--background-modifier-hover);
+	color: var(--text-normal);
+	box-shadow: none;
+}
+
+/* Restores the focus ring the two rules above take away. Obsidian draws it as
+   `button:focus-visible { box-shadow: 0 0 0 3px ... }` — specificity 0-1-1,
+   which the 0-2-0 selectors above outrank, so their `box-shadow: none` (there
+   to strip the raised look off Obsidian's default modal button) silently
+   stripped the keyboard focus indicator along with it. Tabbing to this button
+   changed nothing on screen, which for a control whose whole purpose is to
+   open a menu meant a keyboard user could not tell it was selected.
+
+   Declared after `:hover` rather than before, both being 0-3-0: a button that
+   is focused *and* hovered has to keep its ring, and at equal specificity the
+   later rule is the one that wins. */
+.eoe-breadcrumb-row .eoe-sort-by-button:focus-visible {
+	box-shadow: 0 0 0 3px var(--background-modifier-border-focus);
+}
+
+/* `flex: 0 1 auto` + `min-height: 0`: never grows past its content (a
+   three-item folder still gets a three-item dialog), but is the one thing in
+   the content column allowed to shrink when the whole dialog would otherwise
+   outgrow 85vh — see the `.eoe-modal .modal-content` comment above. The 60vh
+   cap stays as the everyday ceiling; the flex shrinking only takes over below
+   it, when the rest of the chrome needs the room. */
+.eoe-list {
+	display: flex;
+	flex-direction: column;
+	flex: 0 1 auto;
+	gap: var(--size-2-1);
+	min-height: 0;
+	max-height: 60vh;
+	/* No margin-top: `.eoe-breadcrumb` sits directly above and already carries
+	   a margin-bottom. Since `.eoe-modal .modal-content` is a flex column,
+	   adjacent margins do not collapse the way they would in a block
+	   container, so one declared here would stack on top of the breadcrumb's
+	   rather than merging with it — which is exactly the 8px this dialog
+	   silently gained when that rule was introduced. */
+	overflow-y: auto;
+}
+
+.eoe-row {
+	display: flex;
+	align-items: center;
+	gap: var(--size-4-2);
+	padding: var(--size-4-1) var(--size-4-2);
+	border-radius: var(--radius-s);
+	background-color: var(--background-secondary);
+}
+
+.eoe-row:hover {
+	background-color: var(--background-modifier-hover);
+}
+
+/* Focus doubles as "the row the keyboard shortcuts will act on", so it has to
+   be visible whenever it exists — including after a mouse click, which is why
+   this is on :focus and not only :focus-visible. Browsers deliberately hide
+   the ring for pointer focus, which left the whole keyboard path invisible:
+   nothing on screen changed when a row was clicked, so there was no way to
+   tell a row was selected, or which one.
+
+   An outline rather than a border (the treatment .eoe-row-chosen uses) so the
+   indicator costs no layout: a 2px border would shift the row's contents by
+   2px every time focus moved. */
+.eoe-row[tabindex]:focus {
+	outline: 2px solid var(--interactive-accent);
+	outline-offset: -2px;
+}
+
+.eoe-row-handle {
+	display: flex;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
+	color: var(--text-faint);
+	cursor: grab;
+	/* Dragging is fully handled by SortableJS's pointer-event fallback, not
+	   native touch gestures — this keeps the browser from intercepting
+	   touch-and-hold on the handle before Sortable's own delay logic does. */
+	touch-action: none;
+}
+
+.eoe-row-handle:active {
+	cursor: grabbing;
+}
+
+.eoe-row-icon {
+	display: flex;
+	flex-shrink: 0;
+	align-items: center;
+	justify-content: center;
+	color: var(--text-muted);
+}
+
+/* Holds the name and, once a date sort has been applied, the date beside it.
+   `flex-wrap: wrap` is what lets the date drop to a second line rather than
+   eat into the name — see `.eoe-row-name`'s min-width below, which is what
+   actually provokes the wrap. Baseline alignment so the smaller date sits on
+   the name's baseline instead of being centred against it.
+
+   The gap is written as the shorthand with an explicit zero row gap, rather
+   than as `column-gap`, only to keep the community scanner quiet: caniuse
+   files `column-gap` under the `multicolumn` feature, so a flex container
+   using it is reported as relying on partially-supported multicolumn. Flex
+   gap has been in Chromium since 84 and this rule has nothing to do with
+   columns, but the plain `gap` spelling is not classified that way and says
+   the same thing. The zero is the behaviour that was already there —
+   `row-gap` defaults to `normal`, which is 0 in flex layout — so wrapping the
+   date onto a second line still adds no vertical space. */
+.eoe-row-text {
+	display: flex;
+	flex: 1 1 auto;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 0 var(--size-4-2);
+	min-width: 0;
+}
+
+/* The min-width is the whole wrapping mechanism, and it is not decoration: a
+   flex item that may shrink to 0 never causes its container to wrap, it just
+   truncates itself. With a floor, the row runs out of space for the date
+   first and the date wraps, which is the behaviour we want — the name is what
+   is being read, the date is an annotation on it. `min()` keeps that floor
+   from becoming an overflow on a viewport narrower than the floor itself
+   (mobile), where continuing to shrink is better than bursting the row. */
+.eoe-row-name {
+	overflow: hidden;
+	flex: 1 1 auto;
+	min-width: min(8rem, 100%);
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+/* Only ever non-empty while a date sort is showing (`showDatesFor`), so an
+   empty span costs nothing here: no padding, no min-width, and the parent's
+   gap contributes nothing when there is no second item to gap against. `tabular-nums` so the dates line up as a column down the list
+   instead of jittering with each digit's natural width. */
+.eoe-row-date {
+	flex: 0 0 auto;
+	/* Right-aligns the date on whichever line it lands on. On the first line
+	   `.eoe-row-name`'s `flex: 1 1 auto` would push it right anyway, but on a
+	   wrapped second line the date is alone with nothing to push it, and it
+	   would sit at the left edge — breaking the column the dates otherwise
+	   form. An auto margin absorbs the free space on either line, so both
+	   cases end up flush right. */
+	margin-left: auto;
+	color: var(--text-muted);
+	font-size: var(--font-ui-smaller);
+	font-variant-numeric: tabular-nums;
+}
+
+/* Move-to-top/move-to-bottom buttons. flex-shrink: 0 keeps them from being
+   squeezed by .eoe-row-name's flex: 1 1 auto — without it a long name would
+   shrink the actions first, the opposite of the ellipsis truncation
+   .eoe-row-name already relies on to stay in bounds instead. */
+.eoe-row-actions {
+	display: flex;
+	flex-shrink: 0;
+	gap: var(--size-2-1);
+}
+
+/* clickable-icon (Obsidian's own class, applied alongside this one) already
+   supplies icon sizing, hover/active states and cursor — this rule only adds
+   what's specific to sitting inside a row action group: the disabled state,
+   which clickable-icon has no opinion on. */
+.eoe-row-action:disabled {
+	opacity: 0.35;
+	cursor: not-allowed;
+}
+
+/* clickable-icon's hover highlight implies "you can act on this", which a
+   disabled button can't — the same reason the unorderable rows below suppress
+   theirs. Obsidian paints it on :hover alone, without a :not(:disabled)
+   guard, so it has to be undone here. */
+.eoe-row-action:disabled:hover {
+	background-color: transparent;
+	box-shadow: none;
+}
+
+/* The per-row "enter subfolder" control (M8). It sits in the same
+   .eoe-row-actions group as move-to-top/move-to-bottom but is a different
+   kind of action — navigating away, not reordering in place — and used to
+   carry a `border-left` hairline to say so.
+
+   That line is gone, and the distinction now lives in the icon itself (a
+   circled chevron against two bare ones — see `ICON_ENTER` in OrderModal.ts).
+   The line never worked: drawn down one side of a small square button at
+   exactly the button's own height, it read as one edge of a box whose other
+   three sides had failed to render. Only the theme had been hiding it —
+   `--background-modifier-border` is #333333 in dark mode, near-invisible
+   against the row, and #e4e4e4 in light, where the shape was finally legible
+   enough to look wrong. Shortening it just traded "a broken edge" for "a
+   floating tick"; the shape was the wrong tool for the job either way. All
+   that is left is a slightly wider gap than the other two buttons share. */
+.eoe-row-enter {
+	margin-left: var(--size-4-1);
+}
+
+/* Nudges the chevron toward the folder it opens. Deliberately an enhancement
+   to an already-complete resting state rather than a reveal: this dialog runs
+   on mobile, where nothing is ever hovered, so an icon that only becomes
+   meaningful on hover would be permanently meaningless on touch. `:focus-
+   visible` is included for the same reason in the other direction — a
+   keyboard user never hovers either. */
+.eoe-row-enter svg {
+	transition: transform 120ms ease-out;
+}
+
+.eoe-row-enter:hover svg,
+.eoe-row-enter:focus-visible svg {
+	transform: translateX(2px);
+}
+
+/* The OS-level setting, honored here on its own merits rather than to match
+   the host: `obsidian.asar` contains no `prefers-reduced-motion` at all (0
+   occurrences against 176 `@media` and 8 `prefers-color-scheme`), so this
+   goes further than Obsidian's own UI does. A purely decorative nudge is
+   exactly the kind of motion someone enables that setting to be rid of. The
+   end state is dropped rather than made instant, since the movement *is* the
+   effect — with `transform` left applied there would be nothing to reduce. */
+@media (prefers-reduced-motion: reduce) {
+	.eoe-row-enter svg {
+		transition: none;
+	}
+
+	.eoe-row-enter:hover svg,
+	.eoe-row-enter:focus-visible svg {
+		transform: none;
+	}
+}
+
+/* Footnote under the sortable list naming the keyboard shortcuts. Muted,
+   smaller and italic so it reads as an aside rather than as another row. One
+   child element per sentence: a newline inside text content collapses to a
+   space in HTML, so the line break has to come from the markup. */
+.eoe-hint {
+	display: flex;
+	flex-direction: column;
+	gap: var(--size-2-1);
+	margin-top: var(--size-4-2);
+	color: var(--text-muted);
+	font-size: var(--font-ui-smaller);
+	font-style: italic;
+}
+
+/* Key caps inside the hint. Bounded rather than written as bare glyphs
+   because `⌥↑/⌥↓` inline reads as one long symbol instead of two
+   alternatives.
+
+   font-style: normal undoes the surrounding italic — a slanted key cap reads
+   as a typo rather than as a key. font-family: inherit overrides the
+   browser's monospace default for <kbd>, in which the modifier symbols sit on
+   inconsistent widths and look ragged next to the arrow. nowrap so a cap can
+   never be split across a line break. */
+.eoe-kbd {
+	padding: 0 var(--size-2-2);
+	border: 1px solid var(--background-modifier-border);
+	border-radius: var(--radius-s);
+	background-color: var(--background-modifier-hover);
+	color: var(--text-normal);
+	font-family: inherit;
+	font-size: inherit;
+	font-style: normal;
+	white-space: nowrap;
+}
+
+/* SortableJS-driven states. The library manages the dynamic drag geometry
+   itself (inline transforms while dragging); these classes only supply the
+   static visual treatment for each state. */
+
+.eoe-row-ghost {
+	border: 1px dashed var(--background-modifier-border);
+	background-color: var(--background-primary);
+	opacity: 0.5;
+}
+
+.eoe-row-chosen {
+	border-left: 2px solid var(--interactive-accent);
+}
+
+.eoe-row-drag {
+	background-color: var(--background-primary);
+	box-shadow: var(--shadow-s);
+}
+
+/* The lone row shown when a folder holds exactly one item. Not SortableJS-
+   managed and never scrollable — there is exactly one row — so this only
+   supplies the same spacing the sortable list has above it, keeping that
+   screen from reading as a different kind of dialog than every other one. */
+.eoe-static-list {
+	margin-top: var(--size-4-2);
+}
+
+/* Nothing about that row can be dragged or nudged, so the hover highlight —
+   which implies "you can act on this" — would be misleading. The "enter"
+   control it may carry is a button with its own hover state, so nothing is
+   lost. */
+.eoe-static-list .eoe-row:hover {
+	background-color: var(--background-secondary);
+}
+
+.eoe-footer {
+	display: flex;
+	justify-content: flex-end;
+	gap: var(--size-4-2);
+	margin-top: var(--size-4-4);
+}
+
+/* Drag-and-drop indicator line (M12b, explorerDrag.ts) — marks the row a
+   dropped item would land before/after.
+
+   inset box-shadow rather than a pseudo-element or absolute positioning:
+   nothing here has to know or care what `position` the host's own row
+   element is set to, the shadow can never spill outside the row's own box
+   (a border half-outside a rounded/scrolled row can), it adds no DOM node
+   of its own, and it scrolls and indents exactly as the row it's drawn on
+   already does — no separate positioning math to keep in sync with the
+   tree's own layout. The two selectors below are already 0-2-0 specificity,
+   which is enough to win outright, so this needs no !important. */
+.nav-file-title.eoe-drop-before,
+.nav-folder-title.eoe-drop-before {
+	box-shadow: inset 0 2px 0 0 var(--interactive-accent);
+}
+
+.nav-file-title.eoe-drop-after,
+.nav-folder-title.eoe-drop-after {
+	box-shadow: inset 0 -2px 0 0 var(--interactive-accent);
+}
