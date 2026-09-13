@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Resources/Iron.md",
+                "file": "General.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Iron"
+              "title": "General"
             }
           }
         ]
@@ -190,11 +190,11 @@
   },
   "active": "ab572f99e33817b2",
   "lastOpenFiles": [
+    "Resources/Iron.md",
     "Resources/Magnetite.md",
     "Resources/Hematite.md",
     "General.md",
     "Resources/Resources.md",
-    "Resources/Iron.md",
     "Art Bible.md",
     "World.md",
     "Devving Guidelines",
