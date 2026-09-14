@@ -1,32 +1,39 @@
 using UnityEngine;
-public enum BotType
-{
-    none,
-    transporter,
-    builder,
-    miner,
-    worker,
-    specialist
-}
+using System;
+
 public class Bot
 {
-    public BotType type;
-    public string id;
-    public string name;
-    public Vector2Int cellCoords;
-    public int maxPower;
-    public int currentPower;
-    public Bot()
+    public Bot(Vector2Int coords, BotType type)
     {
-        type = BotType.none;
-        name = pickRandomName();
-        cellCoords = new Vector2Int();
-        maxPower = 100;
-        id=System.Guid.NewGuid().ToString();
+        Id = Guid.NewGuid().ToString();
+
+        this.coords = coords;
+        this.type = BotType.None;
+        name = PickRandomName();
+        Power = maxPower;
     }
-    public string pickRandomName()
+
+    public string Id { get; protected set; }
+
+    Vector2Int coords = new(0, 0);
+    BotType type = BotType.None;
+    public string name;
+
+    int Power { get; set; }
+    int maxPower = 100;
+    
+    public string PickRandomName()
     {
         string[] names = { "Alpha", "Bravo", "Charlie", "Delta", "Echo" };
-        return names[Random.Range(0, names.Length)];
+        return names[UnityEngine.Random.Range(0, names.Length)];
     }
+}
+public enum BotType
+{
+    None,
+    Miner,
+    Carrier,
+    Worker,
+    Builder,
+    Specialist
 }
