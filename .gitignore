@@ -13,13 +13,13 @@
 #
 
 .utmp/
-/[Ll]ibrary/
-/[Tt]emp/
-/[Oo]bj/
-/[Bb]uild/
-/[Bb]uilds/
-/[Ll]ogs/
-/[Uu]ser[Ss]ettings/
+/[Bb]ase [Bb]uilder/[Ll]ibrary/
+/[Bb]ase [Bb]uilder/[Tt]emp/
+/[Bb]ase [Bb]uilder/[Oo]bj/
+/[Bb]ase [Bb]uilder/[Bb]uild/
+/[Bb]ase [Bb]uilder/[Bb]uilds/
+/[Bb]ase [Bb]uilder/[Ll]ogs/
+/[Bb]ase [Bb]uilder/[Uu]ser[Ss]ettings/
 *.log
 
 # By default unity supports Blender asset imports, *.blend1 blender files do not need to be commited to version control.
