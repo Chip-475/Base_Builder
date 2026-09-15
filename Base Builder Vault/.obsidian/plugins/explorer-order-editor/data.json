@@ -1,3 +1,3 @@
 {
-  "indexBackup": "This note is maintained by the Explorer Order Editor plugin. It stores the manual sort order for folders in this vault; the block below is machine-generated.\n\n```json\n{\n  \"/\": [\"General.md\",\"Art Bible.md\",\"World.md\",\"Resources\"],\n  \"Resources\": [\"Resources.md\",\"Ice.md\",\"Water.md\",\"Steam.md\",\"Iron.md\",\"Hematite.md\",\"Magnetite.md\"]\n}\n```\n"
+  "indexBackup": "This note is maintained by the Explorer Order Editor plugin. It stores the manual sort order for folders in this vault; the block below is machine-generated.\n\n```json\n{\n  \"/\": [\"General.md\",\"Art Bible.md\",\"World.md\",\"Resources\",\"Bots\"],\n  \"Resources\": [\"Resources.md\",\"Raw\",\"Ingots\",\"Alloys\"],\n  \"Resources/Ingots\": [\"Aluminum.md\",\"Copper.md\",\"Gold.md\",\"Iron.md\",\"Nickel.md\",\"Titanium.md\"]\n}\n```\n"
 }

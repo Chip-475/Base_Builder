@@ -1,11 +1,12 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using System;
 using System.Collections.Generic;
-using UnityEditor.ShaderGraph.Internal;
 
+[Serializable]
 public class World
 {
-    public World(Grid grid)
+    public World(Grid grid, Dictionary<Tilemap, CellType> mapToType)
     {
         foreach (Tilemap tilemap in grid.GetComponentsInChildren<Tilemap>())
             foreach (Vector3Int pos in tilemap.cellBounds.allPositionsWithin)
@@ -14,9 +15,11 @@ public class World
                     continue;
 
                 Vector2Int coord = pos.ToVector2Int();
-                cells[coord] = new(coord, CellType.Floor, true);
+                cells[coord] = new(coord, mapToType[tilemap], true);
             }
     }
 
-    Dictionary<Vector2Int, Cell> cells = new();
+    [SerializeField] Dictionary<Vector2Int, Cell> cells = new();
+
+    public Cell GetTileAt(Vector2Int coords) { return cells[coords]; }
 }

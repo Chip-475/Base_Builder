@@ -9,8 +9,8 @@ public static class Helpers
     }
     public static Vector2Int ToVector2Int(this Vector2 vec)
     {
-        int X = Mathf.FloorToInt(vec.x);
-        int Y = Mathf.FloorToInt(vec.y);
+        int X = Mathf.RoundToInt(vec.x);
+        int Y = Mathf.RoundToInt(vec.y);
         return new Vector2Int(X, Y);
     }
     public static Vector2Int ToVector2Int(this Vector3Int vec)

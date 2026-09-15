@@ -2,7 +2,8 @@ This note is maintained by the Explorer Order Editor plugin. It stores the manua
 
 ```json
 {
-  "/": ["General.md","Art Bible.md","World.md","Resources"],
-  "Resources": ["Resources.md","Ice.md","Water.md","Steam.md","Iron.md","Hematite.md","Magnetite.md"]
+  "/": ["General.md","Art Bible.md","World.md","Resources","Bots"],
+  "Resources": ["Resources.md","Raw","Ingots","Alloys"],
+  "Resources/Ingots": ["Aluminum.md","Copper.md","Gold.md","Iron.md","Nickel.md","Titanium.md"]
 }
 ```

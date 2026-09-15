@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 
+[Serializable]
 public class Cell
 {
     public Cell(Vector2Int coords, CellType type, bool createWorldObject)

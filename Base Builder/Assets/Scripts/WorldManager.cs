@@ -1,12 +1,17 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using System;
+using System.Collections.Generic;
 
 public class WorldManager : MonoBehaviour
 {
     public static WorldManager instance;
 
     [SerializeField] Grid grid;
-    World world;
+    [SerializeField] Dictionary<Tilemap, CellType> mapToType;
+    [Space]
+
+    [SerializeField] World world;
 
     public Sprite floorSprite;
 
@@ -18,6 +23,6 @@ public class WorldManager : MonoBehaviour
     void Start()
     {
         grid.gameObject.SetActive(false);
-        world = new(grid);
+        world = new(grid, mapToType);
     }
 }
