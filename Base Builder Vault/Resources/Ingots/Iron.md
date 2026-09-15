@@ -1,3 +1,3 @@
 ___
-Derived from [[Hematite]] and [[Magnetite]].
-Can be used to craft buildings and other materials.
+$Fe$
+Durable and abundant metal, although very heavy.

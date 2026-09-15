@@ -1,3 +1,3 @@
 ___
-Found in deposits scattered around the map.
-Can be mined with the base laser miner and processed into [[Iron]] at a furnace.
+$Fe_2O_3$
+Can be refined into [[Iron]] at a high efficiency.
