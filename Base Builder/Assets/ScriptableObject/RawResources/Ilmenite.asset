@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
+  m_Name: Ilmenite
+  m_EditorClassIdentifier: Assembly-CSharp::Resources
+  <ResourceID>k__BackingField: ilmenite
+  resourceName: Ilmenite
+  resourceDescription: Found in deposit scattered around the map.Cannot be mined
+    with the base laser cutter.Can be processed into Titanium at a furnace
+  resourceSprite: {fileID: 0}
+  toughtness: 3
+  weightPerUnit: 5
+  energyPerUnit: 10
