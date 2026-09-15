@@ -1,13 +1,15 @@
 using UnityEngine;
+using System;
 
-public class MineralDeposit : MonoBehaviour
+[Serializable]
+public class MineralDeposit
 {
-    void OnValidate()
+    public MineralDeposit(Vector3Int coords, ResourceSO resource)
     {
-        transform.position = transform.position.ToVector3Int();
-        Coords = transform.position.ToVector3Int();
+        Coords = coords;
+        Resource = resource;
     }
 
-    public Vector3Int Coords {  get; protected set; }
-    [field: SerializeField] public ResourceSO Resource { get; protected set; }
+    public Vector3Int Coords { get; protected set; }
+    public ResourceSO Resource { get; protected set; }
 }

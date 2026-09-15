@@ -15,14 +15,20 @@ public class Cell
 
     Vector3Int coords = new(0, 0);
     CellType type = CellType.Void;
+    MineralDeposit deposit = null;
+
     Action cellTypeChanged;
 
     public CellType Type 
     {  
         get { return type; }
-        set { type = value; cellTypeChanged(); }
+        protected set { type = value; cellTypeChanged(); }
     }
-
+    public MineralDeposit Deposit
+    {
+        get { return deposit; }
+        protected set {  deposit = value; }
+    }
 
     void CreateWorldObject()
     {
@@ -39,6 +45,9 @@ public class Cell
     {
         // select sprite based on type
     }
+
+    public void SetType(CellType type) { Type = type; }
+    public void SetDeposit(MineralDeposit deposit) { Deposit = deposit; }
 }
 public enum CellType
 {
