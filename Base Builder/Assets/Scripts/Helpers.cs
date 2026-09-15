@@ -3,19 +3,16 @@ using UnityEngine;
 public static class Helpers
 {
     #region Vector Helpers
-    public static Vector2 ToVector2(this Vector2Int vec)
+    public static Vector3 ToVector3(this Vector3Int vec)
     {
-        return new Vector2(vec.x, vec.y);
+        return new Vector3(vec.x, vec.y, vec.z);
     }
-    public static Vector2Int ToVector2Int(this Vector2 vec)
+    public static Vector3Int ToVector3Int(this Vector3 vec)
     {
         int X = Mathf.RoundToInt(vec.x);
         int Y = Mathf.RoundToInt(vec.y);
-        return new Vector2Int(X, Y);
-    }
-    public static Vector2Int ToVector2Int(this Vector3Int vec)
-    {
-        return new Vector2Int(vec.x, vec.y);
+        int Z = Mathf.RoundToInt(vec.z);
+        return new Vector3Int(X, Y, Z);
     }
     #endregion
 }

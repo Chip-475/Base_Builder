@@ -4,7 +4,7 @@ using System;
 [Serializable]
 public class Cell
 {
-    public Cell(Vector2Int coords, CellType type, bool createWorldObject)
+    public Cell(Vector3Int coords, CellType type, bool createWorldObject)
     {
         this.coords = coords;
         this.type = type;
@@ -13,7 +13,7 @@ public class Cell
             CreateWorldObject();
     }
 
-    Vector2Int coords = new(0, 0);
+    Vector3Int coords = new(0, 0);
     CellType type = CellType.Void;
     Action cellTypeChanged;
 
@@ -27,10 +27,11 @@ public class Cell
     void CreateWorldObject()
     {
         GameObject go = new();
-        go.transform.position = coords.ToVector2();
+        go.transform.position = coords.ToVector3();
         go.name = $"Cell_{coords.x}_{coords.y}";
         
         SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
+        sr.sortingLayerName = "Floor";
         sr.sprite = WorldManager.instance.floorSprite; // Replace when sprite system is established
         cellTypeChanged += () => ChangeSprite(sr);
     }

@@ -9,17 +9,16 @@ public class World
     public World(Grid grid, Dictionary<Tilemap, CellType> mapToType)
     {
         foreach (Tilemap tilemap in grid.GetComponentsInChildren<Tilemap>())
-            foreach (Vector3Int pos in tilemap.cellBounds.allPositionsWithin)
+            foreach (Vector3Int coord in tilemap.cellBounds.allPositionsWithin)
             {
-                if (!tilemap.HasTile(pos))
+                if (!tilemap.HasTile(coord))
                     continue;
 
-                Vector2Int coord = pos.ToVector2Int();
                 cells[coord] = new(coord, mapToType[tilemap], true);
             }
     }
 
-    [SerializeField] Dictionary<Vector2Int, Cell> cells = new();
+    [SerializeField] Dictionary<Vector3Int, Cell> cells = new();
 
-    public Cell GetTileAt(Vector2Int coords) { return cells[coords]; }
+    public Cell GetTileAt(Vector3Int coords) { return cells[coords]; }
 }
