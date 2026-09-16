@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Player
 {
@@ -27,4 +28,5 @@ public class Player
         }
         else botClicked = false;
     }*/
+
 }
