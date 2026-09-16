@@ -6,6 +6,8 @@ using System.Collections.Generic;
 [Serializable]
 public class World
 {
+    [SerializeField] Dictionary<Vector3Int, Cell> cells = new();
+
     public World(Grid grid, Dictionary<Tilemap, CellType> mapToType)
     {
         foreach (Tilemap tilemap in grid.GetComponentsInChildren<Tilemap>())
@@ -18,7 +20,5 @@ public class World
             }
     }
 
-    [SerializeField] Dictionary<Vector3Int, Cell> cells = new();
-
-    public Cell GetTileAt(Vector3Int coords) { return cells[coords]; }
+    public Cell GetCellAt(Vector3Int coords) { return cells[coords]; }
 }
