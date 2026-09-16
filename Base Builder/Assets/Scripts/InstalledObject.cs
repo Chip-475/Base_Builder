@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using TMPro;
 
 public class InstalledObject : MonoBehaviour
 {
@@ -59,5 +60,11 @@ public class InstalledObject : MonoBehaviour
             }
 
         return cells.ToArray();
+    }
+
+    public Cell getCell()
+    {
+        Vector3Int posCella = transform.position.ToVector3Int(); //da posizione in coordinate
+        return WorldManager.instance.World.GetCellAt(posCella); //prende la cella inq quella posizione
     }
 }
