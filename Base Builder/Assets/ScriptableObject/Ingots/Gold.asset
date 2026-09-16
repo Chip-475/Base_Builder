@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Gold
   m_EditorClassIdentifier: Assembly-CSharp::Resources
-  <ResourceID>k__BackingField: gold
-  resourceName: Gold
-  resourceDescription: Derived from Gold Ore.Can be used to craft buildings and other
-    materials
-  resourceSprite: {fileID: 0}
-  toughtness: 1
+  <ID>k__BackingField: gold
+  r_name: Gold
+  r_desc: Extremely conductive metal.
+  r_sprite: {fileID: 0}
+  toughness: 1
   weightPerUnit: 3
   energyPerUnit: 0

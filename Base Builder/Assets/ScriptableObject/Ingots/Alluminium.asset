@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Alluminium
   m_EditorClassIdentifier: Assembly-CSharp::Resources
-  <ResourceID>k__BackingField: allumium
-  resourceName: Alliumium
-  resourceDescription: Derived from Bauxite.Can be used to craft buildings and other
-    materials
-  resourceSprite: {fileID: 0}
-  toughtness: 1
+  <ID>k__BackingField: alluminium
+  r_name: Alluminium
+  r_desc: Moderately strong but very light metal.
+  r_sprite: {fileID: 0}
+  toughness: 1
   weightPerUnit: 1
   energyPerUnit: 0
