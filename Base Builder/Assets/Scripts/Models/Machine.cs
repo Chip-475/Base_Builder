@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections;
+
 public class Machine
 {
     //lista di ricette che la macchina può eseguire,
@@ -18,20 +19,20 @@ public class Machine
     [TextArea] public string m_desc;
     public Sprite m_sprite;
 
-     public Vector3Int Coords { get; protected set; }
+    public Vector3Int Coords { get; protected set; }
 
-     public bool IsWorking { get; protected set; }
+    public bool IsWorking { get; protected set; }
 
-     public IEnumerator Work(Recipe recipe)
+    public IEnumerator Work(RecipeSO recipe)
     {
-      IsWorking = true;
-      yield return new WaitForSeconds(recipe.recipeTime);
-      IsWorking = false;
+        IsWorking = true;
+        yield return new WaitForSeconds(recipe.completionTime);
+        IsWorking = false;
     }
 
-     public int EnergyLevel(ResourceSO resource)
+    public int EnergyLevel(ResourceSO resource)
     {
-       // resource -= 1; devo sottrarre una risorsa dal magazzino/inventario
+        // resource -= 1; devo sottrarre una risorsa dal magazzino/inventario
         energyLevel += resource.energyPerUnit;
         return energyLevel;
     }
