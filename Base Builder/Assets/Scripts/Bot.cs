@@ -1,6 +1,6 @@
 using UnityEngine;
 using System;
-
+// inventario a peso, path finding (quando ce un mondo)
 public class Bot
 {
     public Bot(Vector2Int coords, BotType type)
@@ -32,7 +32,7 @@ public enum BotType
 {
     None,
     Miner,
-    Carrier,
+    Carrier, //100  altri 20
     Worker,
     Builder,
     Specialist
