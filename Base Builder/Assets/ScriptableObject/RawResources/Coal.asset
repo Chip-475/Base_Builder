@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Coal
   m_EditorClassIdentifier: Assembly-CSharp::Resources
   <ResourceID>k__BackingField: coal
-  resourceName: Coal
-  resourceDescription: Basic mineral,burn to generate energy
-  resourceSprite: {fileID: 0}
-  toughtness: 1
+  r_name: 
+  r_desc: Can be burned to produce energy.
+  r_sprite: {fileID: 0}
+  toughness: 1
   weightPerUnit: 1
   energyPerUnit: 2

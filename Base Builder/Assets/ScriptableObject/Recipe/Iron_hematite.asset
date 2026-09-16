@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1930e33686e0fe343a20ec312785cbc4, type: 3}
+  m_Name: Iron_hematite
+  m_EditorClassIdentifier: Assembly-CSharp::Recipe
+  inputResources:
+  - {fileID: 11400000, guid: e76ecbd53161e044fb81a60d2b909173, type: 2}
+  outputResources:
+  - {fileID: 11400000, guid: f44b38d183a6d48409ecf1890b1f4cd8, type: 2}
+  recipeName: 
+  id: 
+  energyCost: 0
+  recipeTime: 0
