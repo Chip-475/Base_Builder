@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
-  m_Name: Magnetite
-  m_EditorClassIdentifier: Assembly-CSharp::Resources
-  <ResourceID>k__BackingField: magnetite
+  m_Name: Tin
+  m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
+  <ResourceID>k__BackingField: Tin
   r_name: 
-  r_desc: Can be refined into Iron at a higher efficiency.
+  r_desc: 
   r_sprite: {fileID: 0}
   toughness: 1
-  weightPerUnit: 5
+  weightPerUnit: 0
   energyPerUnit: 0

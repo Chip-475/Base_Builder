@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Ilmenite
   m_EditorClassIdentifier: Assembly-CSharp::Resources
   <ResourceID>k__BackingField: ilmenite
-  resourceName: Ilmenite
-  resourceDescription: Found in deposit scattered around the map.Cannot be mined
-    with the base laser cutter.Can be processed into Titanium at a furnace
-  resourceSprite: {fileID: 0}
-  toughtness: 3
+  r_name: 
+  r_desc: Can be refined into Titanium.
+  r_sprite: {fileID: 0}
+  toughness: 1
   weightPerUnit: 5
   energyPerUnit: 10

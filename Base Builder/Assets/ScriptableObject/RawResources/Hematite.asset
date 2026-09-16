@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Hematite
   m_EditorClassIdentifier: Assembly-CSharp::Resources
   <ResourceID>k__BackingField: hematite
-  resourceName: Hematite
-  resourceDescription: 'Found in deposit scattered around the map.Cannot be mined
-    with the base laser cutter.Can be processed into Iron at a furnace '
-  resourceSprite: {fileID: 0}
-  toughtness: 2
+  r_name: 
+  r_desc: Can be refined into Iron at a high efficiency.
+  r_sprite: {fileID: 0}
+  toughness: 1
   weightPerUnit: 2
   energyPerUnit: 0
