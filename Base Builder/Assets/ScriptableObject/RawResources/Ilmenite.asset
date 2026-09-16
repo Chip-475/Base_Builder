@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Ilmenite
   m_EditorClassIdentifier: Assembly-CSharp::Resources
-  <ResourceID>k__BackingField: ilmenite
-  r_name: 
+  <ID>k__BackingField: ilmenite
+  r_name: Ilmenite
   r_desc: Can be refined into Titanium.
   r_sprite: {fileID: 0}
   toughness: 1

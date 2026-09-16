@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Iron
   m_EditorClassIdentifier: Assembly-CSharp::Resources
-  <ResourceID>k__BackingField: iron
-  resourceName: Iron
-  resourceDescription: Derived from Pyrite, Hematite and Magnetite.Can be used to
-    craft buildings and other materials
-  resourceSprite: {fileID: 0}
-  toughtness: 1
+  <ID>k__BackingField: iron
+  r_name: Iron
+  r_desc: Durable and abundant metal, although very heavy.
+  r_sprite: {fileID: 0}
+  toughness: 1
   weightPerUnit: 2
   energyPerUnit: 0

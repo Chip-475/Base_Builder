@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Invar
   m_EditorClassIdentifier: Assembly-CSharp::Resources
-  <ResourceID>k__BackingField: invar
-  resourceName: Invar
-  resourceDescription: Derived from Iron and Nickel.Can be used to craft buildings
-    and other materials
-  resourceSprite: {fileID: 0}
-  toughtness: 1
+  <ID>k__BackingField: invar
+  r_name: Invar
+  r_desc: Alloy formed from Iron and Nickel.
+  r_sprite: {fileID: 0}
+  toughness: 1
   weightPerUnit: 5
   energyPerUnit: 0
