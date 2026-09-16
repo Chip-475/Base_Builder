@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Bauxite
   m_EditorClassIdentifier: Assembly-CSharp::Resources
   <ResourceID>k__BackingField: bauxite
-  resourceName: Bauxite
-  resourceDescription: 'Found in deposit scattered around the map.Cannot be mined
-    with the base laser cutter.Can be processed into Allumium at a furnace '
-  resourceSprite: {fileID: 0}
-  toughtness: 3
+  r_name: 
+  r_desc: Can be refined into Aluminum.
+  r_sprite: {fileID: 0}
+  toughness: 1
   weightPerUnit: 3
   energyPerUnit: 0

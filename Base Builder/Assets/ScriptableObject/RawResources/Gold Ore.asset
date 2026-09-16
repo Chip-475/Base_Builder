@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Gold Ore
   m_EditorClassIdentifier: Assembly-CSharp::Resources
   <ResourceID>k__BackingField: goldOre
-  resourceName: Gold Ore
-  resourceDescription: 'Found in deposit scattered around the map.Cannot be mined
-    with the base laser cutter.Can be processed into Gold at a furnace '
-  resourceSprite: {fileID: 0}
-  toughtness: 2
+  r_name: 
+  r_desc: Can be refined into Gold.
+  r_sprite: {fileID: 0}
+  toughness: 1
   weightPerUnit: 4
   energyPerUnit: 0

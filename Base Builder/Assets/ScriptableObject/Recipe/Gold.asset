@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1930e33686e0fe343a20ec312785cbc4, type: 3}
+  m_Name: Gold
+  m_EditorClassIdentifier: Assembly-CSharp::Recipe
+  inputResources:
+  - {fileID: 11400000, guid: a63e372a913454d4794c5bc6f9b8289f, type: 2}
+  outputResources:
+  - {fileID: 11400000, guid: a753ae9da1d3d474f8c515e6dc2116e9, type: 2}
+  recipeName: 
+  id: 
+  energyCost: 0
+  recipeTime: 0

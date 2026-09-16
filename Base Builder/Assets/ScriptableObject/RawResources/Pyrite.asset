@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Pyrite
   m_EditorClassIdentifier: Assembly-CSharp::Resources
   <ResourceID>k__BackingField: pyrite
-  resourceName: Pyrite
-  resourceDescription: Found in deposits scattered around the map.Can be mined with
-    the base laser miner and processed into Iron at the furnace
-  resourceSprite: {fileID: 0}
-  toughtness: 1
+  r_name: 
+  r_desc: Can be refined into Iron.
+  r_sprite: {fileID: 0}
+  toughness: 1
   weightPerUnit: 2
   energyPerUnit: 0
