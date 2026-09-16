@@ -8,63 +8,20 @@
         "type": "tabs",
         "children": [
           {
-            "id": "6e028610c079e00d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "General.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "General"
-            }
-          },
-          {
-            "id": "c11059d3ee61f04c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Resources/Ingots/Nickel.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Nickel"
-            }
-          },
-          {
-            "id": "a4405896628182a5",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Resources/Ingots/Tin.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Tin"
-            }
-          },
-          {
             "id": "454c9a7c23347d56",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Resources/Raw/Cassiterite.md",
+                "file": "Resources/Ingots/Aluminum.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Cassiterite"
+              "title": "Aluminum"
             }
           }
-        ],
-        "currentTab": 3
+        ]
       }
     ],
     "direction": "vertical"
@@ -233,6 +190,13 @@
   },
   "active": "454c9a7c23347d56",
   "lastOpenFiles": [
+    "Resources/Raw/Bauxite.md",
+    "Resources/Ingots/Aluminum.md",
+    "Resources/Raw/Magnetite.md",
+    "Resources/Raw/Hematite.md",
+    "Resources/Raw/Pyrite.md",
+    "Resources/Raw/Malachite.md",
+    "Resources/Raw/Ilmenite.md",
     "Resources/Raw/Pentladite.md",
     "Resources/Raw/Cassiterite.md",
     "Resources/Ingots/Tin.md",
@@ -241,20 +205,13 @@
     "Docs.md",
     "General.md",
     "Art Bible.md",
-    "Resources/Raw/Magnetite.md",
-    "Resources/Raw/Hematite.md",
-    "Resources/Raw/Pyrite.md",
     "Resources/Raw/Gold Ore.md",
     "Resources/Raw/Coal.md",
-    "Resources/Raw/Bauxite.md",
-    "Resources/Raw/Ilmenite.md",
-    "Resources/Raw/Malachite.md",
     "Drafts/Tungsten.md",
     "Resources/Ingots/Titanium.md",
     "Drafts",
     "Resources/Ingots/Iron.md",
     "Resources/Ingots/Copper.md",
-    "Resources/Ingots/Aluminum.md",
     "Resources/Alloys/Steel.md",
     "Resources/Alloys/Invar.md",
     "Resources/Resources.md",
