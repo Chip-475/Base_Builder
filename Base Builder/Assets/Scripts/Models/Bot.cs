@@ -9,7 +9,7 @@ public struct resourceInfo
     public int quant;
     public int getTotal()
     {
-        return resource.weightPerUnit * quant;
+        return /*resource.weightPerUnit * quant*/0;
     }
 } 
 public class Bot
@@ -44,7 +44,7 @@ public class Bot
 
     public bool aggRisorsa(ResourceSO res, int quant)
     {
-        int pesoPiu = res.weightPerUnit * quant;
+        int pesoPiu = /*res.weightPerUnit * quant*/0;
         int pesoAtt=getPeso();
         if (pesoAtt + pesoPiu <=maxWeight) return false;
         for(int i=0;i<inv.Count;i++)

@@ -1,20 +1,24 @@
-using UnityEngine;
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class Machine
+public class Machine : InstalledObject
 {
     //lista di ricette che la macchina può eseguire,
     // prendono un imput e tornano un output facendo lavorare il bot per x tempo 
-    public string id;
+    public List<RecipeSO> allowedRecipe = new();
 
-    public int energyLevel;
 
+    [Header("Energy Management")]
+    public bool needsEnergy = true;
+    public List<ResourceSO> allowedFuels = new();
+    public int currentEnergy;
+    public int maxEnergy;
     //coal value=50 
-     public ResourceSO[] allowedResource= { };
 
     [Header("Identity")]
-    [field: SerializeField] public string MachineID { get; private set;}
+    public string id;
     public string m_name;
     [TextArea] public string m_desc;
     public Sprite m_sprite;
@@ -23,24 +27,27 @@ public class Machine
 
     public bool IsWorking { get; protected set; }
 
-    public IEnumerator Work(RecipeSO recipe)
-    {
-        IsWorking = true;
-        yield return new WaitForSeconds(recipe.completionTime);
-        IsWorking = false;
-    }
-
-    public int EnergyLevel(ResourceSO resource)
-    {
-        // resource -= 1; devo sottrarre una risorsa dal magazzino/inventario
-        energyLevel += resource.energyPerUnit;
-        return energyLevel;
-    }
-
      public Machine(Vector3Int coords, string id)
      {
-        string[] recipes = { "Recipe1", "Recipe2", "Recipe3" };
+        id = Guid.NewGuid().ToString();
         Coords = coords;
-
      }
+    public void Recharge(ResourceSO resource)
+    {
+        if (!allowedFuels.Contains(resource)) return;
+        currentEnergy += resource.energyPerUnit;
+        if (currentEnergy > maxEnergy)
+            currentEnergy = maxEnergy;
+    }
+    public IEnumerator Work(RecipeSO recipe)
+    {
+        if (allowedRecipe.Contains(recipe) && currentEnergy >= recipe.energyCost)
+        {
+            IsWorking = true;
+            currentEnergy -= recipe.energyCost;
+            yield return new WaitForSeconds(recipe.completionTime);
+            //output goes to a storage to be picked out by a carrier bot
+            IsWorking = false;
+        }
+    }
 }
