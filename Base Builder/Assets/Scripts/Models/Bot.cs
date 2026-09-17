@@ -7,9 +7,9 @@ public struct resourceInfo
 {
     public ResourceSO resource;
     public int quant;
-    public int getTotal()
+    public float getTotal()
     {
-        return /*resource.weightPerUnit * quant*/0;
+        return resource.weightPerUnit * quant;
     }
 } 
 public class Bot
@@ -32,9 +32,9 @@ public class Bot
     int maxPower = 100;
     int maxWeight;
     public List<resourceInfo> inv = new();
-    public int getPeso()
+    public float getPeso()
     {
-        int tot = 0;
+        float tot = 0;
         foreach(var stack in  inv)
         {
             tot += stack.getTotal();
@@ -44,8 +44,8 @@ public class Bot
 
     public bool aggRisorsa(ResourceSO res, int quant)
     {
-        int pesoPiu = /*res.weightPerUnit * quant*/0;
-        int pesoAtt=getPeso();
+        float pesoPiu = res.weightPerUnit * quant;
+        float pesoAtt=getPeso();
         if (pesoAtt + pesoPiu <=maxWeight) return false;
         for(int i=0;i<inv.Count;i++)
         {
