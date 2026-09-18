@@ -1,5 +1,6 @@
-The Advanced Assembler produces the complex components available
-Recipe:
+___
+The Advanced Assembler is able to produce complex components.
+Recipes:
 [[Titanium Frame]]
 [[Ship Core Component]]
 [[Navigation Component]]

@@ -1,3 +1,4 @@
+___
 input:
 xx Malachite
 output:

@@ -1,1 +1,2 @@
-electric poles are upgreadable object that provides energy to nearby [[Machines]] 
+___
+Electric poles are buildings that provide energy to nearby [[Machines]].

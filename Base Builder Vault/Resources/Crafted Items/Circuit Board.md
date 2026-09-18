@@ -1,2 +1,2 @@
 ___
-A basic electronic board.
+A board containing basic circuitry.

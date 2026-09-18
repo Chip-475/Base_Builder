@@ -1,1 +1,2 @@
-A plate made of steel
+___
+A plate made of [[Steel]]. Moderately strong.

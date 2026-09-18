@@ -1,5 +1,6 @@
-The furnace convert raw ores into ingots
-recipes:
+___
+The furnace converts raw ores into ingots.
+Recipes:
 [[Smelt to Tin]]
 [[Smelt to Gold]]
 [[Smelt to Iron 1]]

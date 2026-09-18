@@ -1,3 +1,4 @@
+___
 input:
 2x [[Iron]]
 1x [[Coal]]

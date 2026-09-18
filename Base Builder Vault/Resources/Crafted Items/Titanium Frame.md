@@ -1,1 +1,2 @@
-a high-strength structural frame
+___
+A high-strength structural frame.

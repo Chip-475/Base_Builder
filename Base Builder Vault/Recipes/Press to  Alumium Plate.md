@@ -1,4 +1,5 @@
+___
 input:
 2 [[Aluminum]]
 output:
-1 [[Alumium Plate]]
+1 [[Aluminum Plate]]

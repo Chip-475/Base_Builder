@@ -1,4 +1,5 @@
-The assembler trasform prime material into basic resources
+___
+The Assembler transforms basic resources into basic components.
 Recipes:
 [[Copper Wire]]
 [[Circuit Board]]

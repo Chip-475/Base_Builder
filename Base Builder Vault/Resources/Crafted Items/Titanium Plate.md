@@ -1,2 +1,2 @@
 ___
-The strongest plate made of titanium
+A  plate made of [[Titanium]]. Extremely strong for its weight.

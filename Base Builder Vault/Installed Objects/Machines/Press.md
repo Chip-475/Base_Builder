@@ -1,5 +1,6 @@
-The Press converts metal ingots into plates
+___
+The Press converts metal ingots into plates.
 Recipes:
 [[Steel Plate]]
-[[Alumium Plate]]
+[[Aluminum Plate]]
 [[Titanium Plate]]

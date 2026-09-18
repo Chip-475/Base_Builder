@@ -2,4 +2,4 @@
 
 ---
 ___
-Thin conductive copper wire.
+Thin, conductive wire made of [[Copper]].

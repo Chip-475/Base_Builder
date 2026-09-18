@@ -1,5 +1,6 @@
-Output of [[Machines]]
-use this form when creating a new material:
+___
+Output of [[Machines]].
+Use this form when creating a new material:
 name
 description
 recipe it is an input item

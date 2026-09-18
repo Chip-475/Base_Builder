@@ -1,2 +1,2 @@
 ___
-One of the component needed to repair the ship
+One of the component needed to repair the ship.
