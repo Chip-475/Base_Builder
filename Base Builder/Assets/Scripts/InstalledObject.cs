@@ -1,9 +1,16 @@
 using UnityEngine;
+using System;
 using System.Collections.Generic;
-using TMPro;
 
 public class InstalledObject : MonoBehaviour
 {
+    [Serializable] public struct ProcessingData
+    {
+        public ResourceSO resource;
+        public int amount;
+        public float timeToProcess;
+    }
+
     [SerializeField] protected bool blocksWalking;
     [SerializeField] protected bool blocksPlacing;
     [SerializeField] protected Bounds bounds;
@@ -55,7 +62,7 @@ public class InstalledObject : MonoBehaviour
         for (int x = minX; x <= maxX; x++)
             for (int y = minY; y <= maxY; y++)
             {
-                Cell cell = WorldManager.instance.World.GetCellAt(new Vector3Int(x, y, 0));
+                Cell cell = WorldManager.World.GetCellAt(new Vector3Int(x, y, 0));
                 cells.Add(cell);
             }
 
@@ -65,6 +72,6 @@ public class InstalledObject : MonoBehaviour
     public Cell getCell()
     {
         Vector3Int posCella = transform.position.ToVector3Int(); //da posizione in coordinate
-        return WorldManager.instance.World.GetCellAt(posCella); //prende la cella inq quella posizione
+        return WorldManager.World.GetCellAt(posCella); //prende la cella inq quella posizione
     }
 }

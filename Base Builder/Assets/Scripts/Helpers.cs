@@ -2,6 +2,12 @@ using UnityEngine;
 
 public static class Helpers
 {
+    #region Float Helpers
+    public static int ToMilliseconds(this float value)
+    {
+        return Mathf.RoundToInt(value * 1000);
+    }
+    #endregion
     #region Vector Helpers
     public static Vector3 ToVector3(this Vector3Int vec)
     {
