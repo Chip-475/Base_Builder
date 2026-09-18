@@ -1,8 +1,5 @@
-using Mono.Cecil;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class Machine : InstalledObject
 {
@@ -12,6 +9,12 @@ public class Machine : InstalledObject
     public bool needsEnergy = true;
     public int currentEnergy = 100;
     public int maxEnergy = 100;
+
+    private new void Start()
+    {
+        base.Start();
+        WorldManager.World.SetMachineAt(Coords, this);
+    }
 
     public ProcessingData GetProcessingData()
     {

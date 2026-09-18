@@ -4,9 +4,14 @@ public class MineralNode : InstalledObject
 {
     [Header("Config")]
     [SerializeField] ResourceSO resource;
-    [Space]
-    [SerializeField] int baseAmountGiven;
+    [SerializeField] int amountPerProcess;
     [SerializeField] NodePurity purity;
+
+    private new void Start()
+    {
+        base.Start();
+        WorldManager.World.SetMineralNodeAt(Coords, this);
+    }
 
     public ProcessingData GetProcessingData()
     {
@@ -14,7 +19,7 @@ public class MineralNode : InstalledObject
         {
             outputResources = new()
             {
-                [resource] = baseAmountGiven * (int)purity 
+                [resource] = amountPerProcess * (int)purity 
             },
             timeToProcess = resource.toughness * 2
         };

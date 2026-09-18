@@ -48,7 +48,7 @@ public class InstalledObject : MonoBehaviour
         SnapToGrid();
         bounds.center = transform.position;
     }
-    void Start()
+    protected void Start()
     {
         UpdateCells(GetCellsInBounds());
     }
@@ -61,8 +61,8 @@ public class InstalledObject : MonoBehaviour
     {
         foreach(var cell in cells)
         {
-            cell.canWalkOn = blocksWalking;
-            cell.canPlaceOn = blocksPlacing;
+            cell.canWalkOn = !blocksWalking;
+            cell.canPlaceOn = !blocksPlacing;
         }
     }
 
