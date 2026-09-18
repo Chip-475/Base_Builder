@@ -1,0 +1,1 @@
+Ingots are the result of [[Raw]] mineral being processed inside a [[Furnace]]
