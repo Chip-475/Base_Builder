@@ -4,34 +4,35 @@ using System.Collections.Generic;
 
 public class Bot
 {
-    public struct Inventory
+    [Serializable] public struct Inventory
     {
-        Dictionary<ResourceSO, int> cargo;
-        float maxWeight;
+        public Dictionary<ResourceSO, int> Cargo {  get; private set; }
+        public float MaxWeight {  get; private set; }
 
         public void AddResource(ResourceSO resource, int amount)
         {
-            cargo ??= new();
+            Cargo ??= new();
 
-            var cargoSim = new Dictionary<ResourceSO, int>(cargo);
+            var cargoSim = new Dictionary<ResourceSO, int>(Cargo);
             cargoSim[resource] += amount;
 
-            if (cargo[resource] + amount < 0)
+            if (Cargo[resource] + amount < 0)
             {
                 Debug.Log("Error: resource amount cannot be negative.");
                 return;
             }
-            if(GetTotalWeight(cargoSim) > maxWeight)
+            if(GetTotalWeight(cargoSim) > MaxWeight)
             {
                 Debug.Log("Error: weight exceeds max capacity.");
                 return;
             }
 
-            cargo[resource] += amount;
+            Cargo[resource] += amount;
         }
+
         public float GetTotalWeight(Dictionary<ResourceSO, int> inv = null)
         {
-            inv ??= cargo;
+            inv ??= Cargo;
 
             float totalWeight = 0f;
             foreach (var entry in inv)
@@ -41,7 +42,7 @@ public class Bot
         }
         public float GetSpecificWeight(ResourceSO resource, Dictionary<ResourceSO, int> inv = null)
         {
-            inv ??= cargo;
+            inv ??= Cargo;
 
             if (!inv.ContainsKey(resource))
             {
@@ -50,38 +51,40 @@ public class Bot
             }
             return inv[resource] * resource.weightPerUnit;
         }
+
+        public void SetMaxWeight(float newMax) { MaxWeight = newMax; }
     }
-    
+
+    [Header("Identity")]
     public string Id { get; protected set; }
-    Vector3Int coords = new(0, 0);
-    BotType type = BotType.None;
-    public string botName;
-    int Power { get; set; }
-    int maxPower = 100;
-    int maxWeight;
+    public Vector3Int Coords {  get; protected set; } = Vector3Int.zero;
+    public string Name { get; protected set; }
+    public BotType Type { get; protected set; } = BotType.None;
+
+    [Header("Stats")]
+    public int power;
+    int maxPower;
 
     public Bot(Vector3Int coords, BotType type)
     {
         Id = Guid.NewGuid().ToString();
-        this.coords = coords;
-        this.type = BotType.None;
-        botName = PickRandomName();
-        Power = maxPower;
-        if (type == BotType.Carrier) maxWeight = 100;
-        else maxWeight = 20;
+        Coords = coords;
+        Name = PickRandomName();
+        Type = type;
     }
 
-    public string PickRandomName()
+    string PickRandomName()
     {
-        string[] names = { "Alpha", "Bravo", "Charlie", "Delta", "Echo" };
-        return names[UnityEngine.Random.Range(0, names.Length)];
+        string[] names_1 = { "Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "Hotel", "India", "Juliett" };
+        string[] names_2 = { "Leader", "Keeper", "Pioneer", "Witcher", "Diver", "Bomber", "Rancher", "Taker", "Dispatcher", "Manager" };
+        return names_1[UnityEngine.Random.Range(0, names_1.Length)] + " " + names_2[UnityEngine.Random.Range(0, names_2.Length)];
     }
 }
 public enum BotType
 {
     None,
     Miner,
-    Carrier, //100  altri 20
+    Carrier,
     Worker,
     Builder,
     Specialist

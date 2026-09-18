@@ -8,14 +8,14 @@ public class MineralNode : InstalledObject
     [SerializeField] int baseAmountGiven;
     [SerializeField] NodePurity purity;
 
-    public Cell Cell => WorldManager.World.GetCellAt(transform.position.ToVector3Int());
-
     public ProcessingData GetProcessingData()
     {
         return new ProcessingData()
         {
-            resource = resource,
-            amount = baseAmountGiven * (int)purity,
+            outputResources = new()
+            {
+                [resource] = baseAmountGiven * (int)purity 
+            },
             timeToProcess = resource.toughness * 2
         };
     }

@@ -6,8 +6,8 @@ public class InstalledObject : MonoBehaviour
 {
     [Serializable] public struct ProcessingData
     {
-        public ResourceSO resource;
-        public int amount;
+        [SerializeField] public Dictionary<ResourceSO, int> inputResources;
+        [SerializeField] public Dictionary<ResourceSO, int> outputResources;
         public float timeToProcess;
     }
 
@@ -16,6 +16,21 @@ public class InstalledObject : MonoBehaviour
     [SerializeField] protected Bounds bounds;
     [SerializeField] protected BoxCollider2D collider;
 
+    public Cell Cell => WorldManager.World.GetCellAt(transform.position.ToVector3Int());
+    public Vector3Int Coords => Cell.Coords;
+
+    void OnDrawGizmos()
+    {
+        Bounds bounds = this.bounds;
+
+        Vector3 min = bounds.min;
+        Vector3 max = bounds.max;
+
+        Gizmos.DrawLine(new Vector3(min.x, min.y, 0), new Vector3(max.x, min.y, 0));
+        Gizmos.DrawLine(new Vector3(max.x, min.y, 0), new Vector3(max.x, max.y, 0));
+        Gizmos.DrawLine(new Vector3(max.x, max.y, 0), new Vector3(min.x, max.y, 0));
+        Gizmos.DrawLine(new Vector3(min.x, max.y, 0), new Vector3(min.x, min.y, 0));
+    }
     void OnValidate()
     {
         collider.size = bounds.size;
@@ -33,22 +48,22 @@ public class InstalledObject : MonoBehaviour
         SnapToGrid();
         bounds.center = transform.position;
     }
-    void OnDrawGizmos()
+    void Start()
     {
-        Bounds bounds = this.bounds;
-
-        Vector3 min = bounds.min;
-        Vector3 max = bounds.max;
-
-        Gizmos.DrawLine(new Vector3(min.x, min.y, 0), new Vector3(max.x, min.y, 0));
-        Gizmos.DrawLine(new Vector3(max.x, min.y, 0), new Vector3(max.x, max.y, 0));
-        Gizmos.DrawLine(new Vector3(max.x, max.y, 0), new Vector3(min.x, max.y, 0));
-        Gizmos.DrawLine(new Vector3(min.x, max.y, 0), new Vector3(min.x, min.y, 0));
+        UpdateCells(GetCellsInBounds());
     }
 
     void SnapToGrid()
     {
         transform.position = transform.position.ToVector3Int();
+    }
+    void UpdateCells(Cell[] cells)
+    {
+        foreach(var cell in cells)
+        {
+            cell.canWalkOn = blocksWalking;
+            cell.canPlaceOn = blocksPlacing;
+        }
     }
 
     public Cell[] GetCellsInBounds()
@@ -67,11 +82,5 @@ public class InstalledObject : MonoBehaviour
             }
 
         return cells.ToArray();
-    }
-
-    public Cell getCell()
-    {
-        Vector3Int posCella = transform.position.ToVector3Int(); //da posizione in coordinate
-        return WorldManager.World.GetCellAt(posCella); //prende la cella inq quella posizione
     }
 }

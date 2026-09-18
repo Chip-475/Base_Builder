@@ -15,7 +15,6 @@ public class Cell
 
     public bool canWalkOn = true;
     public bool canPlaceOn = true;
-    public List<InstalledObject> InstalledObjects { get; protected set; }
 
     public Cell(Vector3Int coords, CellType type, bool createSceneObject)
     {
@@ -36,9 +35,6 @@ public class Cell
         sr.sortingLayerName = "Floor";
         sr.sprite = WorldManager.instance.floorSprite; // Replace when sprite system is established
     }
-
-    public void AddInstalledObject(InstalledObject obj) { InstalledObjects.Add(obj); }
-    public void RemoveInstalledObject(InstalledObject obj) { InstalledObjects.Remove(obj); }
 }
 public enum CellType
 {
