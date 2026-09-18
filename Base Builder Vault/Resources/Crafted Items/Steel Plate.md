@@ -1,0 +1,1 @@
+A plate made of steel
