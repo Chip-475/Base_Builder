@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Cassiterite
   m_EditorClassIdentifier: Assembly-CSharp::Resources
-  <ResourceID>k__BackingField: cassiterite
-  resourceName: Cassiterite
-  resourceDescription: 'Found in deposit scattered around the map.Cannot be mined
-    with the base laser cutter.Can be processed into Nickel at a furnace '
-  resourceSprite: {fileID: 0}
-  toughtness: 2
+  <ID>k__BackingField: cassiterite
+  r_name: Cassiterite
+  r_desc: Can be refined into Tin.
+  r_sprite: {fileID: 0}
+  toughness: 1
   weightPerUnit: 3
   energyPerUnit: 0

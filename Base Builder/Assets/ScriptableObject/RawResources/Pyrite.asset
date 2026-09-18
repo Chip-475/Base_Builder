@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Pyrite
   m_EditorClassIdentifier: Assembly-CSharp::Resources
-  <ResourceID>k__BackingField: pyrite
-  r_name: 
+  <ID>k__BackingField: pyrite
+  r_name: Pyrite
   r_desc: Can be refined into Iron.
   r_sprite: {fileID: 0}
   toughness: 1
