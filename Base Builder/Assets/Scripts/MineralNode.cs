@@ -6,7 +6,7 @@ public class MineralNode : InstalledObject
     public int dmgPerDrop = 10;
     void Start()
     {
-        damageTaken = 0;    
+        damageTaken = 0;
     }
     /*public bool scavaDepo(depo)
     {
@@ -24,5 +24,4 @@ public class MineralNode : InstalledObject
         }
         else return null;
     }
-    
 }

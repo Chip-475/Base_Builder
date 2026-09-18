@@ -1,12 +1,10 @@
 using UnityEngine;
-using System;
 using System.Collections;
 
-public class Machine
+public class Machine : InstalledObject
 {
     //lista di ricette che la macchina può eseguire,
     // prendono un imput e tornano un output facendo lavorare il bot per x tempo 
-    public string id;
 
     public int energyLevel;
 
@@ -30,6 +28,21 @@ public class Machine
         IsWorking = false;
     }
 
+    public void inizializza(Vector3Int cords, string idMachina)
+    {
+        Coords = cords;
+        MachineID = idMachina;
+    }
+
+    public bool rifEnergia(Bot bot,ResourceSO risorsaCombustibile,int quantita)
+    {
+        bool rim=bot.rimuoviRes(risorsaCombustibile,quantita);
+        if (!rim) return false;
+        energyLevel=energyLevel+(risorsaCombustibile.energyPerUnit*quantita);
+        return true;
+    }
+    
+    /*
     public int EnergyLevel(ResourceSO resource)
     {
         // resource -= 1; devo sottrarre una risorsa dal magazzino/inventario
@@ -42,5 +55,5 @@ public class Machine
         string[] recipes = { "Recipe1", "Recipe2", "Recipe3" };
         Coords = coords;
 
-     }
+     }*/
 }
