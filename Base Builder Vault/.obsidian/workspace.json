@@ -13,12 +13,20 @@
             "state": {
               "type": "markdown",
               "state": {
+<<<<<<< HEAD
                 "file": "General.md",
+=======
+                "file": "Resources/Raw/Bauxite.md",
+>>>>>>> main
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
+<<<<<<< HEAD
               "title": "General"
+=======
+              "title": "Bauxite"
+>>>>>>> main
             }
           }
         ]
@@ -46,7 +54,7 @@
                 "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
-              "title": "Files"
+              "title": "Esplora file"
             }
           },
           {
@@ -179,17 +187,18 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Open quick switcher": false,
-      "graph:Open graph view": false,
-      "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": false,
-      "templates:Insert template": false,
-      "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "switcher:Apri selettore rapido": false,
+      "graph:Apri vista grafo": false,
+      "canvas:Crea nuova lavagna": false,
+      "daily-notes:Apri nota giornaliera": false,
+      "templates:Inserisci modello": false,
+      "command-palette:Apri riquadro comandi": false,
+      "bases:Crea nuova Base": false
     }
   },
   "active": "454c9a7c23347d56",
   "lastOpenFiles": [
+<<<<<<< HEAD
     "Art Bible.md",
     "Resources/Ingots/Aluminum.md",
     "Resources/Raw/Bauxite.md",
@@ -209,18 +218,43 @@
     "Resources/Raw/Coal.md",
     "Drafts/Tungsten.md",
     "Resources/Ingots/Titanium.md",
+=======
+    "Spaceship.md",
+    "Resources/Raw/Raw.md",
+    "Resources/Ingots/Ingots.md",
+    "Resources/Crafted Items/Titanium Frame.md",
+    "Resources/Crafted Items/Titanium Plate.md",
+    "Resources/Crafted Items/Steel Plate.md",
+    "Resources/Crafted Items/Navigation Component.md",
+    "Resources/Crafted Items/Ship Core Component.md",
+    "Resources/Crafted Items/Circuit Board.md",
+    "Resources/Crafted Items/Crafted Items.md",
+    "Resources/Crafted Items/Copper Wire.md",
+    "Resources/Crafted Items/Alumium Plate.md",
+    "Resources/Crafted Items",
+    "Recipes/Smelt to Titanium.md",
+    "Recipes/Smelt to Tin.md",
+    "Recipes/Smelt to Nickel.md",
+    "Recipes/Smelt to Iron 3.md",
+    "Recipes/Smelt to Iron 2.md",
+    "Recipes/Smelt to Iron 1.md",
+    "Recipes/Smelt to Gold.md",
+    "Recipes/Smelt to Copper.md",
+    "Recipes/Smelt to Alumium.md",
+    "Recipes/Recipes.md",
+    "Recipes/Press to Titanium Plate.md",
+    "Recipes/Press to Steel Plate.md",
+    "Recipes/Press to  Alumium Plate.md",
+    "Recipes/Assemble to Titanium Frame.md",
+    "Recipes",
+    "Installed Objects/Machines",
+    "Installed Objects/Logistic",
+    "Installed Objects",
+>>>>>>> main
     "Drafts",
-    "Resources/Ingots/Iron.md",
-    "Resources/Ingots/Copper.md",
-    "Resources/Alloys/Steel.md",
-    "Resources/Alloys/Invar.md",
-    "Resources/Resources.md",
     "Resources/Alloys",
-    "Resources/Alloys.md",
     "Resources/Ingots",
     "Resources/Raw",
-    "Bots",
-    "Devving Guidelines",
-    "Resources"
+    "Bots"
   ]
 }
