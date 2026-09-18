@@ -1,0 +1,1 @@
+electric poles are upgreadable object that provides energy to nearby [[Machines]] 

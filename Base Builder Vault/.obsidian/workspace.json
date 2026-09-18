@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Resources/Ingots/Aluminum.md",
+                "file": "Resources/Raw/Raw.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Aluminum"
+              "title": "Raw"
             }
           }
         ]
@@ -46,7 +46,7 @@
                 "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
-              "title": "Files"
+              "title": "Esplora file"
             }
           },
           {
@@ -179,48 +179,52 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Open quick switcher": false,
-      "graph:Open graph view": false,
-      "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": false,
-      "templates:Insert template": false,
-      "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "switcher:Apri selettore rapido": false,
+      "graph:Apri vista grafo": false,
+      "canvas:Crea nuova lavagna": false,
+      "daily-notes:Apri nota giornaliera": false,
+      "templates:Inserisci modello": false,
+      "command-palette:Apri riquadro comandi": false,
+      "bases:Crea nuova Base": false
     }
   },
   "active": "454c9a7c23347d56",
   "lastOpenFiles": [
-    "Resources/Raw/Bauxite.md",
-    "Resources/Ingots/Aluminum.md",
-    "Resources/Raw/Magnetite.md",
-    "Resources/Raw/Hematite.md",
-    "Resources/Raw/Pyrite.md",
-    "Resources/Raw/Malachite.md",
-    "Resources/Raw/Ilmenite.md",
-    "Resources/Raw/Pentladite.md",
     "Resources/Raw/Cassiterite.md",
-    "Resources/Ingots/Tin.md",
-    "Resources/Ingots/Gold.md",
-    "Resources/Ingots/Nickel.md",
-    "Docs.md",
-    "General.md",
-    "Art Bible.md",
-    "Resources/Raw/Gold Ore.md",
-    "Resources/Raw/Coal.md",
-    "Drafts/Tungsten.md",
-    "Resources/Ingots/Titanium.md",
-    "Drafts",
-    "Resources/Ingots/Iron.md",
-    "Resources/Ingots/Copper.md",
+    "Resources/Raw/Raw.md",
+    "Installed Objects/Logistic/Charging station.md",
+    "Installed Objects/Logistic/Storage.md",
+    "Installed Objects/Machines/Assembler.md",
+    "Installed Objects/Logistic",
+    "Installed Objects/Machines/Advanced Assembler.md",
+    "Installed Objects/Machines/Furnace.md",
+    "Installed Objects/Machines/Press.md",
+    "Installed Objects/Machines/Alloy Furnace.md",
+    "Installed Objects/Electric Poles.md",
+    "Recipes/Assemble to Navigation Component.md",
+    "Recipes/Assemble into Ship Core Component.md",
+    "Recipes/Assemble Circuit Board.md",
+    "Recipes/Assemble to Aluminium Plate.md",
+    "Recipes/Assemble to Copper Wire.md",
+    "Recipes/Assemble to Titanium Frame.md",
+    "Resources/Raw/Bauxite.md",
+    "advan.md",
+    "Resources/Crafted Items/Navigation Component.md",
+    "Resources/Crafted Items/Ship Core Component.md",
+    "Recipes/Press to  Alumium Plate.md",
+    "Recipes/Press to Titanium Plate.md",
+    "Recipes/Press to Steel Plate.md",
+    "Recipes/Smelt to Alumium.md",
     "Resources/Alloys/Steel.md",
-    "Resources/Alloys/Invar.md",
-    "Resources/Resources.md",
+    "Recipes/Assemble to Steel Plate.md",
+    "Resources/Crafted Items",
+    "Recipes",
+    "Installed Objects/Machines",
+    "Installed Objects",
+    "open.url",
+    "Drafts",
     "Resources/Alloys",
-    "Resources/Alloys.md",
     "Resources/Ingots",
-    "Resources/Raw",
-    "Bots",
-    "Devving Guidelines",
-    "Resources"
+    "Resources/Raw"
   ]
 }
