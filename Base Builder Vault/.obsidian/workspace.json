@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Resources/Ingots/Aluminum.md",
+                "file": "General.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Aluminum"
+              "title": "General"
             }
           }
         ]
@@ -190,8 +190,9 @@
   },
   "active": "454c9a7c23347d56",
   "lastOpenFiles": [
-    "Resources/Raw/Bauxite.md",
+    "Art Bible.md",
     "Resources/Ingots/Aluminum.md",
+    "Resources/Raw/Bauxite.md",
     "Resources/Raw/Magnetite.md",
     "Resources/Raw/Hematite.md",
     "Resources/Raw/Pyrite.md",
@@ -204,7 +205,6 @@
     "Resources/Ingots/Nickel.md",
     "Docs.md",
     "General.md",
-    "Art Bible.md",
     "Resources/Raw/Gold Ore.md",
     "Resources/Raw/Coal.md",
     "Drafts/Tungsten.md",
