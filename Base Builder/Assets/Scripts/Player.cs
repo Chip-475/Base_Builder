@@ -1,9 +1,21 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks.Triggers;
 
-public class Player
+public class Player: MonoBehaviour
 {
-    bool botClicked;
+    public static Player instance;
+    public bool botClicked;
+    public bool buildMode;
+    public InputSystem_Actions inputActions;
+
+    void Awake()
+    {
+        inputActions = new();
+        instance = this;
+        inputActions.Player.Enable();
+        inputActions.Player.PlaceBuilding.performed+= (diocane) => Debug.Log(WorldManager.World.GetCellAt(Camera.main.ScreenToWorldPoint(Input.mousePosition).ToVector3Int()).canPlaceOn); ;
+    }
     /*
     void Update()
     {
