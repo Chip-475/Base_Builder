@@ -1,0 +1,7 @@
+___
+Output of [[Machines]].
+Use this form when creating a new material:
+name
+description
+recipe it is an input item
+recipe it is an output item

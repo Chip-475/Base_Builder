@@ -1,27 +1,40 @@
 using UnityEngine;
+
 public class MineralNode : InstalledObject
 {
-    public ResourceSO tipo;
-    public int damageTaken;
-    public int dmgPerDrop = 10;
-    void Start()
+    [Header("Config")]
+    [SerializeField] ResourceSO resource;
+    [SerializeField] int amountPerProcess;
+    [SerializeField] NodePurity purity;
+
+    private new void Start()
     {
+<<<<<<< HEAD
         damageTaken = 0;
+=======
+        base.Start();
+        WorldManager.World.SetMineralNodeAt(Coords, this);
+>>>>>>> main
     }
-    /*public bool scavaDepo(depo)
+
+    public ProcessingData GetProcessingData()
     {
-        ResourceSO ris = depo.scava();
-        if (ris == null) return false;
-        return bot.aggRisorsa(ris, 1);
-    }*/
-    public ResourceSO Hit(int dmg)
-    {
-        damageTaken += dmg;
-        if (damageTaken >= dmgPerDrop)
+        return new ProcessingData()
         {
-            damageTaken = 0;
-            return tipo;
-        }
-        else return null;
+            outputResources = new()
+            {
+                [resource] = amountPerProcess * (int)purity 
+            },
+            timeToProcess = resource.toughness * 2
+        };
     }
+<<<<<<< HEAD
+=======
+}
+public enum NodePurity
+{
+    Low = 1,
+    Medium = 2,
+    High = 3
+>>>>>>> main
 }

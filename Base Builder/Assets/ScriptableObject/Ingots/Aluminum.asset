@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
-  m_Name: Alluminium
+  m_Name: Aluminum
   m_EditorClassIdentifier: Assembly-CSharp::Resources
-  <ID>k__BackingField: alluminium
-  r_name: Alluminium
+  <ID>k__BackingField: aluminum
+  r_name: Aluminum
   r_desc: Moderately strong but very light metal.
   r_sprite: {fileID: 0}
   toughness: 1

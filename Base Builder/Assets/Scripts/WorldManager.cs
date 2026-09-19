@@ -12,7 +12,7 @@ public class WorldManager : MonoBehaviour
     [Space]
 
     [SerializeField] World world;
-    public World World {  get { return world; } }
+    public static World World {  get { return instance.world; } }
 
     public Sprite floorSprite;
 

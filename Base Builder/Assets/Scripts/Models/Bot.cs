@@ -1,97 +1,90 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
-// inventario a peso, path finding (quando ce un mondo)
-[System.Serializable]
-public struct resourceInfo
-{
-    public ResourceSO resource;
-    public int quant;
-    public float getTotal()
-    {
-        return resource.weightPerUnit * quant;
-    }
-} 
+
 public class Bot
 {
-    public Bot(Vector2Int coords, BotType type)
+    [Serializable] public struct Inventory
+    {
+        public Dictionary<ResourceSO, int> Cargo {  get; private set; }
+        public float MaxWeight {  get; private set; }
+
+        public void AddResource(ResourceSO resource, int amount)
+        {
+            Cargo ??= new();
+
+            var cargoSim = new Dictionary<ResourceSO, int>(Cargo);
+            cargoSim[resource] += amount;
+
+            if (Cargo[resource] + amount < 0)
+            {
+                Debug.Log("Error: resource amount cannot be negative.");
+                return;
+            }
+            if(GetTotalWeight(cargoSim) > MaxWeight)
+            {
+                Debug.Log("Error: weight exceeds max capacity.");
+                return;
+            }
+
+            Cargo[resource] += amount;
+        }
+
+        public float GetTotalWeight(Dictionary<ResourceSO, int> inv = null)
+        {
+            inv ??= Cargo;
+
+            float totalWeight = 0f;
+            foreach (var entry in inv)
+                totalWeight += entry.Key.weightPerUnit * entry.Value;
+
+            return totalWeight;
+        }
+        public float GetSpecificWeight(ResourceSO resource, Dictionary<ResourceSO, int> inv = null)
+        {
+            inv ??= Cargo;
+
+            if (!inv.ContainsKey(resource))
+            {
+                Debug.Log("Error: resource not present in inventory.");
+                return 0f;
+            }
+            return inv[resource] * resource.weightPerUnit;
+        }
+
+        public void SetMaxWeight(float newMax) { MaxWeight = newMax; }
+    }
+
+    [Header("Identity")]
+    public string Id { get; protected set; }
+    public Vector3Int Coords {  get; protected set; } = Vector3Int.zero;
+    public string Name { get; protected set; }
+    public BotType Type { get; protected set; } = BotType.None;
+
+    [Header("Stats")]
+    public int power;
+    int maxPower;
+
+    public Bot(Vector3Int coords, BotType type)
     {
         Id = Guid.NewGuid().ToString();
-        this.coords = coords;
-        this.type = BotType.None;
-        name = PickRandomName();
-        Power = maxPower;
-        if (type == BotType.Carrier) maxWeight = 100;
-        else maxWeight = 20;
-    }
-    public string Id { get; protected set; }
-    Vector2Int coords = new(0, 0);
-    BotType type = BotType.None;
-    public string name;
-    int Power { get; set; }
-    int maxPower = 100;
-    int maxWeight;
-    public List<resourceInfo> inv = new();
-    public float getPeso()
-    {
-        float tot = 0;
-        foreach(var stack in  inv)
-        {
-            tot += stack.getTotal();
-        }
-        return tot;
+        Coords = coords;
+        Name = PickRandomName();
+        Type = type;
     }
 
-    public bool aggRisorsa(ResourceSO res, int quant)
+    string PickRandomName()
     {
-        float pesoPiu = res.weightPerUnit * quant;
-        float pesoAtt=getPeso();
-        if (pesoAtt + pesoPiu <=maxWeight) return false;
-        for(int i=0;i<inv.Count;i++)
-        {
-            if (inv[i].resource==res)
-            {
-                resourceInfo stack = inv[i];
-                stack.quant = stack.quant + quant;
-                inv[i] = stack;
-                return true;
-            }
-        }
-        resourceInfo nuovo = new resourceInfo();
-        nuovo.resource = res;
-        nuovo.quant = quant;
-        inv.Add(nuovo);
-        return true;
-    }
-
-    public bool rimuoviRes(ResourceSO res,int quant)
-    {
-        for(int i=0;i<inv.Count;i++)
-        {
-            if (inv[i].resource == res)
-            {
-                resourceInfo stack = inv[i];
-                if (stack.quant < quant) return false;
-                stack.quant -= quant;
-                if (stack.quant <= 0) inv.RemoveAt(i);
-                else inv[i] = stack;
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public string PickRandomName()
-    {
-        string[] names = { "Alpha", "Bravo", "Charlie", "Delta", "Echo" };
-        return names[UnityEngine.Random.Range(0, names.Length)];
+        string[] names_1 = { "Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "Hotel", "India", "Juliett" };
+        string[] names_2 = { "Leader", "Keeper", "Pioneer", "Witcher", "Diver", "Bomber", "Rancher", "Taker", "Dispatcher", "Manager" };
+        return names_1[UnityEngine.Random.Range(0, names_1.Length)] + " " + names_2[UnityEngine.Random.Range(0, names_2.Length)];
     }
 }
 public enum BotType
 {
     None,
     Miner,
-    Carrier, //100  altri 20
+    Carrier,
     Worker,
     Builder,
     Specialist
