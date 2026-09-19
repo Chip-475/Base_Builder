@@ -2,49 +2,51 @@ using UnityEngine;
 using System.Collections.Generic;
 public class BuildMode : MonoBehaviour
 {
+    public static BuildMode Instance {  get; private set; }
+
     public List<InstalledObject> buildableObjects;
-    private InstalledObject so;
-    public InstalledObject selectedObject
+    private InstalledObject selectedObject;
+    public InstalledObject SelectedObject
     {
-        get { return so; }
+        get { return selectedObject; }
         set
         {
-            so = value;
+            selectedObject = value;
         }
     }
-    public static BuildMode instance;
+    
     private void Awake()
     {
-        instance = this;
+        Instance = this;
     }
     private void Start()
     {
-        gameObject.SetActive(Player.instance.buildMode);
+        gameObject.SetActive(Player.Instance.buildMode);
     }
     private void Update()
     {
-        if (selectedObject!=null)
+        if (SelectedObject!=null)
         {
-            Debug.Log("Selected Object: " + selectedObject.name);
+            Debug.Log("Selected Object: " + SelectedObject.name);
             HoveringPhase();
         }
     }
     public void HoveringPhase()
     {
         Cell mouseCell = WorldManager.instance.GetCellCoordsFromMouse();
-        if (IsBuildable(selectedObject))
+        if (IsBuildable(SelectedObject))
         {
-            selectedObject.SetColor(Color.green);
+            SelectedObject.SetColor(Color.green);
         }
         else
         {
-            selectedObject.SetColor(Color.red);
+            SelectedObject.SetColor(Color.red);
         }
-        selectedObject.SetPosition(mouseCell);
+        SelectedObject.SetPosition(mouseCell);
     }
     public void Build()
     {
-        if (!Player.instance.buildMode) return;
+        if (!Player.Instance.buildMode) return;
         
     }
     public bool IsBuildable(InstalledObject obj)

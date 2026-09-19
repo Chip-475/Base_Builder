@@ -89,13 +89,14 @@ public class InstalledObject : MonoBehaviour
 
     public void SetColor(Color color)
     {
-        SpriteRenderer sr = GetComponent<SpriteRenderer>();
-        if (sr != null)
-            sr.color = color;
+        if (!TryGetComponent(out SpriteRenderer sr))
+            return;
+
+        sr.color = color;
     }
     public void SetPosition(Cell cell)
     {
-        gameObject.transform.position = cell.Coords;//diocane
+        gameObject.transform.position = cell.Coords;
     }
 
 }

@@ -5,9 +5,10 @@ public class BuildModeButton : MonoBehaviour
 {
     [Header("References")]
     public GameObject overlayPanel;
+
     public void OnClick()
     {
-        Player.instance.buildMode=!Player.instance.buildMode;
-        overlayPanel.SetActive(Player.instance.buildMode);
+        Player.Instance.buildMode=!Player.Instance.buildMode;
+        overlayPanel.SetActive(Player.Instance.buildMode);
     }
 }
