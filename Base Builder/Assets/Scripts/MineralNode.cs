@@ -9,12 +9,8 @@ public class MineralNode : InstalledObject
 
     private new void Start()
     {
-<<<<<<< HEAD
-        damageTaken = 0;
-=======
         base.Start();
         WorldManager.World.SetMineralNodeAt(Coords, this);
->>>>>>> main
     }
 
     public ProcessingData GetProcessingData()
@@ -28,13 +24,11 @@ public class MineralNode : InstalledObject
             timeToProcess = resource.toughness * 2
         };
     }
-<<<<<<< HEAD
-=======
+
 }
 public enum NodePurity
 {
     Low = 1,
     Medium = 2,
     High = 3
->>>>>>> main
 }
