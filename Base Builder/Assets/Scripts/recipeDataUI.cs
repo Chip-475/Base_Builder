@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-public class machineRecipe : MonoBehaviour
+public class recipeDataUI : MonoBehaviour
 {
     [Header("info")]
     public Image icona;
@@ -22,6 +22,11 @@ public class machineRecipe : MonoBehaviour
         nomeTesto.text= recipe.r_name;
         descrizione=recipe.GetComponent<Text>();
         tempo.text = recipe.completionTime + "s";
+        pulisciIngredienti();
+        /*foreach(ResourceAmount ingre in recipe.inputResources)
+        {
+        /
+        }*/
     }
 
     void pulisciIngredienti()

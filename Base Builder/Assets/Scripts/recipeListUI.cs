@@ -7,5 +7,18 @@ public class recipeListUI : MonoBehaviour
     public Button bottone;
 
     RecipeSO recipe;
-    // recipeList ...
+    machineRecipeUI menuPrincipale;
+
+    public void imposta(RecipeSO recipe1,machineRecipeUI menu)
+    {
+        recipe = recipe1;
+        menuPrincipale = menu;
+        //if(icona!=null)icona.sprite=recipe.
+        nomeTesto.text = recipe.r_name;
+        
+    }
+    public void OnClick()
+    {
+        menuPrincipale.mostraDett(recipe);
+    }
 }

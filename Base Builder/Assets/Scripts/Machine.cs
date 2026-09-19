@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public class Machine : InstalledObject
 {
     [Header("Config")]
-    [SerializeField] List<RecipeSO> allowedRecipes = new();
+    public List<RecipeSO> allowedRecipes = new();
     public List<ResourceSO> allowedFuels = new();
     public bool needsEnergy = true;
     public int currentEnergy = 100;
