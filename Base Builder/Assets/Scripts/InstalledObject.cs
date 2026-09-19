@@ -87,6 +87,15 @@ public class InstalledObject : MonoBehaviour
         return cells.ToArray();
     }
 
-
+    public void SetColor(Color color)
+    {
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        if (sr != null)
+            sr.color = color;
+    }
+    public void SetPosition(Cell cell)
+    {
+        gameObject.transform.position = cell.Coords;//diocane
+    }
 
 }
