@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using System;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 
 public class WorldManager : MonoBehaviour
 {
@@ -25,5 +26,12 @@ public class WorldManager : MonoBehaviour
     {
         grid.gameObject.SetActive(false);
         world = new(grid, mapToType);
+    }
+    public Cell GetCellCoordsFromMouse()
+    {
+        Mouse mouse = Mouse.current;
+        Vector3 mousePos=Camera.main.ScreenToWorldPoint(mouse.position.ReadValue());
+        mousePos.z = 0;
+        return World.GetCellAt(mousePos.ToVector3Int());
     }
 }

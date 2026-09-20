@@ -2,12 +2,18 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 
+[Serializable]
 public class Bot
 {
     [Serializable] public struct Inventory
     {
         public Dictionary<ResourceSO, int> Cargo {  get; private set; }
         public float MaxWeight {  get; private set; }
+        public Inventory(Inventory? inv = null, int? maxWeight = null)
+        {
+            Cargo = inv?.Cargo ?? new();
+            MaxWeight = maxWeight.Value;
+        }
 
         public void AddResource(ResourceSO resource, int amount)
         {
@@ -30,7 +36,7 @@ public class Bot
             Cargo[resource] += amount;
         }
 
-        public float GetTotalWeight(Dictionary<ResourceSO, int> inv = null)
+        public readonly float GetTotalWeight(Dictionary<ResourceSO, int> inv = null)
         {
             inv ??= Cargo;
 
@@ -40,7 +46,7 @@ public class Bot
 
             return totalWeight;
         }
-        public float GetSpecificWeight(ResourceSO resource, Dictionary<ResourceSO, int> inv = null)
+        public readonly float GetSpecificWeight(ResourceSO resource, Dictionary<ResourceSO, int> inv = null)
         {
             inv ??= Cargo;
 
@@ -55,22 +61,35 @@ public class Bot
         public void SetMaxWeight(float newMax) { MaxWeight = newMax; }
     }
 
+    [field: SerializeField]
+    public BotView BotView { get; protected set; }
+
     [Header("Identity")]
     public string Id { get; protected set; }
-    public Vector3Int Coords {  get; protected set; } = Vector3Int.zero;
+    public Vector3 Coords {  get; protected set; }
     public string Name { get; protected set; }
     public BotType Type { get; protected set; } = BotType.None;
 
     [Header("Stats")]
-    public int power;
-    int maxPower;
+    public Inventory Inv { get; protected set; }
+    public float Power { get; protected set; }
+    public const float MaxPower = 100;
 
-    public Bot(Vector3Int coords, BotType type)
+    public Bot(BotView botView, string id = null, Vector3? coords = null, string name = null, BotType type = BotType.None, Inventory? inv = null, float power = MaxPower)
     {
-        Id = Guid.NewGuid().ToString();
-        Coords = coords;
-        Name = PickRandomName();
+        // Self
+        Id = id ?? Guid.NewGuid().ToString();
+        Coords = coords ?? Vector3.zero;
+        Name = name ?? PickRandomName();
         Type = type;
+        Inv = inv ?? new();
+        Power = power;
+
+        // View
+        BotView = botView;
+        BotView.name = Name;
+
+        GameManager.SetBot(Id, this);
     }
 
     string PickRandomName()

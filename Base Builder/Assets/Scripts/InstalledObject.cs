@@ -4,7 +4,8 @@ using System.Collections.Generic;
 
 public class InstalledObject : MonoBehaviour
 {
-    [Serializable] public struct ProcessingData
+    [Serializable]
+    public struct ProcessingData
     {
         [SerializeField] public Dictionary<ResourceSO, int> inputResources;
         [SerializeField] public Dictionary<ResourceSO, int> outputResources;
@@ -16,8 +17,10 @@ public class InstalledObject : MonoBehaviour
     [SerializeField] protected Bounds bounds;
     [SerializeField] protected BoxCollider2D collider;
 
+    [field: SerializeField] public int Power { get; protected set; }
     public Cell Cell => WorldManager.World.GetCellAt(transform.position.ToVector3Int());
     public Vector3Int Coords => Cell.Coords;
+
 
     void OnDrawGizmos()
     {
@@ -59,7 +62,7 @@ public class InstalledObject : MonoBehaviour
     }
     void UpdateCells(Cell[] cells)
     {
-        foreach(var cell in cells)
+        foreach (var cell in cells)
         {
             cell.canWalkOn = !blocksWalking;
             cell.canPlaceOn = !blocksPlacing;
@@ -83,4 +86,17 @@ public class InstalledObject : MonoBehaviour
 
         return cells.ToArray();
     }
+
+    public void SetColor(Color color)
+    {
+        if (!TryGetComponent(out SpriteRenderer sr))
+            return;
+
+        sr.color = color;
+    }
+    public void SetPosition(Cell cell)
+    {
+        gameObject.transform.position = cell.Coords;
+    }
+
 }
