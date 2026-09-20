@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public static class Helpers
 {
@@ -19,6 +20,19 @@ public static class Helpers
         int Y = Mathf.RoundToInt(vec.y);
         int Z = Mathf.RoundToInt(vec.z);
         return new Vector3Int(X, Y, Z);
+    }
+    #endregion
+
+    #region Miscellaneous
+    public static Vector3 GetMousePosition()
+    {
+        return Mouse.current.position.ReadValue();
+    }
+    public static Vector3 GetMouseWorldPosition()
+    {
+        var pos = Camera.main.ScreenToWorldPoint(GetMousePosition());
+        pos.z = 0;
+        return pos;
     }
     #endregion
 }

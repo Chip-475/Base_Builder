@@ -1,25 +1,22 @@
 using UnityEngine;
 
-public class Player: MonoBehaviour
+public class PlayerManager : MonoBehaviour
 {
-    public static Player Instance {  get; private set; }
-    public static PlayerInputs PlayerInputs { get; private set; }
-
-    public bool botClicked;
-    public bool buildMode;
+    public static PlayerManager Instance {  get; private set; }
+    public static PlayerInputs Inputs { get; private set; }
 
     void Awake()
     {
         Instance = this;
-        PlayerInputs = new();
+        Inputs = new();
 
-        PlayerInputs.Player.Enable();
-        PlayerInputs.Player.LeftClick.performed += (_) => CheckForClick();
+        Inputs.Mouse.Enable();
+        Inputs.Mouse.LeftClick.performed += (_) => CheckForClick();
     }
 
     void CheckForClick()
     {
-        var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        var mousePos = Helpers.GetMouseWorldPosition();
         var cellUnderMouse = WorldManager.World.GetCellAt(mousePos.ToVector3Int());
 
         Debug.Log(cellUnderMouse.Coords);

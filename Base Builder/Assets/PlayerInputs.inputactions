@@ -3,7 +3,7 @@
     "name": "PlayerInputs",
     "maps": [
         {
-            "name": "Player",
+            "name": "Mouse",
             "id": "df70fa95-8a34-4494-b137-73ab6b9c7d37",
             "actions": [
                 {
@@ -26,6 +26,56 @@
                     "processors": "",
                     "groups": "",
                     "action": "LeftClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Build Mode",
+            "id": "33e34bcf-07fc-4d7d-bca3-3ffacf404a57",
+            "actions": [
+                {
+                    "name": "Mouse Moved",
+                    "type": "Value",
+                    "id": "bc546eb0-7667-4b6d-b39d-7f5b2996c214",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true,
+                    "priority": 0
+                },
+                {
+                    "name": "Left Click",
+                    "type": "Button",
+                    "id": "8918ebab-813b-4f1e-883f-ec388fdfbf78",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "3a6da5e2-25d9-4096-a1bb-6434db7858fa",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f705a440-6867-41ba-abf6-0865a30e7903",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Mouse Moved",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
