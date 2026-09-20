@@ -19,11 +19,24 @@ public class Machine : InstalledObject
     {
         if (machineRecipeUI.instance != null) machineRecipeUI.instance.apri(this);
     }
-    public ProcessingData GetProcessingData()
+    public ProcessingData GetProcessingData(RecipeSO recipe)
     {
-        return new ProcessingData()
+        ProcessingData dati = new ProcessingData();
+        dati.inputResources = new Dictionary<ResourceSO, int>();
+        dati.outputResources = new Dictionary<ResourceSO, int>();
+        dati.timeToProcess = recipe.completionTime;
+        for(int i=0;i<recipe.inputResources.Length;i++)
         {
-            // To Fill Out
-        };
+            ResourceSO ris = recipe.inputResources[i];
+            int quant = recipe.input[i];
+            dati.inputResources[ris] = quant;
+        }
+        for(int i=0;i<recipe.output.Length;i++)
+        {
+            ResourceSO ris = recipe.outputResources[i];
+            int quant = recipe.output[i];
+            dati.outputResources[ris] = quant;
+        }
+        return dati;
     }
 }

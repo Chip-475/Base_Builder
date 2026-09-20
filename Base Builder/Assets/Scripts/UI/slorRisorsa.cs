@@ -1,10 +1,11 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-public class slorRisorsa : MonoBehaviour
+public class slotRisorsa : MonoBehaviour
 {
     public Image icona;
-    public Text nomeTesto;
-    public Text quantiTesto;
+    public TMP_Text nomeTesto;
+    public TMP_Text quantiTesto;
 
     public void imposta(ResourceSO ris)
     {
