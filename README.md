@@ -4,7 +4,7 @@
 
 The player gathers raw resources, refines them into materials and components, and uses a fleet of worker bots to expand the base and ultimately repair the ship.
 
-[mainmenu](https://github.com/Chip-475/Base_Builder/blob/main/bb.png)
+![mainmenu](https://github.com/Chip-475/Base_Builder/blob/main/bb.png)
 ## Project highlights
 
 - Tilemap-based planet map
