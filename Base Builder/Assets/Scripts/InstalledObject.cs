@@ -53,7 +53,7 @@ public class InstalledObject : MonoBehaviour
     }
     protected void Start()
     {
-        UpdateCells(GetCellsInBounds());
+        UpdateCells(GetCellsInBounds(bounds));
     }
 
     void SnapToGrid()
@@ -65,11 +65,11 @@ public class InstalledObject : MonoBehaviour
         foreach (var cell in cells)
         {
             cell.canWalkOn = !blocksWalking;
-            cell.canPlaceOn = !blocksPlacing;
+            cell.canBuildOn = !blocksPlacing;
         }
     }
 
-    public Cell[] GetCellsInBounds()
+    public Cell[] GetCellsInBounds(Bounds bounds)
     {
         int minX = Mathf.CeilToInt(bounds.min.x);
         int maxX = Mathf.FloorToInt(bounds.max.x);
@@ -86,6 +86,8 @@ public class InstalledObject : MonoBehaviour
 
         return cells.ToArray();
     }
+
+    public Bounds GetBounds() { return bounds; }
 
     public void SetColor(Color color)
     {

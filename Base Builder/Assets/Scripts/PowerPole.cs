@@ -3,12 +3,12 @@ using System;
 
 public class PowerPole : InstalledObject
 {
-     public bool canConnectTo(InstalledObject other)
+     public bool CanConnectTo(InstalledObject other)
     {
         if (other == null) return false;
 
-        Cell[] myCells = GetCellsInBounds();
-        Cell[] otherCells = other.GetCellsInBounds();
+        Cell[] myCells = GetCellsInBounds(bounds);
+        Cell[] otherCells = other.GetCellsInBounds(other.GetBounds());
 
         foreach (var cell in myCells)
             foreach (var otherCell in otherCells)
@@ -19,9 +19,9 @@ public class PowerPole : InstalledObject
     }
 // da fare una funzione che trova tutti  gli altri pali 
 
-    public void connect(InstalledObject other)
+    public void Connect(InstalledObject other)
     {
-        if (canConnectTo(other))
+        if (CanConnectTo(other))
         {
             Power = other.Power;
         }

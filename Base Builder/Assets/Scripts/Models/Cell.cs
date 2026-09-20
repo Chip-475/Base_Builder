@@ -14,7 +14,7 @@ public class Cell
     }
 
     public bool canWalkOn = true;
-    public bool canPlaceOn = true;
+    public bool canBuildOn = true;
 
     public Cell(Vector3Int coords, CellType type, bool createSceneObject)
     {
@@ -28,12 +28,13 @@ public class Cell
     void CreateSceneObject()
     {
         GameObject go = new();
+        go.transform.SetParent(WorldManager.Instance.transform);
         go.transform.position = Coords.ToVector3();
         go.name = $"Cell_{Coords.x}_{Coords.y}";
         
         SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
         sr.sortingLayerName = "Floor";
-        sr.sprite = WorldManager.instance.floorSprite; // Replace when sprite system is established
+        sr.sprite = WorldManager.Instance.floorSprite; // Replace when sprite system is established
     }
 }
 public enum CellType
