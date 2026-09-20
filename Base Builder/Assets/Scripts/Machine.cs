@@ -15,7 +15,10 @@ public class Machine : InstalledObject
         base.Start();
         WorldManager.World.SetMachineAt(Coords, this);
     }
-
+    void OnMouseDown()
+    {
+        if (machineRecipeUI.instance != null) machineRecipeUI.instance.apri(this);
+    }
     public ProcessingData GetProcessingData()
     {
         return new ProcessingData()

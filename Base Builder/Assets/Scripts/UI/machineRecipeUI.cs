@@ -28,7 +28,7 @@ public class machineRecipeUI : MonoBehaviour
         }
         panello.SetActive(true);
     }
-
+    
     private void pulisciLista()
     {
         for(int i=cont.childCount-1; i>=0; i--)
