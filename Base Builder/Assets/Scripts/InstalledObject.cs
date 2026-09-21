@@ -22,7 +22,7 @@ public class InstalledObject : MonoBehaviour
     public Vector3Int Coords => Cell.Coords;
 
 
-    void OnDrawGizmos()
+    public void OnDrawGizmos()
     {
         Bounds bounds = this.bounds;
 
