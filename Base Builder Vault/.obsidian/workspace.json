@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Spaceship.md",
+                "file": "Resources/Ingots/Copper.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Spaceship"
+              "title": "Copper"
             }
           }
         ]
@@ -46,7 +46,7 @@
                 "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
-              "title": "Esplora file"
+              "title": "Files"
             }
           },
           {
@@ -179,19 +179,34 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Apri selettore rapido": false,
-      "graph:Apri vista grafo": false,
-      "canvas:Crea nuova lavagna": false,
-      "daily-notes:Apri nota giornaliera": false,
-      "templates:Inserisci modello": false,
-      "command-palette:Apri riquadro comandi": false,
-      "bases:Crea nuova Base": false
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
     }
   },
   "active": "fcbb2aa86150e5cf",
   "lastOpenFiles": [
-    "Craftable things.md",
+    "Resources/Ingots/Nickel.md",
+    "Resources/Ingots/Iron.md",
+    "Resources/Ingots/Copper.md",
+    "Resources/Ingots/Gold.md",
+    "Resources/Ingots/Aluminum.md",
+    "Resources/Raw/Cassiterite.md",
+    "Resources/Raw/Pyrite.md",
+    "Resources/Raw/Malachite.md",
+    "Resources/Raw/Magnetite.md",
+    "Resources/Raw/Pentladite.md",
+    "Resources/Raw/Ilmenite.md",
+    "Resources/Raw/Hematite.md",
+    "Resources/Raw/Gold Ore.md",
+    "Resources/Raw/Coal.md",
+    "Resources/Raw/Bauxite.md",
     "Spaceship.md",
+    "Craftable things.md",
     "Docs.md",
     "Demo Scope.md",
     "Recipes/Smelt to Titanium.md",
@@ -200,21 +215,6 @@
     "Recipes/Smelt to Iron 3.md",
     "Recipes/Smelt to Iron 2.md",
     "Recipes/Smelt to Iron 1.md",
-    "Recipes/Smelt to Gold.md",
-    "Recipes/Smelt to Copper.md",
-    "Recipes/Smelt to Alumium.md",
-    "Recipes/Press to Titanium Plate.md",
-    "Recipes/Press to Steel Plate.md",
-    "Recipes/Press to  Alumium Plate.md",
-    "Recipes/Assemble to Titanium Frame.md",
-    "Recipes/Assemble to Navigation Component.md",
-    "Recipes/Assemble to Copper Wire.md",
-    "Recipes/Assemble into Ship Core Component.md",
-    "Recipes/Assemble Circuit Board.md",
-    "Recipes/Alloy Smelting to Steel.md",
-    "Recipes/Alloy Smelting to Invar.md",
-    "Recipes/Recipes.md",
-    "Bots/Worker Bot.md",
-    "Bots/Specialist Bot.md"
+    "Recipes/Smelt to Gold.md"
   ]
 }
