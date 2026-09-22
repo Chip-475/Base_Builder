@@ -21,6 +21,7 @@ public class MineralNode : Building
         BaseAmount = config.baseAmount;
         Purity = config.purity;
     }
+
 }
 public enum NodePurity
 {

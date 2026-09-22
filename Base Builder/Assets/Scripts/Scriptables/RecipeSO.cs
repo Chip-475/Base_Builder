@@ -10,7 +10,9 @@ public class RecipeSO : ScriptableObject
 
     [Header("Characteristics")]
     public ResourceSO[] inputResources;
+    public int[] input;
     public ResourceSO[] outputResources;
+    public int[] output;
     public float completionTime;
     public int energyCost;
 }
