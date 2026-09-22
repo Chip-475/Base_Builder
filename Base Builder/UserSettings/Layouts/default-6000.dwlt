@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1366
     height: 677
   m_ShowMode: 4
-  m_Title: Scene
+  m_Title: Project
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -120,7 +120,7 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 1046
-    height: 498
+    height: 508
   m_MinSize: {x: 200, y: 56}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
@@ -194,9 +194,9 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
-    y: 498
+    y: 508
     width: 1046
-    height: 123
+    height: 113
   m_MinSize: {x: 231, y: 276}
   m_MaxSize: {x: 10001, y: 10026}
   m_ActualView: {fileID: 16}
@@ -224,7 +224,7 @@ MonoBehaviour:
     x: 234
     y: 0
     width: 812
-    height: 498
+    height: 508
   m_MinSize: {x: 202, y: 226}
   m_MaxSize: {x: 4002, y: 4026}
   m_ActualView: {fileID: 13}
@@ -253,7 +253,7 @@ MonoBehaviour:
     x: 0
     y: 0
     width: 234
-    height: 498
+    height: 508
   m_MinSize: {x: 51, y: 76}
   m_MaxSize: {x: 4001, y: 4026}
   m_ActualView: {fileID: 21}
@@ -304,7 +304,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 0
+    y: 43
     width: 1366
     height: 36
   m_SerializedDataModeController:
@@ -599,10 +599,10 @@ MonoBehaviour:
     m_TextWithWhitespace: "Scene\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 235
-    y: 24
+    x: 234
+    y: 79
     width: 810
-    height: 472
+    height: 482
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -714,7 +714,7 @@ MonoBehaviour:
       containerId: overlay-container--right
       displayed: 0
       id: Scene View/Light Settings
-      index: 3
+      index: 2
       contents: '{"m_Layout":4,"m_Collapsed":false,"m_Folded":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":0.0,"y":0.0},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":0,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
       floating: 0
       collapsed: 0
@@ -742,7 +742,7 @@ MonoBehaviour:
       containerId: overlay-container--right
       displayed: 0
       id: Scene View/Cloth Constraints
-      index: 4
+      index: 3
       contents: '{"m_Layout":4,"m_Collapsed":false,"m_Folded":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":0.0,"y":0.0},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":0,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
       floating: 0
       collapsed: 0
@@ -756,7 +756,7 @@ MonoBehaviour:
       containerId: overlay-container--right
       displayed: 0
       id: Scene View/Cloth Collisions
-      index: 6
+      index: 5
       contents: '{"m_Layout":4,"m_Collapsed":false,"m_Folded":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":0.0,"y":0.0},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":0,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
       floating: 0
       collapsed: 0
@@ -812,7 +812,7 @@ MonoBehaviour:
       containerId: overlay-container--right
       displayed: 0
       id: Scene View/Occlusion Culling
-      index: 8
+      index: 7
       contents: '{"m_Layout":4,"m_Collapsed":false,"m_Folded":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":0.0,"y":0.0},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":0,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
       floating: 0
       collapsed: 0
@@ -826,7 +826,7 @@ MonoBehaviour:
       containerId: overlay-container--right
       displayed: 0
       id: Scene View/Physics Debugger
-      index: 9
+      index: 8
       contents: '{"m_Layout":4,"m_Collapsed":false,"m_Folded":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":0.0,"y":0.0},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":0,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
       floating: 0
       collapsed: 0
@@ -840,7 +840,7 @@ MonoBehaviour:
       containerId: overlay-container--right
       displayed: 0
       id: Scene View/Scene Visibility
-      index: 10
+      index: 9
       contents: '{"m_Layout":4,"m_Collapsed":false,"m_Folded":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":0.0,"y":0.0},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":0,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
       floating: 0
       collapsed: 0
@@ -854,7 +854,7 @@ MonoBehaviour:
       containerId: overlay-container--right
       displayed: 0
       id: Scene View/Particles
-      index: 11
+      index: 10
       contents: '{"m_Layout":4,"m_Collapsed":false,"m_Folded":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":0.0,"y":0.0},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":0,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
       floating: 0
       collapsed: 0
@@ -892,17 +892,17 @@ MonoBehaviour:
       layout: 4
       size: {x: 0, y: 0}
       sizeOverridden: 0
-    - dockPosition: 1
-      containerId: overlay-container--right
+    - dockPosition: 0
+      containerId: Floating
       displayed: 0
       id: Scene View/Open Tile Palette
       index: 0
-      contents: '{"m_Layout":4,"m_Collapsed":false,"m_Folded":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":48.0,"y":48.0},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":0,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
-      floating: 0
+      contents: '{"m_Layout":4,"m_Collapsed":false,"m_Folded":false,"m_Floating":true,"m_FloatingSnapOffset":{"x":-336.0,"y":-122.99899291992188},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":3,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
+      floating: 1
       collapsed: 0
-      snapOffset: {x: 48, y: 48}
+      snapOffset: {x: -336, y: -122.99899}
       snapOffsetDelta: {x: 0, y: 0}
-      snapCorner: 0
+      snapCorner: 3
       layout: 4
       size: {x: 0, y: 0}
       sizeOverridden: 0
@@ -910,7 +910,7 @@ MonoBehaviour:
       containerId: overlay-container--right
       displayed: 0
       id: Scene View/Tilemap Focus
-      index: 5
+      index: 4
       contents: '{"m_Layout":4,"m_Collapsed":false,"m_Folded":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":48.0,"y":48.0},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":0,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
       floating: 0
       collapsed: 0
@@ -924,7 +924,7 @@ MonoBehaviour:
       containerId: overlay-container--right
       displayed: 0
       id: Scene View/Path
-      index: 15
+      index: 14
       contents: '{"m_Layout":4,"m_Collapsed":false,"m_Folded":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":48.0,"y":48.0},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":0,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
       floating: 0
       collapsed: 0
@@ -938,7 +938,7 @@ MonoBehaviour:
       containerId: overlay-container--right
       displayed: 0
       id: Scene View/TrailRenderer
-      index: 12
+      index: 11
       contents: '{"m_Layout":4,"m_Collapsed":false,"m_Folded":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":48.0,"y":48.0},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":0,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
       floating: 0
       collapsed: 0
@@ -1050,7 +1050,7 @@ MonoBehaviour:
       containerId: overlay-container--right
       displayed: 0
       id: Scene View/PBR Validation Settings
-      index: 1
+      index: 0
       contents: '{"m_Layout":4,"m_Collapsed":false,"m_Folded":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":0.0,"y":0.0},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":0,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
       floating: 0
       collapsed: 0
@@ -1064,7 +1064,7 @@ MonoBehaviour:
       containerId: overlay-container--right
       displayed: 0
       id: SceneView/CamerasOverlay
-      index: 13
+      index: 12
       contents: '{"m_Layout":4,"m_Collapsed":false,"m_Folded":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":24.0,"y":0.0},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":0,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
       floating: 0
       collapsed: 0
@@ -1078,7 +1078,7 @@ MonoBehaviour:
       containerId: overlay-container--right
       displayed: 0
       id: Scene View/Tile Palette Clipboard
-      index: 2
+      index: 1
       contents: '{"m_Layout":4,"m_Collapsed":false,"m_Folded":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":0.0,"y":0.0},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":0,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
       floating: 0
       collapsed: 0
@@ -1092,7 +1092,7 @@ MonoBehaviour:
       containerId: overlay-container--right
       displayed: 0
       id: Scene View/Tile Palette Brush Pick
-      index: 7
+      index: 6
       contents: '{"m_Layout":4,"m_Collapsed":false,"m_Folded":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":0.0,"y":0.0},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":0,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
       floating: 0
       collapsed: 0
@@ -1106,7 +1106,7 @@ MonoBehaviour:
       containerId: overlay-container--right
       displayed: 0
       id: APV Overlay
-      index: 14
+      index: 13
       contents: '{"m_Layout":4,"m_Collapsed":false,"m_Folded":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":0.0,"y":0.0},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":0,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
       floating: 0
       collapsed: 0
@@ -1120,7 +1120,7 @@ MonoBehaviour:
       containerId: overlay-container--right
       displayed: 0
       id: Scene View/Sprite Swap
-      index: 16
+      index: 15
       contents: '{"m_Layout":4,"m_Collapsed":false,"m_Folded":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":0.0,"y":0.0},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":0,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
       floating: 0
       collapsed: 0
@@ -1176,7 +1176,7 @@ MonoBehaviour:
       containerId: overlay-container--right
       displayed: 0
       id: Scene View/Bone
-      index: 17
+      index: 16
       contents: '{"m_Layout":4,"m_Collapsed":false,"m_Folded":false,"m_Floating":false,"m_FloatingSnapOffset":{"x":0.0,"y":0.0},"m_SnapOffsetDelta":{"x":0.0,"y":0.0},"m_FloatingSnapCorner":0,"m_Size":{"x":0.0,"y":0.0},"m_SizeOverridden":false}'
       floating: 0
       collapsed: 0
@@ -1231,9 +1231,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 0, y: 0, z: 0}
+    m_Target: {x: 0.014588535, y: -0.8362609, z: 6.430845}
     speed: 2
-    m_Value: {x: -1.743201, y: 2.9867904, z: 0.00009359916}
+    m_Value: {x: 0.5224443, y: -0.65235955, z: 6.427828}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1284,9 +1284,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 10
+    m_Target: 6.402806
     speed: 2
-    m_Value: 5.7659683
+    m_Value: 6.704509
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1351,7 +1351,7 @@ MonoBehaviour:
     x: 234
     y: 79
     width: 810
-    height: 463
+    height: 487
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -1410,22 +1410,22 @@ MonoBehaviour:
       x: 0
       y: 21
       width: 810
-      height: 442
-    m_Scale: {x: 0.40925926, y: 0.40925926}
-    m_Translation: {x: 405, y: 221}
+      height: 466
+    m_Scale: {x: 0.421875, y: 0.42187497}
+    m_Translation: {x: 405, y: 233}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -989.5928
-      y: -540
-      width: 1979.1855
-      height: 1080
+      x: -960
+      y: -552.2963
+      width: 1920
+      height: 1104.5927
     m_MinimalGUI: 1
-  m_defaultScale: 0.40925926
-  m_LastWindowPixelSize: {x: 810, y: 463}
+  m_defaultScale: 0.421875
+  m_LastWindowPixelSize: {x: 810, y: 487}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000000000000y
@@ -1498,9 +1498,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 522
+    y: 587
     width: 1045
-    height: 97
+    height: 87
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -1527,7 +1527,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts
+    - Assets
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1538,21 +1538,25 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 49
   m_LastFolders:
-  - Assets/Scripts
+  - Assets
   m_LastFoldersGridSize: 49
   m_LastProjectPath: C:\Users\Vittorio Privitera\OneDrive\Desktop\Unity\Base_Builder\Base Builder
   m_LockTracker:
     m_IsLocked: 0
   m_LastLocalAssetsSearchArea: 1
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 175}
+    scrollPos: {x: 0, y: 79}
     m_SelectedIDs:
-    - m_rawData: 1099511656049
+    - m_rawData: 1099511655651
     m_LastClickedID:
-      m_rawData: 1099511656049
+      m_rawData: 1099511655651
     m_ExpandedIDs:
     - m_rawData: 0
+    - m_rawData: 6442450943
     - m_rawData: 1099511655651
+    - m_rawData: 1099511655992
+    - m_rawData: 1099511655997
+    - m_rawData: 1099511655998
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1615,9 +1619,9 @@ MonoBehaviour:
       m_ResourceFile: 
   m_ListAreaState:
     m_SelectedInstanceIDs:
-    - m_rawData: 36283883746452
+    - m_rawData: 3298534912891
     m_LastClickedEntityId:
-      m_rawData: 36283883746452
+      m_rawData: 3298534912891
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs:
     - m_rawData: 0
@@ -1688,9 +1692,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 578
-    width: 1021
-    height: 96
+    y: 605
+    width: 1045
+    height: 69
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -1784,8 +1788,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Inspector\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1047
-    y: 24
+    x: 1046
+    y: 79
     width: 319
     height: 595
   m_SerializedDataModeController:
@@ -2010,9 +2014,9 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 24
+    y: 79
     width: 233
-    height: 472
+    height: 482
   m_SerializedDataModeController:
     m_DataMode: 0
     m_PreferredDataMode: 0
@@ -2030,7 +2034,7 @@ MonoBehaviour:
     m_DynamicPanelBehaviorModified: 0
   m_ViewState:
     ValidContent: 10
-    ViewModelState: 7adaee72040000001c0000006c0300000200000012000000ffffffff2212f54802000000180000000100000076fa4866010000002c00000011000000f40d7063c1e45c4891bf4592d14507a5bf0500000009000001000000020000002d75c054000000000000000000000000f40d7063c1e45c4891bf4592d14507a5ed6c0000000100000000000002000000b15faf26000000000000000000000000f40d7063c1e45c4891bf4592d14507a5e36c000000010000010000000200000018ffc72b000000000000000000000000f40d7063c1e45c4891bf4592d14507a5cd6e0000007700000100000002000000a861d860000000000000000000000000f40d7063c1e45c4891bf4592d14507a5556f00000011000001000000020000005ef8c03f000000000000000000000000f40d7063c1e45c4891bf4592d14507a594740000002100000300000002000000c841072f000000000000000000000000f40d7063c1e45c4891bf4592d14507a59c6e0000000300000100000002000000425d8d60000000000000000000000000f40d7063c1e45c4891bf4592d14507a5be6f00000023000000000000020000005ae8c810000000000000000000000000f40d7063c1e45c4891bf4592d14507a5d5710000001900000000000002000000b039b347000000000000000000000000f40d7063c1e45c4891bf4592d14507a5bb710000001500000000000002000000fa2f0234000000000000000000000000f40d7063c1e45c4891bf4592d14507a5817200000001000000000000020000006403ff0d000000000000000000000000f40d7063c1e45c4891bf4592d14507a530700000004900000000000002000000e5663327000000000000000000000000f40d7063c1e45c4891bf4592d14507a5e66c00000001000001000000020000004e8fef31000000000000000000000000f40d7063c1e45c4891bf4592d14507a5e96c0000000100000000000002000000a5f66277000000000000000000000000f40d7063c1e45c4891bf4592d14507a5f76c0000000100000000000002000000977f2420000000000000000000000000f40d7063c1e45c4891bf4592d14507a59c690000000300000000000002000000f5a0625c000000000000000000000000f40d7063c1e45c4891bf4592d14507a5f26c0000000100000000000002000000258df903000000000000000000000000f40d7063c1e45c4891bf4592d14507a5956f00000003000000000000y
+    ViewModelState: 7adaee72040000001c0000004c050000020000001c000000ffffffff2212f54802000000180000000100000076fa4866010000002c0000001b000000f40d7063c1e45c4891bf4592d14507a587690000000f000001000000020000002d75c054000000000000000000000000f40d7063c1e45c4891bf4592d14507a5a06f000000210000000000000200000055d25a2f000000000000000000000000f40d7063c1e45c4891bf4592d14507a50f6f0000001300000000000002000000a96b777f000000000000000000000000f40d7063c1e45c4891bf4592d14507a543720000000700000000000002000000b15faf26000000000000000000000000f40d7063c1e45c4891bf4592d14507a5f76e0000000d00000000000002000000a9163c45000000000000000000000000f40d7063c1e45c4891bf4592d14507a5776f0000003500000000000002000000e5663327000000000000000000000000f40d7063c1e45c4891bf4592d14507a5fa6e0000000d000001000000020000004e8fef31000000000000000000000000f40d7063c1e45c4891bf4592d14507a5126f0000001300000000000002000000553acb1c963904790000000000000000f40d7063c1e45c4891bf4592d14507a54b72000000050000000000000200000016efb14b000000000000000000000000f40d7063c1e45c4891bf4592d14507a58f6f0000002300000100000002000000db96ca0f000000000000000000000000f40d7063c1e45c4891bf4592d14507a5f86c0000001300000000000002000000f2e1ba67000000000000000000000000f40d7063c1e45c4891bf4592d14507a5a96f0000000b000000000000020000009a86b12d000000000000000000000000f40d7063c1e45c4891bf4592d14507a5006f0000001f0000000000000200000069988e5e000000000000000000000000f40d7063c1e45c4891bf4592d14507a5a66f0000000f00000000000002000000851f11377af853086b10ee4200000000f40d7063c1e45c4891bf4592d14507a54e720000000500000000000002000000ef202d70000000000000000000000000f40d7063c1e45c4891bf4592d14507a5be6f000000190000010000000200000037f10348000000000000000000000000f40d7063c1e45c4891bf4592d14507a58a6f000000210000000000000200000091285c1e000000000000000000000000f40d7063c1e45c4891bf4592d14507a52d6e0000000f00000000000002000000c01bf82e000000000000000000000000f40d7063c1e45c4891bf4592d14507a5086f0000000f000000000000020000000946e436000000000000000000000000f40d7063c1e45c4891bf4592d14507a5166f0000000f0000000000000200000068a1cd04000000000000000000000000f40d7063c1e45c4891bf4592d14507a519730000000f000000000000020000006a721401000000000000000000000000f40d7063c1e45c4891bf4592d14507a57b730000000300000300000002000000b93be850000000000000000000000000f40d7063c1e45c4891bf4592d14507a5507300000013000001000000020000001d44e322000000000000000000000000f40d7063c1e45c4891bf4592d14507a52c7400000013000001000000020000006d3e7709000000000000000000000000f40d7063c1e45c4891bf4592d14507a5c47400000009000000000000020000006298f236000000000000000000000000f40d7063c1e45c4891bf4592d14507a5aa740000001b000000000000020000005a11511f000000000000000000000000f40d7063c1e45c4891bf4592d14507a5e3740000000d00000000000002000000fcd4081a000000000000000000000000f40d7063c1e45c4891bf4592d14507a519740000001f000000000000y
     SearchText: 
     Columns:
     - ColumnId: Visibility
