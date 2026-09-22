@@ -27,6 +27,9 @@ public class Machine : InstalledObject
         WorldManager.World.SetMachineAt(Coords, this);
     }
     void OnMouseDown()
+    {
+        if (machineRecipeUI.instance != null) machineRecipeUI.instance.apri(this);
+    }
     public void checkConnection()
     {
         foreach (PowerPole pole in poleManager.instance.powerPoles)
@@ -36,10 +39,6 @@ public class Machine : InstalledObject
                     pole.Connect(this);
                 }
         }
-    }
-    public ProcessingData GetProcessingData()
-    {
-        if (machineRecipeUI.instance != null) machineRecipeUI.instance.apri(this);
     }
     public ProcessingData GetProcessingData(RecipeSO recipe)
     {
