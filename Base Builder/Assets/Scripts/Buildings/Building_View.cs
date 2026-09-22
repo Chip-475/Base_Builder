@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 public class Building_View : MonoBehaviour
 {
-    public Building Building {  get; private set; }
+    public Building Building {  get; protected set; }
 
     protected Building.Config buildingConfig = new();
 
-    void OnDrawGizmos()
+    protected void OnDrawGizmos()
     {
         Bounds bounds = buildingConfig.bounds;
 
@@ -20,7 +20,7 @@ public class Building_View : MonoBehaviour
         Gizmos.DrawLine(new Vector3(max.x, max.y, 0), new Vector3(min.x, max.y, 0));
         Gizmos.DrawLine(new Vector3(min.x, max.y, 0), new Vector3(min.x, min.y, 0));
     }
-    void Start()
+    protected void Start()
     {
         Building = new(this, buildingConfig);
     }

@@ -6,6 +6,7 @@ public class MineralNode : Building
     [Serializable]
     public class MineralNodeConfig : Config
     {
+        [Space]
         public ResourceSO resource;
         public int baseAmount;
         public NodePurity purity;

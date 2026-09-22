@@ -22,15 +22,15 @@ public class machineRecipeUI : MonoBehaviour
         Debug.Log("dentro la macchina");
         pulisciLista();
         panello.SetActive(true);
-        foreach(RecipeSO recipe in machine.allowedRecipes)
-        {
-            GameObject voce = Instantiate(prefabRic, cont);
-            recipeListUI voce2 = voce.GetComponent<recipeListUI>();
-            if(voce != null )
-            {
-                voce2.imposta(recipe, this);
-            }
-        }
+        //foreach(RecipeSO recipe in machine.allowedRecipes)
+        //{
+        //    GameObject voce = Instantiate(prefabRic, cont);
+        //    recipeListUI voce2 = voce.GetComponent<recipeListUI>();
+        //    if(voce != null )
+        //    {
+        //        voce2.imposta(recipe, this);
+        //    }
+        //}
         panello.SetActive(true);
     }
     

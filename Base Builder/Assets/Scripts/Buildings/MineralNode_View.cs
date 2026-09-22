@@ -3,12 +3,12 @@ using static MineralNode;
 
 public class MineralNode_View : Building_View
 {
-    public MineralNode MineralNode { get; private set; }
+    public MineralNode MineralNode => Building as MineralNode;
 
     [SerializeField] MineralNodeConfig config = new();
 
-    void Start()
+    new void Start()
     {
-        MineralNode = new(this, config);
+        Building = new(this, config);
     }
 }
