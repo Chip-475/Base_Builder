@@ -4,35 +4,49 @@ using UnityEngine;
 
 public class PowerPole : InstalledObject
 {
+    public bool isConnected;
     public int poleRadius;
     public Bounds b;
     public bool CanConnectTo(InstalledObject other)
     {
         if (other == null) return false;
-        Debug.Log("dio");
         b=new Bounds(transform.position, new Vector3(poleRadius * 2, poleRadius * 2, 0));
         Cell[] myCells = GetCellsInBounds(b);
         PowerPole otherPole = other as PowerPole;
-        Cell[] otherCells = otherPole.GetCellsInBounds(otherPole.b);
+        if (otherPole != null)
+        {
+            Cell[] otherCells = otherPole.GetCellsInBounds(otherPole.b);
 
-        foreach (var cell in myCells)
-            foreach (var otherCell in otherCells)
-                if (cell.Coords == otherCell.Coords)
-                    return true;
-
+            foreach (var cell in myCells)
+                foreach (var otherCell in otherCells)
+                    if (cell.Coords == otherCell.Coords)
+                        return true;
+        }else
+        {
+            Cell[] otherCells = other.GetCellsInBounds(other.GetBounds());
+            foreach (var cell in myCells)
+                foreach (var otherCell in otherCells)
+                    if (cell.Coords == otherCell.Coords)
+                        return true;
+        }
         return false;
     }
+    public void ConnectToAPole(PowerPole other)
+    {
+        //the ship will set the first isConnected to the poles directly connected to it
+        if (CanConnectTo(other))
+        {
+            if(other.isConnected) isConnected = true;
+            else if (isConnected)other.isConnected = true;
+        }
+    }
 
-    // da fare una funzione che trova tutti  gli altri pali 
-
-    public void Connect(PowerPole other)
+    public void Connect(Machine other)
     {
         if (CanConnectTo(other))
         {
-            if(other.Power>0)
-            Power = other.Power;
-            else
-            other.Power = Power;
+            other.isConnected = true;
+            if (isConnected) other.isPowered = true;
         }
     }
 

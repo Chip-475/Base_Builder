@@ -6,9 +6,20 @@ public class Machine : InstalledObject
     [Header("Config")]
     public List<RecipeSO> allowedRecipes = new();
     public List<ResourceSO> allowedFuels = new();
+    private bool isworking;
+    private bool isWorking { 
+        get { return isworking; } 
+        set
+        {
+            isworking=value;
+            if(isworking)poleManager.instance.powerConsumption+=energyConsumption;
+            else poleManager.instance.powerConsumption-=energyConsumption;
+        } 
+    }
     public bool needsEnergy = true;
-    public int currentEnergy = 100;
-    public int maxEnergy = 100;
+    public int energyConsumption = 1;//to decide if energyConsuption is per machine or per recipe
+    /*[HideInInspector]*/public bool isPowered = false;
+    /*[HideInInspector]*/public bool isConnected = false;
 
     private new void Start()
     {
@@ -16,6 +27,17 @@ public class Machine : InstalledObject
         WorldManager.World.SetMachineAt(Coords, this);
     }
     void OnMouseDown()
+    public void checkConnection()
+    {
+        foreach (PowerPole pole in poleManager.instance.powerPoles)
+        {
+                if (pole.CanConnectTo(this))
+                {
+                    pole.Connect(this);
+                }
+        }
+    }
+    public ProcessingData GetProcessingData()
     {
         if (machineRecipeUI.instance != null) machineRecipeUI.instance.apri(this);
     }
