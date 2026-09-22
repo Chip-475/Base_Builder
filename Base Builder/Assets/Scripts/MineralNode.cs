@@ -1,28 +1,25 @@
 using UnityEngine;
+using System;
 
-public class MineralNode : InstalledObject
+public class MineralNode : Building
 {
-    [Header("Config")]
-    [SerializeField] ResourceSO resource;
-    [SerializeField] int amountPerProcess;
-    [SerializeField] NodePurity purity;
-
-    private new void Start()
+    [Serializable]
+    public class MineralNodeConfig : Config
     {
-        base.Start();
-        WorldManager.World.SetMineralNodeAt(Coords, this);
+        public ResourceSO resource;
+        public int baseAmount;
+        public NodePurity purity;
     }
 
-    public ProcessingData GetProcessingData()
+    public ResourceSO Resource { get; private set; }
+    public int BaseAmount { get; private set; }
+    public NodePurity Purity { get; private set; }
+
+    public MineralNode(MineralNode_View obj, MineralNodeConfig config) : base(obj, config)
     {
-        return new ProcessingData()
-        {
-            outputResources = new()
-            {
-                [resource] = amountPerProcess * (int)purity 
-            },
-            timeToProcess = resource.toughness * 2
-        };
+        Resource = config.resource;
+        BaseAmount = config.baseAmount;
+        Purity = config.purity;
     }
 }
 public enum NodePurity

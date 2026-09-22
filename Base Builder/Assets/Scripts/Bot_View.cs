@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-public class BotView : MonoBehaviour
+public class Bot_View : MonoBehaviour
 {
     [Header("Config")]
     [SerializeField] BotType type;

@@ -1,26 +1,20 @@
 using UnityEngine;
+using System;
 using System.Collections.Generic;
 
-public class Machine : InstalledObject
+public class Machine : Building
 {
-    [Header("Config")]
-    [SerializeField] List<RecipeSO> allowedRecipes = new();
-    public List<ResourceSO> allowedFuels = new();
-    public bool needsEnergy = true;
-    public int currentEnergy = 100;
-    public int maxEnergy = 100;
-
-    private new void Start()
+    [Serializable]
+    public class MachineConfig : Config
     {
-        base.Start();
-        WorldManager.World.SetMachineAt(Coords, this);
+        [Space]
+        public RecipeSO[] recipes;
     }
 
-    public ProcessingData GetProcessingData()
+    public RecipeSO[] Recipes { get; private set; }
+
+    public Machine(Machine_View obj, MachineConfig config) : base(obj, config)
     {
-        return new ProcessingData()
-        {
-            // To Fill Out
-        };
+        Recipes = config.recipes;
     }
 }

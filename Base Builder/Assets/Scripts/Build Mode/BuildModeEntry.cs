@@ -7,7 +7,7 @@ public class BuildModeEntry : MonoBehaviour
     [SerializeField] Button button;
     public Sprite icon;
 
-    [SerializeField] InstalledObject building;
+    public Building_View building;
 
     private void Awake()
     {
@@ -17,7 +17,7 @@ public class BuildModeEntry : MonoBehaviour
 
     public void OnClick()
     {
-        BuildMode.Instance.SetSelectedObject(building);
+        BuildMode.Instance.SetSelectedObject(this);
         //to add:selected object sprite sparkle effect
     }
 }

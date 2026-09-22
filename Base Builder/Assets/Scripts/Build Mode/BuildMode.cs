@@ -11,8 +11,8 @@ public class BuildMode : MonoBehaviour
     [SerializeField] GameObject panel;
     [SerializeField] Button toggleButton;
 
-    public List<InstalledObject> buildableObjects = new();
-    public InstalledObject SelectedObject { get; private set; }
+    public List<Building_View> buildableObjects = new();
+    public BuildModeEntry SelectedObject { get; private set; }
     
     private void Awake()
     {
@@ -59,18 +59,18 @@ public class BuildMode : MonoBehaviour
             return;
 
         var mousePos = Helpers.GetMouseWorldPosition();
-        var bounds = SelectedObject.GetBounds();
+        var bounds = SelectedObject.building.Building.GetBounds();
         bounds.center = mousePos.ToVector3Int();
-        if (!CanBuildOn(SelectedObject.GetCellsInBounds(bounds)))
+        if (!CanBuildOn(SelectedObject.building.Building.GetCellsInBounds(bounds)))
             return;
 
-        var obj = Instantiate(SelectedObject);
-        obj.SetPosition(WorldManager.World.GetCellAt(Helpers.GetMouseWorldPosition().ToVector3Int()));
+        var obj = Instantiate(SelectedObject.building);
+        obj.Building.SetPosition(WorldManager.World.GetCellAt(Helpers.GetMouseWorldPosition().ToVector3Int()));
 
         SetSelectedObject(null);
     }
 
-    public void SetSelectedObject(InstalledObject obj)
+    public void SetSelectedObject(BuildModeEntry obj)
     {
         SelectedObject = obj;
     }
