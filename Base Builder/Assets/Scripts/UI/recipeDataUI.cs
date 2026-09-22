@@ -8,13 +8,13 @@ public class recipeDataUI : MonoBehaviour
     public TMP_Text nomeTesto;
     public TMP_Text descrizione;
     public TMP_Text tempo;
-
+    /*
     [Header("ingredienti e prodotto")]
     public Transform contenuto;
     public GameObject prefabIngre;
     public Image iconeProd;
-    public TMP_Text quant;
-
+    public TMP_Text quant;*/
+    /*
     public void mostra(RecipeSO recipe)
     {
         gameObject.SetActive(true);
@@ -36,13 +36,5 @@ public class recipeDataUI : MonoBehaviour
             quant.text = "x " + recipe.output[0];
         }
 
-    }
-
-    void pulisciIngredienti()
-    {
-        for(int i=contenuto.childCount-1;i>=0;i--)
-        {
-            Destroy(contenuto.GetChild(i).gameObject);
-        }
-    }
+    }*/
 }
