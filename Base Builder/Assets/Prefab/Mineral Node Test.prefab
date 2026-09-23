@@ -53,8 +53,12 @@ MonoBehaviour:
     m_Extent: {x: 1.5, y: 1.5, z: 0}
   collider: {fileID: 8807465733035402985}
   <Power>k__BackingField: 0
-  allowedRecipes: []
-  allowedFuels: []
+  allowedRecipes:
+  - {fileID: 11400000, guid: 193b2a0dda41c264c9f0a310501e1f98, type: 2}
+  - {fileID: 11400000, guid: aa12f110c94d4914dad5f511ae73d203, type: 2}
+  allowedFuels:
+  - {fileID: 11400000, guid: 8454d85e6a52b5f45a50308c97089684, type: 2}
+  - {fileID: 11400000, guid: 8454d85e6a52b5f45a50308c97089684, type: 2}
   needsEnergy: 1
   currentEnergy: 100
   maxEnergy: 100

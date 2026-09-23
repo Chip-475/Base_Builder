@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 public class machineRecipeUI : MonoBehaviour
 {
     [Header("panello principale")]
@@ -26,7 +25,7 @@ public class machineRecipeUI : MonoBehaviour
         {
             GameObject voce = Instantiate(prefabRic, cont);
             recipeListUI voce2 = voce.GetComponent<recipeListUI>();
-            if(voce != null )
+            if(voce2 != null )
             {
                 voce2.imposta(recipe, this);
             }
