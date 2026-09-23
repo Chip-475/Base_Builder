@@ -21,16 +21,25 @@ public class machineRecipeUI : MonoBehaviour
         Debug.Log("dentro la macchina");
         pulisciLista();
         panello.SetActive(true);
+        Debug.Log(machine.allowedRecipes.Count);
         foreach(RecipeSO recipe in machine.allowedRecipes)
         {
-            GameObject voce = Instantiate(prefabRic, cont);
-            recipeListUI voce2 = voce.GetComponent<recipeListUI>();
-            if(voce2 != null )
+            Debug.Log("dentro il for");
+            GameObject voce=Instantiate(prefabRic, cont, false);
+            TMP_Text titolo = voce.transform.Find("textTitolo").GetComponent<TMP_Text>();
+            titolo.text = recipe.r_name;
+            TMP_Text descri=voce.transform.Find("desc").GetComponent<TMP_Text>();
+            descri.text = "Ingredienti: " + "\n";
+            foreach (ResourceSO r in recipe.inputResources)
             {
-                voce2.imposta(recipe, this);
+                descri.text = descri.text + r.r_name + " ";
+            }
+            descri.text = "\n" + "Risultato: " + "\n";
+            foreach (ResourceSO r in recipe.outputResources)
+            {
+                descri.text = descri.text + r.r_name + " ";
             }
         }
-        panello.SetActive(true);
     }
     
     private void pulisciLista()
@@ -39,6 +48,10 @@ public class machineRecipeUI : MonoBehaviour
         {
             Destroy(cont.GetChild(i).gameObject);
         }
+    }
+    public void apriSelect()
+    {
+        //mostraDett(recipe);
     }
     public void chiudi()
     {
