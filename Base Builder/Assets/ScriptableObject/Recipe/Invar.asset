@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1930e33686e0fe343a20ec312785cbc4, type: 3}
   m_Name: Invar
   m_EditorClassIdentifier: Assembly-CSharp::Recipe
+  <ID>k__BackingField: invar
+  r_name: Invar
   inputResources:
   - {fileID: 11400000, guid: f44b38d183a6d48409ecf1890b1f4cd8, type: 2}
   - {fileID: 11400000, guid: b415aa21e9cdde4458fe26c61cd891f4, type: 2}
+  input: 
   outputResources:
   - {fileID: 11400000, guid: 7211ac24f63019e4ca1c67fbe3ee889c, type: 2}
-  recipeName: 
-  id: 
+  output: 
+  completionTime: 0
   energyCost: 0
-  recipeTime: 0
