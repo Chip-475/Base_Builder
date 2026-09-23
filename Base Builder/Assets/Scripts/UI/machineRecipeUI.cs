@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 public class machineRecipeUI : MonoBehaviour
 {
     [Header("panello principale")]
@@ -25,20 +26,24 @@ public class machineRecipeUI : MonoBehaviour
         foreach(RecipeSO recipe in machine.allowedRecipes)
         {
             Debug.Log("dentro il for");
+            Debug.Log(recipe.r_name);
             GameObject voce=Instantiate(prefabRic, cont, false);
-            TMP_Text titolo = voce.transform.Find("textTitolo").GetComponent<TMP_Text>();
+            Debug.Log(recipe.r_name);
+            TMP_Text titolo = voce.transform.Find("Panel/textTitolo").GetComponentInChildren<TMP_Text>();
             titolo.text = recipe.r_name;
-            TMP_Text descri=voce.transform.Find("desc").GetComponent<TMP_Text>();
-            descri.text = "Ingredienti: " + "\n";
+            TMP_Text descri=voce.transform.Find("Panel/desc").GetComponentInChildren<TMP_Text>();
+            descri.text = "Ingredienti: ";
             foreach (ResourceSO r in recipe.inputResources)
             {
                 descri.text = descri.text + r.r_name + " ";
             }
-            descri.text = "\n" + "Risultato: " + "\n";
+            descri.text = descri.text+"\n" + "Risultato: ";
             foreach (ResourceSO r in recipe.outputResources)
             {
                 descri.text = descri.text + r.r_name + " ";
             }
+            Button bott=voce.GetComponentInChildren<Button>();
+            bott.onClick.AddListener(()=>mostraDett(recipe));
         }
     }
     
@@ -59,17 +64,17 @@ public class machineRecipeUI : MonoBehaviour
     }
     public void mostraDett(RecipeSO recipe)
     {
+        Debug.Log("dentro mostra");
         titolo.text = recipe.r_name;
-        desc.text = "Ingredienti: " + "\n";
+        desc.text = "Ingredienti: ";
         foreach(ResourceSO r in recipe.inputResources)
         {
             desc.text = desc.text + r.r_name+" ";
         }
-        desc.text ="\n"+"Risultato: "+"\n";
-        foreach(ResourceSO r in recipe.outputResources)
+        desc.text =desc.text+"\n"+"Risultato: ";
+        foreach (ResourceSO r in recipe.outputResources)
         {
-            desc.text = desc.text + r.r_name+" ";
+            desc.text = desc.text + r.r_name + " ";
         }
-
     }
 }
