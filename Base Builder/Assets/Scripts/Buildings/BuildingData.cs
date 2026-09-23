@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "Generic Building Data", menuName = "Buildings/Generic Building")]
 public abstract class BuildingData : ScriptableObject
 {
     public new string name;
