@@ -1,52 +1,22 @@
-using UnityEngine;
-using System;
 using System.Collections.Generic;
+using UnityEngine;
 
-public class Building
+public abstract class Building
 {
-    [Serializable]
-    public class Config
+    public BuildingData Data { get; private set; }
+    public BuildingView SceneObj { get; private set; }
+
+    public Vector3Int Coords { get; private set; }
+
+    public Building(BuildingData data, BuildingView sceneObj)
     {
-        public Bounds bounds;
-        public bool blocksWalking;
-        public bool blocksPlacing;
+        Data = data;
+        SceneObj = sceneObj;
     }
 
-    public Building_View Object { get; private set; }
-    public Cell Cell => WorldManager.World.GetCellAt(Object.transform.position.ToVector3Int());
-    public Vector3Int Coords => Cell.Coords;
 
-    public Bounds Bounds { get; private set; }
-    public bool BlocksWalking { get; private set; }
-    public bool BlocksPlacing { get; private set; }
-
-    public Building(Building_View obj, Config config)
-    {
-        // View
-        Object = obj;
-        SnapToGrid();
-        UpdateCells(GetCellsInBounds(Bounds));
-
-        // Self
-        Bounds = config.bounds;
-        BlocksWalking = config.blocksWalking;
-        BlocksPlacing = config.blocksPlacing;
-    }
-
-    void SnapToGrid()
-    {
-        Object.transform.position = Object.transform.position.ToVector3Int();
-    }
-    void UpdateCells(Cell[] cells)
-    {
-        foreach (var cell in cells)
-        {
-            cell.canWalkOn = !BlocksWalking;
-            cell.canBuildOn = !BlocksPlacing;
-        }
-    }
-
-    public Bounds GetBounds() { return Bounds; }
+    // Getters - Setters
+    public Bounds GetBounds() { return Data.bounds; }
     public Cell[] GetCellsInBounds(Bounds bounds)
     {
         int minX = Mathf.CeilToInt(bounds.min.x);
@@ -65,8 +35,8 @@ public class Building
         return cells.ToArray();
     }
 
-    public void SetPosition(Cell cell)
+    public void SetPosition(Vector3Int coords)
     {
-        Object.transform.position = cell.Coords;
+        SceneObj.transform.position = coords;
     }
 }
