@@ -12,6 +12,8 @@ public class recipeListUI : MonoBehaviour
 
     public void imposta(RecipeSO recipe1,machineRecipeUI menu)
     {
+        recipe = recipe1;
+        menuPrincipale = menu;
         if (icona != null && recipe1.outputResources.Length > 0) icona.sprite = recipe1.outputResources[0].r_sprite;
         if (nomeTesto != null) nomeTesto.text = recipe1.r_name;
     }
