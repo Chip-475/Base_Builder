@@ -9,5 +9,6 @@ public class Machine : Building
     public Machine(MachineData data, MachineView sceneObj) : base(data, sceneObj)
     {
         // fill out as necessary
+        Tester.Instance.machines.Add(this); // testing
     }
 }
