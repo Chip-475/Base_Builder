@@ -3,5 +3,5 @@ using UnityEngine;
 
 public abstract class BuildingView : MonoBehaviour
 {
-    [SerializeField] protected BuildingData data;
+    [SerializeField] protected BuildingData Data;
 }

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MachineView : BuildingView
 {
-    public MachineData Data => data as MachineData;
+    public new MachineData Data => base.Data as MachineData;
 
     private void Start()
     {

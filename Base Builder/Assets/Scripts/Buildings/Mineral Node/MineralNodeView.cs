@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MineralNodeView : BuildingView
 {
-    public MineralNodeData Data => data as MineralNodeData;
+    public MineralNodeData Data => base.Data as MineralNodeData;
 
     private void Start()
     {

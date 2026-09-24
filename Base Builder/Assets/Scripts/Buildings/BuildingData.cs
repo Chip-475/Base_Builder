@@ -6,6 +6,7 @@ public abstract class BuildingData : ScriptableObject
     public new string name;
     [TextArea] public string description;
     public Bounds bounds;
+    public bool connectsToPower;
     public bool blocksWalking;
     public bool blocksPlacing;
 }

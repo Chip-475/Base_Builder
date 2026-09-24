@@ -22,8 +22,8 @@ public class machineRecipeUI : MonoBehaviour
         Debug.Log("dentro la macchina");
         pulisciLista();
         panello.SetActive(true);
-        Debug.Log(machine.allowedRecipes.Count);
-        foreach(RecipeSO recipe in machine.allowedRecipes)
+        Debug.Log(machine.Data.usableRecipes.Count);
+        foreach(RecipeSO recipe in machine.Data.usableRecipes)
         {
             Debug.Log("dentro il for");
             Debug.Log(recipe.r_name);
