@@ -1,16 +1,9 @@
 using UnityEngine;
-
-public class GeneratorData : MonoBehaviour
+[CreateAssetMenu(fileName = "Generator Data", menuName = "Buildings/Generator")]
+public class GeneratorData : BuildingData
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public string id;
+    public ResourceSO[] allowedFuels;
+    public float fuelConsumptionRate;
+    public float productionRate;
 }

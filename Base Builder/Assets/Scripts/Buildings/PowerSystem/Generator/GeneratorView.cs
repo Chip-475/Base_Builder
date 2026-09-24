@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class GeneratorView : MonoBehaviour
+public class GeneratorView : BuildingView
 {
     public new GeneratorData Data => base.Data as GeneratorData;
 
     private void Start()
     {
-        new PowerPole(Data, this);
+        new Generator(Data, this);
     }
 }

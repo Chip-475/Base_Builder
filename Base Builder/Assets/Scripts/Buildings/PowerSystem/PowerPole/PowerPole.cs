@@ -9,6 +9,7 @@ public class PowerPole : Building
 
     public Bounds ConnectionBounds { get; private set; }
     public bool isConnected;
+    public string generatorId;
 
     public PowerPole(PowerPoleData data, PowerPoleView sceneObj) : base(data, sceneObj)
     {
