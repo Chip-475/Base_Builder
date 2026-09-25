@@ -9,11 +9,13 @@ public class PowerPole : Building
 
     public Bounds ConnectionBounds { get; private set; }
     public bool isConnected;
-    public string generatorId;
+    public string poleId;
 
     public PowerPole(PowerPoleData data, PowerPoleView sceneObj) : base(data, sceneObj)
     {
         ConnectionBounds = new Bounds(SceneObj.transform.position, new Vector3(Data.range * 2, Data.range * 2, 0));
+        poleId=System.Guid.NewGuid().ToString();
+        PowerManager.instance.powerPolesDB[poleId]= this;
     }
 
     public bool CanConnectTo(Building other)
