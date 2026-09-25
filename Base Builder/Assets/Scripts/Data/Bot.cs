@@ -62,7 +62,7 @@ public class Bot
     }
 
     [field: SerializeField]
-    public BotView BotView { get; protected set; }
+    public Bot_View BotView { get; protected set; }
 
     [Header("Identity")]
     public string Id { get; protected set; }
@@ -75,7 +75,7 @@ public class Bot
     public float Power { get; protected set; }
     public const float MaxPower = 100;
 
-    public Bot(BotView botView, string id = null, Vector3? coords = null, string name = null, BotType type = BotType.None, Inventory? inv = null, float power = MaxPower)
+    public Bot(Bot_View botView, string id = null, Vector3? coords = null, string name = null, BotType type = BotType.None, Inventory? inv = null, float power = MaxPower)
     {
         // Self
         Id = id ?? Guid.NewGuid().ToString();
