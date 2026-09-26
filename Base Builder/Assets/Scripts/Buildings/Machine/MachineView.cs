@@ -3,9 +3,14 @@ using UnityEngine;
 public class MachineView : BuildingView
 {
     public new MachineData Data => base.Data as MachineData;
-
-    private void Start()
+    public Machine Machine => Building as Machine;
+    void Awake()
     {
-        new Machine(Data, this);
+        Building=new Machine(Data, this);
+    }
+    
+    void OnMouseDown()
+    {
+        if(machineRecipeUI.instance != null && Machine != null) machineRecipeUI.instance.apri(Machine);
     }
 }

@@ -17,7 +17,7 @@ public abstract class Building
 
     // Getters - Setters
     public Bounds GetBounds() { return Data.bounds; }
-    public Cell[] GetCellsInBounds(Bounds bounds)
+    public static Cell[] GetCellsInBounds(Bounds bounds)
     {
         int minX = Mathf.CeilToInt(bounds.min.x);
         int maxX = Mathf.FloorToInt(bounds.max.x);

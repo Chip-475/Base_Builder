@@ -8,7 +8,8 @@ public class Machine : Building
     public Machine(MachineData data, MachineView sceneObj) : base(data, sceneObj)
     {
         // fill out as necessary
+        Debug.Log("powerManager e' "+(PowerManager.instance==null ?"null":"trovato"));
         PowerManager.instance.machineDB.Add(this);
-        Tester.Instance.machines.Add(this); // testing
+        //Tester.Instance.machines.Add(this); // testing
     }
 }

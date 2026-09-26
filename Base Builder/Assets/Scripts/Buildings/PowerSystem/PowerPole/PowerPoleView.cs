@@ -3,9 +3,9 @@ using UnityEngine;
 public class PowerPoleView : BuildingView
 {
     public new PowerPoleData Data => base.Data as PowerPoleData;
-
-    private void Start()
+    public PowerPole PowerPole => Building as PowerPole;
+    void Awake()
     {
-        new PowerPole(Data, this);
+        Building=new PowerPole(Data, this);
     }
 }

@@ -1,4 +1,3 @@
-using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +17,7 @@ public class Generator : Building
 
     public Generator(GeneratorData data, GeneratorView sceneObj) : base(data, sceneObj)
     {
+        id=System.Guid.NewGuid().ToString(); 
         checkNetwork();
     }
     public void checkNetwork()
@@ -50,7 +50,7 @@ public class Generator : Building
         var otherPole = other as PowerPole;
         if (otherPole != null)
         {
-            Cell[] otherCells = otherPole.GetCellsInBounds(otherPole.ConnectionBounds);
+            Cell[] otherCells = Building.GetCellsInBounds(otherPole.ConnectionBounds);
 
             foreach (var cell in myCells)
                 foreach (var otherCell in otherCells)
@@ -59,7 +59,7 @@ public class Generator : Building
         }
         else
         {
-            Cell[] otherCells = other.GetCellsInBounds(other.GetBounds());
+            Cell[] otherCells = Building.GetCellsInBounds(other.GetBounds());
             foreach (var cell in myCells)
                 foreach (var otherCell in otherCells)
                     if (cell.Coords == otherCell.Coords)

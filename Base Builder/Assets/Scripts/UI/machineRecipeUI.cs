@@ -16,7 +16,6 @@ public class machineRecipeUI : MonoBehaviour
     {
         instance = this;
     }
-
     public void apri(Machine machine)
     {
         Debug.Log("dentro la macchina");
@@ -54,10 +53,7 @@ public class machineRecipeUI : MonoBehaviour
             Destroy(cont.GetChild(i).gameObject);
         }
     }
-    public void apriSelect()
-    {
-        //mostraDett(recipe);
-    }
+
     public void chiudi()
     {
         panello.SetActive(false);
