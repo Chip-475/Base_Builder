@@ -16,15 +16,4 @@ public class Generator : Building
     {
 
     }
-
-    public void Fuel(ResourceSO fuel, int quantity)
-    {
-        if (!Data.allowedFuels.Contains(fuel)) return;
-        Burn(fuel, quantity);
-    }
-    async UniTask Burn(ResourceSO fuel,int quantity)
-    {
-
-        await UniTask.Delay(0);
-    }
 }

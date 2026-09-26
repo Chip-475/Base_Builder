@@ -6,7 +6,7 @@ public abstract class Building
     public BuildingData Data { get; private set; }
     public BuildingView SceneObj { get; private set; }
 
-    public Vector3Int Coords { get; private set; }
+    public Vector3Int Coords => SceneObj.transform.position.ToVector3Int();
 
     public Building(BuildingData data, BuildingView sceneObj)
     {

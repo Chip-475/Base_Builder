@@ -37,3 +37,11 @@ public static class Helpers
     }
     #endregion
 }
+public enum Directions
+{
+    None,
+    Up,
+    Right,
+    Down,
+    Left
+}
