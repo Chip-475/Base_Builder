@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Resources/Ingots/Copper.md",
+                "file": "Resources/Crafted Items/Crafted Items.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Copper"
+              "title": "Crafted Items"
             }
           }
         ]
@@ -46,7 +46,7 @@
                 "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
-              "title": "Files"
+              "title": "Esplora file"
             }
           },
           {
@@ -179,20 +179,29 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Open quick switcher": false,
-      "graph:Open graph view": false,
-      "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": false,
-      "templates:Insert template": false,
-      "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "switcher:Apri selettore rapido": false,
+      "graph:Apri vista grafo": false,
+      "canvas:Crea nuova lavagna": false,
+      "daily-notes:Apri nota giornaliera": false,
+      "templates:Inserisci modello": false,
+      "command-palette:Apri riquadro comandi": false,
+      "bases:Crea nuova Base": false
     }
   },
   "active": "fcbb2aa86150e5cf",
   "lastOpenFiles": [
+    "Resources/Crafted Items/Titanium Plate.md",
+    "Resources/Crafted Items/Titanium Frame.md",
+    "Resources/Crafted Items/Steel Plate.md",
+    "Resources/Crafted Items/Ship Core Component.md",
+    "Resources/Crafted Items/Navigation Component.md",
+    "Resources/Crafted Items/Copper Wire.md",
+    "Resources/Crafted Items/Circuit Board.md",
+    "Resources/Crafted Items/Aluminum Plate.md",
+    "Resources/Crafted Items/Crafted Items.md",
+    "Resources/Ingots/Copper.md",
     "Resources/Ingots/Nickel.md",
     "Resources/Ingots/Iron.md",
-    "Resources/Ingots/Copper.md",
     "Resources/Ingots/Gold.md",
     "Resources/Ingots/Aluminum.md",
     "Resources/Raw/Cassiterite.md",
@@ -206,15 +215,6 @@
     "Resources/Raw/Coal.md",
     "Resources/Raw/Bauxite.md",
     "Spaceship.md",
-    "Craftable things.md",
-    "Docs.md",
-    "Demo Scope.md",
-    "Recipes/Smelt to Titanium.md",
-    "Recipes/Smelt to Tin.md",
-    "Recipes/Smelt to Nickel.md",
-    "Recipes/Smelt to Iron 3.md",
-    "Recipes/Smelt to Iron 2.md",
-    "Recipes/Smelt to Iron 1.md",
-    "Recipes/Smelt to Gold.md"
+    "Craftable things.md"
   ]
 }
