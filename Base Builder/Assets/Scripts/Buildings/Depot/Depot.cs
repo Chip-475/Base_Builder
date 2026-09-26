@@ -1,3 +1,5 @@
+using System;
+using Unity.Collections;
 using UnityEngine;
 
 public class Depot : Building
@@ -6,6 +8,12 @@ public class Depot : Building
     public new DepotView SceneObj => base.SceneObj as DepotView;
 
     private static DepotInventory sharedInventory = new();
+
+    public event Action<ResourceSO, int> InventoryChanged
+    {
+        add => sharedInventory.QuantityChanged += value;
+        remove => sharedInventory.QuantityChanged -= value;
+    }
 
     public Depot(DepotData data, DepotView sceneObj) : base(data, sceneObj)
     {
@@ -19,7 +27,6 @@ public class Depot : Building
     public (ResourceSO resource, int quantity) AddItem(ResourceSO resource, int quantity)
     {
         return sharedInventory.AddItem(resource, quantity);
-        
     }
 
     public (ResourceSO resource, int quantity) RemoveItem(ResourceSO resource, int quantity)
