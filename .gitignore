@@ -140,3 +140,5 @@ InitTestScene*.unity*
 # Auto-generated cache in Assets folder
 
 /[Aa]ssets/[Ss]ceneDependencyCache*
+*.dwlt
+Base Builder/UserSettings/Layouts/default-6000.dwlt
