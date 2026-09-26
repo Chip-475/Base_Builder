@@ -9,6 +9,7 @@ public class Machine : Building
     {
         // fill out as necessary
         PowerManager.instance.machineDB.Add(this);
+        PowerManager.instance.machineDB.Add(this);
         Tester.Instance.machines.Add(this); // testing
     }
 }

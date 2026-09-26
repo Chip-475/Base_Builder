@@ -10,7 +10,7 @@ public class PowerPole : Building
     public Bounds ConnectionBounds { get; private set; }
     public bool isConnected;
     public string poleId;
-
+    public Action<PowerPole> OnDestroy;
     public PowerPole(PowerPoleData data, PowerPoleView sceneObj) : base(data, sceneObj)
     {
         ConnectionBounds = new Bounds(SceneObj.transform.position, new Vector3(Data.range * 2, Data.range * 2, 0));
@@ -52,6 +52,7 @@ public class PowerPole : Building
             else if (isConnected) other.isConnected = true;
         }
     }
+    public void 
 
     //public void Connect(Machine other)
     //{

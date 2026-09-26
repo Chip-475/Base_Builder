@@ -3,9 +3,10 @@ using UnityEngine;
 public class PowerPoleView : BuildingView
 {
     public new PowerPoleData Data => base.Data as PowerPoleData;
-
+    
     private void Start()
     {
-        new PowerPole(Data, this);
+        var pp = new PowerPole(Data, this);
+        pp.OnDestroy+=(pp)=>
     }
 }

@@ -16,6 +16,7 @@ public class PowerManager : MonoBehaviour
         GameObject network=Instantiate(new GameObject(),powerObj.transform);
         GameObject poles=Instantiate(new GameObject(),network.transform);
         GameObject generators=Instantiate(new GameObject(),network.transform);
+        network.AddComponent<NetworkManager>();
     }
     public static PowerPole GetPowerPoleById(string id)
     {

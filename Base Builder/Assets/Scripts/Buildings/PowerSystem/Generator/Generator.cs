@@ -12,10 +12,22 @@ public class Generator : Building
     public string id;
     public List<PowerPole> ConnectedPoles;
 
-
+    public NetworkManager network
+    {
+        get {return getNetwork();}
+    }
     public Bounds ConnectionBounds { get; private set; }
     public float Power;
-
+    public bool running 
+    {
+        get {  return running; }
+        set
+        {
+            running = value;
+            if (running) network.generation += Power;
+            else network.generation -= Power;
+        }
+    }
     public Generator(GeneratorData data, GeneratorView sceneObj) : base(data, sceneObj)
     {
         checkNetwork();
@@ -66,5 +78,18 @@ public class Generator : Building
                         return true;
         }
         return false;
+    }
+    public void SwitchState() //to link to the ui button
+    {
+        running = !running;
+    }
+    public NetworkManager getNetwork()
+    {
+        NetworkManager[] networks = PowerManager.instance.powerObj.GetComponentsInChildren<NetworkManager>();
+        foreach (NetworkManager network in networks)
+        {
+            if (network.generatorIds.Contains(id)) return network;
+        }
+        return null;
     }
 }
