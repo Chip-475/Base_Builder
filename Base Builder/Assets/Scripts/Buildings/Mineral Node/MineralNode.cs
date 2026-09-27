@@ -9,4 +9,9 @@ public class MineralNode : Building
     {
         // fill out as necessary
     }
+
+    public override void Destroy()
+    {
+        throw new System.NotImplementedException();
+    }
 }

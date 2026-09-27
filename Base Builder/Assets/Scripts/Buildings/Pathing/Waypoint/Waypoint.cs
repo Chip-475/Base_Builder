@@ -42,7 +42,7 @@ public class Waypoint : Building
 
         Neighbours[direction] = null;
     }
-    public void Destroy()
+    public override void Destroy()
     {
         foreach (var item in Neighbours.Values)
             DisconnectFrom(item);
