@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class DepotView : BuildingView
 {
-    public DepotData Data => base.Data as DepotData;
+    public new DepotData Data => base.Data as DepotData;
     public Depot Building { get; private set; }
 
     public event Action<ResourceSO, int> InventoryChanged;

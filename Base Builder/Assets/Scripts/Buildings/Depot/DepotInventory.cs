@@ -9,11 +9,15 @@ public class DepotInventory : Building
         
     }
 
-    public DepotData Data => base.Data as DepotData;
+    public new DepotData Data => base.Data as DepotData;
     private readonly Dictionary<ResourceSO, int> deposit = new();
 
     public event Action<ResourceSO, int> QuantityChanged;
-    
+
+    public override void Destroy()
+    {
+        throw new NotImplementedException();
+    }
 
     public (ResourceSO resource, int quantity) AddItem(ResourceSO resource, int quantity)
     {

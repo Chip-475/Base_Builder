@@ -28,6 +28,11 @@ public class Depot : Building
 
     }
 
+    public override void Destroy()
+    {
+        throw new NotImplementedException();
+    }
+
     public (ResourceSO resource, int quantity) AddItem(ResourceSO resource, int quantity)
     {
         return sharedInventory.AddItem(resource, quantity);
