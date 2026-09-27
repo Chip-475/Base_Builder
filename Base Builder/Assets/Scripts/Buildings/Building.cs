@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
+[Serializable]
 public abstract class Building
 {
     public BuildingData Data { get; private set; }
