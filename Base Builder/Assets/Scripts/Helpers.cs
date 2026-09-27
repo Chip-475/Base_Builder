@@ -23,7 +23,16 @@ public static class Helpers
         return new Vector3Int(X, Y, Z);
     }
     #endregion
+    #region Cell Helpers
+    public static bool Overlaps(this Cell[] a, Cell[] b)
+    {
+        foreach (Cell other in a) 
+            foreach (Cell other2 in b) 
+                if (other == other2) return true;
 
+        return false;
+    }
+    #endregion 
     #region Miscellaneous
     public static Vector3 GetMousePosition()
     {

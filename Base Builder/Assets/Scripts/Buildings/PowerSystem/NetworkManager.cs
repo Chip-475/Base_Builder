@@ -1,12 +1,11 @@
 using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using System.Collections.Generic;
 public class NetworkManager : MonoBehaviour
 {
     public string id;
-    public string[] generatorIds;
-    public string[] polesIds;
+    public List<Building> ConnectedBuildings { get; private set; }
     public float generation
     {
         get { return generation; }
@@ -27,9 +26,9 @@ public class NetworkManager : MonoBehaviour
     }
     public void shutDown()
     {
-        foreach (string generator in generatorIds)
+        foreach (Generator generator in ConnectedBuildings)
         {
-            PowerManager.GetGeneratorById(generator).running = false;
+            generator.running = false;
         }
     }
 }

@@ -7,11 +7,12 @@ public abstract class Building
     public BuildingView SceneObj { get; private set; }
 
     public Vector3Int Coords { get; private set; }
-
+    
     public Building(BuildingData data, BuildingView sceneObj)
     {
         Data = data;
         SceneObj = sceneObj;
+        Data.connectionBounds = Data.bounds;
     }
 
 
@@ -39,4 +40,5 @@ public abstract class Building
     {
         SceneObj.transform.position = coords;
     }
+    public abstract void Destroy();
 }

@@ -15,7 +15,7 @@ public class PowerPole : Building
     {
         ConnectionBounds = new Bounds(SceneObj.transform.position, new Vector3(Data.range * 2, Data.range * 2, 0));
         poleId=System.Guid.NewGuid().ToString();
-        PowerManager.instance.powerPolesDB[poleId]= this;
+        PowerManager.powerPolesDB[poleId]= this;
     }
 
     public bool CanConnectTo(Building other)
@@ -52,7 +52,11 @@ public class PowerPole : Building
             else if (isConnected) other.isConnected = true;
         }
     }
-    public void 
+    public override void Destroy()
+    {
+        PowerManager.powerPolesDB.Remove(poleId);
+        MonoBehaviour.Destroy(SceneObj.gameObject);
+    }
 
     //public void Connect(Machine other)
     //{
