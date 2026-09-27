@@ -2,11 +2,18 @@ using System;
 using UnityEngine;
 using System.Collections.Generic;
 
-public class DepotInventory
+public class DepotInventory : Building
 {
+    public DepotInventory(BuildingData data, BuildingView view) : base(data, view)
+    {
+        
+    }
+
+    public DepotData Data => base.Data as DepotData;
     private readonly Dictionary<ResourceSO, int> deposit = new();
 
     public event Action<ResourceSO, int> QuantityChanged;
+    
 
     public (ResourceSO resource, int quantity) AddItem(ResourceSO resource, int quantity)
     {
@@ -14,14 +21,14 @@ public class DepotInventory
             return (resource, GetQuantity(resource));
 
         deposit.TryGetValue(resource, out int currentQuantity);
-        if (currentQuantity > int.MaxValue - quantity)
+        if (currentQuantity > Data.MaxCapacity - quantity)
         {
             return (resource, currentQuantity);
         }
 
-        int newQuantity = currentQuantity + quantity;
+        int newQuantity = currentQuantity+quantity;
         deposit[resource] = newQuantity;
-        if (QuantityChanged != null)
+        if (QuantityChanged !=null)
             QuantityChanged(resource, newQuantity);
 
         return (resource, newQuantity);

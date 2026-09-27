@@ -15,7 +15,6 @@ public class DepotView : BuildingView
             enabled = false;
             return;
         }
-
         Building = new Depot(Data, this);
         Building.InventoryChanged += ChangedInventory;
     }
