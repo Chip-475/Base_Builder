@@ -4,14 +4,22 @@ using System.Collections.Generic;
 
 public class PathingManager : MonoBehaviour
 {
-    public static PathingManager Instance { get; private set; }
+    public static PathingManager _instance;
+    public static PathingManager Instance 
+    { 
+        get
+        {
+            if (_instance == null) _instance=FindFirstObjectByType<PathingManager>();
+            return _instance;
+        }
+    }
 
     public Dictionary<Vector3Int, Waypoint> AllWaypoints { get; private set; } = new();
     public List<PathNetwork> Networks { get; private set; } = new();
 
     private void Awake()
     {
-        Instance = this;
+        _instance = this;
     }
 
     [ContextMenu("Connect Waypoints")]

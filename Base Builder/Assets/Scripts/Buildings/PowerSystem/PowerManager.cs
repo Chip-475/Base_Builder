@@ -36,12 +36,19 @@ public class PowerManager : MonoBehaviour
         }
         return false;
     }
-    public void CreateNewNetwork()
+    public NetworkManager CreateNewNetwork()
     {
+        /*
         GameObject network=Instantiate(new GameObject(),powerObj.transform);
         GameObject poles=Instantiate(new GameObject(),network.transform);
-        GameObject generators=Instantiate(new GameObject(),network.transform);
-        network.AddComponent<NetworkManager>();
+        GameObject generators=Instantiate(new GameObject(),network.transform);*/
+        GameObject network = new GameObject("Network");
+        network.transform.SetParent(powerObj.transform);
+        GameObject poles = new GameObject("Poles");
+        poles.transform.SetParent(network.transform);
+        GameObject generators = new GameObject("Generators");
+        generators.transform.SetParent(network.transform);
+        return network.AddComponent<NetworkManager>();
     }
     public static PowerPole GetPowerPoleById(string id)
     {

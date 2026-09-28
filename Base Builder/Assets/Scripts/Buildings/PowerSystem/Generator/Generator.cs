@@ -25,7 +25,7 @@ public class Generator : Building
         set
         {
             if (_running == value) return;
-            running = value;
+            _running = value;
             NetworkManager net = network;
             if (net == null) return;
             if (_running) net.generation += Power;
@@ -43,6 +43,9 @@ public class Generator : Building
             net.ConnectedBuildings.Add(this);
         }
     }
+
+   
+
     public void Fuel(ResourceSO fuel, int quantity)
     {
         if (!Data.allowedFuels.Contains(fuel)) return;

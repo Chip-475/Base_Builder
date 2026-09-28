@@ -26,7 +26,7 @@ public class PowerPole : Building
         var otherPole = other as PowerPole;
         if (otherPole != null)
         {
-            Cell[] otherCells = otherPole.GetCellsInBounds(otherPole.ConnectionBounds);
+          Cell[] otherCells = Building.GetCellsInBounds(otherPole.ConnectionBounds);
 
             foreach (var cell in myCells)
                 foreach (var otherCell in otherCells)
@@ -35,7 +35,7 @@ public class PowerPole : Building
         }
         else
         {
-            Cell[] otherCells = other.GetCellsInBounds(other.GetBounds());
+            Cell[] otherCells = Building.GetCellsInBounds(other.GetBounds());
             foreach (var cell in myCells)
                 foreach (var otherCell in otherCells)
                     if (cell.Coords == otherCell.Coords)
