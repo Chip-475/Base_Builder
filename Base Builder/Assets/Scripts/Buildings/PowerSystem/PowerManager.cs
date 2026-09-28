@@ -1,0 +1,59 @@
+using Cysharp.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
+using Unity.VisualScripting;
+using UnityEngine;
+public class PowerManager : MonoBehaviour
+{
+    public static PowerManager instance;
+    public GameObject powerObj;
+    public static Dictionary<string, PowerPole> powerPolesDB=new();
+    public static Dictionary<string,Generator> powerGeneratorDB=new();
+    public static List<Machine> machineDB=new();
+    private void Awake()
+    {
+        instance = this;
+    }
+    public bool checkNetwork(Building id, out NetworkManager network)
+    {
+        List<NetworkManager> networks = instance.powerObj.GetComponentsInChildren<NetworkManager>().ToList();
+        network = null;
+        foreach (NetworkManager item in networks)
+        {
+            if (item.ConnectedBuildings.Contains(id))
+            {
+                network = item;
+                return true;
+            }
+        }
+        return false;
+    }
+    public void CreateNewNetwork()
+    {
+        GameObject network=Instantiate(new GameObject(),powerObj.transform);
+        GameObject poles=Instantiate(new GameObject(),network.transform);
+        GameObject generators=Instantiate(new GameObject(),network.transform);
+        network.AddComponent<NetworkManager>();
+    }
+    public static PowerPole GetPowerPoleById(string id)
+    {
+        return powerPolesDB[id];
+    }
+    public static Generator GetGeneratorById(string id)
+    {
+        return powerGeneratorDB[id];
+    }
+    public static bool CanConnectTo( Building a,Building b)
+    {
+        if(!b.Data.connectsToPower||!a.Data.connectsToPower)return false;
+        Cell[] myCells = a.GetCellsInBounds(a.Data.connectionBounds);
+        Cell[] otherCells = b.GetCellsInBounds(b.Data.connectionBounds);
+
+        foreach (var cell in myCells)
+            foreach (var otherCell in otherCells)
+                if (cell.Coords == otherCell.Coords)
+                    return true;
+
+        return false;
+    }
+}

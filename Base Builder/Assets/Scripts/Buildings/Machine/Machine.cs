@@ -1,0 +1,17 @@
+using UnityEngine;
+using UnityEngine.Rendering;
+
+public class Machine : Building
+{
+    public new MachineData Data => base.Data as MachineData;
+    public new MachineView SceneObj => base.SceneObj as MachineView;
+    public Machine(MachineData data, MachineView sceneObj) : base(data, sceneObj)
+    {
+        // fill out as necessarys
+        Tester.Instance.machines.Add(this); // testing
+    }
+    public override void Destroy()
+    {
+        throw new System.NotImplementedException();
+    }
+}
