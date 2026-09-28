@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using UnityEngine.Assertions.Must;
 
 public class PathingManager : MonoBehaviour
 {
@@ -14,17 +15,40 @@ public class PathingManager : MonoBehaviour
         Instance = this;
     }
 
-    [ContextMenu("Connect Waypoints")]
-    public void ConnectWaypoints()
+    public void ConnectWaypoints(Waypoint a, Waypoint b)
     {
-        foreach(var item in AllWaypoints.Values)
+        if(a == null || b == null)
         {
-            var connectables = item.GetConnectables();
-            foreach(var connectable in connectables.Values)
-            {
-                if(connectable != null) item.ConnectTo(connectable);
-            }
+            Debug.Log("One or more waypoints are nulll.");
+            return;
         }
+        if (a.IsConnectedTo(b))
+        {
+            Debug.Log("Waypoints are already connected.");
+            return;
+        }
+
+        a.ConnectTo(b);
+        b.ConnectTo(a);
+
+        if (a.Network != b.Network)
+            a.Network.MergeWith(b.Network);
+    }
+    public void DisconnectWaypoints(Waypoint a, Waypoint b)
+    {
+        if (a == null || b == null)
+        {
+            Debug.Log("One or more waypoints are nulll.");
+            return;
+        }
+        if (!a.IsConnectedTo(b))
+        {
+            Debug.Log("Waypoints are already disconnected.");
+            return;
+        }
+
+        a.DisconnectFrom(b);
+        b.DisconnectFrom(a);
     }
 
     public static void RegisterWaypoint(Waypoint waypoint)
@@ -39,7 +63,7 @@ public class PathingManager : MonoBehaviour
         if (!Instance.AllWaypoints.TryGetValue(waypoint.Coords, out _))
             throw new Exception("Waypoint doesn't exist.");
 
-        Instance.AllWaypoints[waypoint.Coords] = null;
+        Instance.AllWaypoints.Remove(waypoint.Coords);
     }
 
     public static void RegisterNetwork(PathNetwork network)

@@ -24,6 +24,16 @@ public static class Helpers
         int Z = Mathf.RoundToInt(vec.z);
         return new Vector3Int(X, Y, Z);
     }
+    public static Vector3Int[] GetNeighbours(this Vector3Int vec)
+    {
+        return new Vector3Int[]
+        {
+            new(vec.x, vec.y + 1, 0),
+            new(vec.x + 1, vec.y, 0),
+            new(vec.x, vec.y - 1, 0),
+            new(vec.x - 1, vec.y, 0)
+        };
+    }
     #endregion
     #region Cell Helpers
     public static bool Overlaps(this Cell[] a, Cell[] b)

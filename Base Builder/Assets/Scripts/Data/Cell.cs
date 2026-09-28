@@ -15,6 +15,9 @@ public class Cell
 
     public bool canWalkOn = true;
     public bool canBuildOn = true;
+    public int gCost;
+    public int hCost;
+    public int F_Cost => gCost + hCost;
 
     public Cell(Vector3Int coords, CellType type, bool createSceneObject)
     {
@@ -23,6 +26,21 @@ public class Cell
 
         if (createSceneObject)
             CreateSceneObject();
+    }
+
+    public List<Cell> GetNeighbours()
+    {
+        List<Cell> cells = new();
+        for(int x = -1; x <= 1; x++)
+            for(int y = -1; y <= 1; y++)
+            {
+                if(x == 0 && y == 0) 
+                    continue;
+
+                cells.Add(WorldManager.World.GetCellAt(new Vector3Int(x, y, 0) + Coords));
+            }    
+        
+        return cells;
     }
 
     void CreateSceneObject()

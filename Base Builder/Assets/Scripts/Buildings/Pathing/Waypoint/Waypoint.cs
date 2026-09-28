@@ -21,6 +21,15 @@ public class Waypoint : Building
     {
         PathingManager.RegisterWaypoint(this);
     }
+    public override void Destroy()
+    {
+        foreach (var item in Neighbours.Values)
+            if(item != null) DisconnectFrom(item);
+        Network.RemoveWaypoint(this);
+        PathingManager.UnregisterWaypoint(this);
+
+        MonoBehaviour.Destroy(SceneObj.gameObject);
+    }
 
     public void ConnectTo(Waypoint target)
     {
@@ -42,15 +51,7 @@ public class Waypoint : Building
 
         Neighbours[direction] = null;
     }
-    public override void Destroy()
-    {
-        foreach (var item in Neighbours.Values)
-            DisconnectFrom(item);
-        Network.RemoveWaypoint(this);
-        PathingManager.UnregisterWaypoint(this);
-
-        MonoBehaviour.Destroy(SceneObj.gameObject);
-    }
+    
 
     public bool CanConnectTo(Waypoint waypoint)
     {
@@ -66,8 +67,11 @@ public class Waypoint : Building
     }
     public bool IsConnectedTo(Waypoint waypoint)
     {
+        if (waypoint == null)
+            throw new Exception("Waypoint is null.");
+
         foreach(var item in Neighbours.Values)
-            if (item == waypoint && item != null) return true;
+            if (item == waypoint) return true;
 
         return false;
     }
@@ -87,33 +91,5 @@ public class Waypoint : Building
             var (start, end) when start.x > end.x => Directions.Left,
             _ => throw new Exception("Waypoints occupy the same cell.")
         };
-    }
-
-    // Temporary
-    public Dictionary<Directions, Waypoint> GetConnectables()
-    {
-        Dictionary<Directions, Waypoint> toReturn = new();
-        var direction = Directions.Up;
-
-        for(int i = 0; i < 4; i++)
-        {
-            toReturn[direction] = GetConnectable(direction);
-            direction = direction.Rotate(1);
-        }
-
-        return toReturn;
-    }
-    public Waypoint GetConnectable(Directions direction)
-    {
-        for (int i = 1; i < Data.range + 1; i++)
-        {
-            var coords = Coords + direction.ToVector() * i;
-            if (!PathingManager.Instance.AllWaypoints.TryGetValue(coords, out Waypoint value))
-                continue;
-
-            return value;
-        }
-
-        return null;
     }
 }
