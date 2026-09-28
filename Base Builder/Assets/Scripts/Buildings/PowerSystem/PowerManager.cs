@@ -5,18 +5,26 @@ using Unity.VisualScripting;
 using UnityEngine;
 public class PowerManager : MonoBehaviour
 {
-    public static PowerManager instance;
+    public static PowerManager _instance;
+    public static PowerManager instance
+    {
+        get
+        {
+            if (_instance == null) _instance = FindFirstObjectByType<PowerManager>();
+            return _instance;
+        }
+    }
     public GameObject powerObj;
     public static Dictionary<string, PowerPole> powerPolesDB=new();
     public static Dictionary<string,Generator> powerGeneratorDB=new();
     public static List<Machine> machineDB=new();
     private void Awake()
     {
-        instance = this;
+        _instance = this;
     }
     public bool checkNetwork(Building id, out NetworkManager network)
     {
-        List<NetworkManager> networks = instance.powerObj.GetComponentsInChildren<NetworkManager>().ToList();
+        List<NetworkManager> networks = powerObj.GetComponentsInChildren<NetworkManager>().ToList();
         network = null;
         foreach (NetworkManager item in networks)
         {
@@ -46,8 +54,12 @@ public class PowerManager : MonoBehaviour
     public static bool CanConnectTo( Building a,Building b)
     {
         if(!b.Data.connectsToPower||!a.Data.connectsToPower)return false;
-        Cell[] myCells = a.GetCellsInBounds(a.Data.connectionBounds);
-        Cell[] otherCells = b.GetCellsInBounds(b.Data.connectionBounds);
+        Bounds boundsA = a.Data.connectionBounds;
+        boundsA.center = a.SceneObj.transform.position;
+        Bounds boundsB = b.Data.connectionBounds;
+        boundsB.center = b.SceneObj.transform.position;
+        Cell[] myCells = Building.GetCellsInBounds(boundsA);
+        Cell[] otherCells = Building.GetCellsInBounds(boundsB);
 
         foreach (var cell in myCells)
             foreach (var otherCell in otherCells)
