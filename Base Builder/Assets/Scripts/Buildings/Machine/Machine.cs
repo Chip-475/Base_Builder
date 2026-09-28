@@ -7,9 +7,11 @@ public class Machine : Building
     public new MachineView SceneObj => base.SceneObj as MachineView;
     public Machine(MachineData data, MachineView sceneObj) : base(data, sceneObj)
     {
-        // fill out as necessary
-        Debug.Log("powerManager e' "+(PowerManager.instance==null ?"null":"trovato"));
-        PowerManager.instance.machineDB.Add(this);
-        //Tester.Instance.machines.Add(this); // testing
+        // fill out as necessarys
+        Tester.Instance.machines.Add(this); // testing
+    }
+    public override void Destroy()
+    {
+        throw new System.NotImplementedException();
     }
 }

@@ -10,12 +10,12 @@ public class PowerPole : Building
     public Bounds ConnectionBounds { get; private set; }
     public bool isConnected;
     public string poleId;
-
+    public Action<PowerPole> OnDestroy;
     public PowerPole(PowerPoleData data, PowerPoleView sceneObj) : base(data, sceneObj)
     {
         ConnectionBounds = new Bounds(SceneObj.transform.position, new Vector3(Data.range * 2, Data.range * 2, 0));
         poleId=System.Guid.NewGuid().ToString();
-        PowerManager.instance.powerPolesDB[poleId]= this;
+        PowerManager.powerPolesDB[poleId]= this;
     }
 
     public bool CanConnectTo(Building other)
@@ -26,7 +26,7 @@ public class PowerPole : Building
         var otherPole = other as PowerPole;
         if (otherPole != null)
         {
-            Cell[] otherCells = Building.GetCellsInBounds(otherPole.ConnectionBounds);
+            Cell[] otherCells = otherPole.GetCellsInBounds(otherPole.ConnectionBounds);
 
             foreach (var cell in myCells)
                 foreach (var otherCell in otherCells)
@@ -35,7 +35,7 @@ public class PowerPole : Building
         }
         else
         {
-            Cell[] otherCells = Building.GetCellsInBounds(other.GetBounds());
+            Cell[] otherCells = other.GetCellsInBounds(other.GetBounds());
             foreach (var cell in myCells)
                 foreach (var otherCell in otherCells)
                     if (cell.Coords == otherCell.Coords)
@@ -52,13 +52,18 @@ public class PowerPole : Building
             else if (isConnected) other.isConnected = true;
         }
     }
-    /*
-    public void Connect(Machine other)
+    public override void Destroy()
     {
-        if (CanConnectTo(other))
-        {
-            other.isConnected = true;
-            if (isConnected) other.isPowered = true;
-        }
-    }*/
+        PowerManager.powerPolesDB.Remove(poleId);
+        MonoBehaviour.Destroy(SceneObj.gameObject);
+    }
+
+    //public void Connect(Machine other)
+    //{
+    //    if (CanConnectTo(other))
+    //    {
+    //        other.isConnected = true;
+    //        if (isConnected) other.isPowered = true;
+    //    }
+    //}
 }

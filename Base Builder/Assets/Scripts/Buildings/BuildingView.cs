@@ -3,6 +3,12 @@ using UnityEngine;
 
 public abstract class BuildingView : MonoBehaviour
 {
-    [SerializeField] public BuildingData Data;
-    public Building Building { get; protected set; }
+    [SerializeField] protected BuildingData Data;
+
+    protected void OnDrawGizmos()
+    {
+        // Hitbox gizmo
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(transform.position, Data.bounds.size);
+    }
 }
