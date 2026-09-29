@@ -8,18 +8,18 @@ public class GameManager : MonoBehaviour
     { 
         get
         {
-            if (_instance = null) _instance = FindFirstObjectByType<GameManager>();
+            if (_instance == null) _instance = FindFirstObjectByType<GameManager>();
             return _instance;
         }
     }
 
-    [SerializeField] Dictionary<string, Bot> bots = new();
+    [SerializeField] List<Bot> bots = new List<Bot>();
 
     void Awake()
     {
         _instance = this;
     }
 
-    public static Bot GetBotById(string id) { return Instance.bots[id]; }
-    public static void SetBot(string id, Bot bot) { Instance.bots[id] = bot; }
+    public static Bot GetBotById(int i) { return Instance.bots[i]; }
+    public static void SetBot(Bot bot) { Instance.bots.Add(bot); }
 }

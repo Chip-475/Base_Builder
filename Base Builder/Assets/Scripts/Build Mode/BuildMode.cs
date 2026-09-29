@@ -56,9 +56,13 @@ public class BuildMode : MonoBehaviour
     void Build()
     {
         if (SelectedObject == null)return;
-
+        Debug.Log($"building: {SelectedObject}");
+        Debug.Log($"Data: {SelectedObject.building?.Data}");
         var mousePos = Helpers.GetMouseWorldPosition();
         var bounds = SelectedObject.building.Data.bounds;
+        //var size = SelectedObject.building.Data.bounds.size;
+        var center = mousePos.ToVector3Int();
+        //var bounds2 = new BoundsInt(center - Vector3Int.zero,size);
         bounds.center = mousePos.ToVector3Int();
         if (!CanBuildOn(Building.GetCellsInBounds(bounds)))
            return;

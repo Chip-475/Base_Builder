@@ -89,7 +89,7 @@ public class Bot
         BotView = botView;
         BotView.name = Name;
 
-        GameManager.SetBot(Id, this);
+        GameManager.SetBot(this);
     }
 
     string PickRandomName()
