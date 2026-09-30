@@ -18,6 +18,12 @@ public abstract class Building
 
     // Getters - Setters
     public Bounds GetBounds() { return Data.bounds; }
+    public Bounds GetWorldBounds()
+    {
+        Bounds bounds = Data.bounds;
+        bounds.center += SceneObj.transform.position;
+        return bounds;
+    }
     public Cell[] GetCellsInBounds(Bounds bounds)
     {
         int minX = Mathf.CeilToInt(bounds.min.x);
@@ -39,6 +45,7 @@ public abstract class Building
     public void SetPosition(Vector3Int coords)
     {
         SceneObj.transform.position = coords;
+        if (PowerManager.instance != null) PowerManager.instance.RebuildNetworks();
     }
     public abstract void Destroy();
 }

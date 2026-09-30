@@ -188,8 +188,10 @@
       "bases:Crea nuova Base": false
     }
   },
-  "active": "fcbb2aa86150e5cf",
+  "active": "5843b5bf98733669",
   "lastOpenFiles": [
+    "Resources/Crafted Items/Crafted Items.md",
+    "Senza nome.md",
     "Resources/Crafted Items/Titanium Plate.md",
     "Resources/Crafted Items/Titanium Frame.md",
     "Resources/Crafted Items/Steel Plate.md",
@@ -198,7 +200,6 @@
     "Resources/Crafted Items/Copper Wire.md",
     "Resources/Crafted Items/Circuit Board.md",
     "Resources/Crafted Items/Aluminum Plate.md",
-    "Resources/Crafted Items/Crafted Items.md",
     "Resources/Ingots/Copper.md",
     "Resources/Ingots/Nickel.md",
     "Resources/Ingots/Iron.md",
@@ -214,7 +215,6 @@
     "Resources/Raw/Gold Ore.md",
     "Resources/Raw/Coal.md",
     "Resources/Raw/Bauxite.md",
-    "Spaceship.md",
-    "Craftable things.md"
+    "Spaceship.md"
   ]
 }
