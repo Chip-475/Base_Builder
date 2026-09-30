@@ -1,24 +1,47 @@
-using UnityEngine;
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class Inventory
 {
-    Dictionary<ResourceSO, int> items = new();
-    public void AddItem(ResourceSO item, int quantity)
+    public Dictionary<string, int> Items { get; private set; }
+    public int MaxWeight { get; private set; }
+
+    public Inventory(int maxWeight)
     {
-
-        if (!items.ContainsKey(item))
-            items.Add(item, 0);
-        items[item] += quantity;
-
-
+        Items = new();
+        MaxWeight = maxWeight;
     }
-    public void RemoveItem(ResourceSO item, int quantity)
+    public Inventory(Inventory inv)
     {
-        if (items.ContainsKey(item))
+        Items = new(inv.Items);
+        MaxWeight = inv.MaxWeight;
+    }
+
+    public void Add(ResourceSO item, int amount)
+    {
+        string id = item.ID;
+        if (!Items.ContainsKey(id))
+            Items.Add(id, amount);
+
+        Items[id] += amount;
+        Items[id] = Mathf.Clamp(Items[id], 0, MaxWeight);
+    }
+    public void Remove(ResourceSO item, int amount)
+    {
+        string id = item.ID;
+        if (!Items.ContainsKey(id))
         {
-            items[item] -= quantity;
+            Debug.Log($"No item with ID: {id} found in inventory.");
+            return;
         }
+
+        Items[id] -= amount;
+        Items[id] = Mathf.Clamp(Items[id], 0, MaxWeight);
+    }
+    public void ClearAll()
+    {
+        foreach(var id in Items.Keys)
+            Items[id] = 0;
     }
 }

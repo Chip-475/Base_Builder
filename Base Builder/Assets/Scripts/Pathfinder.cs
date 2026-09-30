@@ -1,78 +1,110 @@
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public static class Pathfinder
 {
-    public static void Pathfind(Cell start, Cell goal, out List<Cell> path)
+    private sealed class SearchCell
+    {
+        public readonly Vector3Int Coords;
+        public readonly Cell Cell;
+        public SearchCell Parent;
+        public int GCost = int.MaxValue;
+        public int HCost;
+        public int FCost => GCost + HCost;
+
+        public SearchCell(Vector3Int coords)
+        {
+            Coords = coords;
+            Cell = WorldManager.World.GetCellAt(coords);
+        }
+    }
+
+    public static void Pathfind(Vector3Int start, Vector3Int goal, out List<Vector3Int> path)
     {
         path = new();
-        List<Cell> openSet = new();
-        HashSet<Cell> closedSet = new();
-        Dictionary<Cell, Cell> cameFrom = new();
+        Dictionary<Vector3Int, SearchCell> searchCells = new();
+        List<SearchCell> openSet = new();
+        HashSet<SearchCell> closedSet = new();
 
-        openSet.Add(start);
+        SearchCell startCell = GetSearchCell(start, searchCells);
+        SearchCell goalCell = GetSearchCell(goal, searchCells);
+
+        startCell.GCost = 0;
+        startCell.HCost = GetHeuristic(startCell.Coords, goalCell.Coords);
+        openSet.Add(startCell);
         while (openSet.Count > 0)
         {
             var current = openSet[0];
             foreach (var cell in openSet)
-                if (cell.F_Cost < current.F_Cost || cell.F_Cost == current.F_Cost && cell.hCost < current.hCost)
+                if (cell.FCost < current.FCost || cell.FCost == current.FCost && cell.HCost < current.HCost)
                     current = cell;
 
             openSet.Remove(current);
             closedSet.Add(current);
 
-            if (current == goal)
+            if (current == goalCell)
             {
-                path = RetracePath(cameFrom, start, goal);
+                path = RetracePath(current, startCell);
                 return;
             }
 
-            foreach(var neighbour in current.GetNeighbours())
+            foreach (var neighbourCell in current.Cell.GetNeighbours())
             {
-                if (!neighbour.canWalkOn || closedSet.Contains(neighbour))
+                SearchCell neighbour = GetSearchCell(neighbourCell.Coords, searchCells);
+                if (!neighbour.Cell.canWalkOn || closedSet.Contains(neighbour))
                     continue;
 
-                int newGCost = current.gCost + GetHeuristic(current, neighbour);
-                if(newGCost < neighbour.gCost || !openSet.Contains(neighbour))
+                int newGCost = current.GCost + GetHeuristic(current.Coords, neighbour.Coords);
+                if (newGCost < neighbour.GCost || !openSet.Contains(neighbour))
                 {
-                    neighbour.gCost = newGCost;
-                    neighbour.hCost = GetHeuristic(neighbour, goal);
-                    cameFrom[neighbour] = current;
+                    neighbour.GCost = newGCost;
+                    neighbour.HCost = GetHeuristic(neighbour.Coords, goalCell.Coords);
+                    neighbour.Parent = current;
 
-                    if(!openSet.Contains(neighbour))
+                    if (!openSet.Contains(neighbour))
                         openSet.Add(neighbour);
                 }
             }
         }
     }
 
-    static int GetHeuristic(Cell a, Cell b)
+    static SearchCell GetSearchCell(Vector3Int coords, Dictionary<Vector3Int, SearchCell> searchCells)
     {
-        int deltaX = Mathf.Abs(a.Coords.x - b.Coords.x);
-        int deltaY = Mathf.Abs(a.Coords.y - b.Coords.y);
+        if (!searchCells.TryGetValue(coords, out SearchCell searchCell))
+        {
+            searchCell = new SearchCell(coords);
+            searchCells.Add(coords, searchCell);
+        }
+
+        return searchCell;
+    }
+
+    static int GetHeuristic(Vector3Int a, Vector3Int b)
+    {
+        int deltaX = Mathf.Abs(a.x - b.x);
+        int deltaY = Mathf.Abs(a.y - b.y);
 
         if(deltaX > deltaY)
             return deltaY * 14 + (deltaX - deltaY) * 10;
         else
             return deltaX * 14 + (deltaY - deltaX) * 10;
     }
-    static List<Cell> RetracePath(Dictionary<Cell, Cell> cameFrom, Cell start, Cell goal)
+    static List<Vector3Int> RetracePath(SearchCell goal, SearchCell start)
     {
-        var path = new List<Cell>();
-        Cell current = goal;
+        var path = new List<Vector3Int>();
+        SearchCell current = goal;
 
         while (current != start)
         {
-            path.Add(current);
+            path.Add(current.Coords);
 
-            if (!cameFrom.TryGetValue(current, out Cell parent))
-                return new List<Cell>();
+            if (current.Parent == null)
+                return new List<Vector3Int>();
 
-            current = parent;
+            current = current.Parent;
         }
 
-        path.Add(start);
+        path.Add(start.Coords);
         path.Reverse();
         return path;
     }

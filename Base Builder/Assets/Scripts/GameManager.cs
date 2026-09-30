@@ -12,6 +12,6 @@ public class GameManager : MonoBehaviour
         Instance = this;
     }
 
-    public static Bot GetBotById(string id) { return Instance.bots[id]; }
-    public static void SetBot(string id, Bot bot) { Instance.bots[id] = bot; }
+    //public static Bot GetBotById(string id) { return Instance.bots[id]; }
+    //public static void SetBot(string id, Bot bot) { Instance.bots[id] = bot; }
 }
