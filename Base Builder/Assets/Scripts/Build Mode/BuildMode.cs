@@ -60,10 +60,16 @@ public class BuildMode : MonoBehaviour
             Debug.Log("esco subito");
             return;
         }
+        BuildingView buldingView = SelectedObject.prefabMachine.GetComponent<BuildingView>();
+        if(buldingView==null)
+        {
+            Debug.Log("il prefab " + SelectedObject.prefabMachine.name + " non ha un componente");
+            return;
+        }
       /*  Debug.Log($"building: {SelectedObject}");
         Debug.Log($"Data: {SelectedObject.Data}");*/
         var mousePos = Helpers.GetMouseWorldPosition();
-        var bounds = SelectedObject.building.Data.bounds;
+        var bounds = buldingView.Data.bounds;
         //var size = SelectedObject.building.Data.bounds.size;
         var center = mousePos.ToVector3Int();
         //var bounds2 = new BoundsInt(center - Vector3Int.zero,size);
@@ -72,8 +78,9 @@ public class BuildMode : MonoBehaviour
            return;
 
         var obj = Instantiate(SelectedObject.prefabMachine);
+        BuildingView objView=obj.GetComponent<BuildingView>();
         Cell cella = WorldManager.World.GetCellAt(Helpers.GetMouseWorldPosition().ToVector3Int());
-        
+        objView.Building.SetPosition(new Vector3Int(0,0,0));
 
         SetSelectedObject(null);
     }

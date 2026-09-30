@@ -163,10 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e84697c1567bccd4b94fa0e4462a3578, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BuildModeEntry
-  image: {fileID: 0}
-  button: {fileID: 0}
-  icon: {fileID: 0}
-  building: {fileID: 0}
+  prefabMachine: {fileID: 1674299923}
 --- !u!1001 &64460852
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4189,6 +4186,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Entry (Furnace)
       objectReference: {fileID: 0}
+    - target: {fileID: 5951708183271942227, guid: 5abd8f9672667a44298ee632e7fdc429, type: 3}
+      propertyPath: prefabMachine
+      value: 
+      objectReference: {fileID: 1674299923}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5259,6 +5260,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a584b530c07cc344f8101e8e1bdf542e, type: 3}
+--- !u!1 &1674299923 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7769676566363914385, guid: a584b530c07cc344f8101e8e1bdf542e, type: 3}
+  m_PrefabInstance: {fileID: 1674299922}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1727610130
 GameObject:
   m_ObjectHideFlags: 0
