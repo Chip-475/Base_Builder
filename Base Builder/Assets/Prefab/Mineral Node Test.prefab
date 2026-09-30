@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6135289212688081473}
   - component: {fileID: 6598827957047989496}
   - component: {fileID: 8807465733035402985}
+  - component: {fileID: 8324100271242337428}
   m_Layer: 0
   m_Name: Mineral Node Test
   m_TagString: Untagged
@@ -46,22 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d006eb64e3bf79d4282fac89d8b30dd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Machine
-  blocksWalking: 1
-  blocksPlacing: 1
-  bounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 1.5, y: 1.5, z: 0}
-  collider: {fileID: 8807465733035402985}
-  <Power>k__BackingField: 0
-  allowedRecipes:
-  - {fileID: 11400000, guid: 193b2a0dda41c264c9f0a310501e1f98, type: 2}
-  - {fileID: 11400000, guid: aa12f110c94d4914dad5f511ae73d203, type: 2}
-  allowedFuels:
-  - {fileID: 11400000, guid: 8454d85e6a52b5f45a50308c97089684, type: 2}
-  - {fileID: 11400000, guid: 8454d85e6a52b5f45a50308c97089684, type: 2}
-  needsEnergy: 1
-  currentEnergy: 100
-  maxEnergy: 100
+  Data: {fileID: 11400000, guid: bb96ad270ff6c1e4f9a78edf38950ab8, type: 2}
 --- !u!212 &6598827957047989496
 SpriteRenderer:
   serializedVersion: 3
@@ -168,3 +154,47 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3, y: 3}
   m_EdgeRadius: 0
+--- !u!114 &8324100271242337428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2466680807767915012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 0}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []

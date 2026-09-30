@@ -19,7 +19,9 @@ public class BuildModeEntry : MonoBehaviour
 
     public void OnClick()   
     {
+        Debug.Log("Dentro il click");
         BuildMode.Instance.SetSelectedObject(this);
+        BuildMode.Instance.click();
         //to add:selected object sprite sparkle effect
     }
 }

@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7769676566363914385}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: -3, z: 0}
+  m_LocalPosition: {x: 2.55, y: -2.54, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -153,24 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d006eb64e3bf79d4282fac89d8b30dd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Machine
-  blocksWalking: 1
-  blocksPlacing: 1
-  bounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
-  collider: {fileID: 7116238737274066655}
-  <Power>k__BackingField: 5
-  allowedRecipes:
-  - {fileID: 11400000, guid: 20e7b44d79d522147972d8ca63cf6821, type: 2}
-  - {fileID: 11400000, guid: 193b2a0dda41c264c9f0a310501e1f98, type: 2}
-  - {fileID: 11400000, guid: c3c17b313190684458fe68e7f36816af, type: 2}
-  allowedFuels:
-  - {fileID: 11400000, guid: 8454d85e6a52b5f45a50308c97089684, type: 2}
-  - {fileID: 11400000, guid: a63e372a913454d4794c5bc6f9b8289f, type: 2}
-  - {fileID: 11400000, guid: 8454d85e6a52b5f45a50308c97089684, type: 2}
-  needsEnergy: 1
-  currentEnergy: 100
-  maxEnergy: 100
+  Data: {fileID: 11400000, guid: bb96ad270ff6c1e4f9a78edf38950ab8, type: 2}
 --- !u!114 &4819591564426127571
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -214,16 +197,4 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: machineRecipeUI, Assembly-CSharp
-        m_MethodName: apri
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 7397199720615334642}
-          m_ObjectArgumentAssemblyTypeName: Machine, Assembly-CSharp
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []

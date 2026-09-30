@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-
+using UnityEngine.EventSystems;
 public class BuildMode : MonoBehaviour
 {
     public static BuildMode Instance {  get; private set; }
@@ -12,18 +12,23 @@ public class BuildMode : MonoBehaviour
     [SerializeField] Button toggleButton;
 
     public List<BuildingView> buildableObjects = new();
-    public BuildModeEntry SelectedObject { get; private set; }
-    
+    [SerializeField] BuildModeEntry SelectedObject; //{ get; private set; }
+    bool prossClick;
     private void Awake()
     {
         Instance = this;
         toggleButton.onClick.AddListener(() => Toggle());
+       // Button b = prefab.GetComponent<Button>();
+        //b.onClick.AddListener(() =>);
     }
     private void Start()
     {
         panel.SetActive(false);
     }
-
+    public void click()
+    {
+        prossClick = true;
+    }
     public void Toggle()
     {
         Debug.Log("Toggle");
@@ -55,9 +60,14 @@ public class BuildMode : MonoBehaviour
     }
     void Build()
     {
+        if(prossClick)
+        {
+            prossClick = false;
+            return;
+        }
         if (SelectedObject == null)
         {
-            Debug.Log("esco subito");
+            Debug.Log("esco subito, machine non ce");
             return;
         }
         BuildingView buldingView = SelectedObject.prefabMachine.GetComponent<BuildingView>();
@@ -77,10 +87,10 @@ public class BuildMode : MonoBehaviour
         if (!CanBuildOn(Building.GetCellsInBounds(bounds)))
            return;
 
-        var obj = Instantiate(SelectedObject.prefabMachine);
+        var obj = Instantiate(SelectedObject.prefabMachine,WorldManager.Instance.transform);
         BuildingView objView=obj.GetComponent<BuildingView>();
         Cell cella = WorldManager.World.GetCellAt(Helpers.GetMouseWorldPosition().ToVector3Int());
-        objView.Building.SetPosition(new Vector3Int(0,0,0));
+        objView.Building.SetPosition(cella.Coords);
 
         SetSelectedObject(null);
     }
