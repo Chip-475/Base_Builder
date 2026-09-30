@@ -55,9 +55,13 @@ public class BuildMode : MonoBehaviour
     }
     void Build()
     {
-        if (SelectedObject == null)return;
-        Debug.Log($"building: {SelectedObject}");
-        Debug.Log($"Data: {SelectedObject.building?.Data}");
+        if (SelectedObject == null)
+        {
+            Debug.Log("esco subito");
+            return;
+        }
+      /*  Debug.Log($"building: {SelectedObject}");
+        Debug.Log($"Data: {SelectedObject.Data}");*/
         var mousePos = Helpers.GetMouseWorldPosition();
         var bounds = SelectedObject.building.Data.bounds;
         //var size = SelectedObject.building.Data.bounds.size;
@@ -67,9 +71,9 @@ public class BuildMode : MonoBehaviour
         if (!CanBuildOn(Building.GetCellsInBounds(bounds)))
            return;
 
-        var obj = Instantiate(SelectedObject.building);
+        var obj = Instantiate(SelectedObject.prefabMachine);
         Cell cella = WorldManager.World.GetCellAt(Helpers.GetMouseWorldPosition().ToVector3Int());
-        obj.Building.SetPosition(cella.Coords);
+        
 
         SetSelectedObject(null);
     }
