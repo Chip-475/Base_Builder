@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Resources/Crafted Items/Crafted Items.md",
+                "file": "Resources/Crafted Items/Aluminum Plate.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Crafted Items"
+              "title": "Aluminum Plate"
             }
           }
         ]
@@ -99,7 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Spaceship.md",
+                "file": "Resources/Crafted Items/Aluminum Plate.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -109,7 +109,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks"
+              "title": "Riferimenti"
             }
           },
           {
@@ -190,31 +190,31 @@
   },
   "active": "fcbb2aa86150e5cf",
   "lastOpenFiles": [
-    "Resources/Crafted Items/Titanium Plate.md",
-    "Resources/Crafted Items/Titanium Frame.md",
+    "Resources/Crafted Items/Crafted Items.md",
+    "Resources/Ingots/Ingots.md",
+    "Resources/Alloys/Invar.md",
+    "Resources/Ingots/Gold.md",
+    "Resources/Ingots/Copper.md",
+    "Resources/Ingots/Aluminum.md",
+    "Installed Objects/Machines/Press.md",
+    "Installed Objects/Machines/Furnace.md",
+    "Installed Objects/Machines/Assembler.md",
+    "Installed Objects/Machines/Alloy Furnace.md",
+    "Installed Objects/Machines/Machines.md",
+    "Drafts/Tungsten.md",
     "Resources/Crafted Items/Steel Plate.md",
     "Resources/Crafted Items/Ship Core Component.md",
     "Resources/Crafted Items/Navigation Component.md",
     "Resources/Crafted Items/Copper Wire.md",
     "Resources/Crafted Items/Circuit Board.md",
     "Resources/Crafted Items/Aluminum Plate.md",
-    "Resources/Crafted Items/Crafted Items.md",
-    "Resources/Ingots/Copper.md",
-    "Resources/Ingots/Nickel.md",
-    "Resources/Ingots/Iron.md",
-    "Resources/Ingots/Gold.md",
-    "Resources/Ingots/Aluminum.md",
+    "Resources/Raw/Magnetite.md",
     "Resources/Raw/Cassiterite.md",
     "Resources/Raw/Pyrite.md",
     "Resources/Raw/Malachite.md",
-    "Resources/Raw/Magnetite.md",
     "Resources/Raw/Pentladite.md",
     "Resources/Raw/Ilmenite.md",
-    "Resources/Raw/Hematite.md",
-    "Resources/Raw/Gold Ore.md",
-    "Resources/Raw/Coal.md",
-    "Resources/Raw/Bauxite.md",
-    "Spaceship.md",
-    "Craftable things.md"
+    "Resources/Crafted Items/Titanium Plate.md",
+    "Resources/Crafted Items/Titanium Frame.md"
   ]
 }
