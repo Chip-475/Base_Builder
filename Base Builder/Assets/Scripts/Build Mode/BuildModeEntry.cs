@@ -14,10 +14,9 @@ public class BuildModeEntry : MonoBehaviour
         image.sprite = icon;
         button.onClick.AddListener(() => OnClick());
     }
-
     public void OnClick()
     {
-        //machineRecipeUI.instance.apri(this);
+        BuildMode.Instance.SetSelectedObject(building);
         //to add:selected object sprite sparkle effect
     }
 }

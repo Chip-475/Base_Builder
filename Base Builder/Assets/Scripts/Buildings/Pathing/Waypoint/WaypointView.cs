@@ -3,7 +3,10 @@ using UnityEngine;
 public class WaypointView : BuildingView
 {
     public new WaypointData Data => base.Data as WaypointData;
+    public override void Init()
+    {
 
+    }
     private void Start()
     {
         new Waypoint(Data, this);

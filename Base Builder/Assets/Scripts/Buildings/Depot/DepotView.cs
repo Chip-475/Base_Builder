@@ -7,7 +7,10 @@ public class DepotView : BuildingView
     public Depot Building { get; private set; }
 
     public event Action<ResourceSO, int> InventoryChanged;
+    public override void Init()
+    {
 
+    }
     private void Start()
     {
         if (Data == null)

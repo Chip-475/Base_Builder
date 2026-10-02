@@ -12,8 +12,10 @@ public class BuildMode : MonoBehaviour
     [SerializeField] Button toggleButton;
 
     public List<BuildingView> buildableObjects = new();
+    public BuildingView SelectedObject;
+    /*
     public Building SelectedObject { get; private set; }
-    public BuildModeEntry oggetto;
+    public BuildModeEntry oggetto;*/
     private void Awake()
     {
         Instance = this;
@@ -55,42 +57,41 @@ public class BuildMode : MonoBehaviour
     }
     void Build()
     {
-        if (SelectedObject == null)return;
-        BuildingView prefabView = oggetto.building;
-        Vector3Int mousePos = Helpers.GetMouseWorldPosition().ToVector3Int();
-        BuildingView view=Instantiate(prefabView,mousePos,Quaternion.identity);
-        Building build = null;
-        if (view is MachineView machineView && view.Data is MachineData machineData) build = new Machine(machineData, machineView);
-        if(build==null)
+        Debug.Log("dentro la build");
+        if (SelectedObject == null) return;
+        Debug.Log("dopo l'if");
+        Vector3Int mousePos = Helpers.GetMousePosition().ToVector3Int();
+        BuildingView view = Instantiate(SelectedObject, mousePos,Quaternion.identity);
+        view.Init();
+        Debug.Log($"View type: :{view.GetType()},Data: {view.Data}, building: {view.bulding}");
+        if (view.bulding == null)
         {
-            Destroy(view.gameObject);
             Debug.Log("non costruito bene");
-            return;
-        }
-        var bounds = build.GetBounds();
-        bounds.center = mousePos;
-        if(!CanBuildOn(build.GetCellsInBounds(bounds)))
-        {
             Destroy(view.gameObject);
             return;
         }
-        build.SetPosition(mousePos);
-        /*
-        var bounds = SelectedObject.GetBounds();
-        bounds.center = mousePos.ToVector3Int();
-        if (!CanBuildOn(SelectedObject.GetCellsInBounds(bounds)))
+        var bouds = view.bulding.GetBounds();
+        bouds.center = mousePos;
+        var cells = view.bulding.GetCellsInBounds(bouds);
+        Debug.Log($"mousePos: {mousePos},bounds: {bouds},celle: {cells.Length} ");
+        foreach(var cell in cells)
+        {
+            Debug.Log($"cella {cell} canBuildOn: {cell.canBuildOn}");
+        }
+        if(!CanBuildOn(view.bulding.GetCellsInBounds(bouds)))
+        {
+            Debug.Log("CanBuildOn =false distrutto");
+            Destroy(view.gameObject);
             return;
-
-        Machine obj = new Machine(SelectedObject.Data,SelectedObject.SceneObj);
-        obj.SetPosition(WorldManager.World.GetCellAt(Helpers.GetMouseWorldPosition().ToVector3Int()));
-
-        //SetSelectedObject(null);*/
+        }
+        view.bulding.SetPosition(mousePos);
+        SetSelectedObject(null);
     }
-    /*
-    public void SetSelectedObject(BuildModeEntry obj)
+    
+    public void SetSelectedObject(BuildingView obj)
     {
         SelectedObject = obj;
-    }*/
+    }
     public static bool CanBuildOn(Cell[] cells)
     {
         foreach (var cell in cells)
@@ -99,3 +100,34 @@ public class BuildMode : MonoBehaviour
         return true;
     }
 }
+/*
+if (SelectedObject == null) return;
+BuildingView prefabView = oggetto.building;
+Vector3Int mousePos = Helpers.GetMouseWorldPosition().ToVector3Int();
+BuildingView view = Instantiate(prefabView, mousePos, Quaternion.identity);
+Building build = null;
+if (view is MachineView machineView && view.Data is MachineData machineData) build = new Machine(machineData, machineView);
+if (build == null)
+{
+    Destroy(view.gameObject);
+    Debug.Log("non costruito bene");
+    return;
+}
+var bounds = build.GetBounds();
+bounds.center = mousePos;
+if (!CanBuildOn(build.GetCellsInBounds(bounds)))
+{
+    Destroy(view.gameObject);
+    return;
+}
+build.SetPosition(mousePos);
+/*
+var bounds = SelectedObject.GetBounds();
+bounds.center = mousePos.ToVector3Int();
+if (!CanBuildOn(SelectedObject.GetCellsInBounds(bounds)))
+    return;
+
+Machine obj = new Machine(SelectedObject.Data,SelectedObject.SceneObj);
+obj.SetPosition(WorldManager.World.GetCellAt(Helpers.GetMouseWorldPosition().ToVector3Int()));
+
+//SetSelectedObject(null);*/

@@ -4,7 +4,8 @@ using UnityEngine;
 public abstract class BuildingView : MonoBehaviour
 {
     public BuildingData Data;
-    public Building bulding { get; protected set; }
+    public Building bulding;
+    public abstract void Init();
     protected void OnDrawGizmos()
     {
         // Hitbox gizmo
