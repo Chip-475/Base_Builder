@@ -54,7 +54,7 @@ MonoBehaviour:
   image: {fileID: 8625127150461960904}
   button: {fileID: 7327283608350166748}
   icon: {fileID: 0}
-  buildingPrefab: {fileID: 0}
+  buildingPrefab: {fileID: 7951129881825252327, guid: a584b530c07cc344f8101e8e1bdf542e, type: 3}
 --- !u!222 &8111969794251282583
 CanvasRenderer:
   m_ObjectHideFlags: 0

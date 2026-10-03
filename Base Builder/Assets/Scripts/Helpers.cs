@@ -100,11 +100,17 @@ public static class Helpers
     #region Building Helpers
     public static bool CanBuildOn(this BuildingView prefab, Vector3Int gridPos)
     {
+        if (prefab == null || prefab.Data == null)
+            return false;
+
+        if (WorldManager.Instance == null || WorldManager.World == null)
+            return false;
+
         Bounds bounds = prefab.Data.bounds;
         bounds.center = gridPos;
 
         foreach (Cell cell in GetCellsInBounds(bounds))
-            if (!cell.canBuildOn) return false;
+            if (cell == null || !cell.canBuildOn) return false;
 
         return true;
     }

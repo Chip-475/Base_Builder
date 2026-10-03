@@ -15,11 +15,10 @@ public class Bot
     public BotType Type { get; protected set; } = BotType.None;
 
     [Header("Stats")]
-    public Inventory Inv { get; protected set; }
     public float Power { get; protected set; }
     public const float MaxPower = 100;
 
-    public Bot(BotView botView, string id = null, Vector3? coords = null, string name = null, BotType type = BotType.None, Inventory inv = null, float power = MaxPower)
+    public Bot(BotView botView, string id = null, Vector3? coords = null, string name = null, BotType type = BotType.None, float power = MaxPower)
     {
         int maxWeight = type switch
         {
@@ -32,7 +31,6 @@ public class Bot
         Coords = coords ?? Vector3.zero;
         Name = name ?? PickRandomName();
         Type = type;
-        Inv = new Inventory(maxWeight) ?? new(inv);
         Power = power;
 
         // View

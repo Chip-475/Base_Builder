@@ -11,7 +11,6 @@ public class BuildMode : MonoBehaviour
     [Header("Setup")]
     [SerializeField] GameObject panel;
     [SerializeField] Button toggleButton;
-    public List<BuildModeEntry> buildableObjects = new();
 
     public BuildModeEntry SelectedEntry { get; private set; }
     SpriteRenderer buildingPreview;
@@ -45,6 +44,11 @@ public class BuildMode : MonoBehaviour
         PlayerManager.Inputs.BuildMode.Enable();
         PlayerManager.Inputs.BuildMode.MouseMoved.performed += (_) => Hover();
         PlayerManager.Inputs.BuildMode.LeftClick.performed += (_) => Build();
+        PlayerManager.Inputs.BuildMode.RightClick.performed += (_) =>
+        {
+            SetSelectedEntry(null);
+            buildingPreview.sprite = null;
+        };
     }
     void Disable()
     {
@@ -54,6 +58,11 @@ public class BuildMode : MonoBehaviour
         PlayerManager.Inputs.BuildMode.Disable();
         PlayerManager.Inputs.BuildMode.MouseMoved.performed -= (_) => Hover();
         PlayerManager.Inputs.BuildMode.LeftClick.performed -= (_) => Build();
+        PlayerManager.Inputs.BuildMode.RightClick.performed -= (_) =>
+        {
+            SetSelectedEntry(null);
+            buildingPreview.sprite = null;
+        };
     }
 
     void Hover()
@@ -65,7 +74,8 @@ public class BuildMode : MonoBehaviour
             return;
         }
         else
-            buildingPreview.sprite = SelectedEntry.icon;
+            buildingPreview.sprite = SelectedEntry.buildingPrefab.Data.sprite;
+        buildingPreview.transform.position = mouseGridPos;
 
         if (SelectedEntry.buildingPrefab.CanBuildOn(mouseGridPos))
             buildingPreview.color = Color.green;
@@ -80,7 +90,6 @@ public class BuildMode : MonoBehaviour
         if (!SelectedEntry.buildingPrefab.CanBuildOn(mouseGridPos))
             return;
 
-
         Instantiate(SelectedEntry.buildingPrefab, mouseGridPos, Quaternion.identity);
     }
 
@@ -89,7 +98,7 @@ public class BuildMode : MonoBehaviour
         GameObject go = new();
         buildingPreview = go.AddComponent<SpriteRenderer>();
     }
-    public void SetSelectedObject(BuildModeEntry obj)
+    public void SetSelectedEntry(BuildModeEntry obj)
     {
         SelectedEntry = obj;
     }

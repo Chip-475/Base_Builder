@@ -8,6 +8,7 @@ public class MachineView : BuildingView
         get { return base.Obj as Machine; }
         set { base.Obj = value; }
     }
+
     private void Start()
     {
         Obj = new Machine(Data, this);

@@ -5,6 +5,7 @@ public abstract class BuildingData : ScriptableObject
 {
     public new string name;
     [TextArea] public string description;
+    public Sprite sprite;
     public Bounds bounds;
     public Bounds connectionBounds;
     public bool connectsToPower;
