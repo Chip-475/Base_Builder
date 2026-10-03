@@ -51,7 +51,13 @@ public static class Pathfinder
             foreach (var neighbourCell in current.Cell.GetNeighbours())
             {
                 SearchCell neighbour = GetSearchCell(neighbourCell.Coords, searchCells);
+                var delta = neighbour.Coords - current.Coords;
                 if (!neighbour.Cell.canWalkOn || closedSet.Contains(neighbour))
+                    continue;
+                if(
+                    !GetSearchCell(new Vector3Int(current.Coords.x + delta.x, current.Coords.y, 0), searchCells).Cell.canWalkOn ||
+                    !GetSearchCell(new Vector3Int(current.Coords.x, current.Coords.y + delta.y, 0), searchCells).Cell.canWalkOn
+                )
                     continue;
 
                 int newGCost = current.GCost + GetHeuristic(current.Coords, neighbour.Coords);

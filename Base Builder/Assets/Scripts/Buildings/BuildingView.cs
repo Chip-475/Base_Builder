@@ -3,7 +3,8 @@ using UnityEngine;
 
 public abstract class BuildingView : MonoBehaviour
 {
-    [SerializeField] protected BuildingData Data;
+    [field: SerializeField] public BuildingData Data { get; protected set; }
+    public Building Obj { get; protected set; }
 
     protected void OnDrawGizmos()
     {

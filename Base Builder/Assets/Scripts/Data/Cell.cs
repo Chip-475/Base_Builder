@@ -15,9 +15,6 @@ public class Cell
 
     public bool canWalkOn = true;
     public bool canBuildOn = true;
-    public int gCost;
-    public int hCost;
-    public int F_Cost => gCost + hCost;
 
     public Cell(Vector3Int coords, CellType type, bool createSceneObject)
     {

@@ -1,8 +1,9 @@
+using Cysharp.Threading.Tasks;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System;
-using Cysharp.Threading.Tasks;
-using System.Threading.Tasks;
 
 public static class Helpers
 {
@@ -44,6 +45,23 @@ public static class Helpers
 
         return false;
     }
+    public static Cell[] GetCellsInBounds(Bounds bounds)
+    {
+        int minX = Mathf.CeilToInt(bounds.min.x);
+        int maxX = Mathf.FloorToInt(bounds.max.x);
+        int minY = Mathf.CeilToInt(bounds.min.y);
+        int maxY = Mathf.FloorToInt(bounds.max.y);
+
+        List<Cell> cells = new();
+        for (int x = minX; x <= maxX; x++)
+            for (int y = minY; y <= maxY; y++)
+            {
+                Cell cell = WorldManager.World.GetCellAt(new Vector3Int(x, y, 0));
+                cells.Add(cell);
+            }
+
+        return cells.ToArray();
+    }
     #endregion
     #region Direction Helpers
     public static Directions Opposite(this Directions direction)
@@ -76,6 +94,19 @@ public static class Helpers
             Directions.Left => Vector3Int.left,
             _ => throw new Exception("Direction is invalid.")
         };
+    }
+    #endregion
+
+    #region Building Helpers
+    public static bool CanBuildOn(this BuildingView prefab, Vector3Int gridPos)
+    {
+        Bounds bounds = prefab.Data.bounds;
+        bounds.center = gridPos;
+
+        foreach (Cell cell in GetCellsInBounds(bounds))
+            if (!cell.canBuildOn) return false;
+
+        return true;
     }
     #endregion
 
