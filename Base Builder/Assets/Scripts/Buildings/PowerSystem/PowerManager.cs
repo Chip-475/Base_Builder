@@ -76,6 +76,7 @@ public class PowerManager : MonoBehaviour
         while (toCheck.Count > 0)
         {
             Building currentBuilding = toCheck[0];
+            toCheck.RemoveAt(0);
             connectedBuildings.Add(currentBuilding);
 
             foreach (Building otherBuilding in buildings)

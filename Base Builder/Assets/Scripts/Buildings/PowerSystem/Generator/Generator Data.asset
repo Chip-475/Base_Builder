@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a0fcb0e1b81c39479f850a4a37dc822, type: 3}
-  m_Name: Power Pole Data
-  m_EditorClassIdentifier: Assembly-CSharp::PowerPoleData
-  name: Power Pole
+  m_Script: {fileID: 11500000, guid: 8af2d2574121aa14987845d2f1169265, type: 3}
+  m_Name: Generator Data
+  m_EditorClassIdentifier: Assembly-CSharp::GeneratorData
+  name: 
   description: 
   bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -20,7 +20,10 @@ MonoBehaviour:
   connectionBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 2.5, y: 2.5, z: 0}
-  connectsToPower: 1
-  blocksWalking: 1
-  blocksPlacing: 1
-  range: 5
+  connectsToPower: 0
+  blocksWalking: 0
+  blocksPlacing: 0
+  id: 
+  allowedFuels: []
+  fuelConsumptionRate: 0
+  productionRate: 0

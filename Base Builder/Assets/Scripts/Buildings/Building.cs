@@ -6,13 +6,14 @@ public abstract class Building
     public BuildingData Data { get; private set; }
     public BuildingView SceneObj { get; private set; }
 
-    public Vector3Int Coords { get; private set; }
-    
+    public Vector3Int Coords => SceneObj.transform.position.ToVector3Int();
+
     public Building(BuildingData data, BuildingView sceneObj)
     {
         Data = data;
         SceneObj = sceneObj;
         Data.connectionBounds = Data.bounds;
+        PowerManager.instance.RegisterBuilding();
     }
 
 
@@ -42,10 +43,5 @@ public abstract class Building
         return cells.ToArray();
     }
 
-    public void SetPosition(Vector3Int coords)
-    {
-        SceneObj.transform.position = coords;
-        if (PowerManager.instance != null) PowerManager.instance.RebuildNetworks();
-    }
     public abstract void Destroy();
 }

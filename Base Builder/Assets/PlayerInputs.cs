@@ -89,7 +89,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     ""name"": ""PlayerInputs"",
     ""maps"": [
         {
-            ""name"": ""Mouse"",
+            ""name"": ""CameraDrag"",
             ""id"": ""df70fa95-8a34-4494-b137-73ab6b9c7d37"",
             ""actions"": [
                 {
@@ -103,9 +103,29 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""priority"": 0
                 },
                 {
+                    ""name"": ""CameraMovement"",
+                    ""type"": ""Value"",
+                    ""id"": ""13128bbe-34e6-407c-8ba8-3c31ab6911cd"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true,
+                    ""priority"": 0
+                },
+                {
                     ""name"": ""Scroll"",
                     ""type"": ""Value"",
                     ""id"": ""a932cf24-45fe-473f-830d-ba9ac0b27dba"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true,
+                    ""priority"": 0
+                },
+                {
+                    ""name"": ""Delta"",
+                    ""type"": ""Value"",
+                    ""id"": ""256199b3-fbf0-4772-a85a-e53ce9fdbaad"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -124,6 +144,116 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""action"": ""LeftClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""1fb5797d-1ff3-4667-9198-d2ebdf9a2cd2"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMovement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""ce5cd2d2-f9b5-4cad-a1a5-1bdf317934bb"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""5c97d9e1-c5de-49fc-9be8-dc82b211cbb8"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""c41a564e-db7e-4714-8c16-985b60079084"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""96744126-6801-4bce-b4ac-10a231e533f0"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""2D Vector"",
+                    ""id"": ""5b419530-ad1b-4f11-8d47-39de66be5889"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMovement"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""b9e21a54-c738-45d1-9249-2f6e51d7c7ac"",
+                    ""path"": ""<Keyboard>/upArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""e01b9e60-6f1c-4ee6-b89f-9272178f7344"",
+                    ""path"": ""<Keyboard>/downArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""6411f6ea-4871-421d-9f15-d9ce87290d63"",
+                    ""path"": ""<Keyboard>/leftArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""6856356e-63e6-4b4c-ac12-076a05e99a53"",
+                    ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CameraMovement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""2D Vector"",
@@ -179,6 +309,17 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""action"": ""Scroll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""11d42d8e-1945-4870-a924-753c15f67f09"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Delta"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -229,134 +370,6 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""action"": ""Mouse Moved"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                }
-            ]
-        },
-        {
-            ""name"": ""Generic"",
-            ""id"": ""06314146-1df2-4c76-8d1e-bba638727cf5"",
-            ""actions"": [
-                {
-                    ""name"": ""CameraMovement"",
-                    ""type"": ""Value"",
-                    ""id"": ""9494a194-2a1b-410b-a106-d54cef82a1b9"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true,
-                    ""priority"": 0
-                }
-            ],
-            ""bindings"": [
-                {
-                    ""name"": ""2D Vector"",
-                    ""id"": ""d846a779-8103-4aa4-8d19-3400574cde3c"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CameraMovement"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""80dc3eba-209f-42ba-bef5-675c040ffeaa"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CameraMovement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""ffa838dd-efc5-49bc-9990-05cecc91c176"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CameraMovement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""3823cad1-4435-4a67-9ade-8b76a7438a5f"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CameraMovement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""fab0d373-f3a2-4c4c-afaa-2acd562949c5"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CameraMovement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""2D Vector"",
-                    ""id"": ""5466fe53-cf3d-4a4c-a80c-a6f7f5626f81"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CameraMovement"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""e60b2050-2f29-4f13-a6f6-777124e564bb"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CameraMovement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""9f5b70ca-6c67-45bd-aa68-7ea2a0e99b4e"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CameraMovement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""cd745d56-ebdb-4d6d-9cad-3889358c779c"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CameraMovement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""d4fef04f-04eb-4ad0-9428-c2decd9b6d61"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""CameraMovement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -424,24 +437,22 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         }
     ]
 }");
-        // Mouse
-        m_Mouse = asset.FindActionMap("Mouse", throwIfNotFound: true);
-        m_Mouse_LeftClick = m_Mouse.FindAction("LeftClick", throwIfNotFound: true);
-        m_Mouse_Scroll = m_Mouse.FindAction("Scroll", throwIfNotFound: true);
+        // CameraDrag
+        m_CameraDrag = asset.FindActionMap("CameraDrag", throwIfNotFound: true);
+        m_CameraDrag_LeftClick = m_CameraDrag.FindAction("LeftClick", throwIfNotFound: true);
+        m_CameraDrag_CameraMovement = m_CameraDrag.FindAction("CameraMovement", throwIfNotFound: true);
+        m_CameraDrag_Scroll = m_CameraDrag.FindAction("Scroll", throwIfNotFound: true);
+        m_CameraDrag_Delta = m_CameraDrag.FindAction("Delta", throwIfNotFound: true);
         // Build Mode
         m_BuildMode = asset.FindActionMap("Build Mode", throwIfNotFound: true);
         m_BuildMode_MouseMoved = m_BuildMode.FindAction("Mouse Moved", throwIfNotFound: true);
         m_BuildMode_LeftClick = m_BuildMode.FindAction("Left Click", throwIfNotFound: true);
-        // Generic
-        m_Generic = asset.FindActionMap("Generic", throwIfNotFound: true);
-        m_Generic_CameraMovement = m_Generic.FindAction("CameraMovement", throwIfNotFound: true);
     }
 
     ~@PlayerInputs()
     {
-        UnityEngine.Debug.Assert(!m_Mouse.enabled, "This will cause a leak and performance issues, PlayerInputs.Mouse.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_CameraDrag.enabled, "This will cause a leak and performance issues, PlayerInputs.CameraDrag.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_BuildMode.enabled, "This will cause a leak and performance issues, PlayerInputs.BuildMode.Disable() has not been called.");
-        UnityEngine.Debug.Assert(!m_Generic.enabled, "This will cause a leak and performance issues, PlayerInputs.Generic.Disable() has not been called.");
     }
 
     /// <summary>
@@ -514,34 +525,44 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // Mouse
-    private readonly InputActionMap m_Mouse;
-    private List<IMouseActions> m_MouseActionsCallbackInterfaces = new List<IMouseActions>();
-    private readonly InputAction m_Mouse_LeftClick;
-    private readonly InputAction m_Mouse_Scroll;
+    // CameraDrag
+    private readonly InputActionMap m_CameraDrag;
+    private List<ICameraDragActions> m_CameraDragActionsCallbackInterfaces = new List<ICameraDragActions>();
+    private readonly InputAction m_CameraDrag_LeftClick;
+    private readonly InputAction m_CameraDrag_CameraMovement;
+    private readonly InputAction m_CameraDrag_Scroll;
+    private readonly InputAction m_CameraDrag_Delta;
     /// <summary>
-    /// Provides access to input actions defined in input action map "Mouse".
+    /// Provides access to input actions defined in input action map "CameraDrag".
     /// </summary>
-    public struct MouseActions
+    public struct CameraDragActions
     {
         private @PlayerInputs m_Wrapper;
 
         /// <summary>
         /// Construct a new instance of the input action map wrapper class.
         /// </summary>
-        public MouseActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
+        public CameraDragActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "Mouse/LeftClick".
+        /// Provides access to the underlying input action "CameraDrag/LeftClick".
         /// </summary>
-        public InputAction @LeftClick => m_Wrapper.m_Mouse_LeftClick;
+        public InputAction @LeftClick => m_Wrapper.m_CameraDrag_LeftClick;
         /// <summary>
-        /// Provides access to the underlying input action "Mouse/Scroll".
+        /// Provides access to the underlying input action "CameraDrag/CameraMovement".
         /// </summary>
-        public InputAction @Scroll => m_Wrapper.m_Mouse_Scroll;
+        public InputAction @CameraMovement => m_Wrapper.m_CameraDrag_CameraMovement;
+        /// <summary>
+        /// Provides access to the underlying input action "CameraDrag/Scroll".
+        /// </summary>
+        public InputAction @Scroll => m_Wrapper.m_CameraDrag_Scroll;
+        /// <summary>
+        /// Provides access to the underlying input action "CameraDrag/Delta".
+        /// </summary>
+        public InputAction @Delta => m_Wrapper.m_CameraDrag_Delta;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
-        public InputActionMap Get() { return m_Wrapper.m_Mouse; }
+        public InputActionMap Get() { return m_Wrapper.m_CameraDrag; }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
         public void Enable() { Get().Enable(); }
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
@@ -549,9 +570,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
         public bool enabled => Get().enabled;
         /// <summary>
-        /// Implicitly converts an <see ref="MouseActions" /> to an <see ref="InputActionMap" /> instance.
+        /// Implicitly converts an <see ref="CameraDragActions" /> to an <see ref="InputActionMap" /> instance.
         /// </summary>
-        public static implicit operator InputActionMap(MouseActions set) { return set.Get(); }
+        public static implicit operator InputActionMap(CameraDragActions set) { return set.Get(); }
         /// <summary>
         /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
         /// </summary>
@@ -559,17 +580,23 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
         /// </remarks>
-        /// <seealso cref="MouseActions" />
-        public void AddCallbacks(IMouseActions instance)
+        /// <seealso cref="CameraDragActions" />
+        public void AddCallbacks(ICameraDragActions instance)
         {
-            if (instance == null || m_Wrapper.m_MouseActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_MouseActionsCallbackInterfaces.Add(instance);
+            if (instance == null || m_Wrapper.m_CameraDragActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_CameraDragActionsCallbackInterfaces.Add(instance);
             @LeftClick.started += instance.OnLeftClick;
             @LeftClick.performed += instance.OnLeftClick;
             @LeftClick.canceled += instance.OnLeftClick;
+            @CameraMovement.started += instance.OnCameraMovement;
+            @CameraMovement.performed += instance.OnCameraMovement;
+            @CameraMovement.canceled += instance.OnCameraMovement;
             @Scroll.started += instance.OnScroll;
             @Scroll.performed += instance.OnScroll;
             @Scroll.canceled += instance.OnScroll;
+            @Delta.started += instance.OnDelta;
+            @Delta.performed += instance.OnDelta;
+            @Delta.canceled += instance.OnDelta;
         }
 
         /// <summary>
@@ -578,24 +605,30 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// <remarks>
         /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
         /// </remarks>
-        /// <seealso cref="MouseActions" />
-        private void UnregisterCallbacks(IMouseActions instance)
+        /// <seealso cref="CameraDragActions" />
+        private void UnregisterCallbacks(ICameraDragActions instance)
         {
             @LeftClick.started -= instance.OnLeftClick;
             @LeftClick.performed -= instance.OnLeftClick;
             @LeftClick.canceled -= instance.OnLeftClick;
+            @CameraMovement.started -= instance.OnCameraMovement;
+            @CameraMovement.performed -= instance.OnCameraMovement;
+            @CameraMovement.canceled -= instance.OnCameraMovement;
             @Scroll.started -= instance.OnScroll;
             @Scroll.performed -= instance.OnScroll;
             @Scroll.canceled -= instance.OnScroll;
+            @Delta.started -= instance.OnDelta;
+            @Delta.performed -= instance.OnDelta;
+            @Delta.canceled -= instance.OnDelta;
         }
 
         /// <summary>
-        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="MouseActions.UnregisterCallbacks(IMouseActions)" />.
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="CameraDragActions.UnregisterCallbacks(ICameraDragActions)" />.
         /// </summary>
-        /// <seealso cref="MouseActions.UnregisterCallbacks(IMouseActions)" />
-        public void RemoveCallbacks(IMouseActions instance)
+        /// <seealso cref="CameraDragActions.UnregisterCallbacks(ICameraDragActions)" />
+        public void RemoveCallbacks(ICameraDragActions instance)
         {
-            if (m_Wrapper.m_MouseActionsCallbackInterfaces.Remove(instance))
+            if (m_Wrapper.m_CameraDragActionsCallbackInterfaces.Remove(instance))
                 UnregisterCallbacks(instance);
         }
 
@@ -605,21 +638,21 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// <remarks>
         /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
         /// </remarks>
-        /// <seealso cref="MouseActions.AddCallbacks(IMouseActions)" />
-        /// <seealso cref="MouseActions.RemoveCallbacks(IMouseActions)" />
-        /// <seealso cref="MouseActions.UnregisterCallbacks(IMouseActions)" />
-        public void SetCallbacks(IMouseActions instance)
+        /// <seealso cref="CameraDragActions.AddCallbacks(ICameraDragActions)" />
+        /// <seealso cref="CameraDragActions.RemoveCallbacks(ICameraDragActions)" />
+        /// <seealso cref="CameraDragActions.UnregisterCallbacks(ICameraDragActions)" />
+        public void SetCallbacks(ICameraDragActions instance)
         {
-            foreach (var item in m_Wrapper.m_MouseActionsCallbackInterfaces)
+            foreach (var item in m_Wrapper.m_CameraDragActionsCallbackInterfaces)
                 UnregisterCallbacks(item);
-            m_Wrapper.m_MouseActionsCallbackInterfaces.Clear();
+            m_Wrapper.m_CameraDragActionsCallbackInterfaces.Clear();
             AddCallbacks(instance);
         }
     }
     /// <summary>
-    /// Provides a new <see cref="MouseActions" /> instance referencing this action map.
+    /// Provides a new <see cref="CameraDragActions" /> instance referencing this action map.
     /// </summary>
-    public MouseActions @Mouse => new MouseActions(this);
+    public CameraDragActions @CameraDrag => new CameraDragActions(this);
 
     // Build Mode
     private readonly InputActionMap m_BuildMode;
@@ -727,102 +760,6 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="BuildModeActions" /> instance referencing this action map.
     /// </summary>
     public BuildModeActions @BuildMode => new BuildModeActions(this);
-
-    // Generic
-    private readonly InputActionMap m_Generic;
-    private List<IGenericActions> m_GenericActionsCallbackInterfaces = new List<IGenericActions>();
-    private readonly InputAction m_Generic_CameraMovement;
-    /// <summary>
-    /// Provides access to input actions defined in input action map "Generic".
-    /// </summary>
-    public struct GenericActions
-    {
-        private @PlayerInputs m_Wrapper;
-
-        /// <summary>
-        /// Construct a new instance of the input action map wrapper class.
-        /// </summary>
-        public GenericActions(@PlayerInputs wrapper) { m_Wrapper = wrapper; }
-        /// <summary>
-        /// Provides access to the underlying input action "Generic/CameraMovement".
-        /// </summary>
-        public InputAction @CameraMovement => m_Wrapper.m_Generic_CameraMovement;
-        /// <summary>
-        /// Provides access to the underlying input action map instance.
-        /// </summary>
-        public InputActionMap Get() { return m_Wrapper.m_Generic; }
-        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
-        public void Enable() { Get().Enable(); }
-        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
-        public void Disable() { Get().Disable(); }
-        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
-        public bool enabled => Get().enabled;
-        /// <summary>
-        /// Implicitly converts an <see ref="GenericActions" /> to an <see ref="InputActionMap" /> instance.
-        /// </summary>
-        public static implicit operator InputActionMap(GenericActions set) { return set.Get(); }
-        /// <summary>
-        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
-        /// </summary>
-        /// <param name="instance">Callback instance.</param>
-        /// <remarks>
-        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
-        /// </remarks>
-        /// <seealso cref="GenericActions" />
-        public void AddCallbacks(IGenericActions instance)
-        {
-            if (instance == null || m_Wrapper.m_GenericActionsCallbackInterfaces.Contains(instance)) return;
-            m_Wrapper.m_GenericActionsCallbackInterfaces.Add(instance);
-            @CameraMovement.started += instance.OnCameraMovement;
-            @CameraMovement.performed += instance.OnCameraMovement;
-            @CameraMovement.canceled += instance.OnCameraMovement;
-        }
-
-        /// <summary>
-        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
-        /// </summary>
-        /// <remarks>
-        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
-        /// </remarks>
-        /// <seealso cref="GenericActions" />
-        private void UnregisterCallbacks(IGenericActions instance)
-        {
-            @CameraMovement.started -= instance.OnCameraMovement;
-            @CameraMovement.performed -= instance.OnCameraMovement;
-            @CameraMovement.canceled -= instance.OnCameraMovement;
-        }
-
-        /// <summary>
-        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="GenericActions.UnregisterCallbacks(IGenericActions)" />.
-        /// </summary>
-        /// <seealso cref="GenericActions.UnregisterCallbacks(IGenericActions)" />
-        public void RemoveCallbacks(IGenericActions instance)
-        {
-            if (m_Wrapper.m_GenericActionsCallbackInterfaces.Remove(instance))
-                UnregisterCallbacks(instance);
-        }
-
-        /// <summary>
-        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
-        /// </summary>
-        /// <remarks>
-        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
-        /// </remarks>
-        /// <seealso cref="GenericActions.AddCallbacks(IGenericActions)" />
-        /// <seealso cref="GenericActions.RemoveCallbacks(IGenericActions)" />
-        /// <seealso cref="GenericActions.UnregisterCallbacks(IGenericActions)" />
-        public void SetCallbacks(IGenericActions instance)
-        {
-            foreach (var item in m_Wrapper.m_GenericActionsCallbackInterfaces)
-                UnregisterCallbacks(item);
-            m_Wrapper.m_GenericActionsCallbackInterfaces.Clear();
-            AddCallbacks(instance);
-        }
-    }
-    /// <summary>
-    /// Provides a new <see cref="GenericActions" /> instance referencing this action map.
-    /// </summary>
-    public GenericActions @Generic => new GenericActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -889,11 +826,11 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         }
     }
     /// <summary>
-    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Mouse" which allows adding and removing callbacks.
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "CameraDrag" which allows adding and removing callbacks.
     /// </summary>
-    /// <seealso cref="MouseActions.AddCallbacks(IMouseActions)" />
-    /// <seealso cref="MouseActions.RemoveCallbacks(IMouseActions)" />
-    public interface IMouseActions
+    /// <seealso cref="CameraDragActions.AddCallbacks(ICameraDragActions)" />
+    /// <seealso cref="CameraDragActions.RemoveCallbacks(ICameraDragActions)" />
+    public interface ICameraDragActions
     {
         /// <summary>
         /// Method invoked when associated input action "LeftClick" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
@@ -903,12 +840,26 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLeftClick(InputAction.CallbackContext context);
         /// <summary>
+        /// Method invoked when associated input action "CameraMovement" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnCameraMovement(InputAction.CallbackContext context);
+        /// <summary>
         /// Method invoked when associated input action "Scroll" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnScroll(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Delta" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnDelta(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Build Mode" which allows adding and removing callbacks.
@@ -931,20 +882,5 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLeftClick(InputAction.CallbackContext context);
-    }
-    /// <summary>
-    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Generic" which allows adding and removing callbacks.
-    /// </summary>
-    /// <seealso cref="GenericActions.AddCallbacks(IGenericActions)" />
-    /// <seealso cref="GenericActions.RemoveCallbacks(IGenericActions)" />
-    public interface IGenericActions
-    {
-        /// <summary>
-        /// Method invoked when associated input action "CameraMovement" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnCameraMovement(InputAction.CallbackContext context);
     }
 }

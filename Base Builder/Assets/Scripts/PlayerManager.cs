@@ -11,11 +11,10 @@ public class PlayerManager : MonoBehaviour
         Instance = this;
         Inputs = new();
 
-        Inputs.Mouse.Enable();
-        Inputs.Generic.Enable();
-        Inputs.Mouse.LeftClick.performed += (_) => CheckForClick();
-        Inputs.Generic.CameraMovement.performed += (input) => Direction(input);
-        Inputs.Generic.CameraMovement.canceled += (_) => DeleteDirection();
+        Inputs.CameraDrag.Enable();
+        Inputs.CameraDrag.LeftClick.performed += (input) => { CheckForClick(); Direction(input); };
+        Inputs.CameraDrag.CameraMovement.performed += (input) => Direction(input);
+        Inputs.CameraDrag.CameraMovement.canceled += (_) => DeleteDirection();
     }
 
     void CheckForClick()
@@ -31,7 +30,12 @@ public class PlayerManager : MonoBehaviour
     }
     public static void Direction(InputAction.CallbackContext context)
     {
-        Debug.Log("Camera movement: " + context.ReadValue<Vector2>());
+        if(Inputs.CameraDrag.LeftClick.IsPressed())
+        {
+            Debug.Log("dio cazzo");
+           CameraMovement.direction=Inputs.CameraDrag.Delta.ReadValue<Vector2>()*(-0.1f);
+            return;
+        }
         CameraMovement.direction = context.ReadValue<Vector2>();
     }
 
