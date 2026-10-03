@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 
 [Serializable]
 public class Bot
@@ -62,7 +63,12 @@ public class Bot
     }
 
     [field: SerializeField]
+<<<<<<< Updated upstream
     public Bot_View BotView { get; protected set; }
+=======
+    public BotView BotView { get; protected set; }
+    public MineralNode MineralNode { get; protected set; }
+>>>>>>> Stashed changes
 
     [Header("Identity")]
     public string Id { get; protected set; }
@@ -74,6 +80,8 @@ public class Bot
     public Inventory Inv { get; protected set; }
     public float Power { get; protected set; }
     public const float MaxPower = 100;
+    public int CarryCapacity { get; protected set; }
+    
 
     public Bot(Bot_View botView, string id = null, Vector3? coords = null, string name = null, BotType type = BotType.None, Inventory? inv = null, float power = MaxPower)
     {
@@ -91,6 +99,68 @@ public class Bot
 
         GameManager.SetBot(Id, this);
     }
+
+    public async UniTask goToMineralNode(MineralNode mineralNode)
+    {
+        if(Type == BotType.Miner)
+        {
+            MoveTo(mineralNode.SceneObj.transform.position.ToVector3Int());
+            await UniTask.WaitUntil(() => Vector3.Distance(BotView.transform.position, mineralNode.SceneObj.transform.position) < 0.1f);
+            mineralNode.MineResource();
+        }
+    }
+
+    public async UniTask goToSmelter(Machine machine)
+    {
+        if(Type == BotType.Worker)
+        {
+            MoveTo(machine.SceneObj.transform.position.ToVector3Int());
+            await UniTask.WaitUntil(() => Vector3.Distance(BotView.transform.position, machine.SceneObj.transform.position) < 0.1f);
+            await machine.UseSmelter();
+
+        }
+    }
+    public async UniTask goToAssembler(Machine machine)
+    {
+        if(Type == BotType.Worker)
+        {
+            MoveTo(machine.SceneObj.transform.position.ToVector3Int());
+            await UniTask.WaitUntil(() => Vector3.Distance(BotView.transform.position, machine.SceneObj.transform.position) < 0.1f);
+            await machine.UseAssembler();
+
+        }
+    }
+    public async UniTask goToPress(Machine machine)
+    {
+        if(Type == BotType.Worker)
+        {
+            MoveTo(machine.SceneObj.transform.position.ToVector3Int());
+            await UniTask.WaitUntil(() => Vector3.Distance(BotView.transform.position, machine.SceneObj.transform.position) < 0.1f);
+            await machine.UsePress();
+
+        }
+    }
+    public async UniTask goToAlloyFurnace(Machine machine)
+    {
+        if(Type == BotType.Worker)
+        {
+            MoveTo(machine.SceneObj.transform.position.ToVector3Int());
+            await UniTask.WaitUntil(() => Vector3.Distance(BotView.transform.position, machine.SceneObj.transform.position) < 0.1f);
+            await machine.UseAlloyFurnace();
+
+        }
+    }
+    public async UniTask goToAdvancedAssembler(Machine machine)
+    {
+        if(Type == BotType.Worker)
+        {
+            MoveTo(machine.SceneObj.transform.position.ToVector3Int());
+            await UniTask.WaitUntil(() => Vector3.Distance(BotView.transform.position, machine.SceneObj.transform.position) < 0.1f);
+            await machine.UseAdvancedAssembler();
+
+        }
+    }
+
 
     string PickRandomName()
     {

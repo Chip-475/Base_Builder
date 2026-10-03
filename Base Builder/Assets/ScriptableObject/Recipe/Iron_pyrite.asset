@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1930e33686e0fe343a20ec312785cbc4, type: 3}
   m_Name: Iron_pyrite
   m_EditorClassIdentifier: Assembly-CSharp::Recipe
+  <ID>k__BackingField: pyrite
+  r_name: Pyrite
   inputResources:
   - {fileID: 11400000, guid: 26ceadd0129b8474789f0131ab6a6737, type: 2}
+  input: 
   outputResources:
   - {fileID: 11400000, guid: f44b38d183a6d48409ecf1890b1f4cd8, type: 2}
-  recipeName: 
-  id: 
+  output: 
+  completionTime: 0
   energyCost: 0
-  recipeTime: 0

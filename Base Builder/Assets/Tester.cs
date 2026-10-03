@@ -7,6 +7,8 @@ public class Tester : MonoBehaviour
 
     public List<Machine> machines = new();
 
+    public MineralNode mineralNode;
+
     private void Awake()
     {
         Instance = this;
@@ -19,5 +21,11 @@ public class Tester : MonoBehaviour
         {
             Debug.Log(machine.SceneObj.GetType().ToString());
         }
+    }
+
+    public void GoToMineralNode(MineralNode mineralNode)
+    {
+        bot.goToMineralNode(mineralNode); 
+         
     }
 }

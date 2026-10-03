@@ -45,6 +45,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d006eb64e3bf79d4282fac89d8b30dd6, type: 3}
   m_Name: 
+<<<<<<< Updated upstream:Base Builder/Assets/Prefab/Mineral Node Test.prefab
   m_EditorClassIdentifier: Assembly-CSharp::Machine
   blocksWalking: 1
   blocksPlacing: 1
@@ -63,6 +64,11 @@ MonoBehaviour:
   currentEnergy: 100
   maxEnergy: 100
 --- !u!212 &6598827957047989496
+=======
+  m_EditorClassIdentifier: Assembly-CSharp::MachineView
+  <Data>k__BackingField: {fileID: 0}
+--- !u!212 &7153129810117478357
+>>>>>>> Stashed changes:Base Builder/Assets/Prefab/Building/Machine.prefab
 SpriteRenderer:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -111,7 +117,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 6022206527347476129, guid: 16399254a14af6d46a047b836de32092, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -119,7 +125,7 @@ SpriteRenderer:
   m_Size: {x: 3.001876, y: 3.001876}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
 --- !u!61 &8807465733035402985

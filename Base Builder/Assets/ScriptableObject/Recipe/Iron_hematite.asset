@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1930e33686e0fe343a20ec312785cbc4, type: 3}
   m_Name: Iron_hematite
   m_EditorClassIdentifier: Assembly-CSharp::Recipe
+  <ID>k__BackingField: hematite
+  r_name: Hematite
   inputResources:
   - {fileID: 11400000, guid: e76ecbd53161e044fb81a60d2b909173, type: 2}
+  input: 
   outputResources:
   - {fileID: 11400000, guid: f44b38d183a6d48409ecf1890b1f4cd8, type: 2}
-  recipeName: 
-  id: 
+  output: 
+  completionTime: 0
   energyCost: 0
-  recipeTime: 0

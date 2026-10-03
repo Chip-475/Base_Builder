@@ -12,12 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1930e33686e0fe343a20ec312785cbc4, type: 3}
   m_Name: Steel
   m_EditorClassIdentifier: Assembly-CSharp::Recipe
+  <ID>k__BackingField: steel
+  r_name: Steel
   inputResources:
   - {fileID: 11400000, guid: f44b38d183a6d48409ecf1890b1f4cd8, type: 2}
   - {fileID: 11400000, guid: 8454d85e6a52b5f45a50308c97089684, type: 2}
+  input: 
   outputResources:
   - {fileID: 11400000, guid: 0a9ad0fb48bcc0e41b6cafbb3659e999, type: 2}
-  recipeName: 
-  id: 
+  output: 
+  completionTime: 0
   energyCost: 0
-  recipeTime: 0

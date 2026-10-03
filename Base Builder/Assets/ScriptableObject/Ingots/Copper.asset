@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Copper
   m_EditorClassIdentifier: Assembly-CSharp::Resources
   <ID>k__BackingField: copper
-  r_name: copper
+  r_name: Copper
   r_desc: Although not very durable, this metal is very coductive.
   r_sprite: {fileID: 0}
   toughness: 1
