@@ -19,4 +19,9 @@ public class MineralNode : Building
         int mineralQuantity = Data.baseAmountGiven * (int)Data.purity;
         return (type, mineralQuantity);
     }
+
+    public override void Destroy()
+    {
+        throw new System.NotImplementedException();
+    }
 }

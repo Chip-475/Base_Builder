@@ -7,39 +7,23 @@ public class Depot : Building
     public new DepotData Data => base.Data as DepotData;
     public new DepotView SceneObj => base.SceneObj as DepotView;
 
-    private static DepotInventory sharedInventory;
-
-    public event Action<ResourceSO, int> InventoryChanged
-    {
-        add => sharedInventory.QuantityChanged += value;
-        remove => sharedInventory.QuantityChanged -= value;
-    }
+    private static PlayerInventory sharedInventory;
 
     public Depot(DepotData data, DepotView sceneObj) : base(data, sceneObj)
     {
-        //deposito univoco dove possiamo mettere tutto quanto
-        //input output ogni depot in cui metti qualcosa sono collegati fra loro e quando prendi qualcosa da uno si toglie da tutti 
-        //funzioni per prendere e posare roba 
-        //dizionario con chiave la risorsa e valore quantita
-        if (sharedInventory == null)
-        {
-            sharedInventory = new DepotInventory(data, sceneObj);
-        }
-
+        sharedInventory ??= new();
     }
-
-    public (ResourceSO resource, int quantity) AddItem(ResourceSO resource, int quantity)
+    public override void Destroy()
     {
-        return sharedInventory.AddItem(resource, quantity);
+        MonoBehaviour.Destroy(SceneObj);
     }
-
-    public (ResourceSO resource, int quantity) RemoveItem(ResourceSO resource, int quantity)
+    
+    public void StoreItem(ResourceSO resource, int quantity)
     {
-        return sharedInventory.RemoveItem(resource, quantity);
+        sharedInventory.Add(resource, quantity);
     }
-
-    public int GetQuantity(ResourceSO resource)
+    public void GetItem(ResourceSO resource, int quantity)
     {
-        return sharedInventory.GetQuantity(resource);
+        sharedInventory.Remove(resource, quantity);
     }
 }

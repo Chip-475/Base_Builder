@@ -140,6 +140,16 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""initialStateCheck"": false,
                     ""priority"": 0
+                },
+                {
+                    ""name"": ""Right Click"",
+                    ""type"": ""Button"",
+                    ""id"": ""77b0a711-26d9-486a-8484-3d02f59d986a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
                 }
             ],
             ""bindings"": [
@@ -162,6 +172,17 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Mouse Moved"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""98677f2b-1cf7-4fd2-999d-a9f6ccda32fd"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Right Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -238,6 +259,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         m_BuildMode = asset.FindActionMap("Build Mode", throwIfNotFound: true);
         m_BuildMode_MouseMoved = m_BuildMode.FindAction("Mouse Moved", throwIfNotFound: true);
         m_BuildMode_LeftClick = m_BuildMode.FindAction("Left Click", throwIfNotFound: true);
+        m_BuildMode_RightClick = m_BuildMode.FindAction("Right Click", throwIfNotFound: true);
     }
 
     ~@PlayerInputs()
@@ -417,6 +439,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private List<IBuildModeActions> m_BuildModeActionsCallbackInterfaces = new List<IBuildModeActions>();
     private readonly InputAction m_BuildMode_MouseMoved;
     private readonly InputAction m_BuildMode_LeftClick;
+    private readonly InputAction m_BuildMode_RightClick;
     /// <summary>
     /// Provides access to input actions defined in input action map "Build Mode".
     /// </summary>
@@ -436,6 +459,10 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "BuildMode/LeftClick".
         /// </summary>
         public InputAction @LeftClick => m_Wrapper.m_BuildMode_LeftClick;
+        /// <summary>
+        /// Provides access to the underlying input action "BuildMode/RightClick".
+        /// </summary>
+        public InputAction @RightClick => m_Wrapper.m_BuildMode_RightClick;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -468,6 +495,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @LeftClick.started += instance.OnLeftClick;
             @LeftClick.performed += instance.OnLeftClick;
             @LeftClick.canceled += instance.OnLeftClick;
+            @RightClick.started += instance.OnRightClick;
+            @RightClick.performed += instance.OnRightClick;
+            @RightClick.canceled += instance.OnRightClick;
         }
 
         /// <summary>
@@ -485,6 +515,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @LeftClick.started -= instance.OnLeftClick;
             @LeftClick.performed -= instance.OnLeftClick;
             @LeftClick.canceled -= instance.OnLeftClick;
+            @RightClick.started -= instance.OnRightClick;
+            @RightClick.performed -= instance.OnRightClick;
+            @RightClick.canceled -= instance.OnRightClick;
         }
 
         /// <summary>
@@ -619,5 +652,12 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLeftClick(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Right Click" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRightClick(InputAction.CallbackContext context);
     }
 }

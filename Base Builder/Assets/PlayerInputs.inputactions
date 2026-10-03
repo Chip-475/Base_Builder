@@ -54,6 +54,16 @@
                     "interactions": "",
                     "initialStateCheck": false,
                     "priority": 0
+                },
+                {
+                    "name": "Right Click",
+                    "type": "Button",
+                    "id": "77b0a711-26d9-486a-8484-3d02f59d986a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
                 }
             ],
             "bindings": [
@@ -76,6 +86,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Mouse Moved",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "98677f2b-1cf7-4fd2-999d-a9f6ccda32fd",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right Click",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

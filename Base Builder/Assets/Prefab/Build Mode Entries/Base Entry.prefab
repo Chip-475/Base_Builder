@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &600096379163975557
+--- !u!1 &5113705789723749589
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,52 +8,68 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9099146703181644}
-  - component: {fileID: 4073271660668909404}
-  - component: {fileID: 390134581333546051}
-  - component: {fileID: 3398612124722603542}
-  - component: {fileID: 5951708183271942227}
-  m_Layer: 5
-  m_Name: Entry (Furnace)
+  - component: {fileID: 6832555429773543625}
+  - component: {fileID: 8727472472509128459}
+  - component: {fileID: 8111969794251282583}
+  - component: {fileID: 8625127150461960904}
+  - component: {fileID: 7327283608350166748}
+  m_Layer: 0
+  m_Name: Base Entry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &9099146703181644
+--- !u!224 &6832555429773543625
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 600096379163975557}
+  m_GameObject: {fileID: 5113705789723749589}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &4073271660668909404
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 600096379163975557}
-  m_CullTransparentMesh: 1
---- !u!114 &390134581333546051
+--- !u!114 &8727472472509128459
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 600096379163975557}
+  m_GameObject: {fileID: 5113705789723749589}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e84697c1567bccd4b94fa0e4462a3578, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildModeEntry
+  image: {fileID: 8625127150461960904}
+  button: {fileID: 7327283608350166748}
+  icon: {fileID: 0}
+  buildingPrefab: {fileID: 7951129881825252327, guid: a584b530c07cc344f8101e8e1bdf542e, type: 3}
+--- !u!222 &8111969794251282583
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5113705789723749589}
+  m_CullTransparentMesh: 1
+--- !u!114 &8625127150461960904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5113705789723749589}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -77,13 +93,13 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3398612124722603542
+--- !u!114 &7327283608350166748
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 600096379163975557}
+  m_GameObject: {fileID: 5113705789723749589}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
@@ -117,23 +133,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 390134581333546051}
+  m_TargetGraphic: {fileID: 8625127150461960904}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &5951708183271942227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 600096379163975557}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e84697c1567bccd4b94fa0e4462a3578, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BuildModeEntry
-  image: {fileID: 390134581333546051}
-  button: {fileID: 3398612124722603542}
-  icon: {fileID: 6022206527347476129, guid: 16399254a14af6d46a047b836de32092, type: 3}
-  building: {fileID: 6135289212688081473, guid: 6ead2ac8d9fe9bf4694d899bc5135cf3, type: 3}

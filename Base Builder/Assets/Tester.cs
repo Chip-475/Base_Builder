@@ -1,11 +1,14 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
+#pragma warning disable
 public class Tester : MonoBehaviour
 {
     public static Tester Instance { get; private set; }
 
-    public List<Machine> machines = new();
+    public Bot bot;
+    public Vector3Int end;
 
     public MineralNode mineralNode;
 
@@ -14,13 +17,10 @@ public class Tester : MonoBehaviour
         Instance = this;
     }
 
-    [ContextMenu("Print")]
-    public void PrintMachines()
+    [ContextMenu("Move")]
+    public void Move()
     {
-        foreach(var machine in machines)
-        {
-            Debug.Log(machine.SceneObj.GetType().ToString());
-        }
+        bot.MoveTo(end);
     }
 
     public void GoToMineralNode(MineralNode mineralNode)
