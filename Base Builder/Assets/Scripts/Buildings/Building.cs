@@ -6,16 +6,12 @@ public abstract class Building
     public BuildingData Data { get; private set; }
     public BuildingView SceneObj { get; private set; }
 
-    public Vector3Int Coords => SceneObj.transform.position.ToVector3Int();
-    
+    public Vector3Int Coords { get; private set; }
+
     public Building(BuildingData data, BuildingView sceneObj)
     {
         Data = data;
         SceneObj = sceneObj;
-
-        Data.bounds.center = Coords;
-        Data.connectionBounds = Data.bounds;
-        UpdateCells(GetCellsInBounds(GetBounds()));
     }
 
 
@@ -39,21 +35,8 @@ public abstract class Building
         return cells.ToArray();
     }
 
-    protected void UpdateCells(Cell[] cells)
+    public void SetPosition(Vector3Int coords)
     {
-        foreach(var cell in cells)
-        {
-            cell.canWalkOn = !Data.blocksWalking;
-            cell.canBuildOn = !Data.blocksPlacing;
-        }
+        SceneObj.transform.position = coords;
     }
-    protected void FreeUpCells(Cell[] cells)
-    {
-        foreach(var cell in cells)
-        {
-            cell.canWalkOn = true;
-            cell.canBuildOn = true;
-        }
-    }
-    public abstract void Destroy();
 }

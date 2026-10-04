@@ -25,21 +25,6 @@ public class Cell
             CreateSceneObject();
     }
 
-    public List<Cell> GetNeighbours()
-    {
-        List<Cell> cells = new();
-        for(int x = -1; x <= 1; x++)
-            for(int y = -1; y <= 1; y++)
-            {
-                if(x == 0 && y == 0) 
-                    continue;
-
-                cells.Add(WorldManager.World.GetCellAt(new Vector3Int(x, y, 0) + Coords));
-            }    
-        
-        return cells;
-    }
-
     void CreateSceneObject()
     {
         GameObject go = new();

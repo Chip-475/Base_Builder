@@ -1,105 +1,84 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks.Triggers;
 
 public class BuildMode : MonoBehaviour
 {
-    public static BuildMode Instance { get; private set; }
-    public static bool IsActive => Instance.panel.activeSelf;
+    //public static BuildMode Instance {  get; private set; }
+    //public static bool IsActive => Instance.panel.activeSelf;
 
-    [Header("Setup")]
-    [SerializeField] GameObject panel;
-    [SerializeField] Button toggleButton;
+    //[Header("Setup")]
+    //[SerializeField] GameObject panel;
+    //[SerializeField] Button toggleButton;
 
-    public BuildModeEntry SelectedEntry { get; private set; }
-    SpriteRenderer buildingPreview;
+    //public List<BuildingView> buildableObjects = new();
+    //public BuildModeEntry SelectedObject { get; private set; }
+    
+    //private void Awake()
+    //{
+    //    Instance = this;
+    //    toggleButton.onClick.AddListener(() => Toggle());
+    //}
+    //private void Start()
+    //{
+    //    panel.SetActive(false);
+    //}
 
-    private void Awake()
-    {
-        Instance = this;
+    //public void Toggle()
+    //{
+    //    Debug.Log("Toggle");
+    //    panel.SetActive(!IsActive);
 
-        toggleButton.onClick.AddListener(() => Toggle());
-        InitPreview();
-        buildingPreview.enabled = false;
-    }
-    private void Start()
-    {
-        panel.SetActive(false);
-    }
+    //    if (IsActive) Enable();
+    //    else Disable();
+    //}
+    //void Enable()
+    //{
+    //    panel.SetActive(true);
 
-    public void Toggle()
-    {
-        Debug.Log("Toggle");
-        panel.SetActive(!IsActive);
+    //    PlayerManager.Inputs.BuildMode.Enable();
+    //    PlayerManager.Inputs.BuildMode.MouseMoved.performed += (_) => OnHover();
+    //    PlayerManager.Inputs.BuildMode.LeftClick.performed += (_) => Build();
+    //}
+    //void Disable()
+    //{
+    //    panel.SetActive(false);
 
-        if (IsActive) Enable();
-        else Disable();
-    }
-    void Enable()
-    {
-        panel.SetActive(true);
-        buildingPreview.enabled = true;
+    //    PlayerManager.Inputs.BuildMode.Disable();
+    //    PlayerManager.Inputs.BuildMode.MouseMoved.performed -= (_) => OnHover();
+    //    PlayerManager.Inputs.BuildMode.LeftClick.performed -= (_) => Build();
+    //}
 
-        PlayerManager.Inputs.BuildMode.Enable();
-        PlayerManager.Inputs.BuildMode.MouseMoved.performed += (_) => Hover();
-        PlayerManager.Inputs.BuildMode.LeftClick.performed += (_) => Build();
-        PlayerManager.Inputs.BuildMode.RightClick.performed += (_) =>
-        {
-            SetSelectedEntry(null);
-            buildingPreview.sprite = null;
-        };
-    }
-    void Disable()
-    {
-        panel.SetActive(false);
-        buildingPreview.enabled = false;
+    //void OnHover()
+    //{
+    //    // Hover logic
+    //}
+    //void Build()
+    //{
+    //    if (SelectedObject == null)
+    //        return;
 
-        PlayerManager.Inputs.BuildMode.Disable();
-        PlayerManager.Inputs.BuildMode.MouseMoved.performed -= (_) => Hover();
-        PlayerManager.Inputs.BuildMode.LeftClick.performed -= (_) => Build();
-        PlayerManager.Inputs.BuildMode.RightClick.performed -= (_) =>
-        {
-            SetSelectedEntry(null);
-            buildingPreview.sprite = null;
-        };
-    }
+    //    var mousePos = Helpers.GetMouseWorldPosition();
+    //    var bounds = SelectedObject.building.Building.GetBounds();
+    //    bounds.center = mousePos.ToVector3Int();
+    //    if (!CanBuildOn(SelectedObject.building.Building.GetCellsInBounds(bounds)))
+    //        return;
 
-    void Hover()
-    {
-        Vector3Int mouseGridPos = Helpers.GetMouseWorldPosition().ToVector3Int();
-        if (SelectedEntry == null)
-        {
-            buildingPreview.sprite = null;
-            return;
-        }
-        else
-            buildingPreview.sprite = SelectedEntry.buildingPrefab.Data.sprite;
-        buildingPreview.transform.position = mouseGridPos;
+    //    var obj = Instantiate(SelectedObject.building);
+    //    obj.Building.SetPosition(WorldManager.World.GetCellAt(Helpers.GetMouseWorldPosition().ToVector3Int()));
 
-        if (SelectedEntry.buildingPrefab.CanBuildOn(mouseGridPos))
-            buildingPreview.color = Color.green;
-        else
-            buildingPreview.color = Color.red;
-    }
-    void Build()
-    {
-        Vector3Int mouseGridPos = Helpers.GetMouseWorldPosition().ToVector3Int();
-        if (SelectedEntry == null)
-            return;
-        if (!SelectedEntry.buildingPrefab.CanBuildOn(mouseGridPos))
-            return;
+    //    SetSelectedObject(null);
+    //}
 
-        Instantiate(SelectedEntry.buildingPrefab, mouseGridPos, Quaternion.identity);
-    }
+    //public void SetSelectedObject(BuildModeEntry obj)
+    //{
+    //    SelectedObject = obj;
+    //}
+    //public static bool CanBuildOn(Cell[] cells)
+    //{
+    //    foreach (var cell in cells)
+    //        if (!cell.canBuildOn) return false;
 
-    void InitPreview()
-    {
-        GameObject go = new();
-        buildingPreview = go.AddComponent<SpriteRenderer>();
-    }
-    public void SetSelectedEntry(BuildModeEntry obj)
-    {
-        SelectedEntry = obj;
-    }
+    //    return true;
+    //}
 }
