@@ -12,6 +12,7 @@ public class PowerPole : Building
         poleId = Guid.NewGuid().ToString();
         PowerManager.powerPolesDB[poleId] = this;
         PowerManager.instance.RegisterBuilding();
+        Debug.Log(sceneObj.transform.position);
     }
 
     public bool CanConnectTo(Building other)

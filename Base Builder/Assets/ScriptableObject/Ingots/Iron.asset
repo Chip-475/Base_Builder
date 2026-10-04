@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Iron
   m_EditorClassIdentifier: Assembly-CSharp::Resources
-  <ID>k__BackingField: iron
-  r_name: Iron
-  r_desc: Durable and abundant metal, although very heavy.
-  r_sprite: {fileID: 0}
+  Name: 
+  Desc: 
+  Sprite: {fileID: -7868862028048558966, guid: a6097e698c367fe44afdab3f3bded4b2, type: 3}
   toughness: 1
   weightPerUnit: 2
   energyPerUnit: 0

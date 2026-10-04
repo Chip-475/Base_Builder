@@ -7,14 +7,7 @@ public class Generator : Building
     public new GeneratorView SceneObj => base.SceneObj as GeneratorView;
 
     public string id;
-    public NetworkManager network
-    {
-        get
-        {
-            PowerManager.instance.checkNetwork(this, out NetworkManager result);
-            return result;
-        }
-    }
+
     public float Power { get { return Data.productionRate; } }
     public bool running { get; private set; }
 

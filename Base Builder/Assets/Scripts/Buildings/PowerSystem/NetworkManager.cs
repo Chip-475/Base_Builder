@@ -5,11 +5,18 @@ using UnityEngine;
 public class NetworkManager : MonoBehaviour
 {
     public string id;
-    public List<Building> ConnectedBuildings { get; private set; } = new();
+    public List<Building> ConnectedBuildings { get; private set; } = new List<Building>();
     public float Generation { get; private set; }
     public float Consumption { get; private set; }
     public float Available { get { return Generation - Consumption; } }
     public bool IsNetworkRunning { get { return Generation > 0; } }
+
+    [Header("Runtime Debug")]
+    public int debugBuildings;
+    public int debugPoles;
+    public int debugGenerators;
+    public int debugMachines;
+    public List<GameObject> debugConnectedBuildings = new List<GameObject>();
 
     private Dictionary<Machine, float> machineRequests = new();
 
@@ -29,6 +36,7 @@ public class NetworkManager : MonoBehaviour
 
         machineRequests[machine] = amount;
         Consumption = newConsumption;
+        UpdateDebugInfo();
         return true;
     }
 
@@ -38,6 +46,7 @@ public class NetworkManager : MonoBehaviour
 
         Consumption -= amount;
         machineRequests.Remove(machine);
+        UpdateDebugInfo();
     }
 
     public void RefreshPower()
@@ -48,8 +57,29 @@ public class NetworkManager : MonoBehaviour
                 Generation += generator.Power;
 
         Consumption = 0;
-        foreach (KeyValuePair<Machine, float> request in machineRequests) //KeyValuePair è la tupla chiave/valore contenuta nel dizionario
+        foreach (KeyValuePair<Machine, float> request in machineRequests) //KeyValuePair ï¿½ la tupla chiave/valore contenuta nel dizionario
             Consumption += request.Value;
+
+        UpdateDebugInfo();
+    }
+
+    public void UpdateDebugInfo()
+    {
+        debugBuildings = ConnectedBuildings.Count;
+        debugPoles = 0;
+        debugGenerators = 0;
+        debugMachines = 0;
+        debugConnectedBuildings.Clear();
+
+        foreach (Building building in ConnectedBuildings)
+        {
+            debugConnectedBuildings.Add(building.SceneObj.gameObject);
+            if (building is PowerPole) debugPoles++;
+            else if (building is Generator) debugGenerators++;
+            else if (building is Machine) debugMachines++;
+        }
+
+        if (PowerManager.instance != null) PowerManager.instance.RefreshDebugInfo();
     }
     public void startGenerator(Generator g,float w)
     {
