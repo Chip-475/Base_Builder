@@ -1,8 +1,18 @@
-using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
+
+[System.Serializable]
+public class PowerNetworkDebug
+{
+    public NetworkManager network;
+    public string id;
+    public int buildings;
+    public int poles;
+    public int generators;
+    public int machines;
+    public List<string> connectedBuildings = new();
+}
+
 public class PowerManager : MonoBehaviour
 {
     public static PowerManager instance;
@@ -10,30 +20,145 @@ public class PowerManager : MonoBehaviour
     public static Dictionary<string, PowerPole> powerPolesDB=new();
     public static Dictionary<string,Generator> powerGeneratorDB=new();
     public static List<Machine> machineDB=new();
+
+    [Header("Runtime Debug")]
+    public int networkCount;
+    public int registeredPoles;
+    public int registeredGenerators;
+    public int registeredMachines;
+    public List<PowerNetworkDebug> networksDebug = new();
     private void Awake()
     {
         instance = this;
+        if (powerObj == null) powerObj = gameObject;
+        powerPolesDB.Clear();
+        powerGeneratorDB.Clear();
+        machineDB.Clear();
     }
-    public bool checkNetwork(Building id, out NetworkManager network)
+    public void RegisterBuilding()
     {
-        List<NetworkManager> networks = instance.powerObj.GetComponentsInChildren<NetworkManager>().ToList();
-        network = null;
-        foreach (NetworkManager item in networks)
+        RebuildNetworks();
+    }
+
+    public void UnregisterBuilding()
+    {
+        RebuildNetworks();
+    }
+
+    public bool CheckNetwork(Building building, out NetworkManager network)
+    {
+        network = building?.Network;
+        return network != null;
+    }
+
+    public void RebuildNetworks()
+    {
+
+        List<Building> buildings = new();
+        foreach (PowerPole pole in powerPolesDB.Values)
+            if (!buildings.Contains(pole)) buildings.Add(pole);
+        foreach (Generator generator in powerGeneratorDB.Values)
+            if (!buildings.Contains(generator)) buildings.Add(generator);
+        foreach (Machine machine in machineDB)
+            if (!buildings.Contains(machine)) buildings.Add(machine);
+
+        foreach (NetworkManager network in powerObj.GetComponentsInChildren<NetworkManager>())
         {
-            if (item.ConnectedBuildings.Contains(id))
+            network.gameObject.SetActive(false);
+            Destroy(network.gameObject);
+        }
+        foreach(Building building in buildings)
+        {
+            building.Network = null;
+        }
+        List<Building> alrChecked = new();
+        foreach (Building building in buildings)
+        {
+            if (alrChecked.Contains(building) || building is not PowerPole) continue;
+
+            List<Building> connectedBuildings = GetConnectedBuildings(building, buildings, alrChecked);
+            NetworkManager network = CreateNewNetwork();
+            network.ConnectedBuildings.AddRange(connectedBuildings);
+            foreach (Building connectedBuilding in connectedBuildings) connectedBuilding.Network = network;
+            network.RefreshPower();
+            foreach (Building connectedBuilding in connectedBuildings)
+                if (connectedBuilding is Machine machine && machine.RequestedPower > 0)
+                    machine.RefreshPowerRequest();
+        }
+
+        RefreshDebugInfo();
+    }
+
+    public void RefreshDebugInfo()
+    {
+        registeredPoles = powerPolesDB.Count;
+        registeredGenerators = powerGeneratorDB.Count;
+        registeredMachines = machineDB.Count;
+        networksDebug.Clear();
+
+        foreach (NetworkManager network in powerObj.GetComponentsInChildren<NetworkManager>())
+        {
+            PowerNetworkDebug debug = new()
             {
-                network = item;
-                return true;
+                network = network,
+                id = network.id,
+                buildings = network.ConnectedBuildings.Count
+            };
+
+            foreach (Building building in network.ConnectedBuildings)
+            {
+                debug.connectedBuildings.Add(building.SceneObj.name);
+                if (building is PowerPole) debug.poles++;
+                else if (building is Generator) debug.generators++;
+                else if (building is Machine) debug.machines++;
+            }
+
+            networksDebug.Add(debug);
+        }
+
+        networkCount = networksDebug.Count;
+    }
+
+    [ContextMenu("Print Power Networks")]
+    private void PrintNetworks()
+    {
+        RefreshDebugInfo();
+        foreach (PowerNetworkDebug network in networksDebug)
+            Debug.Log("Network " + network.id + ": " + string.Join(", ", network.connectedBuildings), this);
+    }
+
+    private List<Building> GetConnectedBuildings(Building firstBuilding, List<Building> buildings, List<Building> visited)
+    {
+        List<Building> connectedBuildings = new();
+        List<Building> toCheck = new()
+        {
+            firstBuilding
+        };
+        visited.Add(firstBuilding);
+
+        while (toCheck.Count > 0)
+        {
+            Building currentBuilding = toCheck[0];
+            toCheck.RemoveAt(0);
+            connectedBuildings.Add(currentBuilding);
+
+            foreach (Building otherBuilding in buildings)
+            {
+                if (visited.Contains(otherBuilding) || !CanConnectTo(currentBuilding, otherBuilding)) continue;
+
+                visited.Add(otherBuilding);
+                toCheck.Add(otherBuilding);
             }
         }
-        return false;
+
+        return connectedBuildings;
     }
-    public void CreateNewNetwork()
+
+    public NetworkManager CreateNewNetwork()
     {
-        GameObject network=Instantiate(new GameObject(),powerObj.transform);
-        GameObject poles=Instantiate(new GameObject(),network.transform);
-        GameObject generators=Instantiate(new GameObject(),network.transform);
-        network.AddComponent<NetworkManager>();
+        GameObject networkObject = new("Network");
+        networkObject.transform.SetParent(powerObj.transform);
+        return networkObject.AddComponent<NetworkManager>();
     }
     public static PowerPole GetPowerPoleById(string id)
     {
@@ -43,17 +168,12 @@ public class PowerManager : MonoBehaviour
     {
         return powerGeneratorDB[id];
     }
-    public static bool CanConnectTo( Building a,Building b)
+    public static bool CanConnectTo(Building a, Building b)
     {
-        if(!b.Data.connectsToPower||!a.Data.connectsToPower)return false;
-        Cell[] myCells = a.GetCellsInBounds(a.Data.connectionBounds);
-        Cell[] otherCells = b.GetCellsInBounds(b.Data.connectionBounds);
-
-        foreach (var cell in myCells)
-            foreach (var otherCell in otherCells)
-                if (cell.Coords == otherCell.Coords)
-                    return true;
-
+        if(a == null || b == null) return false;
+        if (a == b) return false;
+        if (a is PowerPole pole) return pole.CanConnectTo(b);
+        if (b is PowerPole otherPole) return otherPole.CanConnectTo(a);
         return false;
     }
 }

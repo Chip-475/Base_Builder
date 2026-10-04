@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
+  m_Name: Ilmenite
+  m_EditorClassIdentifier: Assembly-CSharp::Resources
+  Name: Ilmenite
+  Desc: 
+  Sprite: {fileID: -7145637106179080608, guid: daec819c06c08e94a9465783f11d856f, type: 3}
+  toughness: 1
+  weightPerUnit: 5
+  energyPerUnit: 10

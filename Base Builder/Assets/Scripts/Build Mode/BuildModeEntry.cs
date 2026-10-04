@@ -7,7 +7,7 @@ public class BuildModeEntry : MonoBehaviour
     [SerializeField] Button button;
     public Sprite icon;
 
-    public BuildingView building;
+    public BuildingView buildingPrefab;
 
     private void Awake()
     {
@@ -17,7 +17,13 @@ public class BuildModeEntry : MonoBehaviour
 
     public void OnClick()
     {
-        //BuildMode.Instance.SetSelectedObject(this);
+        if (buildingPrefab == null || buildingPrefab.Data == null)
+        {
+            Debug.LogError($"Build mode entry '{name}' has no valid building prefab assigned.", this);
+            return;
+        }
+
+        BuildMode.Instance.SetSelectedEntry(this);
         //to add:selected object sprite sparkle effect
     }
 }

@@ -1,84 +1,136 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 using System.Collections.Generic;
 
 public class BuildMode : MonoBehaviour
 {
-    //public static BuildMode Instance {  get; private set; }
-    //public static bool IsActive => Instance.panel.activeSelf;
+    public static BuildMode Instance { get; private set; }
+    public static bool IsActive => Instance.panel.activeSelf;
 
-    //[Header("Setup")]
-    //[SerializeField] GameObject panel;
-    //[SerializeField] Button toggleButton;
+    [Header("Setup")]
+    [SerializeField] GameObject panel;
+    [SerializeField] GameObject content;
+    [SerializeField] Button toggleButton;
+    [Space]
+    [SerializeField] Button machineSort;
+    [SerializeField] Button miningSort;
+    [SerializeField] Button storageSort;
+    [SerializeField] Button powerSort;
+    [Space]
+    [SerializeField] Button destroyMode;
 
-    //public List<BuildingView> buildableObjects = new();
-    //public BuildModeEntry SelectedObject { get; private set; }
-    
-    //private void Awake()
-    //{
-    //    Instance = this;
-    //    toggleButton.onClick.AddListener(() => Toggle());
-    //}
-    //private void Start()
-    //{
-    //    panel.SetActive(false);
-    //}
+    List<BuildModeEntry> allEntries = new();
+    public BuildModeEntry SelectedEntry { get; private set; }
+    SpriteRenderer buildingPreview;
 
-    //public void Toggle()
-    //{
-    //    Debug.Log("Toggle");
-    //    panel.SetActive(!IsActive);
+    private void Awake()
+    {
+        Instance = this;
 
-    //    if (IsActive) Enable();
-    //    else Disable();
-    //}
-    //void Enable()
-    //{
-    //    panel.SetActive(true);
+        toggleButton.onClick.AddListener(() => { Toggle(); SortBy(BuildingType.Machine); });
+        machineSort.onClick.AddListener(() => SortBy(BuildingType.Machine));
+        miningSort.onClick.AddListener(() => SortBy(BuildingType.Mining));
+        powerSort.onClick.AddListener(() => SortBy(BuildingType.Power));
+        storageSort.onClick.AddListener(() => SortBy(BuildingType.Storage));
+        destroyMode.onClick.AddListener(() => SortBy(BuildingType.None));
+        InitPreview();
+        buildingPreview.enabled = false;
+    }
+    private void Start()
+    {
+        panel.SetActive(false);
+        allEntries = content.GetComponentsInChildren<BuildModeEntry>().ToList();
+    }
 
-    //    PlayerManager.Inputs.BuildMode.Enable();
-    //    PlayerManager.Inputs.BuildMode.MouseMoved.performed += (_) => OnHover();
-    //    PlayerManager.Inputs.BuildMode.LeftClick.performed += (_) => Build();
-    //}
-    //void Disable()
-    //{
-    //    panel.SetActive(false);
+    public void Toggle()
+    {
+        Debug.Log("Toggle");
+        panel.SetActive(!IsActive);
 
-    //    PlayerManager.Inputs.BuildMode.Disable();
-    //    PlayerManager.Inputs.BuildMode.MouseMoved.performed -= (_) => OnHover();
-    //    PlayerManager.Inputs.BuildMode.LeftClick.performed -= (_) => Build();
-    //}
+        if (IsActive) Enable();
+        else Disable();
+    }
+    void Enable()
+    {
+        panel.SetActive(true);
+        buildingPreview.enabled = true;
 
-    //void OnHover()
-    //{
-    //    // Hover logic
-    //}
-    //void Build()
-    //{
-    //    if (SelectedObject == null)
-    //        return;
+        PlayerManager.Inputs.BuildMode.Enable();
+        PlayerManager.Inputs.BuildMode.MouseMoved.performed += (_) => Hover();
+        PlayerManager.Inputs.BuildMode.LeftClick.performed += (_) => Build();
+        PlayerManager.Inputs.BuildMode.RightClick.performed += (_) =>
+        {
+            SetSelectedEntry(null);
+            buildingPreview.sprite = null;
+        };
+    }
+    void Disable()
+    {
+        panel.SetActive(false);
+        buildingPreview.enabled = false;
 
-    //    var mousePos = Helpers.GetMouseWorldPosition();
-    //    var bounds = SelectedObject.building.Building.GetBounds();
-    //    bounds.center = mousePos.ToVector3Int();
-    //    if (!CanBuildOn(SelectedObject.building.Building.GetCellsInBounds(bounds)))
-    //        return;
+        PlayerManager.Inputs.BuildMode.Disable();
+        PlayerManager.Inputs.BuildMode.MouseMoved.performed -= (_) => Hover();
+        PlayerManager.Inputs.BuildMode.LeftClick.performed -= (_) => Build();
+        PlayerManager.Inputs.BuildMode.RightClick.performed -= (_) =>
+        {
+            SetSelectedEntry(null);
+            buildingPreview.sprite = null;
+        };
+    }
 
-    //    var obj = Instantiate(SelectedObject.building);
-    //    obj.Building.SetPosition(WorldManager.World.GetCellAt(Helpers.GetMouseWorldPosition().ToVector3Int()));
+    void Hover()
+    {
+        Vector3Int mouseGridPos = Helpers.GetMouseWorldPosition().ToVector3Int();
+        if (SelectedEntry == null || Helpers.IsMouseOverUI())
+        {
+            buildingPreview.sprite = null;
+            return;
+        }
+        else
+            buildingPreview.sprite = SelectedEntry.buildingPrefab.Data.sprite;
+        buildingPreview.transform.position = mouseGridPos;
 
-    //    SetSelectedObject(null);
-    //}
+        if (SelectedEntry.buildingPrefab.CanBuildOn(mouseGridPos))
+            buildingPreview.color = Color.green;
+        else
+            buildingPreview.color = Color.red;
+    }
+    void Build()
+    {
+        Vector3Int mouseGridPos = Helpers.GetMouseWorldPosition().ToVector3Int();
+        if (SelectedEntry == null || Helpers.IsMouseOverUI())
+            return;
+        if (!SelectedEntry.buildingPrefab.CanBuildOn(mouseGridPos))
+            return;
 
-    //public void SetSelectedObject(BuildModeEntry obj)
-    //{
-    //    SelectedObject = obj;
-    //}
-    //public static bool CanBuildOn(Cell[] cells)
-    //{
-    //    foreach (var cell in cells)
-    //        if (!cell.canBuildOn) return false;
+        Instantiate(SelectedEntry.buildingPrefab, mouseGridPos, Quaternion.identity);
+    }
 
-    //    return true;
-    //}
+    void InitPreview()
+    {
+        GameObject go = new();
+        buildingPreview = go.AddComponent<SpriteRenderer>();
+    }
+    public void SetSelectedEntry(BuildModeEntry obj)
+    {
+        SelectedEntry = obj;
+    }
+    public void SortBy(BuildingType type)
+    {
+        List<BuildModeEntry> entries = new(allEntries);
+        List<BuildModeEntry> requestedEntries = new();
+        foreach (var entry in entries)
+            if (entry.buildingPrefab.Data.type == type)
+                requestedEntries.Add(entry);
+        
+        foreach (var entry in entries)
+            entry.gameObject.SetActive(false);
+        foreach (var entry in requestedEntries)
+            entry.gameObject.SetActive(true);
+
+        for (int i = 0; i < requestedEntries.Count; i++)
+            requestedEntries[i].gameObject.transform.SetSiblingIndex(i);
+    }
 }

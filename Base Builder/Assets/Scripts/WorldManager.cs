@@ -3,6 +3,7 @@ using UnityEngine.Tilemaps;
 using System;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
+using Unity.VisualScripting;
 
 public class WorldManager : MonoBehaviour
 {
@@ -33,5 +34,10 @@ public class WorldManager : MonoBehaviour
         mousePos.z = 0;
 
         return World.GetCellAt(mousePos.ToVector3Int());
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(world.WorldBounds.center, world.WorldBounds.size);
     }
 }

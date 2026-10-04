@@ -1,24 +1,25 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 #pragma warning disable
 public class Tester : MonoBehaviour
 {
     public static Tester Instance { get; private set; }
 
-    public List<Machine> machines = new();
+    public Vector3Int coords;
 
     private void Awake()
     {
         Instance = this;
     }
 
-    [ContextMenu("Print")]
-    public void PrintMachines()
+    [ContextMenu("Test")]
+    public void WorldDatabaseTest()
     {
-        foreach(var machine in machines)
-        {
-            Debug.Log(machine.SceneObj.GetType().ToString());
-        }
+        if (WorldManager.World.Buildings[coords] is Machine)
+            Debug.Log(true);
+        else
+            Debug.Log(false);
     }
 }

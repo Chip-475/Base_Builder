@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Gold
   m_EditorClassIdentifier: Assembly-CSharp::Resources
-  <ID>k__BackingField: gold
-  r_name: Gold
-  r_desc: Extremely conductive metal.
-  r_sprite: {fileID: 0}
+  Name: 
+  Desc: 
+  Sprite: {fileID: -3367283026572634431, guid: 138bf3f6c150cbe41a3efa7532389e5c, type: 3}
   toughness: 1
   weightPerUnit: 3
   energyPerUnit: 0

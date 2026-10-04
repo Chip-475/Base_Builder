@@ -1,8 +1,9 @@
-using UnityEngine;
-using UnityEngine.InputSystem;
 using System;
-using Cysharp.Threading.Tasks;
-using System.Threading.Tasks;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public static class Helpers
 {
@@ -24,6 +25,16 @@ public static class Helpers
         int Z = Mathf.RoundToInt(vec.z);
         return new Vector3Int(X, Y, Z);
     }
+    public static Vector3Int[] GetNeighbours(this Vector3Int vec)
+    {
+        return new Vector3Int[]
+        {
+            new(vec.x, vec.y + 1, 0),
+            new(vec.x + 1, vec.y, 0),
+            new(vec.x, vec.y - 1, 0),
+            new(vec.x - 1, vec.y, 0)
+        };
+    }
     #endregion
     #region Cell Helpers
     public static bool Overlaps(this Cell[] a, Cell[] b)
@@ -33,6 +44,23 @@ public static class Helpers
                 if (other == other2) return true;
 
         return false;
+    }
+    public static Cell[] GetCellsInBounds(Bounds bounds)
+    {
+        int minX = Mathf.CeilToInt(bounds.min.x);
+        int maxX = Mathf.FloorToInt(bounds.max.x);
+        int minY = Mathf.CeilToInt(bounds.min.y);
+        int maxY = Mathf.FloorToInt(bounds.max.y);
+
+        List<Cell> cells = new();
+        for (int x = minX; x <= maxX; x++)
+            for (int y = minY; y <= maxY; y++)
+            {
+                Cell cell = WorldManager.World.GetCellAt(new Vector3Int(x, y, 0));
+                cells.Add(cell);
+            }
+
+        return cells.ToArray();
     }
     #endregion
     #region Direction Helpers
@@ -69,7 +97,26 @@ public static class Helpers
     }
     #endregion
 
-    #region Miscellaneous
+    #region Building Helpers
+    public static bool CanBuildOn(this BuildingView prefab, Vector3Int gridPos)
+    {
+        if (prefab == null || prefab.Data == null)
+            return false;
+
+        if (WorldManager.Instance == null || WorldManager.World == null)
+            return false;
+
+        Bounds bounds = prefab.Data.bounds;
+        bounds.center = gridPos;
+
+        foreach (Cell cell in GetCellsInBounds(bounds))
+            if (cell == null || !cell.canBuildOn) return false;
+
+        return true;
+    }
+    #endregion
+
+    #region Mouse Helpers
     public static Vector3 GetMousePosition()
     {
         return Mouse.current.position.ReadValue();
@@ -80,6 +127,20 @@ public static class Helpers
         pos.z = 0;
         return pos;
     }
+    public static bool IsMouseOverUI()
+    {
+        PointerEventData pointer =
+            new(EventSystem.current)
+            {
+                position = Mouse.current.position.ReadValue()
+            };
+
+        List<RaycastResult> results = new();
+        EventSystem.current.RaycastAll(pointer, results);
+
+        return results.Exists(result =>
+            result.module is GraphicRaycaster);
+    }
     #endregion
 }
 public enum Directions
@@ -88,5 +149,5 @@ public enum Directions
     Up,
     Right,
     Down,
-    Left
+    Left,
 }
