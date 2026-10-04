@@ -93,7 +93,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             ""id"": ""df70fa95-8a34-4494-b137-73ab6b9c7d37"",
             ""actions"": [
                 {
-                    ""name"": ""LeftClick"",
+                    ""name"": ""Left Click"",
                     ""type"": ""Button"",
                     ""id"": ""cfdff41f-bbd7-4c65-aea6-801d24b15c67"",
                     ""expectedControlType"": """",
@@ -103,7 +103,17 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""priority"": 0
                 },
                 {
-                    ""name"": ""CameraMovement"",
+                    ""name"": ""Middle Click"",
+                    ""type"": ""Button"",
+                    ""id"": ""47e279da-bf41-4cbd-beb5-c03c94f0cd17"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
+                },
+                {
+                    ""name"": ""WASD"",
                     ""type"": ""Value"",
                     ""id"": ""13128bbe-34e6-407c-8ba8-3c31ab6911cd"",
                     ""expectedControlType"": ""Vector2"",
@@ -141,7 +151,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""LeftClick"",
+                    ""action"": ""Left Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -152,7 +162,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CameraMovement"",
+                    ""action"": ""WASD"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -163,7 +173,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CameraMovement"",
+                    ""action"": ""WASD"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -174,7 +184,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CameraMovement"",
+                    ""action"": ""WASD"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -185,7 +195,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CameraMovement"",
+                    ""action"": ""WASD"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -196,7 +206,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CameraMovement"",
+                    ""action"": ""WASD"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -207,7 +217,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CameraMovement"",
+                    ""action"": ""WASD"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -218,7 +228,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CameraMovement"",
+                    ""action"": ""WASD"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -229,7 +239,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CameraMovement"",
+                    ""action"": ""WASD"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -240,7 +250,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CameraMovement"",
+                    ""action"": ""WASD"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -251,7 +261,7 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""CameraMovement"",
+                    ""action"": ""WASD"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -318,6 +328,17 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Delta"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d5a6d4f7-2fd5-40af-99c5-5ae6d7360bb0"",
+                    ""path"": ""<Mouse>/middleButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Middle Click"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -489,8 +510,9 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
 }");
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
-        m_Camera_LeftClick = m_Camera.FindAction("LeftClick", throwIfNotFound: true);
-        m_Camera_CameraMovement = m_Camera.FindAction("CameraMovement", throwIfNotFound: true);
+        m_Camera_LeftClick = m_Camera.FindAction("Left Click", throwIfNotFound: true);
+        m_Camera_MiddleClick = m_Camera.FindAction("Middle Click", throwIfNotFound: true);
+        m_Camera_WASD = m_Camera.FindAction("WASD", throwIfNotFound: true);
         m_Camera_Scroll = m_Camera.FindAction("Scroll", throwIfNotFound: true);
         m_Camera_Delta = m_Camera.FindAction("Delta", throwIfNotFound: true);
         // Build Mode
@@ -584,7 +606,8 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Camera;
     private List<ICameraActions> m_CameraActionsCallbackInterfaces = new List<ICameraActions>();
     private readonly InputAction m_Camera_LeftClick;
-    private readonly InputAction m_Camera_CameraMovement;
+    private readonly InputAction m_Camera_MiddleClick;
+    private readonly InputAction m_Camera_WASD;
     private readonly InputAction m_Camera_Scroll;
     private readonly InputAction m_Camera_Delta;
     /// <summary>
@@ -603,9 +626,13 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @LeftClick => m_Wrapper.m_Camera_LeftClick;
         /// <summary>
-        /// Provides access to the underlying input action "Camera/CameraMovement".
+        /// Provides access to the underlying input action "Camera/MiddleClick".
         /// </summary>
-        public InputAction @CameraMovement => m_Wrapper.m_Camera_CameraMovement;
+        public InputAction @MiddleClick => m_Wrapper.m_Camera_MiddleClick;
+        /// <summary>
+        /// Provides access to the underlying input action "Camera/WASD".
+        /// </summary>
+        public InputAction @WASD => m_Wrapper.m_Camera_WASD;
         /// <summary>
         /// Provides access to the underlying input action "Camera/Scroll".
         /// </summary>
@@ -643,9 +670,12 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @LeftClick.started += instance.OnLeftClick;
             @LeftClick.performed += instance.OnLeftClick;
             @LeftClick.canceled += instance.OnLeftClick;
-            @CameraMovement.started += instance.OnCameraMovement;
-            @CameraMovement.performed += instance.OnCameraMovement;
-            @CameraMovement.canceled += instance.OnCameraMovement;
+            @MiddleClick.started += instance.OnMiddleClick;
+            @MiddleClick.performed += instance.OnMiddleClick;
+            @MiddleClick.canceled += instance.OnMiddleClick;
+            @WASD.started += instance.OnWASD;
+            @WASD.performed += instance.OnWASD;
+            @WASD.canceled += instance.OnWASD;
             @Scroll.started += instance.OnScroll;
             @Scroll.performed += instance.OnScroll;
             @Scroll.canceled += instance.OnScroll;
@@ -666,9 +696,12 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
             @LeftClick.started -= instance.OnLeftClick;
             @LeftClick.performed -= instance.OnLeftClick;
             @LeftClick.canceled -= instance.OnLeftClick;
-            @CameraMovement.started -= instance.OnCameraMovement;
-            @CameraMovement.performed -= instance.OnCameraMovement;
-            @CameraMovement.canceled -= instance.OnCameraMovement;
+            @MiddleClick.started -= instance.OnMiddleClick;
+            @MiddleClick.performed -= instance.OnMiddleClick;
+            @MiddleClick.canceled -= instance.OnMiddleClick;
+            @WASD.started -= instance.OnWASD;
+            @WASD.performed -= instance.OnWASD;
+            @WASD.canceled -= instance.OnWASD;
             @Scroll.started -= instance.OnScroll;
             @Scroll.performed -= instance.OnScroll;
             @Scroll.canceled -= instance.OnScroll;
@@ -995,19 +1028,26 @@ public partial class @PlayerInputs: IInputActionCollection2, IDisposable
     public interface ICameraActions
     {
         /// <summary>
-        /// Method invoked when associated input action "LeftClick" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Left Click" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnLeftClick(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "CameraMovement" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "Middle Click" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnCameraMovement(InputAction.CallbackContext context);
+        void OnMiddleClick(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "WASD" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnWASD(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "Scroll" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

@@ -11,6 +11,11 @@ public class MineralNode : Building
         //ogni node ha quanto ti da di base di una risorsa e una purezza amount*purezza(int)
         //avere una funzione che torna risorsa data e quantità data
     }
+    public override void Destroy()
+    {
+        WorldManager.World.UnregisterBuilding(Coords);
+        MonoBehaviour.Destroy(SceneObj);
+    }
 
     public (ResourceSO resource, int quantity) MineResource()
     {
@@ -18,10 +23,5 @@ public class MineralNode : Building
         ResourceSO type = Data.resource;
         int mineralQuantity = Data.baseAmountGiven * (int)Data.purity;
         return (type, mineralQuantity);
-    }
-
-    public override void Destroy()
-    {
-        throw new System.NotImplementedException();
     }
 }

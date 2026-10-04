@@ -28,7 +28,7 @@ public class CameraMovement : MonoBehaviour
     {
         Vector3 lastPos = transform.position;
 
-        if (!PlayerManager.Inputs.Camera.LeftClick.IsInProgress())
+        if (!PlayerManager.Inputs.Camera.MiddleClick.IsInProgress())
             return;
         
         Vector3 delta = context.ReadValue<Vector2>();

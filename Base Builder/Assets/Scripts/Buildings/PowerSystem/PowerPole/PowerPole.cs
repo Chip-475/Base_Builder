@@ -12,20 +12,20 @@ public class PowerPole : Building
         poleId = Guid.NewGuid().ToString();
         PowerManager.powerPolesDB[poleId] = this;
         PowerManager.instance.RegisterBuilding();
-        Debug.Log(sceneObj.transform.position);
+    }
+    public override void Destroy()
+    {
+        PowerManager.powerPolesDB.Remove(poleId);
+        PowerManager.instance.UnregisterBuilding();
+        WorldManager.World.UnregisterBuilding(Coords);
+        MonoBehaviour.Destroy(SceneObj.gameObject);
     }
 
     public bool CanConnectTo(Building other)
     {
         if (other == null) return false;
 
-        Bounds connectionBounds = new Bounds(SceneObj.transform.position, new Vector3(Data.range * 2, Data.range * 2, 0));
-        return connectionBounds.Intersects(other.GetWorldBounds());
-    }
-    public override void Destroy()
-    {
-        PowerManager.powerPolesDB.Remove(poleId);
-        PowerManager.instance.UnregisterBuilding();
-        MonoBehaviour.Destroy(SceneObj.gameObject);
+        Bounds connectionBounds = new(SceneObj.transform.position, new Vector3(Data.range * 2, Data.range * 2, 0));
+        return connectionBounds.Intersects(other.GetConnectionBounds());
     }
 }

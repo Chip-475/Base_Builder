@@ -45,9 +45,9 @@ public class PowerManager : MonoBehaviour
         RebuildNetworks();
     }
 
-    public bool checkNetwork(Building building, out NetworkManager network)
+    public bool CheckNetwork(Building building, out NetworkManager network)
     {
-        network = building == null ? null : building.network;
+        network = building?.Network;
         return network != null;
     }
 
@@ -69,20 +69,20 @@ public class PowerManager : MonoBehaviour
         }
         foreach(Building building in buildings)
         {
-            building.network = null;
+            building.Network = null;
         }
         List<Building> alrChecked = new();
         foreach (Building building in buildings)
         {
-            if (alrChecked.Contains(building) || !(building is PowerPole)) continue;
+            if (alrChecked.Contains(building) || building is not PowerPole) continue;
 
             List<Building> connectedBuildings = GetConnectedBuildings(building, buildings, alrChecked);
             NetworkManager network = CreateNewNetwork();
             network.ConnectedBuildings.AddRange(connectedBuildings);
-            foreach (Building connectedBuilding in connectedBuildings) connectedBuilding.network = network;
+            foreach (Building connectedBuilding in connectedBuildings) connectedBuilding.Network = network;
             network.RefreshPower();
             foreach (Building connectedBuilding in connectedBuildings)
-                if (connectedBuilding is Machine machine && machine.requestedPower > 0)
+                if (connectedBuilding is Machine machine && machine.RequestedPower > 0)
                     machine.RefreshPowerRequest();
         }
 
@@ -98,10 +98,12 @@ public class PowerManager : MonoBehaviour
 
         foreach (NetworkManager network in powerObj.GetComponentsInChildren<NetworkManager>())
         {
-            PowerNetworkDebug debug = new();
-            debug.network = network;
-            debug.id = network.id;
-            debug.buildings = network.ConnectedBuildings.Count;
+            PowerNetworkDebug debug = new()
+            {
+                network = network,
+                id = network.id,
+                buildings = network.ConnectedBuildings.Count
+            };
 
             foreach (Building building in network.ConnectedBuildings)
             {
@@ -128,8 +130,10 @@ public class PowerManager : MonoBehaviour
     private List<Building> GetConnectedBuildings(Building firstBuilding, List<Building> buildings, List<Building> visited)
     {
         List<Building> connectedBuildings = new();
-        List<Building> toCheck = new();
-        toCheck.Add(firstBuilding);
+        List<Building> toCheck = new()
+        {
+            firstBuilding
+        };
         visited.Add(firstBuilding);
 
         while (toCheck.Count > 0)
@@ -152,7 +156,7 @@ public class PowerManager : MonoBehaviour
 
     public NetworkManager CreateNewNetwork()
     {
-        GameObject networkObject = new GameObject("Network");
+        GameObject networkObject = new("Network");
         networkObject.transform.SetParent(powerObj.transform);
         return networkObject.AddComponent<NetworkManager>();
     }

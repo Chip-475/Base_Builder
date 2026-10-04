@@ -5,27 +5,36 @@ public abstract class Building
 {
     public BuildingData Data { get; private set; }
     public BuildingView SceneObj { get; private set; }
-    public NetworkManager network;
+
     public Vector3Int Coords => SceneObj.transform.position.ToVector3Int();
-	
+    public Bounds Bounds { get; private set; }
+    public Bounds ConnectionBounds { get; private set; }
+    public NetworkManager Network
+    {
+        get
+        {
+            PowerManager.instance.CheckNetwork(this, out NetworkManager result);
+            return result;
+        }
+        set { }
+    }
+
     public Building(BuildingData data, BuildingView sceneObj)
     {
         Data = data;
         SceneObj = sceneObj;
 
-        UpdateCells(GetCellsInBounds(GetWorldBounds()));
+        WorldManager.World.RegisterBuilding(this, Coords);
+        Bounds = new(Coords, Data.bounds.size);
+        ConnectionBounds = new(Coords, Data.connectionBounds.size);
+        UpdateCells(GetCellsInBounds(GetBounds()));
         PowerManager.instance.RegisterBuilding();
     }
-
+    public abstract void Destroy();
 
     // Getters - Setters
-    public Bounds GetBounds() { return GetWorldBounds(); }
-    public Bounds GetWorldBounds()
-    {
-        Bounds bounds = Data.bounds;
-        bounds.center += SceneObj.transform.position;
-        return bounds;
-    }
+    public Bounds GetBounds() { return Bounds; }
+    public Bounds GetConnectionBounds() { return ConnectionBounds; }
     public Cell[] GetCellsInBounds(Bounds bounds)
     {
         int minX = Mathf.CeilToInt(bounds.min.x);
@@ -61,6 +70,4 @@ public abstract class Building
             cell.canBuildOn = true;
         }
     }
-
-    public abstract void Destroy();
 }

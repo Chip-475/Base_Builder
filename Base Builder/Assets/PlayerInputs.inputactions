@@ -7,7 +7,7 @@
             "id": "df70fa95-8a34-4494-b137-73ab6b9c7d37",
             "actions": [
                 {
-                    "name": "LeftClick",
+                    "name": "Left Click",
                     "type": "Button",
                     "id": "cfdff41f-bbd7-4c65-aea6-801d24b15c67",
                     "expectedControlType": "",
@@ -17,7 +17,17 @@
                     "priority": 0
                 },
                 {
-                    "name": "CameraMovement",
+                    "name": "Middle Click",
+                    "type": "Button",
+                    "id": "47e279da-bf41-4cbd-beb5-c03c94f0cd17",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "WASD",
                     "type": "Value",
                     "id": "13128bbe-34e6-407c-8ba8-3c31ab6911cd",
                     "expectedControlType": "Vector2",
@@ -55,7 +65,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "LeftClick",
+                    "action": "Left Click",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -66,7 +76,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CameraMovement",
+                    "action": "WASD",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -77,7 +87,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CameraMovement",
+                    "action": "WASD",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -88,7 +98,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CameraMovement",
+                    "action": "WASD",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -99,7 +109,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CameraMovement",
+                    "action": "WASD",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -110,7 +120,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CameraMovement",
+                    "action": "WASD",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -121,7 +131,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CameraMovement",
+                    "action": "WASD",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -132,7 +142,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CameraMovement",
+                    "action": "WASD",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -143,7 +153,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CameraMovement",
+                    "action": "WASD",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -154,7 +164,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CameraMovement",
+                    "action": "WASD",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -165,7 +175,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "CameraMovement",
+                    "action": "WASD",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -232,6 +242,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Delta",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d5a6d4f7-2fd5-40af-99c5-5ae6d7360bb0",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Middle Click",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
