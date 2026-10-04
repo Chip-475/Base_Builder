@@ -1,17 +1,11 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Machine : Building
 {
     public new MachineData Data => base.Data as MachineData;
     public new MachineView SceneObj => base.SceneObj as MachineView;
 
-    public Machine(MachineData data, MachineView sceneObj) : base(data, sceneObj)
-    {
-        
-    }
-    public override void Destroy()
-    {
-        FreeUpCells(GetCellsInBounds(Data.bounds));
     public bool isPowered { get; private set; }
     public float requestedPower { get; private set; }
     public NetworkManager network
@@ -22,12 +16,18 @@ public class Machine : Building
             return result;
         }
     }
+
     public Machine(MachineData data, MachineView sceneObj) : base(data, sceneObj)
     {
         PowerManager.machineDB.Add(this);
-        if (Tester.Instance != null) Tester.Instance.machines.Add(this);
         PowerManager.instance.RegisterBuilding();
     }
+    public override void Destroy()
+    {
+        FreeUpCells(GetCellsInBounds(Data.bounds));
+        MonoBehaviour.Destroy(SceneObj);
+    }
+
     public bool RequestPower(float amount)
     {
         NetworkManager currentNetwork = network;
@@ -57,13 +57,5 @@ public class Machine : Building
     public void RefreshPowerRequest()
     {
         RequestPower(requestedPower);
-    }
-    public override void Destroy()
-    {
-        StopPowerRequest();
-        PowerManager.machineDB.Remove(this);
-        if (Tester.Instance != null) Tester.Instance.machines.Remove(this);
-        PowerManager.instance.UnregisterBuilding();
-        MonoBehaviour.Destroy(SceneObj.gameObject);
     }
 }

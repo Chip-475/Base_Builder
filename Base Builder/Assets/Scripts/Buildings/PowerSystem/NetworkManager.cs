@@ -5,9 +5,9 @@ using UnityEngine;
 public class NetworkManager : MonoBehaviour
 {
     public string id;
-    [field:SerializeField]public List<Building> ConnectedBuildings { get; private set; } = new();
-    [field: SerializeField] public float Generation { get; private set; }
-    [field: SerializeField] public float Consumption { get; private set; }
+    public List<Building> ConnectedBuildings { get; private set; } = new();
+    public float Generation { get; private set; }
+    public float Consumption { get; private set; }
     public float Available { get { return Generation - Consumption; } }
     public bool IsNetworkRunning { get { return Generation > 0; } }
 

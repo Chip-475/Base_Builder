@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks.Triggers;
+using Unity.VisualScripting;
+using System.Linq;
 
 public class BuildMode : MonoBehaviour
 {
@@ -10,8 +12,15 @@ public class BuildMode : MonoBehaviour
 
     [Header("Setup")]
     [SerializeField] GameObject panel;
+    [SerializeField] GameObject content;
     [SerializeField] Button toggleButton;
+    [Space]
+    [SerializeField] Button machineSort;
+    [SerializeField] Button miningSort;
+    [SerializeField] Button storageSort;
+    [SerializeField] Button powerSort;
 
+    List<BuildModeEntry> allEntries = new();
     public BuildModeEntry SelectedEntry { get; private set; }
     SpriteRenderer buildingPreview;
 
@@ -19,13 +28,18 @@ public class BuildMode : MonoBehaviour
     {
         Instance = this;
 
-        toggleButton.onClick.AddListener(() => Toggle());
+        toggleButton.onClick.AddListener(() => { Toggle(); SortBy(BuildingType.Machine); });
+        machineSort.onClick.AddListener(() => SortBy(BuildingType.Machine));
+        miningSort.onClick.AddListener(() => SortBy(BuildingType.Mining));
+        powerSort.onClick.AddListener(() => SortBy(BuildingType.Power));
+        storageSort.onClick.AddListener(() => SortBy(BuildingType.Storage));
         InitPreview();
         buildingPreview.enabled = false;
     }
     private void Start()
     {
         panel.SetActive(false);
+        allEntries = content.GetComponentsInChildren<BuildModeEntry>().ToList();
     }
 
     public void Toggle()
@@ -101,5 +115,21 @@ public class BuildMode : MonoBehaviour
     public void SetSelectedEntry(BuildModeEntry obj)
     {
         SelectedEntry = obj;
+    }
+    public void SortBy(BuildingType type)
+    {
+        List<BuildModeEntry> entries = new(allEntries);
+        List<BuildModeEntry> requestedEntries = new();
+        foreach (var entry in entries)
+            if (entry.buildingPrefab.Data.type == type)
+                requestedEntries.Add(entry);
+        
+        foreach (var entry in entries)
+            entry.gameObject.SetActive(false);
+        foreach (var entry in requestedEntries)
+            entry.gameObject.SetActive(true);
+
+        for (int i = 0; i < requestedEntries.Count; i++)
+            requestedEntries[i].gameObject.transform.SetSiblingIndex(i);
     }
 }
