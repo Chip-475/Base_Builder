@@ -18,21 +18,37 @@ public class CameraMovement : MonoBehaviour
     private Vector3Int topLeft { get { return cam.ViewportToWorldPoint(new Vector3(0, 1, 0)).ToVector3Int() + new Vector3Int(0, 0, 10) ; } }
     private Vector3Int bottomRight { get { return cam.ViewportToWorldPoint(new Vector3(1, 0, 0)).ToVector3Int() + new Vector3Int(0, 0, 10); } }
     private Vector3Int topRight { get { return cam.ViewportToWorldPoint(new Vector3(1, 1, 0)).ToVector3Int() + new Vector3Int(0, 0, 10) ; } }
+
+    private Bounds cameraBounds = new Bounds();
     
-    void Start()
-    {
-        cam = GetComponent<Camera>();
-        PlayerManager.Inputs.CameraDrag.Delta.performed += CameraMove;
-    }
     void Update()
     {
         HandleMovement();
         HandleZoom();
     }
+    private void Awake()
+    {
+        cam = GetComponent<Camera>();
+        PlayerManager.Inputs.CameraDrag.Delta.performed += CameraMove;
+    }
+    private void FixedUpdate()
+    {
+        cameraBounds.center = transform.position + new Vector3(0, 0, 10);
+        cameraBounds.size = new Vector3(cam.orthographicSize * 2 * cam.aspect, cam.orthographicSize * 2, 0);
+    }
+    private void OnDrawGizmos()
+    {
+        if (cam == null) return;
+        cameraBounds.center = transform.position+new Vector3(0,0,10);
+        cameraBounds.size = new Vector3(cam.orthographicSize * 2 * cam.aspect, cam.orthographicSize * 2, 0);
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(cameraBounds.center, cameraBounds.size);
+    }
     private void HandleMovement()
     {
         float moveX = direction.x;
         float moveY = direction.y;
+        if (cameraBounds.Intersects(WorldManager.World.WorldBounds)) { Debug.Log("intersect"); return; }
         Vector3 move = new Vector3(moveX, moveY, 0) * moveSpeed * Time.deltaTime;
         Directions dir;
         if(move.x>0&& move.y>0) dir = Directions.UpRight;
@@ -75,9 +91,12 @@ public class CameraMovement : MonoBehaviour
     }
     private void CameraMove(InputAction.CallbackContext context)
     {
-        Vector2 d= context.ReadValue<Vector2>();
+        if (!PlayerManager.Inputs.CameraDrag.LeftClick.IsInProgress()) return;
+        if (!cameraBounds.Intersects(WorldManager.World.WorldBounds)) { Debug.Log("intersect"); return; }
+        else {Debug.Log("not intersect");}
+        Vector2 d = context.ReadValue<Vector2>();
         Vector3 delta = new Vector3(d.x, d.y, 0);
-        transform.position -= delta*0.1f;
+        transform.position -= delta*0.05f;
     }
     /*private void HandleMovementWithMouse()
     {
