@@ -11174,7 +11174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraMovement
   camera: {fileID: 1421899055}
-  moveSpeed: 5
+  moveSpeed: 0.04
   zoomSpeed: 2
   minZoom: 2
   maxZoom: 10

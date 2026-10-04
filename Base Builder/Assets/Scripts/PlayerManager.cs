@@ -11,7 +11,7 @@ public class PlayerManager : MonoBehaviour
         Instance = this;
         Inputs = new();
 
-        Inputs.CameraDrag.LeftClick.performed += (input) => CheckForClick();
+        Inputs.Testing.LeftClick.performed += (_) => CheckForClick();
     }
 
     void CheckForClick()

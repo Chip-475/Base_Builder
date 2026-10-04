@@ -1,48 +1,38 @@
-using System.IO;
 using UnityEngine;
-using UnityEngine.Animations;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
-using UnityEngine.Rendering;
-using UnityEngine.Windows;
 
 public class CameraMovement : MonoBehaviour
 {
     [Header("Config")]
     [SerializeField] Camera camera;
     [Space]
-    [SerializeField] float moveSpeed = 5f;
-    [SerializeField] float zoomSpeed = 2f;
+    [SerializeField][Tooltip("0.04f for normal speed.")] float moveSpeed = 0.04f;
+    [SerializeField][Tooltip("2f for normal speed.")] float zoomSpeed = 2f;
     [SerializeField] float minZoom = 2f;
     [SerializeField] float maxZoom = 10f;
 
-    Bounds cameraBounds = new();
-    Vector3 lastPos;
+    Bounds cameraBounds;
     
     private void Awake()
     {
-        PlayerManager.Inputs.CameraDrag.Enable();
-        PlayerManager.Inputs.CameraDrag.Delta.performed += Move;
+        PlayerManager.Inputs.Camera.Enable();
+        PlayerManager.Inputs.Camera.Delta.performed += Move;
+        PlayerManager.Inputs.Camera.Scroll.performed += Zoom;
     }
     private void FixedUpdate()
     {
         cameraBounds.center = transform.position + new Vector3(0, 0, 10);
         cameraBounds.size = new Vector3(camera.orthographicSize * 2 * camera.aspect, camera.orthographicSize * 2, 0);
     }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(cameraBounds.center, cameraBounds.size);
-    }
     private void Move(InputAction.CallbackContext context)
     {
         Vector3 lastPos = transform.position;
 
-        if (!PlayerManager.Inputs.CameraDrag.LeftClick.IsInProgress())
+        if (!PlayerManager.Inputs.Camera.LeftClick.IsInProgress())
             return;
         
         Vector3 delta = context.ReadValue<Vector2>();
-        transform.position -= delta * 0.05f;
+        transform.position -= delta * moveSpeed;
 
         if (IsOutOfBounds())
             transform.position = lastPos;
