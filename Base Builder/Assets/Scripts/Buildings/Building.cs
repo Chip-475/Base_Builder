@@ -24,6 +24,7 @@ public abstract class Building
         Data = data;
         SceneObj = sceneObj;
 
+        WorldManager.World.RegisterBuilding(this, Coords);
         Bounds = new(Coords, Data.bounds.size);
         ConnectionBounds = new(Coords, Data.connectionBounds.size);
         UpdateCells(GetCellsInBounds(GetBounds()));

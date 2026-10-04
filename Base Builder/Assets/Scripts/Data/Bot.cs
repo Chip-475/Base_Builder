@@ -34,8 +34,6 @@ public class Bot
 
         // View
         BotView.name = Name;
-
-        Tester.Instance.bot = this;
     }
 
     public void MoveTo(Vector3Int coords)
