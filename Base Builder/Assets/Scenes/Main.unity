@@ -1524,6 +1524,9 @@ MonoBehaviour:
   world:
     cells: []
     machines: []
+    WorldBounds:
+      m_Center: {x: 0, y: 0, z: 0}
+      m_Extent: {x: 0, y: 0, z: 0}
   floorSprite: {fileID: 1328612994039836747, guid: ab8c51434efdd784e96ff0161d9b4c96, type: 3}
 --- !u!4 &649027507
 Transform:
@@ -11032,6 +11035,7 @@ GameObject:
   - component: {fileID: 1421899055}
   - component: {fileID: 1421899054}
   - component: {fileID: 1421899057}
+  - component: {fileID: 1421899058}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -11157,6 +11161,23 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &1421899058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1421899053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c3bb024b6792ee4b8b3e8568ce00c88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraMovement
+  camera: {fileID: 1421899055}
+  moveSpeed: 5
+  zoomSpeed: 2
+  minZoom: 2
+  maxZoom: 10
 --- !u!1 &1586403433
 GameObject:
   m_ObjectHideFlags: 0
@@ -12037,8 +12058,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f2cc98eb3d1064eb5dcf646b467a81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tester
-  bot:
-    <BotView>k__BackingField: {fileID: 0}
   end: {x: 3, y: 3, z: 0}
 --- !u!4 &2048470262
 Transform:
