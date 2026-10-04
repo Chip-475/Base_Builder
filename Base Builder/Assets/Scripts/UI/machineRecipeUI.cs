@@ -23,15 +23,16 @@ public class machineRecipeUI : MonoBehaviour
         pulisciLista();
         panello.SetActive(true);
         Debug.Log(machine.Data.usableRecipes.Count);
+        Debug.Log("dopo il count");
         foreach(RecipeSO recipe in machine.Data.usableRecipes)
         {
             Debug.Log("dentro il for");
             Debug.Log(recipe.r_name);
             GameObject voce=Instantiate(prefabRic, cont, false);
             Debug.Log(recipe.r_name);
-            TMP_Text titolo = voce.transform.Find("Panel/textTitolo").GetComponentInChildren<TMP_Text>();
+            TMP_Text titolo = voce.transform.Find("panel/textTitolo").GetComponentInChildren<TMP_Text>();
             titolo.text = recipe.r_name;
-            TMP_Text descri=voce.transform.Find("Panel/desc").GetComponentInChildren<TMP_Text>();
+            TMP_Text descri=voce.transform.Find("panel/desc").GetComponentInChildren<TMP_Text>();
             descri.text = "Ingredienti: ";
             foreach (ResourceSO r in recipe.inputResources)
             {
