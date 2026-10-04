@@ -13,16 +13,18 @@ MonoBehaviour:
   m_Name: Smeltery Data
   m_EditorClassIdentifier: Assembly-CSharp::MachineData
   name: Smeltery
-  description: 
+  description: cuoce
   sprite: {fileID: 6022206527347476129, guid: 16399254a14af6d46a047b836de32092, type: 3}
   type: 1
   bounds:
-    m_Center: {x: -4, y: 2, z: 0}
+    m_Center: {x: 684, y: 571, z: 0}
     m_Extent: {x: 1.5, y: 1.5, z: 0}
   connectionBounds:
-    m_Center: {x: -4, y: 2, z: 0}
+    m_Center: {x: 684, y: 571, z: 0}
     m_Extent: {x: 1.5, y: 1.5, z: 0}
   connectsToPower: 1
   blocksWalking: 1
   blocksPlacing: 1
-  usableRecipes: []
+  usableRecipes:
+  - {fileID: 11400000, guid: c3c17b313190684458fe68e7f36816af, type: 2}
+  - {fileID: 11400000, guid: 8da9b5e57e3c97e4aa120909f7e9b9ca, type: 2}
