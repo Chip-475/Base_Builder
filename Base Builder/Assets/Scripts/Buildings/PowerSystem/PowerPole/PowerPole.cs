@@ -18,8 +18,8 @@ public class PowerPole : Building
     {
         if (other == null) return false;
 
-        Bounds connectionBounds = new Bounds(SceneObj.transform.position, new Vector3(Data.range * 2, Data.range * 2, 0));
-        return connectionBounds.Intersects(other.GetWorldBounds());
+        Bounds connectionBounds = new(SceneObj.transform.position, new Vector3(Data.range * 2, Data.range * 2, 0));
+        return connectionBounds.Intersects(other.GetConnectionBounds());
     }
     public override void Destroy()
     {
