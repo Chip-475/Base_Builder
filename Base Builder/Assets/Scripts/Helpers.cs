@@ -116,7 +116,7 @@ public static class Helpers
     }
     #endregion
 
-    #region Miscellaneous
+    #region Mouse Helpers
     public static Vector3 GetMousePosition()
     {
         return Mouse.current.position.ReadValue();
@@ -150,8 +150,4 @@ public enum Directions
     Right,
     Down,
     Left,
-    UpLeft,
-    UpRight,
-    DownLeft,
-    DownRight
 }

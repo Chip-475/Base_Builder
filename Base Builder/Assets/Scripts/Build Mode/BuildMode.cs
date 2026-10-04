@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -18,6 +17,8 @@ public class BuildMode : MonoBehaviour
     [SerializeField] Button miningSort;
     [SerializeField] Button storageSort;
     [SerializeField] Button powerSort;
+    [Space]
+    [SerializeField] Button destroyMode;
 
     List<BuildModeEntry> allEntries = new();
     public BuildModeEntry SelectedEntry { get; private set; }
@@ -32,6 +33,7 @@ public class BuildMode : MonoBehaviour
         miningSort.onClick.AddListener(() => SortBy(BuildingType.Mining));
         powerSort.onClick.AddListener(() => SortBy(BuildingType.Power));
         storageSort.onClick.AddListener(() => SortBy(BuildingType.Storage));
+        destroyMode.onClick.AddListener(() => SortBy(BuildingType.None));
         InitPreview();
         buildingPreview.enabled = false;
     }
