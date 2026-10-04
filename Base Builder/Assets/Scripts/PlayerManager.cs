@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -10,8 +11,10 @@ public class PlayerManager : MonoBehaviour
         Instance = this;
         Inputs = new();
 
-        Inputs.Mouse.Enable();
-        Inputs.Mouse.LeftClick.performed += (_) => CheckForClick();
+        Inputs.CameraDrag.Enable();
+        Inputs.CameraDrag.LeftClick.performed += (input) => { CheckForClick(); Direction(input); };
+        Inputs.CameraDrag.CameraMovement.performed += (input) => Direction(input);
+        Inputs.CameraDrag.CameraMovement.canceled += (_) => DeleteDirection();
     }
 
     void CheckForClick()
@@ -20,6 +23,20 @@ public class PlayerManager : MonoBehaviour
         var cellUnderMouse = WorldManager.World.GetCellAt(mousePos.ToVector3Int());
 
         Debug.Log(cellUnderMouse.Coords);
+    }
+    public void DeleteDirection()
+    {
+        CameraMovement.direction = Vector2.zero;
+    }
+    public static void Direction(InputAction.CallbackContext context)
+    {
+        if(Inputs.CameraDrag.LeftClick.IsPressed())
+        {
+            Debug.Log("dio cazzo");
+           CameraMovement.direction=Inputs.CameraDrag.Delta.ReadValue<Vector2>()*(-0.1f);
+            return;
+        }
+        CameraMovement.direction = context.ReadValue<Vector2>();
     }
 
     //private void controllaClick()
