@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Cysharp.Threading.Tasks;
 
 public class Machine : Building
@@ -10,14 +9,6 @@ public class Machine : Building
     public bool isPowered { get; private set; }
     public float requestedPower { get; private set; }
     public MachineType Type { get; protected set; } = MachineType.None;
-    public NetworkManager network
-    {
-        get
-        {
-            PowerManager.instance.checkNetwork(this, out NetworkManager result);
-            return result;
-        }
-    }
 
     public Machine(MachineData data, MachineView sceneObj) : base(data, sceneObj)
     {

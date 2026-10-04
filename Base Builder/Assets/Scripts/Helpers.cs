@@ -1,7 +1,5 @@
-using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -135,9 +133,5 @@ public enum Directions
     Up,
     Right,
     Down,
-    Left,
-    UpLeft,
-    UpRight,
-    DownLeft,
-    DownRight
+    Left
 }

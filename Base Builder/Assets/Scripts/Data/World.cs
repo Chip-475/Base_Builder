@@ -1,10 +1,7 @@
-using Cysharp.Threading.Tasks.Triggers;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.Tilemaps;
-using static UnityEngine.RuleTile.TilingRuleOutput;
 
 [Serializable]
 public class World
@@ -42,5 +39,4 @@ public class World
     public MachineView GetMachineAt(Vector3Int coords) { return machines[coords]; }
 
     public void SetMachineAt(Vector3Int coords, MachineView machine) { machines[coords] = machine; }
-
 }
