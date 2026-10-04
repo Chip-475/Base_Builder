@@ -8,10 +8,6 @@ public class MachineView : BuildingView
         get { return base.Obj as Machine; }
         set { base.Obj = value; }
     }
-
-    private void Start()
-    {
-        Obj = new Machine(Data, this);
     private Machine machine;
 
     private void Start()
@@ -23,7 +19,6 @@ public class MachineView : BuildingView
         if (machine == null) return;
         machine.StopPowerRequest();
         PowerManager.machineDB.Remove(machine);
-        if (Tester.Instance != null) Tester.Instance.machines.Remove(machine);
         if (PowerManager.instance != null) PowerManager.instance.UnregisterBuilding();
     }
 }

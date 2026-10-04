@@ -12,3 +12,11 @@ public abstract class BuildingData : ScriptableObject
     public bool blocksWalking;
     public bool blocksPlacing;
 }
+public enum BuildingType
+{
+    None,
+    Machine,
+    Mining,
+    Power,
+    Storage
+}
