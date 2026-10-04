@@ -8,14 +8,6 @@ public class Machine : Building
 
     public bool isPowered { get; private set; }
     public float requestedPower { get; private set; }
-    public NetworkManager network
-    {
-        get
-        {
-            PowerManager.instance.checkNetwork(this, out NetworkManager result);
-            return result;
-        }
-    }
 
     public Machine(MachineData data, MachineView sceneObj) : base(data, sceneObj)
     {
@@ -24,7 +16,7 @@ public class Machine : Building
     }
     public override void Destroy()
     {
-        FreeUpCells(GetCellsInBounds(Data.bounds));
+        FreeUpCells(GetCellsInBounds(GetBounds()));
         MonoBehaviour.Destroy(SceneObj);
     }
 

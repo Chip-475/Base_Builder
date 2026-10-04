@@ -344,6 +344,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PowerManager
   powerObj: {fileID: 0}
+  networkCount: 0
+  registeredPoles: 0
+  registeredGenerators: 0
+  registeredMachines: 0
+  networksDebug: []
 --- !u!4 &203079103
 Transform:
   m_ObjectHideFlags: 0

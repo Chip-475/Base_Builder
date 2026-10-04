@@ -5,7 +5,7 @@ public abstract class Building
 {
     public BuildingData Data { get; private set; }
     public BuildingView SceneObj { get; private set; }
-
+    public NetworkManager network;
     public Vector3Int Coords => SceneObj.transform.position.ToVector3Int();
 	
     public Building(BuildingData data, BuildingView sceneObj)
@@ -13,15 +13,13 @@ public abstract class Building
         Data = data;
         SceneObj = sceneObj;
 
-        Data.bounds.center = Coords;
-        Data.connectionBounds = Data.bounds;
-        UpdateCells(GetCellsInBounds(GetBounds()));
+        UpdateCells(GetCellsInBounds(GetWorldBounds()));
         PowerManager.instance.RegisterBuilding();
     }
 
 
     // Getters - Setters
-    public Bounds GetBounds() { return Data.bounds; }
+    public Bounds GetBounds() { return GetWorldBounds(); }
     public Bounds GetWorldBounds()
     {
         Bounds bounds = Data.bounds;
