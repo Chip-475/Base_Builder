@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5315452187688702628}
   - component: {fileID: 2524114402095721573}
   m_Layer: 0
-  m_Name: Bot Test
+  m_Name: Worker Bot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9fe61556f492d64e8b4954a9d4df176, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bot_Object
-  type: 1
+  data: {fileID: 11400000, guid: 11014d0e74d16cb4c80dc913f28d4caf, type: 2}
   spriteRenderer: {fileID: 5315452187688702628}
   animator: {fileID: 2524114402095721573}
 --- !u!212 &5315452187688702628

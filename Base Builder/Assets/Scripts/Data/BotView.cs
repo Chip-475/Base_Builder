@@ -5,9 +5,7 @@ using System.Collections.Generic;
 
 public class BotView : MonoBehaviour
 {
-    [Header("Config")]
-    [SerializeField] BotType type;
-    public float speed;
+    [SerializeField] BotData data;
 
     [Header("Components")]
     [SerializeField] SpriteRenderer spriteRenderer;
@@ -17,7 +15,7 @@ public class BotView : MonoBehaviour
 
     void Start()
     {
-        new Bot(this, type: type);
+        new Bot(this, data);
     }
 
     public void SetDestination(Vector3Int coords)
@@ -47,7 +45,7 @@ public class BotView : MonoBehaviour
                 transform.position = Vector3.MoveTowards(
                     transform.position,
                     target,
-                    speed * Time.deltaTime
+                    data.speed * Time.deltaTime
                 );
 
                 yield return null;

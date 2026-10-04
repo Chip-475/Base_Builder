@@ -5,33 +5,29 @@ using System.Collections.Generic;
 [Serializable]
 public class Bot
 {
-    [field: SerializeField]
     public BotView BotView { get; protected set; }
+    public BotData BotData { get; protected set; }
 
-    [Header("Identity")]
+    [Header("Runtime Data")]
     public string Id { get; protected set; }
     public Vector3 Coords {  get; protected set; }
     public string Name { get; protected set; }
-    public BotType Type { get; protected set; } = BotType.None;
-
-    [Header("Stats")]
     public float Power { get; protected set; }
-    public const float MaxPower = 100;
 
-    public Bot(BotView botView, string id = null, Vector3? coords = null, string name = null, BotType type = BotType.None, float power = MaxPower)
+    public Bot(BotView view, BotData data, string id = null, Vector3? coords = null, string name = null, float power = 100)
     {
+        BotView = view;
+        BotData = data;
+
         // Self
         Id = id ?? Guid.NewGuid().ToString();
         Coords = coords ?? Vector3.zero;
         Name = name ?? PickRandomName();
-        Type = type;
         Power = power;
 
         // View
-        BotView = botView;
         BotView.name = Name;
 
-        //GameManager.SetBot(Id, this);
         Tester.Instance.bot = this;
     }
 
@@ -57,6 +53,10 @@ public class BotInventory
     {
         Inventory = new(inv.Inventory);
         MaxWeight = inv.MaxWeight;
+    }
+    public BotInventory(int maxWeight)
+    {
+        MaxWeight = maxWeight;
     }
 }
 public enum BotType
