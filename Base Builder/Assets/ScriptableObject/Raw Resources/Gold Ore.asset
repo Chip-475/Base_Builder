@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
-  m_Name: Bauxite
+  m_Name: Gold Ore
   m_EditorClassIdentifier: Assembly-CSharp::Resources
-  <ID>k__BackingField: bauxite
-  r_name: Bauxite
-  r_desc: Can be refined into Aluminum.
-  r_sprite: {fileID: 0}
+  Name: Gold Ore
+  Desc: 
+  Sprite: {fileID: 0}
   toughness: 1
-  weightPerUnit: 3
+  weightPerUnit: 4
   energyPerUnit: 0

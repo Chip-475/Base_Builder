@@ -14,7 +14,7 @@ public class recipeListUI : MonoBehaviour
     {
         recipe = recipe1;
         menuPrincipale = menu;
-        if (icona != null && recipe1.outputResources.Length > 0) icona.sprite = recipe1.outputResources[0].r_sprite;
+        if (icona != null && recipe1.outputResources.Length > 0) icona.sprite = recipe1.outputResources[0].Sprite;
         if (nomeTesto != null) nomeTesto.text = recipe1.r_name;
     }
     public void OnClick()

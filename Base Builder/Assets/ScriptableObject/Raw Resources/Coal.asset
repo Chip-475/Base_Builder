@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
-  m_Name: Pentladite
-  m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  <ID>k__BackingField: pentiladite
-  r_name: Pentilatide
-  r_desc: Can be refined into Nickel.
-  r_sprite: {fileID: 0}
+  m_Name: Coal
+  m_EditorClassIdentifier: Assembly-CSharp::Resources
+  Name: Coal
+  Desc: 
+  Sprite: {fileID: 6482737013037613852, guid: b0141dda69bed3e4c9609c6d2af5d476, type: 3}
   toughness: 1
-  weightPerUnit: 0
-  energyPerUnit: 0
+  weightPerUnit: 1
+  energyPerUnit: 2

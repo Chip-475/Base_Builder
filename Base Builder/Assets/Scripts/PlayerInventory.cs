@@ -4,30 +4,29 @@ using UnityEngine;
 
 public class PlayerInventory
 {
-    public Dictionary<string, int> Items { get; private set; }
+    public Dictionary<ResourceSO, int> Items { get; private set; }
 
     public void Add(ResourceSO item, int amount)
     {
-        string id = item.ID;
-        if (!Items.ContainsKey(id))
-            Items.Add(id, 0);
+        if (!Items.ContainsKey(item))
+            Items.Add(item, 0);
 
-        Items[id] += amount;
+        Items[item] += amount;
     }
-    public void Remove(ResourceSO item, int amount)
+    public (ResourceSO item, int amount) Remove(ResourceSO item, int amount)
     {
-        string id = item.ID;
-        if (!Items.ContainsKey(id))
+        if (!Items.ContainsKey(item))
         {
-            Debug.Log($"No item with ID: {id} found in inventory.");
-            return;
+            Debug.Log($"No item with ID: {item} found in inventory.");
+            return (null, 0);
         }
 
-        Items[id] -= amount;
+        Items[item] -= amount;
+        return (item, amount);
     }
-    public int GetQuantityOf(string itemID)
+    public int GetQuantityOf(ResourceSO item)
     {
-        return Items[itemID];
+        return Items[item];
     }
 
     public void ClearAll()

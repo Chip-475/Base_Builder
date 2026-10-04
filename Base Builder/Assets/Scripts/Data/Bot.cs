@@ -48,6 +48,17 @@ public class Bot
         return names_1[UnityEngine.Random.Range(0, names_1.Length)] + " " + names_2[UnityEngine.Random.Range(0, names_2.Length)];
     }
 }
+public class BotInventory
+{
+    public Dictionary<ResourceSO, int> Inventory { get; private set; } = new();
+    public int MaxWeight { get; private set; }
+
+    public BotInventory(BotInventory inv)
+    {
+        Inventory = new(inv.Inventory);
+        MaxWeight = inv.MaxWeight;
+    }
+}
 public enum BotType
 {
     None,

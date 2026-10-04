@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
-  m_Name: Tin
-  m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  <ID>k__BackingField: tin
-  r_name: Tin
-  r_desc: 
-  r_sprite: {fileID: 0}
+  m_Name: Malachite
+  m_EditorClassIdentifier: Assembly-CSharp::Resources
+  Name: Malachite
+  Desc: 
+  Sprite: {fileID: 6399095882455927971, guid: ca81beaa226bb974e963c99689077513, type: 3}
   toughness: 1
-  weightPerUnit: 0
+  weightPerUnit: 2
   energyPerUnit: 0

@@ -9,8 +9,8 @@ public class slotRisorsa : MonoBehaviour
 
     public void imposta(ResourceSO ris)
     {
-        if (icona != null) icona.sprite = ris.r_sprite;
-        if (nomeTesto != null) nomeTesto.text = ris.r_name;
+        if (icona != null) icona.sprite = ris.Sprite;
+        if (nomeTesto != null) nomeTesto.text = ris.Name;
     }
     public void impostaQuant(ResourceSO ris,int quant)
     {

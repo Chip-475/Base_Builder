@@ -32,9 +32,8 @@ public class PlayerManager : MonoBehaviour
     {
         if(Inputs.CameraDrag.LeftClick.IsPressed())
         {
-            Debug.Log("dio cazzo");
            CameraMovement.direction=Inputs.CameraDrag.Delta.ReadValue<Vector2>()*(-0.1f);
-            return;
+           return;
         }
         CameraMovement.direction = context.ReadValue<Vector2>();
     }

@@ -35,12 +35,12 @@ public class machineRecipeUI : MonoBehaviour
             descri.text = "Ingredienti: ";
             foreach (ResourceSO r in recipe.inputResources)
             {
-                descri.text = descri.text + r.r_name + " ";
+                descri.text = descri.text + r.Name + " ";
             }
             descri.text = descri.text+"\n" + "Risultato: ";
             foreach (ResourceSO r in recipe.outputResources)
             {
-                descri.text = descri.text + r.r_name + " ";
+                descri.text = descri.text + r.Name + " ";
             }
             Button bott=voce.GetComponentInChildren<Button>();
             bott.onClick.AddListener(()=>mostraDett(recipe));
@@ -69,12 +69,12 @@ public class machineRecipeUI : MonoBehaviour
         desc.text = "Ingredienti: ";
         foreach(ResourceSO r in recipe.inputResources)
         {
-            desc.text = desc.text + r.r_name+" ";
+            desc.text = desc.text + r.Name+" ";
         }
         desc.text =desc.text+"\n"+"Risultato: ";
         foreach (ResourceSO r in recipe.outputResources)
         {
-            desc.text = desc.text + r.r_name + " ";
+            desc.text = desc.text + r.Name + " ";
         }
     }
 }

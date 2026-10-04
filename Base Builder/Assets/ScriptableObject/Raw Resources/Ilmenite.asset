@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
-  m_Name: Cassiterite
+  m_Name: Ilmenite
   m_EditorClassIdentifier: Assembly-CSharp::Resources
-  <ID>k__BackingField: cassiterite
-  r_name: Cassiterite
-  r_desc: Can be refined into Tin.
-  r_sprite: {fileID: 0}
+  Name: Ilmenite
+  Desc: 
+  Sprite: {fileID: -7145637106179080608, guid: daec819c06c08e94a9465783f11d856f, type: 3}
   toughness: 1
-  weightPerUnit: 3
-  energyPerUnit: 0
+  weightPerUnit: 5
+  energyPerUnit: 10

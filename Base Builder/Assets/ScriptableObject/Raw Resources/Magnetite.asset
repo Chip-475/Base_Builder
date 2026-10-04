@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
-  m_Name: Malachite
+  m_Name: Magnetite
   m_EditorClassIdentifier: Assembly-CSharp::Resources
-  <ID>k__BackingField: malachite
-  r_name: Malachite
-  r_desc: Can be refined into Copper.
-  r_sprite: {fileID: 0}
+  Name: Magnetite
+  Desc: 
+  Sprite: {fileID: -3311926995416549267, guid: db578ba0c31b2a948bf130a837cfc21b, type: 3}
   toughness: 1
-  weightPerUnit: 2
+  weightPerUnit: 5
   energyPerUnit: 0
