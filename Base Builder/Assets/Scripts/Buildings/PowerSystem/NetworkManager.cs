@@ -53,7 +53,7 @@ public class NetworkManager : MonoBehaviour
     {
         Generation = 0;
         foreach (Building building in ConnectedBuildings)
-            if (building is Generator generator && generator.running)
+            if (building is Generator generator && generator.Running)
                 Generation += generator.Power;
 
         Consumption = 0;
@@ -88,7 +88,7 @@ public class NetworkManager : MonoBehaviour
     public IEnumerator BurnFuel(Generator generator,float waitingTime)
     {
         yield return null;
-        if (!generator.running) yield break;
+        if (!generator.Running) yield break;
         if (generator.inventory.Count == 0) { generator.SwitchState(false);yield break; }//to modify
         generator.SwitchState(true);
         yield return new WaitForSeconds(waitingTime);
@@ -97,7 +97,7 @@ public class NetworkManager : MonoBehaviour
     public void shutDown()
     {
         foreach (Building building in ConnectedBuildings)
-            if (building is Generator generator && generator.running)
+            if (building is Generator generator && generator.Running)
                 generator.SwitchState(false);
     }
 }

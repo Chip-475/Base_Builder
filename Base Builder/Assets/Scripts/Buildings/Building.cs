@@ -9,7 +9,16 @@ public abstract class Building
     public Vector3Int Coords => SceneObj.transform.position.ToVector3Int();
     public Bounds Bounds { get; private set; }
     public Bounds ConnectionBounds { get; private set; }
-	
+    public NetworkManager Network
+    {
+        get
+        {
+            PowerManager.instance.CheckNetwork(this, out NetworkManager result);
+            return result;
+        }
+        set { }
+    }
+
     public Building(BuildingData data, BuildingView sceneObj)
     {
         Data = data;
@@ -20,7 +29,7 @@ public abstract class Building
         UpdateCells(GetCellsInBounds(GetBounds()));
         PowerManager.instance.RegisterBuilding();
     }
-
+    public abstract void Destroy();
 
     // Getters - Setters
     public Bounds GetBounds() { return Bounds; }
@@ -60,6 +69,4 @@ public abstract class Building
             cell.canBuildOn = true;
         }
     }
-
-    public abstract void Destroy();
 }
