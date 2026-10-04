@@ -7,7 +7,7 @@ public abstract class Building
     public BuildingView SceneObj { get; private set; }
 
     public Vector3Int Coords => SceneObj.transform.position.ToVector3Int();
-    
+	
     public Building(BuildingData data, BuildingView sceneObj)
     {
         Data = data;
@@ -16,11 +16,18 @@ public abstract class Building
         Data.bounds.center = Coords;
         Data.connectionBounds = Data.bounds;
         UpdateCells(GetCellsInBounds(GetBounds()));
+        PowerManager.instance.RegisterBuilding();
     }
 
 
     // Getters - Setters
     public Bounds GetBounds() { return Data.bounds; }
+    public Bounds GetWorldBounds()
+    {
+        Bounds bounds = Data.bounds;
+        bounds.center += SceneObj.transform.position;
+        return bounds;
+    }
     public Cell[] GetCellsInBounds(Bounds bounds)
     {
         int minX = Mathf.CeilToInt(bounds.min.x);
@@ -39,6 +46,7 @@ public abstract class Building
         return cells.ToArray();
     }
 
+
     protected void UpdateCells(Cell[] cells)
     {
         foreach(var cell in cells)
@@ -55,5 +63,6 @@ public abstract class Building
             cell.canBuildOn = true;
         }
     }
+
     public abstract void Destroy();
 }

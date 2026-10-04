@@ -22,6 +22,7 @@ public class World
     }
 
     public Cell GetCellAt(Vector3Int coords) { return cells[coords]; }
+    public bool HasCellAt(Vector3Int coords) { return cells.ContainsKey(coords); }
     public MachineView GetMachineAt(Vector3Int coords) { return machines[coords]; }
 
     public void SetMachineAt(Vector3Int coords, MachineView machine) {  machines[coords] = machine; }

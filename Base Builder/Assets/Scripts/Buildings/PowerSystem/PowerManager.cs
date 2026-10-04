@@ -1,7 +1,4 @@
-using Cysharp.Threading.Tasks;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 public class PowerManager : MonoBehaviour
 {
@@ -13,27 +10,92 @@ public class PowerManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        if (powerObj == null) powerObj = gameObject;
+        powerPolesDB.Clear();
+        powerGeneratorDB.Clear();
+        machineDB.Clear();
     }
-    public bool checkNetwork(Building id, out NetworkManager network)
+    public void RegisterBuilding()
     {
-        List<NetworkManager> networks = instance.powerObj.GetComponentsInChildren<NetworkManager>().ToList();
-        network = null;
-        foreach (NetworkManager item in networks)
-        {
-            if (item.ConnectedBuildings.Contains(id))
+        RebuildNetworks();
+    }
+
+    public void UnregisterBuilding()
+    {
+        RebuildNetworks();
+    }
+
+    public bool checkNetwork(Building building, out NetworkManager network)
+    {
+        foreach (NetworkManager item in powerObj.GetComponentsInChildren<NetworkManager>())
+            if (item.ConnectedBuildings.Contains(building))
             {
                 network = item;
                 return true;
             }
-        }
+
+        network = null;
         return false;
     }
-    public void CreateNewNetwork()
+
+    public void RebuildNetworks()
     {
-        GameObject network=Instantiate(new GameObject(),powerObj.transform);
-        GameObject poles=Instantiate(new GameObject(),network.transform);
-        GameObject generators=Instantiate(new GameObject(),network.transform);
-        network.AddComponent<NetworkManager>();
+
+        List<Building> buildings = new();
+        buildings.AddRange(powerPolesDB.Values);
+        buildings.AddRange(powerGeneratorDB.Values);
+        buildings.AddRange(machineDB);
+
+        foreach (NetworkManager network in powerObj.GetComponentsInChildren<NetworkManager>())
+        {
+            Destroy(network.gameObject);
+        }
+
+        List<Building> alrChecked = new();
+        foreach (Building building in buildings)
+        {
+            if (alrChecked.Contains(building)) continue;
+
+            List<Building> connectedBuildings = GetConnectedBuildings(building, buildings, alrChecked);
+            NetworkManager network = CreateNewNetwork();
+            network.ConnectedBuildings.AddRange(connectedBuildings);
+            network.RefreshPower();
+            foreach (Building connectedBuilding in connectedBuildings)
+                if (connectedBuilding is Machine machine && machine.requestedPower > 0)
+                    machine.RefreshPowerRequest();
+        }
+    }
+
+    private List<Building> GetConnectedBuildings(Building firstBuilding, List<Building> buildings, List<Building> visited)
+    {
+        List<Building> connectedBuildings = new();
+        List<Building> toCheck = new();
+        toCheck.Add(firstBuilding);
+        visited.Add(firstBuilding);
+
+        while (toCheck.Count > 0)
+        {
+            Building currentBuilding = toCheck[0];
+            toCheck.RemoveAt(0);
+            connectedBuildings.Add(currentBuilding);
+
+            foreach (Building otherBuilding in buildings)
+            {
+                if (visited.Contains(otherBuilding) || !CanConnectTo(currentBuilding, otherBuilding)) continue;
+
+                visited.Add(otherBuilding);
+                toCheck.Add(otherBuilding);
+            }
+        }
+
+        return connectedBuildings;
+    }
+
+    public NetworkManager CreateNewNetwork()
+    {
+        GameObject networkObject = new GameObject("Network");
+        networkObject.transform.SetParent(powerObj.transform);
+        return networkObject.AddComponent<NetworkManager>();
     }
     public static PowerPole GetPowerPoleById(string id)
     {
@@ -43,17 +105,12 @@ public class PowerManager : MonoBehaviour
     {
         return powerGeneratorDB[id];
     }
-    public static bool CanConnectTo( Building a,Building b)
+    public static bool CanConnectTo(Building a, Building b)
     {
-        if(!b.Data.connectsToPower||!a.Data.connectsToPower)return false;
-        Cell[] myCells = a.GetCellsInBounds(a.Data.connectionBounds);
-        Cell[] otherCells = b.GetCellsInBounds(b.Data.connectionBounds);
-
-        foreach (var cell in myCells)
-            foreach (var otherCell in otherCells)
-                if (cell.Coords == otherCell.Coords)
-                    return true;
-
+        if(a == null || b == null) return false;
+        if (a == b) return false;
+        if (a is PowerPole pole) return pole.CanConnectTo(b);
+        if (b is PowerPole otherPole) return otherPole.CanConnectTo(a);
         return false;
     }
 }
