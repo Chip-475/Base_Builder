@@ -20,12 +20,6 @@ public class Bot
 
     public Bot(BotView botView, string id = null, Vector3? coords = null, string name = null, BotType type = BotType.None, float power = MaxPower)
     {
-        int maxWeight = type switch
-        {
-            BotType.Carrier => 100,
-            _ => 20
-        };
-
         // Self
         Id = id ?? Guid.NewGuid().ToString();
         Coords = coords ?? Vector3.zero;
