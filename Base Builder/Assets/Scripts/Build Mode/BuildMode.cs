@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
+using UnityEngine.EventSystems;
 using System.Linq;
+using System.Collections.Generic;
 
 public class BuildMode : MonoBehaviour
 {
@@ -80,7 +81,7 @@ public class BuildMode : MonoBehaviour
     void Hover()
     {
         Vector3Int mouseGridPos = Helpers.GetMouseWorldPosition().ToVector3Int();
-        if (SelectedEntry == null)
+        if (SelectedEntry == null || Helpers.IsMouseOverUI())
         {
             buildingPreview.sprite = null;
             return;
@@ -97,7 +98,7 @@ public class BuildMode : MonoBehaviour
     void Build()
     {
         Vector3Int mouseGridPos = Helpers.GetMouseWorldPosition().ToVector3Int();
-        if (SelectedEntry == null)
+        if (SelectedEntry == null || Helpers.IsMouseOverUI())
             return;
         if (!SelectedEntry.buildingPrefab.CanBuildOn(mouseGridPos))
             return;
