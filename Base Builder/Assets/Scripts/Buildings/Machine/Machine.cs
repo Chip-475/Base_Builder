@@ -1,21 +1,15 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Cysharp.Threading.Tasks;
 
 public class Machine : Building
 {
     public new MachineData Data => base.Data as MachineData;
     public new MachineView SceneObj => base.SceneObj as MachineView;
 
-    public bool isPowered { get; private set; }
-    public float requestedPower { get; private set; }
-    public NetworkManager network
-    {
-        get
-        {
-            PowerManager.instance.checkNetwork(this, out NetworkManager result);
-            return result;
-        }
-    }
+    public bool Powered { get; private set; }
+    public float RequestedPower { get; private set; }
+    public MachineType Type { get; protected set; } = MachineType.None;
 
     public Machine(MachineData data, MachineView sceneObj) : base(data, sceneObj)
     {
@@ -24,23 +18,24 @@ public class Machine : Building
     }
     public override void Destroy()
     {
-        FreeUpCells(GetCellsInBounds(Data.bounds));
+        FreeUpCells(GetCellsInBounds(GetBounds()));
+        WorldManager.World.UnregisterBuilding(Coords);
         MonoBehaviour.Destroy(SceneObj);
     }
 
     public bool RequestPower(float amount)
     {
-        NetworkManager currentNetwork = network;
+        NetworkManager currentNetwork = Network;
         if (currentNetwork == null || !currentNetwork.RequestPower(this, amount))
         {
             if (currentNetwork != null) currentNetwork.StopPowerRequest(this);
-            requestedPower = 0;
-            isPowered = false;
+            RequestedPower = 0;
+            Powered = false;
             return false;
         }
 
-        requestedPower = amount;
-        isPowered = true;
+        RequestedPower = amount;
+        Powered = true;
         return true;
     }
     public bool RequestPower(RecipeSO recipe)
@@ -50,12 +45,21 @@ public class Machine : Building
     }
     public void StopPowerRequest()
     {
-        if (network != null) network.StopPowerRequest(this);
-        requestedPower = 0;
-        isPowered = false;
+        if (Network != null) Network.StopPowerRequest(this);
+        RequestedPower = 0;
+        Powered = false;
     }
     public void RefreshPowerRequest()
     {
-        RequestPower(requestedPower);
+        RequestPower(RequestedPower);
     }
+}
+public enum MachineType
+{
+    None,
+    Advanced_Assembler,
+    Alloy_Furnace,
+    Assembler,
+    Press,
+    Smelter,
 }

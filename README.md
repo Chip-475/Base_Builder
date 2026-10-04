@@ -5,6 +5,7 @@ The player gathers raw resources, refines them into materials and components, an
 ## Gallery
 ![Base Builder main menu](bb.png) Build Menu (Week 1)
 ![Base Builder waypoints](waypoint.png) Waypoints (Week 2)
+![Base Builder Build Mode]() Build Mode (Week 3)
 
 ## Project highlights
 
@@ -22,6 +23,13 @@ The player gathers raw resources, refines them into materials and components, an
 - Machine recipe UI
 - Generator and power-pole prototypes
 - Waypoint system for future bots pathfinding
+- Machine system employment for all machinery that comunicates with recipe and resources 
+- Bot walking system to all Machines and Mineralode
+- Path finding A* for every type of Bot
+- Fixed build mode 
+- Started inventory UI
+- Worked on Power system
+- Camera movement system
 
 ## Current status
 The game is still in early development, none of the features are fully implemented yet, and the game is not yet playable.

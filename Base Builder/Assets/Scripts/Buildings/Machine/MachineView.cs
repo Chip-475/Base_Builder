@@ -11,16 +11,6 @@ public class MachineView : BuildingView
 
     private void Start()
     {
-        Obj=new Machine(Data, this);
-    }
-
-    void OnMouseDown()
-    {
-        Debug.Log("sono in mouse dowm");
-        if (machineRecipeUI.instance != null && Obj != null)
-        {
-            Debug.Log("dentro l'if");
-            machineRecipeUI.instance.apri(Obj);
-        }
+        Obj = new Machine(Data, this);
     }
 }

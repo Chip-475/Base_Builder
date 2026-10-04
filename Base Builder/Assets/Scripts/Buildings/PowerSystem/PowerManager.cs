@@ -1,5 +1,18 @@
 using System.Collections.Generic;
 using UnityEngine;
+
+[System.Serializable]
+public class PowerNetworkDebug
+{
+    public NetworkManager network;
+    public string id;
+    public int buildings;
+    public int poles;
+    public int generators;
+    public int machines;
+    public List<string> connectedBuildings = new();
+}
+
 public class PowerManager : MonoBehaviour
 {
     public static PowerManager instance;
@@ -7,6 +20,13 @@ public class PowerManager : MonoBehaviour
     public static Dictionary<string, PowerPole> powerPolesDB=new();
     public static Dictionary<string,Generator> powerGeneratorDB=new();
     public static List<Machine> machineDB=new();
+
+    [Header("Runtime Debug")]
+    public int networkCount;
+    public int registeredPoles;
+    public int registeredGenerators;
+    public int registeredMachines;
+    public List<PowerNetworkDebug> networksDebug = new();
     private void Awake()
     {
         instance = this;
@@ -25,52 +45,95 @@ public class PowerManager : MonoBehaviour
         RebuildNetworks();
     }
 
-    public bool checkNetwork(Building building, out NetworkManager network)
+    public bool CheckNetwork(Building building, out NetworkManager network)
     {
-        foreach (NetworkManager item in powerObj.GetComponentsInChildren<NetworkManager>())
-            if (item.ConnectedBuildings.Contains(building))
-            {
-                network = item;
-                return true;
-            }
-
-        network = null;
-        return false;
+        network = building?.Network;
+        return network != null;
     }
 
     public void RebuildNetworks()
     {
 
         List<Building> buildings = new();
-        buildings.AddRange(powerPolesDB.Values);
-        buildings.AddRange(powerGeneratorDB.Values);
-        buildings.AddRange(machineDB);
+        foreach (PowerPole pole in powerPolesDB.Values)
+            if (!buildings.Contains(pole)) buildings.Add(pole);
+        foreach (Generator generator in powerGeneratorDB.Values)
+            if (!buildings.Contains(generator)) buildings.Add(generator);
+        foreach (Machine machine in machineDB)
+            if (!buildings.Contains(machine)) buildings.Add(machine);
 
         foreach (NetworkManager network in powerObj.GetComponentsInChildren<NetworkManager>())
         {
+            network.gameObject.SetActive(false);
             Destroy(network.gameObject);
         }
-
+        foreach(Building building in buildings)
+        {
+            building.Network = null;
+        }
         List<Building> alrChecked = new();
         foreach (Building building in buildings)
         {
-            if (alrChecked.Contains(building)) continue;
+            if (alrChecked.Contains(building) || building is not PowerPole) continue;
 
             List<Building> connectedBuildings = GetConnectedBuildings(building, buildings, alrChecked);
             NetworkManager network = CreateNewNetwork();
             network.ConnectedBuildings.AddRange(connectedBuildings);
+            foreach (Building connectedBuilding in connectedBuildings) connectedBuilding.Network = network;
             network.RefreshPower();
             foreach (Building connectedBuilding in connectedBuildings)
-                if (connectedBuilding is Machine machine && machine.requestedPower > 0)
+                if (connectedBuilding is Machine machine && machine.RequestedPower > 0)
                     machine.RefreshPowerRequest();
         }
+
+        RefreshDebugInfo();
+    }
+
+    public void RefreshDebugInfo()
+    {
+        registeredPoles = powerPolesDB.Count;
+        registeredGenerators = powerGeneratorDB.Count;
+        registeredMachines = machineDB.Count;
+        networksDebug.Clear();
+
+        foreach (NetworkManager network in powerObj.GetComponentsInChildren<NetworkManager>())
+        {
+            PowerNetworkDebug debug = new()
+            {
+                network = network,
+                id = network.id,
+                buildings = network.ConnectedBuildings.Count
+            };
+
+            foreach (Building building in network.ConnectedBuildings)
+            {
+                debug.connectedBuildings.Add(building.SceneObj.name);
+                if (building is PowerPole) debug.poles++;
+                else if (building is Generator) debug.generators++;
+                else if (building is Machine) debug.machines++;
+            }
+
+            networksDebug.Add(debug);
+        }
+
+        networkCount = networksDebug.Count;
+    }
+
+    [ContextMenu("Print Power Networks")]
+    private void PrintNetworks()
+    {
+        RefreshDebugInfo();
+        foreach (PowerNetworkDebug network in networksDebug)
+            Debug.Log("Network " + network.id + ": " + string.Join(", ", network.connectedBuildings), this);
     }
 
     private List<Building> GetConnectedBuildings(Building firstBuilding, List<Building> buildings, List<Building> visited)
     {
         List<Building> connectedBuildings = new();
-        List<Building> toCheck = new();
-        toCheck.Add(firstBuilding);
+        List<Building> toCheck = new()
+        {
+            firstBuilding
+        };
         visited.Add(firstBuilding);
 
         while (toCheck.Count > 0)
@@ -93,7 +156,7 @@ public class PowerManager : MonoBehaviour
 
     public NetworkManager CreateNewNetwork()
     {
-        GameObject networkObject = new GameObject("Network");
+        GameObject networkObject = new("Network");
         networkObject.transform.SetParent(powerObj.transform);
         return networkObject.AddComponent<NetworkManager>();
     }

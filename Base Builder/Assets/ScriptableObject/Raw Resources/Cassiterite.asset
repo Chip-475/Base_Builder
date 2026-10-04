@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Resources
   Name: Cassiterite
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 2054457610593081935, guid: 7d0e457aa34358f4cac1e629646e9bc4, type: 3}
   toughness: 1
   weightPerUnit: 3
   energyPerUnit: 0

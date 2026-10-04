@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Resources
   Name: Gold Ore
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 8218093861608600074, guid: e17377896c7049b478f65f3bdeeda0f5, type: 3}
   toughness: 1
   weightPerUnit: 4
   energyPerUnit: 0

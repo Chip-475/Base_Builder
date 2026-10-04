@@ -1,18 +1,22 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 
 [Serializable]
 public class Bot
 {
     public BotView BotView { get; protected set; }
     public BotData BotData { get; protected set; }
+    public BotType Type { get; protected set; } = BotType.None;
 
     [Header("Runtime Data")]
     public string Id { get; protected set; }
     public Vector3 Coords {  get; protected set; }
     public string Name { get; protected set; }
     public float Power { get; protected set; }
+    public int CarryCapacity { get; protected set; }
+    public BotInventory Inventory { get; protected set; }
 
     public Bot(BotView view, BotData data, string id = null, Vector3? coords = null, string name = null, float power = 100)
     {
@@ -24,11 +28,12 @@ public class Bot
         Coords = coords ?? Vector3.zero;
         Name = name ?? PickRandomName();
         Power = power;
+        CarryCapacity = data.carryCapacity;
+        Inventory = new BotInventory(data.carryCapacity);
+        
 
         // View
         BotView.name = Name;
-
-        Tester.Instance.bot = this;
     }
 
     public void MoveTo(Vector3Int coords)
@@ -58,7 +63,9 @@ public class BotInventory
     {
         MaxWeight = maxWeight;
     }
+   
 }
+
 public enum BotType
 {
     None,

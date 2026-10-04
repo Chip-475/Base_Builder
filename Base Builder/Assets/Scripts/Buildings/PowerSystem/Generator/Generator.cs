@@ -1,22 +1,16 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+
 public class Generator : Building
 {
     public new GeneratorData Data => base.Data as GeneratorData;
     public new GeneratorView SceneObj => base.SceneObj as GeneratorView;
 
     public string id;
-    public NetworkManager network
-    {
-        get
-        {
-            PowerManager.instance.checkNetwork(this, out NetworkManager result);
-            return result;
-        }
-    }
+
     public float Power { get { return Data.productionRate; } }
-    public bool running { get; private set; }
+    public bool Running { get; private set; }
 
     public bool isPowered;
 
@@ -27,15 +21,18 @@ public class Generator : Building
         PowerManager.powerGeneratorDB[id] = this;
         PowerManager.instance.RegisterBuilding();
     }
-    public void SwitchState(bool state) //to link to the ui button
-    {
-        running = state;
-        if (network != null) network.RefreshPower();
-    }
     public override void Destroy()
     {
         PowerManager.powerGeneratorDB.Remove(id);
         PowerManager.instance.UnregisterBuilding();
+        WorldManager.World.UnregisterBuilding(Coords);
         MonoBehaviour.Destroy(SceneObj.gameObject);
+    }
+
+    public void SwitchState(bool state) //to link to the ui button
+    {
+        Running = state;
+        if (Network != null)
+            Network.RefreshPower();
     }
 }

@@ -1,9 +1,9 @@
-using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public static class Helpers
 {
@@ -116,7 +116,7 @@ public static class Helpers
     }
     #endregion
 
-    #region Miscellaneous
+    #region Mouse Helpers
     public static Vector3 GetMousePosition()
     {
         return Mouse.current.position.ReadValue();
@@ -127,6 +127,20 @@ public static class Helpers
         pos.z = 0;
         return pos;
     }
+    public static bool IsMouseOverUI()
+    {
+        PointerEventData pointer =
+            new(EventSystem.current)
+            {
+                position = Mouse.current.position.ReadValue()
+            };
+
+        List<RaycastResult> results = new();
+        EventSystem.current.RaycastAll(pointer, results);
+
+        return results.Exists(result =>
+            result.module is GraphicRaycaster);
+    }
     #endregion
 }
 public enum Directions
@@ -136,8 +150,4 @@ public enum Directions
     Right,
     Down,
     Left,
-    UpLeft,
-    UpRight,
-    DownLeft,
-    DownRight
 }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
 
 public class BuildMode : MonoBehaviour
 {
@@ -17,6 +17,8 @@ public class BuildMode : MonoBehaviour
     [SerializeField] Button miningSort;
     [SerializeField] Button storageSort;
     [SerializeField] Button powerSort;
+    [Space]
+    [SerializeField] Button destroyMode;
 
     List<BuildModeEntry> allEntries = new();
     public BuildModeEntry SelectedEntry { get; private set; }
@@ -31,6 +33,7 @@ public class BuildMode : MonoBehaviour
         miningSort.onClick.AddListener(() => SortBy(BuildingType.Mining));
         powerSort.onClick.AddListener(() => SortBy(BuildingType.Power));
         storageSort.onClick.AddListener(() => SortBy(BuildingType.Storage));
+        destroyMode.onClick.AddListener(() => SortBy(BuildingType.None));
         InitPreview();
         buildingPreview.enabled = false;
     }
@@ -80,7 +83,7 @@ public class BuildMode : MonoBehaviour
     void Hover()
     {
         Vector3Int mouseGridPos = Helpers.GetMouseWorldPosition().ToVector3Int();
-        if (SelectedEntry == null)
+        if (SelectedEntry == null || Helpers.IsMouseOverUI())
         {
             buildingPreview.sprite = null;
             return;
@@ -97,7 +100,7 @@ public class BuildMode : MonoBehaviour
     void Build()
     {
         Vector3Int mouseGridPos = Helpers.GetMouseWorldPosition().ToVector3Int();
-        if (SelectedEntry == null)
+        if (SelectedEntry == null || Helpers.IsMouseOverUI())
             return;
         if (!SelectedEntry.buildingPrefab.CanBuildOn(mouseGridPos))
             return;
