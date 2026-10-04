@@ -26,7 +26,7 @@ public class GameUI : MonoBehaviour
     private void Update()
     {
         powerCounter.text = $"{TotalPowerConsumption} / {TotalPowerProduction}";
-        botsCounter.text = $"[insert bot number]";
+        botsCounter.text = $"[insert bot count]";
     }
 
     void ToggleStatMenu()
