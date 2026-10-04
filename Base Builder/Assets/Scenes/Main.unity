@@ -2008,6 +2008,55 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 806446938}
   m_CullTransparentMesh: 1
+--- !u!1 &836725569
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 836725571}
+  - component: {fileID: 836725570}
+  m_Layer: 0
+  m_Name: machineRecipe
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &836725570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836725569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2754c593d2218904d854d8c9ae753198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::machineRecipeUI
+  panello: {fileID: 2017182561}
+  cont: {fileID: 2090078335}
+  prefabRic: {fileID: 8462214193835634459, guid: a584b530c07cc344f8101e8e1bdf542e, type: 3}
+  titolo: {fileID: 921868388}
+  desc: {fileID: 525406556}
+--- !u!4 &836725571
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836725569}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &837783374
 GameObject:
   m_ObjectHideFlags: 0
@@ -13115,6 +13164,7 @@ SceneRoots:
   - {fileID: 649027507}
   - {fileID: 1161565866}
   - {fileID: 649360995}
+  - {fileID: 836725571}
   - {fileID: 657680103}
   - {fileID: 1269952282}
   - {fileID: 509356180}

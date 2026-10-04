@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ca81beaa226bb974e963c99689077513
+guid: a6097e698c367fe44afdab3f3bded4b2
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6399095882455927971
-    second: malachite_0
+      213: -7868862028048558966
+    second: ingot_iron_final_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -102,13 +102,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: malachite_0
+      name: ingot_iron_final_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 32
-        height: 30
+        x: 1
+        y: 7
+        width: 46
+        height: 33
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -117,8 +117,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3ac437d1dc72ec850800000000000000
-      internalID: 6399095882455927971
+      spriteID: a841b9f2daf2cc290800000000000000
+      internalID: -7868862028048558966
       vertices: []
       indices: 
       edges: []
@@ -137,7 +137,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      malachite_0: 6399095882455927971
+      ingot_iron_final_0: -7868862028048558966
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

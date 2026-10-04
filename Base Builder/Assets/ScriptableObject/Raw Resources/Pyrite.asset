@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Resources
   Name: Pyrite
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 4012187372446213133, guid: a7311bb3916c2454ba06e806346623ee, type: 3}
   toughness: 1
   weightPerUnit: 2
   energyPerUnit: 0

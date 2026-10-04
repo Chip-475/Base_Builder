@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: ca81beaa226bb974e963c99689077513
+guid: 7d0e457aa34358f4cac1e629646e9bc4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6399095882455927971
-    second: malachite_0
+      213: 2054457610593081935
+    second: casseiterite_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -102,13 +102,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: malachite_0
+      name: casseiterite_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 1
         width: 32
-        height: 30
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -117,8 +117,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3ac437d1dc72ec850800000000000000
-      internalID: 6399095882455927971
+      spriteID: f4a9f75df46e28c10800000000000000
+      internalID: 2054457610593081935
       vertices: []
       indices: 
       edges: []
@@ -137,7 +137,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      malachite_0: 6399095882455927971
+      casseiterite_0: 2054457610593081935
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

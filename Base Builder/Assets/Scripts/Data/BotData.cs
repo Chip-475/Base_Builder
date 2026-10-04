@@ -9,4 +9,7 @@ public class BotData : ScriptableObject
     public float speed;
     public int maxWeight;
     public int maxPower;
+    public int carryCapacity;
+    public RecipeSO currentRecipe;
+    public ResourceSO[] currentInputResources;
 }

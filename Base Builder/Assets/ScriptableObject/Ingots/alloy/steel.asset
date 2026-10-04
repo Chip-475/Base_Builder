@@ -12,10 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: steel
   m_EditorClassIdentifier: Assembly-CSharp::Resources
-  <ID>k__BackingField: steel
-  r_name: Steel
-  r_desc: Alloy formed from Iron and Coal.
-  r_sprite: {fileID: 0}
+  Name: 
+  Desc: 
+  Sprite: {fileID: -3651005545543592653, guid: 65689bf552ba5b74e9b4048643db4968, type: 3}
   toughness: 1
   weightPerUnit: 5
   energyPerUnit: 0
