@@ -33,13 +33,13 @@ public class CameraMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        cameraBounds.center = transform.position;
+        cameraBounds.center = transform.position + new Vector3(0, 0, 10);
         cameraBounds.size = new Vector3(cam.orthographicSize * 2 * cam.aspect, cam.orthographicSize * 2, 0);
     }
     private void OnDrawGizmos()
     {
         if (cam == null) return;
-        cameraBounds.center = transform.position;
+        cameraBounds.center = transform.position+new Vector3(0,0,10);
         cameraBounds.size = new Vector3(cam.orthographicSize * 2 * cam.aspect, cam.orthographicSize * 2, 0);
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(cameraBounds.center, cameraBounds.size);
@@ -92,7 +92,7 @@ public class CameraMovement : MonoBehaviour
     private void CameraMove(InputAction.CallbackContext context)
     {
         if (!PlayerManager.Inputs.CameraDrag.LeftClick.IsInProgress()) return;
-        if (cameraBounds.Intersects(WorldManager.World.WorldBounds)) { Debug.Log("intersect"); return; }
+        if (!cameraBounds.Intersects(WorldManager.World.WorldBounds)) { Debug.Log("intersect"); return; }
         else {Debug.Log("not intersect");}
         Vector2 d = context.ReadValue<Vector2>();
         Vector3 delta = new Vector3(d.x, d.y, 0);
