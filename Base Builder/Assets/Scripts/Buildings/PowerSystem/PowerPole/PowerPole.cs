@@ -17,7 +17,7 @@ public class PowerPole : Building
     {
         PowerManager.powerPolesDB.Remove(poleId);
         PowerManager.instance.UnregisterBuilding();
-        WorldManager.World.UnregisterBuilding(Coords);
+        //WorldManager.World.UnregisterBuilding(Coords);
         MonoBehaviour.Destroy(SceneObj.gameObject);
     }
 

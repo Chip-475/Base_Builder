@@ -1647,6 +1647,8 @@ MonoBehaviour:
   - key: {fileID: 837783377}
     value: 1
   world:
+    cells: []
+    machines: []
     WorldBounds:
       m_Center: {x: 0, y: 0, z: 0}
       m_Extent: {x: 0, y: 0, z: 0}
@@ -11248,7 +11250,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 333068964}
   m_HandleRect: {fileID: 333068963}
   m_Direction: 0
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -12989,10 +12991,10 @@ RectTransform:
   - {fileID: 402547951}
   m_Father: {fileID: 1269952282}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1120, y: 630}
+  m_SizeDelta: {x: 3040, y: 1710}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2017182563
 MonoBehaviour:
@@ -13231,7 +13233,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -316.49902}
+  m_AnchoredPosition: {x: 0, y: -316.4996}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2090078336

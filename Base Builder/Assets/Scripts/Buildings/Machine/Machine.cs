@@ -18,7 +18,7 @@ public class Machine : Building
     public override void Destroy()
     {
         FreeUpCells(GetCellsInBounds(GetBounds()));
-        WorldManager.World.UnregisterBuilding(Coords);
+        //WorldManager.World.UnregisterBuilding(Coords);
         MonoBehaviour.Destroy(SceneObj);
     }
 
