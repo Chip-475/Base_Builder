@@ -19,6 +19,8 @@ public class machineRecipeUI : MonoBehaviour
 
     public void apri(Machine machine)
     {
+        Canvas.ForceUpdateCanvases();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(cont as RectTransform);
         Debug.Log("dentro la macchina");
         pulisciLista();
         panello.SetActive(true);
