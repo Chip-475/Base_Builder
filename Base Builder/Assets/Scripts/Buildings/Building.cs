@@ -9,15 +9,7 @@ public abstract class Building
     public Vector3Int Coords => SceneObj.transform.position.ToVector3Int();
     public Bounds Bounds { get; private set; }
     public Bounds ConnectionBounds { get; private set; }
-    public NetworkManager Network
-    {
-        get
-        {
-            PowerManager.instance.CheckNetwork(this, out NetworkManager result);
-            return result;
-        }
-        set { }
-    }
+    public NetworkManager Network;
 
     public Building(BuildingData data, BuildingView sceneObj)
     {

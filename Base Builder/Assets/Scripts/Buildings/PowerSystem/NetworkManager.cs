@@ -9,19 +9,20 @@ public class NetworkManager : MonoBehaviour
     public float Consumption { get; private set; }
     public float Available { get { return Generation - Consumption; } }
     public bool IsNetworkRunning { get { return Generation > 0; } }
-
+    public Color NetworkColor;
     [Header("Runtime Debug")]
     public int debugBuildings;
     public int debugPoles;
     public int debugGenerators;
     public int debugMachines;
     public List<GameObject> debugConnectedBuildings = new List<GameObject>();
-
+    public List<LineRenderer> lineRenderers = new List<LineRenderer>();
     private Dictionary<Machine, float> machineRequests = new();
 
     private void Awake()
     {
-        id=System.Guid.NewGuid().ToString();
+        id = System.Guid.NewGuid().ToString();
+        NetworkColor = PowerManager.networkColors.Pop();
     }
     public bool RequestPower(Machine machine, float amount)
     {
@@ -80,15 +81,15 @@ public class NetworkManager : MonoBehaviour
 
         if (PowerManager.instance != null) PowerManager.instance.RefreshDebugInfo();
     }
-    public void startGenerator(Generator g,float w)
+    public void startGenerator(Generator g, float w)
     {
         StartCoroutine(BurnFuel(g, w));
     }
-    public IEnumerator BurnFuel(Generator generator,float waitingTime)
+    public IEnumerator BurnFuel(Generator generator, float waitingTime)
     {
         yield return null;
         if (!generator.Running) yield break;
-        if (generator.inventory.Count == 0) { generator.SwitchState(false);yield break; }//to modify
+        if (generator.inventory.Count == 0) { generator.SwitchState(false); yield break; }//to modify
         generator.SwitchState(true);
         yield return new WaitForSeconds(waitingTime);
         StartCoroutine(BurnFuel(generator, waitingTime));
@@ -98,5 +99,29 @@ public class NetworkManager : MonoBehaviour
         foreach (Building building in ConnectedBuildings)
             if (building is Generator generator && generator.Running)
                 generator.SwitchState(false);
+    }
+    public void drawConnections()
+    {
+        foreach (LineRenderer line in lineRenderers)
+        {
+            Destroy(line.gameObject);
+        }
+        lineRenderers.Clear();
+        foreach (Building building in ConnectedBuildings)
+            if (building is PowerPole pole)
+            {
+                pole.getConnectedBuildings();
+                foreach (Building connectedBuilding in pole.connectedBuildings)
+                    pole.drawConnection(connectedBuilding.SceneObj.transform.position);
+            }
+
+    }
+    public void OnDestroy()
+    {
+        foreach (LineRenderer line in lineRenderers)
+        {
+            Destroy(line.gameObject);
+        }
+        lineRenderers.Clear();
     }
 }
