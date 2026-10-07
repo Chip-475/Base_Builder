@@ -48,6 +48,66 @@ public class Bot
         string[] names_2 = { "Leader", "Keeper", "Pioneer", "Witcher", "Diver", "Bomber", "Rancher", "Taker", "Dispatcher", "Trickster" };
         return names_1[UnityEngine.Random.Range(0, names_1.Length)] + " " + names_2[UnityEngine.Random.Range(0, names_2.Length)];
     }
+      public async UniTask goToMineralNode(MineralNode mineralNode)
+    {
+        if(Type == BotType.Miner)
+        {
+            MoveTo(mineralNode.SceneObj.transform.position.ToVector3Int());
+            await UniTask.WaitUntil(() => Vector3.Distance(BotView.transform.position, mineralNode.SceneObj.transform.position) < 0.1f);
+            mineralNode.MineResource();
+        }
+    }
+
+    public async UniTask goToSmelter(Machine machine)
+    {
+        if(Type == BotType.Worker)
+        {
+            MoveTo(machine.SceneObj.transform.position.ToVector3Int());
+            await UniTask.WaitUntil(() => Vector3.Distance(BotView.transform.position, machine.SceneObj.transform.position) < 0.1f);
+            await machine.UseSmelter(BotData.currentRecipe, BotData.currentInputResources);
+
+        }
+    }
+    public async UniTask goToAssembler(Machine machine)
+    {
+        if(Type == BotType.Worker)
+        {
+            MoveTo(machine.SceneObj.transform.position.ToVector3Int());
+            await UniTask.WaitUntil(() => Vector3.Distance(BotView.transform.position, machine.SceneObj.transform.position) < 0.1f);
+            await machine.UseAssembler(BotData.currentRecipe, BotData.currentInputResources);
+
+        }
+    }
+    public async UniTask goToPress(Machine machine)
+    {
+        if(Type == BotType.Worker)
+        {
+            MoveTo(machine.SceneObj.transform.position.ToVector3Int());
+            await UniTask.WaitUntil(() => Vector3.Distance(BotView.transform.position, machine.SceneObj.transform.position) < 0.1f);
+            await machine.UsePress(BotData.currentRecipe, BotData.currentInputResources);
+
+        }
+    }
+    public async UniTask goToAlloyFurnace(Machine machine)
+    {
+        if(Type == BotType.Worker)
+        {
+            MoveTo(machine.SceneObj.transform.position.ToVector3Int());
+            await UniTask.WaitUntil(() => Vector3.Distance(BotView.transform.position, machine.SceneObj.transform.position) < 0.1f);
+            await machine.UseAlloyFurnace(BotData.currentRecipe, BotData.currentInputResources);
+
+        }
+    }
+    public async UniTask goToAdvancedAssembler(Machine machine)
+    {
+        if(Type == BotType.Worker)
+        {
+            MoveTo(machine.SceneObj.transform.position.ToVector3Int());
+            await UniTask.WaitUntil(() => Vector3.Distance(BotView.transform.position, machine.SceneObj.transform.position) < 0.1f);
+            await machine.UseAdvancedAssembler(BotData.currentRecipe, BotData.currentInputResources);
+
+        }
+}
 }
 public class BotInventory
 {

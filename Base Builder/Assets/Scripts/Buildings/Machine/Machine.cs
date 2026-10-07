@@ -52,6 +52,93 @@ public class Machine : Building
     {
         RequestPower(RequestedPower);
     }
+     public async UniTask<ResourceSO[]> UseSmelter(RecipeSO recipe, ResourceSO[] inputResources)
+    {
+        if (Type == MachineType.Smelter)
+        {
+            if (recipe != null && RequestPower(recipe))
+            {
+                await UniTask.Delay((int)(recipe.completionTime * 1000)); // da vedere quanto fare che duri ogni processo
+                ResourceSO[] WorkedResources = recipe.outputResources;
+                return WorkedResources;
+            }
+        }
+        return null;
+    }
+    public async UniTask<ResourceSO[]> UseAssembler(RecipeSO recipe, ResourceSO[] inputResources)
+    {
+        if (Type == MachineType.Assembler)
+        {
+            if (recipe != null && RequestPower(recipe))
+            {
+                await UniTask.Delay((int)(recipe.completionTime * 1000)); // da vedere quanto fare che duri ogni processo
+                ResourceSO[] WorkedResources = recipe.outputResources;
+                return WorkedResources;
+            }
+        }
+        return null;
+    }
+    public async UniTask<ResourceSO[]> UseAdvancedAssembler(RecipeSO recipe, ResourceSO[] inputResources)
+    {
+        if (Type == MachineType.Advanced_Assembler)
+        {
+            if (recipe != null && RequestPower(recipe))
+            {
+                await UniTask.Delay((int)(recipe.completionTime * 1000)); // da vedere quanto fare che duri ogni processo
+                ResourceSO[] WorkedResources = recipe.outputResources;
+                return WorkedResources;
+            }
+        }
+        return null;
+    }
+    public async UniTask<ResourceSO[]> UseAlloyFurnace(RecipeSO recipe, ResourceSO[] inputResources)
+    {
+        if (Type == MachineType.Alloy_Furnace)
+        {
+            if (recipe != null && RequestPower(recipe))
+            {
+                await UniTask.Delay((int)(recipe.completionTime * 1000)); // da vedere quanto fare che duri ogni processo
+                ResourceSO[] WorkedResources = recipe.outputResources;
+                return WorkedResources;
+            }
+        }
+        return null;
+    }
+    public async UniTask<ResourceSO[]> UsePress(RecipeSO recipe, ResourceSO[] inputResources)
+    {
+        if (Type == MachineType.Press)
+        {
+            if (recipe != null && RequestPower(recipe))
+            {
+                await UniTask.Delay((int)(recipe.completionTime * 1000)); // da vedere quanto fare che duri ogni processo
+                ResourceSO[] WorkedResources = recipe.outputResources;
+                return WorkedResources;
+            }
+        }
+        return null;
+    }
+    public async UniTask UseMachine(RecipeSO recipe, ResourceSO[] inputResources)
+    {
+        switch (Type)
+        {
+            case MachineType.Smelter:
+                await UseSmelter(recipe, inputResources);
+                break;
+            case MachineType.Assembler:
+                await UseAssembler(recipe, inputResources);
+                break;
+            case MachineType.Advanced_Assembler:
+                await UseAdvancedAssembler(recipe, inputResources);
+                break;
+            case MachineType.Alloy_Furnace:
+                await UseAlloyFurnace(recipe, inputResources);
+                break;
+            case MachineType.Press:
+                await UsePress(recipe, inputResources);
+                break;
+        }
+    }
+
 }
 public enum MachineType
 {
