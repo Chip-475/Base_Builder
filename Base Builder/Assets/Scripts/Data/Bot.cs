@@ -16,7 +16,11 @@ public class Bot
     public string Name { get; protected set; }
     public float Power { get; protected set; }
     public int CarryCapacity { get; protected set; }
+<<<<<<< Updated upstream
     public BotInventory Inventory { get; protected set; }
+=======
+    public BotType Type { get; protected set; }
+>>>>>>> Stashed changes
 
     public Bot(BotView view, BotData data, string id = null, Vector3? coords = null, string name = null, float power = 100)
     {
@@ -48,6 +52,67 @@ public class Bot
         string[] names_2 = { "Leader", "Keeper", "Pioneer", "Witcher", "Diver", "Bomber", "Rancher", "Taker", "Dispatcher", "Trickster" };
         return names_1[UnityEngine.Random.Range(0, names_1.Length)] + " " + names_2[UnityEngine.Random.Range(0, names_2.Length)];
     }
+    
+public async UniTask goToMineralNode(MineralNode mineralNode)
+    {
+        if(Type == BotType.Miner)
+        {
+            MoveTo(mineralNode.SceneObj.transform.position.ToVector3Int());
+            await UniTask.WaitUntil(() => Vector3.Distance(BotView.transform.position, mineralNode.SceneObj.transform.position) < 0.1f);
+            mineralNode.MineResource();
+        }
+    }
+
+    public async UniTask goToSmelter(Machine machine)
+    {
+        if(Type == BotType.Worker)
+        {
+            MoveTo(machine.SceneObj.transform.position.ToVector3Int());
+            await UniTask.WaitUntil(() => Vector3.Distance(BotView.transform.position, machine.SceneObj.transform.position) < 0.1f);
+            await machine.UseSmelter();
+
+        }
+    }
+    public async UniTask goToAssembler(Machine machine)
+    {
+        if(Type == BotType.Worker)
+        {
+            MoveTo(machine.SceneObj.transform.position.ToVector3Int());
+            await UniTask.WaitUntil(() => Vector3.Distance(BotView.transform.position, machine.SceneObj.transform.position) < 0.1f);
+            await machine.UseAssembler();
+
+        }
+    }
+    public async UniTask goToPress(Machine machine)
+    {
+        if(Type == BotType.Worker)
+        {
+            MoveTo(machine.SceneObj.transform.position.ToVector3Int());
+            await UniTask.WaitUntil(() => Vector3.Distance(BotView.transform.position, machine.SceneObj.transform.position) < 0.1f);
+            await machine.UsePress();
+
+        }
+    }
+    public async UniTask goToAlloyFurnace(Machine machine)
+    {
+        if(Type == BotType.Worker)
+        {
+            MoveTo(machine.SceneObj.transform.position.ToVector3Int());
+            await UniTask.WaitUntil(() => Vector3.Distance(BotView.transform.position, machine.SceneObj.transform.position) < 0.1f);
+            await machine.UseAlloyFurnace();
+
+        }
+    }
+    public async UniTask goToAdvancedAssembler(Machine machine)
+    {
+        if(Type == BotType.Worker)
+        {
+            MoveTo(machine.SceneObj.transform.position.ToVector3Int());
+            await UniTask.WaitUntil(() => Vector3.Distance(BotView.transform.position, machine.SceneObj.transform.position) < 0.1f);
+            await machine.UseAdvancedAssembler();
+
+        }
+    }
 }
 public class BotInventory
 {
@@ -66,6 +131,10 @@ public class BotInventory
    
 }
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 public enum BotType
 {
     None,
