@@ -1714,7 +1714,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::machineRecipeUI
   panello: {fileID: 2017182561}
   cont: {fileID: 2090078335}
-  prefabRic: {fileID: 4566661844069588994, guid: 6615f9c13ca145a4398124c83384f84f, type: 3}
+  prefabRic: {fileID: 253488551867552507, guid: 2d4c94e1b01141c49aae3c36af34003b, type: 3}
   titolo: {fileID: 921868388}
   desc: {fileID: 525406556}
 --- !u!1 &657680101

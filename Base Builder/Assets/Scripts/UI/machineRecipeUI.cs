@@ -8,13 +8,30 @@ public class machineRecipeUI : MonoBehaviour
     public GameObject panello;
     public Transform cont;
     public GameObject prefabRic; //forse usare quello dello scroll view
+    //public Sprite imgPrefab;
     //public recipeDataUI det;
     [Header("reference per quando clicci")]
     public TMP_Text titolo;
     public TMP_Text desc;
+    public Image imgClick;
+    public bool aperto
+    {
+        get
+        {
+            return panello.activeSelf;
+        }
+    }
+
     void Awake()
     {
         instance = this;
+    }
+    
+    private Sprite getSprite(RecipeSO recipe)
+    {
+        if (recipe.outputResources.Length > 0 && recipe.outputResources[0].Sprite != null) return recipe.outputResources[0].Sprite;
+        Debug.Log("niente sprite");
+        return null;
     }
 
     public void apri(Machine machine)
@@ -45,6 +62,8 @@ public class machineRecipeUI : MonoBehaviour
             {
                 descri.text = descri.text + r.Name + " ";
             }
+            Image imageVoce = voce.transform.Find("panel/Image").GetComponent<Image>();
+            imageVoce.sprite = getSprite(recipe);
             Button bott=voce.GetComponentInChildren<Button>();
             bott.onClick.AddListener(()=>mostraDett(recipe));
         }
