@@ -21,7 +21,6 @@ public class PowerManager : MonoBehaviour
     public static Dictionary<string,Generator> powerGeneratorDB=new();
     public static List<Machine> machineDB=new();
     public static int networkCounter { get { return instance.powerObj.GetComponentsInChildren<NetworkManager>().Length; } }
-    //public static Stack<Color> networkColors = new Stack<Color>(new Color[] { Color.red, Color.green, Color.gray, Color.blue, Color.yellow, Color.cyan, Color.magenta, Color.white, Color.tan, Color.coral, Color.aliceBlue, Color.azure });
     public static Stack<Color> networkColors = new Stack<Color>();
     [Header("Runtime Debug")]
     public int networkCount;
@@ -84,7 +83,7 @@ public class PowerManager : MonoBehaviour
                 if (connectedBuilding is Machine machine && machine.RequestedPower > 0)
                     machine.RefreshPowerRequest();
         }
-
+        PowerSystemUI.instance.Draw();
         RefreshDebugInfo();
     }
 
@@ -170,23 +169,24 @@ public class PowerManager : MonoBehaviour
     public Color[] GenerateColors(int amount,int seed)
     {
         System.Random random = new(seed);
-        Color[] colors = new Color[amount];
+        List<Color> colors = new();
         float hue=(float)random.NextDouble();
         for (int i = 0; i < amount; i++)
         {
-            hue += i/10;
+            hue += random.Next(1, 10) * 0.001f;
             hue %= 1f;
-            colors[i] = Color.HSVToRGB(hue, 0.5f, 0.95f);
+            colors.Add(Color.HSVToRGB(hue, 0.5f, 0.95f));
             if (i > 1)
             {
                 if (colors[i] == colors[i-1])
                 {
-                    hue += 0.1f;
+                    hue += 0.001f;
                     hue %= 1f;
                     colors[i] = Color.HSVToRGB(hue, 0.5f, 0.95f);
                 }
             }
         }
-        return colors;
+        colors.Shuffle();
+        return colors.ToArray();
     }
 }
