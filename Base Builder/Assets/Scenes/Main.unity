@@ -2163,7 +2163,7 @@ MonoBehaviour:
   prefabRic: {fileID: 253488551867552507, guid: 2d4c94e1b01141c49aae3c36af34003b, type: 3}
   titolo: {fileID: 921868388}
   desc: {fileID: 525406556}
-  imgClick: {fileID: 0}
+  imgClick: {fileID: 158809711}
 --- !u!4 &836725571
 Transform:
   m_ObjectHideFlags: 0
@@ -11296,63 +11296,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1403696820}
   m_CullTransparentMesh: 1
---- !u!1001 &1404369220
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 3712038972766406718, guid: 408212d5901d69e4b9987faf67335c58, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3712038972766406718, guid: 408212d5901d69e4b9987faf67335c58, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 3712038972766406718, guid: 408212d5901d69e4b9987faf67335c58, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3712038972766406718, guid: 408212d5901d69e4b9987faf67335c58, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3712038972766406718, guid: 408212d5901d69e4b9987faf67335c58, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3712038972766406718, guid: 408212d5901d69e4b9987faf67335c58, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3712038972766406718, guid: 408212d5901d69e4b9987faf67335c58, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3712038972766406718, guid: 408212d5901d69e4b9987faf67335c58, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3712038972766406718, guid: 408212d5901d69e4b9987faf67335c58, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3712038972766406718, guid: 408212d5901d69e4b9987faf67335c58, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7609508162969628809, guid: 408212d5901d69e4b9987faf67335c58, type: 3}
-      propertyPath: m_Name
-      value: Miner Bot
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 408212d5901d69e4b9987faf67335c58, type: 3}
 --- !u!1001 &1404453594
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13351,4 +13294,3 @@ SceneRoots:
   - {fileID: 509356180}
   - {fileID: 203079103}
   - {fileID: 2048470262}
-  - {fileID: 1404369220}

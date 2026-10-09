@@ -98,5 +98,6 @@ public class machineRecipeUI : MonoBehaviour
         {
             desc.text = desc.text + r.Name + " ";
         }
+        imgClick.sprite = getSprite(recipe);
     }
 }
