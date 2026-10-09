@@ -18,11 +18,14 @@ public class Bot
     public int CarryCapacity { get; protected set; }
     public BotInventory Inventory { get; protected set; }
 
+    public RecipeSO recipeOra { get; set; }
+    public ResourceSO inputRisorse {  get; set; }
+
     public Bot(BotView view, BotData data, string id = null, Vector3? coords = null, string name = null, float power = 100)
     {
         BotView = view;
         BotData = data;
-
+        Type = data.type;
         // Self
         Id = id ?? Guid.NewGuid().ToString();
         Coords = coords ?? Vector3.zero;
@@ -36,19 +39,46 @@ public class Bot
         BotView.name = Name;
     }
 
-    public void MoveTo(Vector3Int coords)
+    public bool MoveTo(Vector3Int coords)
     {
+        /*
         BotView.SetDestination(coords);
-        BotView.StartMoving();
+        BotView.StartMoving();*/
+        bool raggiungibile = BotView.SetDestination(coords);
+
+        if (raggiungibile)
+        {
+            BotView.StartMoving();
+        }
+
+        return raggiungibile;
+    }
+    async UniTask<bool> muoviAsp(Vector3Int coords)
+    {
+        if (!MoveTo(coords))
+        {
+            Debug.Log(Name + ": nessun percorso verso " + coords);
+            return false;
+        }
+
+        await UniTask.WaitUntil(() => !BotView.IsMoving, cancellationToken: BotView.GetCancellationTokenOnDestroy());
+        return true;
     }
 
+    public async UniTask goToMineralNode(MineralNode mineralNode)
+    {
+        if (Type != BotType.Miner)return;
+        bool arrivato = await muoviAsp(mineralNode.SceneObj.transform.position.ToVector3Int());
+        if (arrivato)mineralNode.MineResource();
+    }
     string PickRandomName()
     {
         string[] names_1 = { "Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "Hotel", "India", "Juliett" };
         string[] names_2 = { "Leader", "Keeper", "Pioneer", "Witcher", "Diver", "Bomber", "Rancher", "Taker", "Dispatcher", "Trickster" };
         return names_1[UnityEngine.Random.Range(0, names_1.Length)] + " " + names_2[UnityEngine.Random.Range(0, names_2.Length)];
     }
-      public async UniTask goToMineralNode(MineralNode mineralNode)
+    /*
+    public async UniTask goToMineralNode(MineralNode mineralNode)
     {
         if(Type == BotType.Miner)
         {
@@ -57,7 +87,7 @@ public class Bot
             mineralNode.MineResource();
         }
     }
-
+    */
     public async UniTask goToSmelter(Machine machine)
     {
         if(Type == BotType.Worker)
