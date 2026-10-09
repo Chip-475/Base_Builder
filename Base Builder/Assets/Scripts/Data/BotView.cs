@@ -6,6 +6,7 @@ using System.Collections.Generic;
 public class BotView : MonoBehaviour
 {
     [SerializeField] BotData data;
+    public Bot RuntimeObj { get; private set; }
 
     [Header("Components")]
     [SerializeField] SpriteRenderer spriteRenderer;
@@ -15,7 +16,7 @@ public class BotView : MonoBehaviour
 
     void Start()
     {
-        new Bot(this, data);
+        RuntimeObj = new Bot(this, data);
     }
 
     public void SetDestination(Vector3Int coords)
