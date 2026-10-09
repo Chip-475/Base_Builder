@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class BuildModeCameraMovement : MonoBehaviour
+public class CameraMovement : MonoBehaviour
 {
     [Header("Config")]
     [SerializeField] Camera camera;
