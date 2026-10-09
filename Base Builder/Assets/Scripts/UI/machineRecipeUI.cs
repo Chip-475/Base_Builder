@@ -14,6 +14,7 @@ public class machineRecipeUI : MonoBehaviour
     public TMP_Text titolo;
     public TMP_Text desc;
     public Image imgClick;
+    public crafting grafo;
     public bool aperto
     {
         get
@@ -99,5 +100,6 @@ public class machineRecipeUI : MonoBehaviour
             desc.text = desc.text + r.Name + " ";
         }
         imgClick.sprite = getSprite(recipe);
+        grafo.mostra(recipe);
     }
 }
