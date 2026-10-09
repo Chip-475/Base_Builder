@@ -26,7 +26,8 @@ public class BotView : MonoBehaviour
         Pathfinder.Pathfind(myPos, coords, out List<Vector3Int> path);
         this.path = path;*/
         Vector3Int myPos = transform.position.ToVector3Int();
-        Pathfinder.Pathfind(myPos, coords, out List<Vector3Int> newPath);
+        //Pathfinder.Pathfind(myPos, coords, out List<Vector3Int> newPath);
+        Pathfinder.pathfindAdiacente(myPos, coords, out List<Vector3Int> newPath);
         if (newPath == null || newPath.Count == 0)
         {
             path = new List<Vector3Int>();

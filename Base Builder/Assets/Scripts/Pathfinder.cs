@@ -114,4 +114,22 @@ public static class Pathfinder
         path.Reverse();
         return path;
     }
+    public static void pathfindAdiacente(Vector3Int start, Vector3Int obb, out List<Vector3Int> path)
+    {
+        path = new List<Vector3Int>();
+        Cell obbCell = WorldManager.World.GetCellAt(obb);
+        if (obbCell == null) return;
+        if (obbCell.canWalkOn)
+        {
+            Pathfind(start, obb, out path);
+            return;
+        }
+        foreach(var i in obbCell.GetNeighbours())
+        {
+            if(!i.canWalkOn) continue;
+            Pathfind(start, i.Coords, out List<Vector3Int> candidati);
+            if (candidati.Count == 0) continue;
+            if (path.Count == 0 || candidati.Count < path.Count) path = candidati;
+        }    
+    }
 }
