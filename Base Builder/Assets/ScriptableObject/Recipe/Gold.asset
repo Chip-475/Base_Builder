@@ -12,13 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1930e33686e0fe343a20ec312785cbc4, type: 3}
   m_Name: Gold
   m_EditorClassIdentifier: Assembly-CSharp::Recipe
-  <ID>k__BackingField: 
-  r_name: Gold
   inputResources:
   - {fileID: 11400000, guid: a63e372a913454d4794c5bc6f9b8289f, type: 2}
-  input: 
   outputResources:
   - {fileID: 11400000, guid: a753ae9da1d3d474f8c515e6dc2116e9, type: 2}
-  output: 00000000i
-  completionTime: 0
+  recipeName: 
+  id: 
   energyCost: 0
+  recipeTime: 0
