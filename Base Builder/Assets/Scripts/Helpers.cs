@@ -110,7 +110,11 @@ public static class Helpers
         bounds.center = gridPos;
 
         foreach (Cell cell in GetCellsInBounds(bounds))
-            if (cell == null || !cell.canBuildOn) return false;
+        {
+            if (!WorldManager.World.Cells.ContainsValue(cell)) return false;
+            if (!cell.canBuildOn) return false;
+            if (cell == PlayerManager.Instance.GetPlayerCell()) return false;
+        }
 
         return true;
     }

@@ -28,12 +28,24 @@ public class BuildMode : MonoBehaviour
     {
         Instance = this;
 
+        // Buttons
         toggleButton.onClick.AddListener(() => { Toggle(); SortBy(BuildingType.Machine); });
         machineSort.onClick.AddListener(() => SortBy(BuildingType.Machine));
         miningSort.onClick.AddListener(() => SortBy(BuildingType.Mining));
         powerSort.onClick.AddListener(() => SortBy(BuildingType.Power));
         storageSort.onClick.AddListener(() => SortBy(BuildingType.Storage));
         destroyMode.onClick.AddListener(() => SortBy(BuildingType.None));
+
+        // Inputs
+        PlayerManager.Inputs.BuildMode.Enable();
+        PlayerManager.Inputs.BuildMode.MouseMoved.performed += (_) => Hover();
+        PlayerManager.Inputs.BuildMode.LeftClick.performed += (_) => Build();
+        PlayerManager.Inputs.BuildMode.RightClick.performed += (_) =>
+        {
+            SetSelectedEntry(null);
+            buildingPreview.sprite = null;
+        };
+
         InitPreview();
         buildingPreview.enabled = false;
     }
@@ -45,39 +57,20 @@ public class BuildMode : MonoBehaviour
 
     public void Toggle()
     {
-        Debug.Log("Toggle");
-        panel.SetActive(!IsActive);
-
-        if (IsActive) Enable();
-        else Disable();
+        if (IsActive) Disable();
+        else Enable();
     }
     void Enable()
     {
         panel.SetActive(true);
         buildingPreview.enabled = true;
-
-        PlayerManager.Inputs.BuildMode.Enable();
-        PlayerManager.Inputs.BuildMode.MouseMoved.performed += (_) => Hover();
-        PlayerManager.Inputs.BuildMode.LeftClick.performed += (_) => Build();
-        PlayerManager.Inputs.BuildMode.RightClick.performed += (_) =>
-        {
-            SetSelectedEntry(null);
-            buildingPreview.sprite = null;
-        };
+        PlayerManager.BuildMode();
     }
     void Disable()
     {
         panel.SetActive(false);
         buildingPreview.enabled = false;
-
-        PlayerManager.Inputs.BuildMode.Disable();
-        PlayerManager.Inputs.BuildMode.MouseMoved.performed -= (_) => Hover();
-        PlayerManager.Inputs.BuildMode.LeftClick.performed -= (_) => Build();
-        PlayerManager.Inputs.BuildMode.RightClick.performed -= (_) =>
-        {
-            SetSelectedEntry(null);
-            buildingPreview.sprite = null;
-        };
+        PlayerManager.PlayerMode();
     }
 
     void Hover()

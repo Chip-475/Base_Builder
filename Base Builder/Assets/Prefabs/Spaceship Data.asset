@@ -21,7 +21,10 @@ MonoBehaviour:
     m_Extent: {x: 4.5, y: 2.5, z: 0}
   connectionBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 6.6, y: 4.5, z: 0}
+    m_Extent: {x: 6.5, y: 4.5, z: 0}
+  interactionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 5.5, y: 3.5, z: 0}
   connectsToPower: 1
   blocksWalking: 1
   blocksPlacing: 1

@@ -20,7 +20,7 @@ public class PlayerManager : MonoBehaviour
         PlayerCameraMovement.Player = this;
         Inputs = new();
 
-        Inputs.Player.Movement.Enable();
+        PlayerMode();
     }
     private void Update()
     {
@@ -40,5 +40,34 @@ public class PlayerManager : MonoBehaviour
 
         vec *= speed * Time.deltaTime;
         transform.position += (Vector3)vec;
+    }
+
+    public Cell GetPlayerCell()
+    {
+        return WorldManager.World.GetCellAt(transform.position.ToVector3Int());
+    }
+
+    // Input Managing
+    public static void DisableAll()
+    {
+        Inputs.Player.Disable();
+        Inputs.Camera.Disable();
+        Inputs.BuildMode.Disable();
+    }
+    public static void PlayerMode()
+    {
+        DisableAll();
+        Inputs.Player.Enable();
+    }
+    public static void BuildMode()
+    {
+        DisableAll();
+        Inputs.Camera.Enable();
+        Inputs.BuildMode.Enable();
+    }
+    public static void FreeLookMode()
+    {
+        DisableAll();
+        Inputs.Camera.Enable();
     }
 }

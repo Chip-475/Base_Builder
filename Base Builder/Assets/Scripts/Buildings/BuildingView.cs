@@ -27,12 +27,16 @@ public abstract class BuildingView : MonoBehaviour
     }
     protected void OnDrawGizmos()
     {
-        // Hitbox gizmo
+        // Bounds gizmo
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(transform.position, Data.bounds.size);
 
-        // Connection bounds gizmo
+        // Interaction bounds gizmo
         Gizmos.color = Color.yellow;
+        Gizmos.DrawWireCube(transform.position, Data.interactionBounds.size);
+
+        // Connection bounds gizmo
+        Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(transform.position, Data.connectionBounds.size);
     }
 }
