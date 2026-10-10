@@ -1,0 +1,1 @@
+The player begin with 2 miner the basic material to build a powerpole and an [[Assembler]] he has to mine [[Stone]] and make [[Stone Brics]] with that it has to make [[Coal Furnace]] after mining [[Coal]] and [[Pyrite]] he will smelt it to make [[Iron]] and make [[Iron Plates]] and [[Iron Rods]] that wil be helpful to build [[Furnace mk1]] then it would use it to smelt [[Copper]]

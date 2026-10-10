@@ -5,3 +5,16 @@ There are [[Resources]] scattered around the place, some of which can be extract
 Starting facilities are the broken down ship's hull and a laser mining tool for basic resources.
 The ship is an actual building that can be entered, built in and repaired.
 Repairing the ship requires the hardest mats to get in that planet and once done the demo ends.
+
+Ores progression Order:
+
+[[Coal]]
+[[Iron]]
+[[Copper]]
+[[Tin]]
+
+[[Aluminum]]
+[[Gold]]
+[[Nickel]]
+
+[[Titanium]]

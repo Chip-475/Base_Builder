@@ -1,5 +1,5 @@
 ___
 $SnO_2$
 Can be refined into [[Tin]].
-Toughness:
-Weight:
+Toughness: 1
+Weight: 2

@@ -13,15 +13,30 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Installed Objects/Machines/Advanced Assembler.md",
+                "file": "Resources/Crafted Items/Crafted Items.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Advanced Assembler"
+              "title": "Crafted Items"
+            }
+          },
+          {
+            "id": "2abceeb9e1475cd2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Progression.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Progression"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -188,33 +203,33 @@
       "bases:Crea nuova Base": false
     }
   },
-  "active": "fcbb2aa86150e5cf",
+  "active": "2abceeb9e1475cd2",
   "lastOpenFiles": [
     "Resources/Crafted Items/Crafted Items.md",
-    "Senza nome.md",
-    "Resources/Crafted Items/Titanium Plate.md",
-    "Resources/Crafted Items/Titanium Frame.md",
-    "Resources/Crafted Items/Steel Plate.md",
-    "Resources/Crafted Items/Ship Core Component.md",
-    "Resources/Crafted Items/Navigation Component.md",
-    "Resources/Crafted Items/Copper Wire.md",
-    "Resources/Crafted Items/Circuit Board.md",
-    "Resources/Crafted Items/Aluminum Plate.md",
-    "Resources/Ingots/Copper.md",
-    "Resources/Ingots/Nickel.md",
-    "Resources/Ingots/Iron.md",
-    "Resources/Ingots/Gold.md",
-    "Resources/Ingots/Aluminum.md",
-    "Resources/Raw/Cassiterite.md",
-    "Resources/Raw/Pyrite.md",
-    "Resources/Raw/Malachite.md",
-    "Resources/Raw/Magnetite.md",
+    "Progression.md",
+    "General.md",
     "Resources/Raw/Pentladite.md",
+    "Resources/Raw/Pyrite.md",
+    "Resources/Raw/Cassiterite.md",
+    "Resources/Raw/Malachite.md",
     "Resources/Raw/Ilmenite.md",
-    "Resources/Raw/Hematite.md",
-    "Resources/Raw/Gold Ore.md",
-    "Resources/Raw/Coal.md",
     "Resources/Raw/Bauxite.md",
-    "Spaceship.md"
+    "Resources/Resources.md",
+    "Resources/Raw/Magnetite.md",
+    "Resources/Raw/Gold Ore.md",
+    "Resources/Raw/Raw.md",
+    "Art Bible.md",
+    "Resources/Raw/Hematite.md",
+    "Resources/Raw/Coal.md",
+    "Installed Objects/Machines/Coal Furnace.md",
+    "Installed Objects/Machines/Furnace mk2.md",
+    "Installed Objects/Machines/Furnace mk1.md",
+    "Installed Objects/Machines/Advanced Assembler.md",
+    "Installed Objects/Machines/Machines.md",
+    "Bots/Miner Bot.md",
+    "Bots/Carrier Bot.md",
+    "Bots/Builder Bot.md",
+    "Recipes/Recipes.md",
+    "Resources/Ingots/Ingots.md"
   ]
 }
