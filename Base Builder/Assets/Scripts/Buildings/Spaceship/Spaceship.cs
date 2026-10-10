@@ -8,11 +8,13 @@ public class Spaceship : Building
 
     public Transform BotSpawnPoint { get; private set; }
     public float PowerGeneration => Data.powerGeneration;
+    public SpaceshipUiManager UI { get; private set; }
 
-    public Spaceship(SpaceshipData data, SpaceshipView sceneObj, Transform botSpawnPoint) : base(data, sceneObj)
+    public Spaceship(SpaceshipData data, SpaceshipView sceneObj, Transform botSpawnPoint, SpaceshipUiManager ui) : base(data, sceneObj)
     {
         BotSpawnPoint = botSpawnPoint;
         SpaceshipUiManager.spaceship = this;
+        UI = ui;
     }
     public override void Destroy()
     {
@@ -29,6 +31,6 @@ public class Spaceship : Building
 
     public void OnClick()
     {
-        Debug.Log("Open inventory menu. (not implemented)");
+        UI.Open();
     }
 }

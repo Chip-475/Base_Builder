@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Instance {  get; private set; }
     public static PlayerInputs Inputs { get; private set; }
+    public static event Action CheckForInteractable;
 
     [Header("Settings")]
     [SerializeField][Tooltip("7f standard.")] float speed = 7f;
@@ -21,6 +22,7 @@ public class PlayerManager : MonoBehaviour
         Inputs = new();
 
         PlayerMode();
+        Inputs.Player.Interact.performed += Interact;
     }
     private void Update()
     {
@@ -40,6 +42,12 @@ public class PlayerManager : MonoBehaviour
 
         vec *= speed * Time.deltaTime;
         transform.position += (Vector3)vec;
+
+        CheckForInteractable?.Invoke();
+    }
+    public void Interact(InputAction.CallbackContext context)
+    {
+
     }
 
     public Cell GetPlayerCell()
