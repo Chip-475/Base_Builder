@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 public class NetworkManager : MonoBehaviour
 {
@@ -100,21 +101,101 @@ public class NetworkManager : MonoBehaviour
             if (building is Generator generator && generator.Running)
                 generator.SwitchState(false);
     }
-    public void drawConnections()
+public void drawConnections()
     {
         foreach (LineRenderer line in lineRenderers)
         {
             Destroy(line.gameObject);
         }
+
         lineRenderers.Clear();
+
+        Dictionary<PowerPole, int> connectionsCount = new();
+        List<(PowerPole, PowerPole)> connections = new();
+
         foreach (Building building in ConnectedBuildings)
+        {
             if (building is PowerPole pole)
             {
                 pole.getConnectedBuildings();
-                foreach (Building connectedBuilding in pole.connectedBuildings)
-                    pole.drawConnection(connectedBuilding.SceneObj.transform.position);
+                connectionsCount[pole] = 0;
             }
+        }
 
+        // Prima passata: garantisce almeno una connessione per palo
+        foreach (Building building in ConnectedBuildings)
+        {
+            if (building is not PowerPole pole) continue;
+
+            if (connectionsCount[pole] > 0) continue;
+
+            foreach (Building other in pole.connectedBuildings
+                .OfType<PowerPole>()
+                .Where(other =>
+                    other != pole &&
+                    other.Network == pole.Network &&
+                    connectionsCount.ContainsKey(other))
+                .OrderBy(other =>
+                    Vector2.Distance(
+                        pole.SceneObj.transform.position,
+                        other.SceneObj.transform.position
+                    )))
+            {
+                PowerPole otherPP=other as PowerPole;
+                if (connectionsCount[pole] >= 1) break;
+                if (connectionsCount[otherPP] >= 3) continue;
+
+                if (connections.Any(c =>
+                    (c.Item1 == pole && c.Item2 == other) ||
+                    (c.Item1 == other && c.Item2 == pole)))
+                    continue;
+
+                connections.Add((pole, otherPP));
+                connectionsCount[pole]++;
+                connectionsCount[otherPP]++;
+                break;
+            }
+        }
+
+        // Seconda passata: aggiunge connessioni extra ai vicini
+        foreach (Building building in ConnectedBuildings)
+        {
+            if (building is not PowerPole pole) continue;
+
+            foreach (Building other in pole.connectedBuildings
+                .OfType<PowerPole>()
+                .Where(other =>
+                    other != pole &&
+                    other.Network == pole.Network &&
+                    connectionsCount.ContainsKey(other))
+                .OrderBy(other =>
+                    Vector2.Distance(
+                        pole.SceneObj.transform.position,
+                        other.SceneObj.transform.position
+                    )))
+            {
+                PowerPole otherPP = other as PowerPole;
+                if (connectionsCount[pole] >= 3) break;
+                if (connectionsCount[otherPP] >= 3) continue;
+
+                if (connections.Any(c =>
+                    (c.Item1 == pole && c.Item2 == other) ||
+                    (c.Item1 == other && c.Item2 == pole)))
+                    continue;
+
+                connections.Add((pole, otherPP));
+                connectionsCount[pole]++;
+                connectionsCount[otherPP]++;
+            }
+        }
+
+        // Disegna ogni connessione una sola volta
+        foreach (var connection in connections)
+        {
+            connection.Item1.drawConnection(
+                connection.Item2.SceneObj.transform.position
+            );
+        }
     }
     public void OnDestroy()
     {

@@ -26,8 +26,6 @@ public class PowerPole : Building
     public bool CanConnectTo(Building other)
     {
         if (other == null) return false;
-        if (other.Network==null)return Helpers.Overlaps(GetCellsInBounds(ConnectionBounds), GetCellsInBounds(other.ConnectionBounds));
-        if (connectedBuildings.Count >= 3) return false;
         return Helpers.Overlaps(GetCellsInBounds(ConnectionBounds), GetCellsInBounds(other.ConnectionBounds));
     }
     public void getConnectedBuildings()
