@@ -12,6 +12,7 @@ public class Spaceship : Building
     public Spaceship(SpaceshipData data, SpaceshipView sceneObj, Transform botSpawnPoint) : base(data, sceneObj)
     {
         BotSpawnPoint = botSpawnPoint;
+        SpaceshipUiManager.spaceship = this;
     }
     public override void Destroy()
     {
