@@ -117,7 +117,7 @@ public class Machine : Building
         }
         return null;
     }
-    public async UniTask UseMachine(RecipeSO recipe, ResourceSO[] inputResources)
+    public async UniTask UseMachine(RecipeSO recipe, ResourceSO[] inputResources) //cetto brutto
     {
         switch (Type)
         {

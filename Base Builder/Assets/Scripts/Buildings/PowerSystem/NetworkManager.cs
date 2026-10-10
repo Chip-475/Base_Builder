@@ -103,98 +103,102 @@ public class NetworkManager : MonoBehaviour
     }
 public void drawConnections()
     {
+        //clear old connections
         foreach (LineRenderer line in lineRenderers)
         {
             Destroy(line.gameObject);
         }
-
         lineRenderers.Clear();
-
+       
+        //utility lists
         Dictionary<PowerPole, int> connectionsCount = new();
-        List<(PowerPole, PowerPole)> connections = new();
+        List<(PowerPole, Building)> connections = new();
+        List<Building> connectedNonPoles = new();
 
         foreach (Building building in ConnectedBuildings)
         {
             if (building is PowerPole pole)
             {
                 pole.getConnectedBuildings();
-                connectionsCount[pole] = 0;
+                connectionsCount[pole] = 0; //fill the dictionary with all pps
             }
         }
 
-        // Prima passata: garantisce almeno una connessione per palo
-        foreach (Building building in ConnectedBuildings)
+        foreach (Building building in ConnectedBuildings) // first pass: at least one connection, prefer the nearest
         {
-            if (building is not PowerPole pole) continue;
+            if (building is not PowerPole pole) continue; //examine only pp
+            if (connectionsCount[pole] > 0) continue; //without a connection
 
-            if (connectionsCount[pole] > 0) continue;
-
-            foreach (Building other in pole.connectedBuildings
-                .OfType<PowerPole>()
-                .Where(other =>
-                    other != pole &&
-                    other.Network == pole.Network &&
-                    connectionsCount.ContainsKey(other))
-                .OrderBy(other =>
-                    Vector2.Distance(
-                        pole.SceneObj.transform.position,
-                        other.SceneObj.transform.position
-                    )))
+            foreach (PowerPole other in pole.connectedBuildings.OfType<PowerPole>() //take only pps inside pole connections
+                .Where(other => other != pole && other.Network == pole.Network && connectionsCount.ContainsKey(other)) //not itself, in same network (could just be network!=null done this way to beautify,inside building connected to the network,double checked to be sure)
+                .OrderBy(other => Vector2.Distance(pole.SceneObj.transform.position,other.SceneObj.transform.position))) //prefer nearest building
             {
-                PowerPole otherPP=other as PowerPole;
-                if (connectionsCount[pole] >= 1) break;
-                if (connectionsCount[otherPP] >= 3) continue;
+                if (connectionsCount[pole] >= 3) break; //break if already done max connection
+                if (connectionsCount[other] >= 3) continue; // skip the cycle if target has max connection
 
-                if (connections.Any(c =>
-                    (c.Item1 == pole && c.Item2 == other) ||
-                    (c.Item1 == other && c.Item2 == pole)))
-                    continue;
+                if (connections.Any(c => (c.Item1 == pole && c.Item2 == other) || (c.Item1 == other && c.Item2 == pole))) continue; //item are the tuple item1 and 2 checks if the connection is already enstablished
 
-                connections.Add((pole, otherPP));
+                connections.Add((pole, other));
                 connectionsCount[pole]++;
-                connectionsCount[otherPP]++;
+                connectionsCount[other]++;
                 break;
             }
         }
 
-        // Seconda passata: aggiunge connessioni extra ai vicini
-        foreach (Building building in ConnectedBuildings)
+        foreach (Building building in ConnectedBuildings) //second pass: goes to other buildings
         {
-            if (building is not PowerPole pole) continue;
+            if (building is PowerPole) continue; //doesnt need to check for pp here
 
-            foreach (Building other in pole.connectedBuildings
-                .OfType<PowerPole>()
-                .Where(other =>
-                    other != pole &&
-                    other.Network == pole.Network &&
-                    connectionsCount.ContainsKey(other))
-                .OrderBy(other =>
-                    Vector2.Distance(
-                        pole.SceneObj.transform.position,
-                        other.SceneObj.transform.position
-                    )))
+            PowerPole nearestPole = null; 
+            float nearestDistance = float.MaxValue; //maxValue so that first check will overwrite this
+
+            foreach (Building candidate in ConnectedBuildings)
             {
-                PowerPole otherPP = other as PowerPole;
-                if (connectionsCount[pole] >= 3) break;
-                if (connectionsCount[otherPP] >= 3) continue;
+                if (candidate is not PowerPole pole) continue; //double check
+                if (pole.Network != building.Network) continue; // double check
+                if (connectionsCount[pole] >= 3) continue; // to see if to stop counting this and count only connection between pps
+                if (!pole.connectedBuildings.Contains(building)) continue; //check if possible to enstablish the connection
 
-                if (connections.Any(c =>
-                    (c.Item1 == pole && c.Item2 == other) ||
-                    (c.Item1 == other && c.Item2 == pole)))
-                    continue;
+                float distance = Vector2.Distance(pole.SceneObj.transform.position,building.SceneObj.transform.position);
 
-                connections.Add((pole, otherPP));
-                connectionsCount[pole]++;
-                connectionsCount[otherPP]++;
+                if (distance < nearestDistance) //set as the nearest
+                {
+                    nearestDistance = distance;
+                    nearestPole = pole;
+                }
+            }
+
+            if (nearestPole != null) //generate connections
+            {
+                connections.Add((nearestPole, building));
+                connectionsCount[nearestPole]++;
+                connectedNonPoles.Add(building);
             }
         }
 
-        // Disegna ogni connessione una sola volta
-        foreach (var connection in connections)
+        foreach (Building building in ConnectedBuildings) //add more connections
         {
-            connection.Item1.drawConnection(
-                connection.Item2.SceneObj.transform.position
-            );
+            if (building is not PowerPole pole) continue;
+
+            foreach (PowerPole other in pole.connectedBuildings.OfType<PowerPole>()
+                .Where(other => other != pole && other.Network == pole.Network && connectionsCount.ContainsKey(other)) // not this, same network,connection exist
+                .OrderBy(other => Vector2.Distance(pole.SceneObj.transform.position,other.SceneObj.transform.position))) //sorted by distance
+            {
+                if (connectionsCount[pole] >= 3) break;
+                if (connectionsCount[other] >= 3) continue;
+
+                if (connections.Any(c => (c.Item1 == pole && c.Item2 == other) || (c.Item1 == other && c.Item2 == pole)))
+                    continue;
+
+                connections.Add((pole, other));
+                connectionsCount[pole]++;
+                connectionsCount[other]++;
+            }
+        }
+
+        foreach (var connection in connections)//draw the connetions
+        {
+            connection.Item1.drawConnection(connection.Item2.SceneObj.transform.position);
         }
     }
     public void OnDestroy()
