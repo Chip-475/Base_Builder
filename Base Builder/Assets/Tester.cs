@@ -13,7 +13,7 @@ public class Tester : MonoBehaviour
     {
         Instance = this;
     }
-
+    /*
     [ContextMenu("Test")]
     public void WorldDatabaseTest()
     {
@@ -21,5 +21,5 @@ public class Tester : MonoBehaviour
             Debug.Log(true);
         else
             Debug.Log(false);
-    }
+    }*/
 }

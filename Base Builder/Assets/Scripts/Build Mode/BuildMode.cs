@@ -83,7 +83,7 @@ public class BuildMode : MonoBehaviour
     void Hover()
     {
         Vector3Int mouseGridPos = Helpers.GetMouseWorldPosition().ToVector3Int();
-        if (SelectedEntry == null || Helpers.IsMouseOverUI())
+        if (SelectedEntry == null) //|| //Helpers.IsMouseOverUI())
         {
             buildingPreview.sprite = null;
             return;
@@ -100,7 +100,7 @@ public class BuildMode : MonoBehaviour
     void Build()
     {
         Vector3Int mouseGridPos = Helpers.GetMouseWorldPosition().ToVector3Int();
-        if (SelectedEntry == null || Helpers.IsMouseOverUI())
+        if (SelectedEntry == null)// || Helpers.IsMouseOverUI())
             return;
         if (!SelectedEntry.buildingPrefab.CanBuildOn(mouseGridPos))
             return;

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public abstract class BuildingView : MonoBehaviour
@@ -30,9 +29,5 @@ public abstract class BuildingView : MonoBehaviour
         // Hitbox gizmo
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(transform.position, Data.bounds.size);
-
-        // Connection bounds gizmo
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(transform.position, Data.connectionBounds.size);
     }
 }
