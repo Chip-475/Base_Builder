@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Iron
   m_EditorClassIdentifier: Assembly-CSharp::Resources
-  Name: 
-  Desc: 
-  Sprite: {fileID: -7868862028048558966, guid: a6097e698c367fe44afdab3f3bded4b2, type: 3}
+  Name: Iron Ingot
+  Desc: Durable and abundant metal, although very heavy.
+  Sprite: {fileID: -7868862028048558966, guid: 6cbf656d77258bc4fa0ff0e50ab3fce3, type: 3}
   toughness: 1
   weightPerUnit: 2
   energyPerUnit: 0

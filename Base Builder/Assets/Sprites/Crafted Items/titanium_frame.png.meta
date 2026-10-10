@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 64b9e168b69b06241b0048d5b9563a8f
+guid: d0fbaf838450cf4469caeec3fa732663
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7338505459348056181
-    second: aluminium_ingot_0
+      213: -6649801779738788242
+    second: titanium_frame_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -77,7 +77,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -102,13 +102,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: aluminium_ingot_0
+      name: titanium_frame_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 7
-        width: 46
-        height: 33
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -117,8 +117,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b875b417a24682a90800000000000000
-      internalID: -7338505459348056181
+      spriteID: e6eb8e3738827b3a0800000000000000
+      internalID: -6649801779738788242
       vertices: []
       indices: 
       edges: []
@@ -137,7 +137,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      aluminium_ingot_0: -7338505459348056181
+      titanium_frame_0: -6649801779738788242
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 7dc09831611dceb45a7d621063a1a1d8
+guid: a183b6af64f997049b9f3ca50532c189
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8911606324414404349
-    second: copper_ingotv2_final_0
+      213: -6568795009545714703
+    second: titanium_plate_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -77,7 +77,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -102,13 +102,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: copper_ingotv2_final_0
+      name: titanium_plate_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 7
-        width: 46
-        height: 33
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -117,8 +117,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 309a72f734d935480800000000000000
-      internalID: -8911606324414404349
+      spriteID: 1f34ba5edb3f6d4a0800000000000000
+      internalID: -6568795009545714703
       vertices: []
       indices: 
       edges: []
@@ -137,7 +137,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      copper_ingotv2_final_0: -8911606324414404349
+      titanium_plate_0: -6568795009545714703
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

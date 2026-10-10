@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: a392273a98aaa2441b08f90e5a233413
+guid: 660ff17308450f84982895782d067048
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2118452710860354368
-    second: invar_ingot_0
+      213: 7000149559540890843
+    second: steel_plate_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -77,7 +77,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -102,13 +102,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: invar_ingot_0
+      name: steel_plate_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 7
-        width: 46
-        height: 33
+        x: 0
+        y: 0
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -117,8 +117,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0437b483481466d10800000000000000
-      internalID: 2118452710860354368
+      spriteID: bdcba0f9fe6852160800000000000000
+      internalID: 7000149559540890843
       vertices: []
       indices: 
       edges: []
@@ -137,7 +137,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      invar_ingot_0: 2118452710860354368
+      steel_plate_0: 7000149559540890843
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

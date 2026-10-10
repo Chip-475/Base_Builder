@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1930e33686e0fe343a20ec312785cbc4, type: 3}
   m_Name: Gold
   m_EditorClassIdentifier: Assembly-CSharp::Recipe
-  <ID>k__BackingField: 
-  r_name: Gold
+  <ID>k__BackingField: gold Recipe
+  r_name: Gold Recipe
   inputResources:
   - {fileID: 11400000, guid: a63e372a913454d4794c5bc6f9b8289f, type: 2}
   input: 

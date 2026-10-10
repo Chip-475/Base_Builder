@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1930e33686e0fe343a20ec312785cbc4, type: 3}
   m_Name: Titanium
   m_EditorClassIdentifier: Assembly-CSharp::Recipe
+  <ID>k__BackingField: titanium Recipe
+  r_name: Titanium Recipe
   inputResources:
   - {fileID: 11400000, guid: 39b795c870dce914c972db37683bdd3e, type: 2}
+  input: 
   outputResources:
   - {fileID: 11400000, guid: f514da8af4ed5af4ea289cadabff4aab, type: 2}
-  recipeName: 
-  id: 
+  output: 
+  completionTime: 0
   energyCost: 0
-  recipeTime: 0

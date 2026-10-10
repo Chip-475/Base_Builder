@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Gold
   m_EditorClassIdentifier: Assembly-CSharp::Resources
-  Name: gold
-  Desc: gold
-  Sprite: {fileID: -3367283026572634431, guid: 138bf3f6c150cbe41a3efa7532389e5c, type: 3}
+  Name: Gold Ingot
+  Desc: Extremely conductive metal.
+  Sprite: {fileID: -3367283026572634431, guid: e8cbf74ecfdca5747902496f417b7c27, type: 3}
   toughness: 1
   weightPerUnit: 3
   energyPerUnit: 0

@@ -139,22 +139,7 @@ public class Bot
         }
 }
 }
-public class BotInventory
-{
-    public Dictionary<ResourceSO, int> Inventory { get; private set; } = new();
-    public int MaxWeight { get; private set; }
 
-    public BotInventory(BotInventory inv)
-    {
-        Inventory = new(inv.Inventory);
-        MaxWeight = inv.MaxWeight;
-    }
-    public BotInventory(int maxWeight)
-    {
-        MaxWeight = maxWeight;
-    }
-   
-}
 
 public enum BotType
 {

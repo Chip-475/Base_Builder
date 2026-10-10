@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 58855029fd2f4f24195763f13f5ecc77
+guid: d729cf4220b1f2e43a1f19bdaf7aa891
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7192264704522413528
-    second: aluminium_plate_0
+      213: 521513591395239240
+    second: copper_wire_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -77,7 +77,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -102,13 +102,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: aluminium_plate_0
+      name: copper_wire_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 3
         width: 32
-        height: 32
+        height: 25
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -117,8 +117,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 82a9c548b51ff2c90800000000000000
-      internalID: -7192264704522413528
+      spriteID: 845c6a829d9cc3700800000000000000
+      internalID: 521513591395239240
       vertices: []
       indices: 
       edges: []
@@ -137,7 +137,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      aluminium_plate_0: -7192264704522413528
+      copper_wire_0: 521513591395239240
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

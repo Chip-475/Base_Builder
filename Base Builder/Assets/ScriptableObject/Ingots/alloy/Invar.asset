@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Invar
   m_EditorClassIdentifier: Assembly-CSharp::Resources
-  Name: 
-  Desc: 
-  Sprite: {fileID: 2118452710860354368, guid: a392273a98aaa2441b08f90e5a233413, type: 3}
+  Name: Invar Alloy
+  Desc: Alloy formed from Iron and Nickel.
+  Sprite: {fileID: 2118452710860354368, guid: 14b083093519c86468c2b1aaa3da5b24, type: 3}
   toughness: 1
   weightPerUnit: 5
   energyPerUnit: 0

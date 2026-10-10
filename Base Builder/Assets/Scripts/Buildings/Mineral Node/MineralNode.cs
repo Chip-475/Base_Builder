@@ -19,7 +19,7 @@ public class MineralNode : Building
 
     public (ResourceSO resource, int quantity) MineResource()
     {
-        //bot.Mine qua ci va la funzione del bot che aspetta oer minare il materiale
+        //bot.Mine qua ci va la funzione del bot che aspetta per minare il materiale
         ResourceSO type = Data.resource;
         int mineralQuantity = Data.baseAmountGiven * (int)Data.purity;
         return (type, mineralQuantity);

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
-  m_Name: Nickel
-  m_EditorClassIdentifier: Assembly-CSharp::Resources
-  Name: Nickel Ingot
-  Desc: Very heat resistant metal.
-  Sprite: {fileID: -8533293177587791561, guid: f0d79c45d0e92b8469f1ed426332b121, type: 3}
+  m_Name: Tin
+  m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
+  Name: Tin Ingot
+  Desc: 
+  Sprite: {fileID: -6487633152846227020, guid: 89387b95bd74b094db0ea13288bd14a1, type: 3}
   toughness: 1
-  weightPerUnit: 3
+  weightPerUnit: 1
   energyPerUnit: 0

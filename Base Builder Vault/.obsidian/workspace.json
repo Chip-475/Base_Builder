@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Installed Objects/Machines/Advanced Assembler.md",
+                "file": "Resources/Ingots/Tin.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Advanced Assembler"
+              "title": "Tin"
             }
           }
         ]
@@ -190,31 +190,31 @@
   },
   "active": "fcbb2aa86150e5cf",
   "lastOpenFiles": [
-    "Resources/Crafted Items/Crafted Items.md",
-    "Senza nome.md",
-    "Resources/Crafted Items/Titanium Plate.md",
-    "Resources/Crafted Items/Titanium Frame.md",
-    "Resources/Crafted Items/Steel Plate.md",
-    "Resources/Crafted Items/Ship Core Component.md",
-    "Resources/Crafted Items/Navigation Component.md",
-    "Resources/Crafted Items/Copper Wire.md",
-    "Resources/Crafted Items/Circuit Board.md",
-    "Resources/Crafted Items/Aluminum Plate.md",
-    "Resources/Ingots/Copper.md",
+    "Resources/Ingots/Titanium.md",
     "Resources/Ingots/Nickel.md",
     "Resources/Ingots/Iron.md",
+    "Resources/Ingots/Tin.md",
     "Resources/Ingots/Gold.md",
+    "Resources/Ingots/Copper.md",
     "Resources/Ingots/Aluminum.md",
-    "Resources/Raw/Cassiterite.md",
-    "Resources/Raw/Pyrite.md",
-    "Resources/Raw/Malachite.md",
-    "Resources/Raw/Magnetite.md",
-    "Resources/Raw/Pentladite.md",
-    "Resources/Raw/Ilmenite.md",
-    "Resources/Raw/Hematite.md",
-    "Resources/Raw/Gold Ore.md",
-    "Resources/Raw/Coal.md",
-    "Resources/Raw/Bauxite.md",
-    "Spaceship.md"
+    "Resources/Ingots/Ingots.md",
+    "Resources/Alloys/Invar.md",
+    "Resources/Alloys/Steel.md",
+    "Recipes/Recipes.md",
+    "Resources/Crafted Items/Copper Wire.md",
+    "Resources/Crafted Items/Circuit Board.md",
+    "Resources/Crafted Items/Titanium Frame.md",
+    "Resources/Crafted Items/Titanium Plate.md",
+    "Resources/Crafted Items/Steel Plate.md",
+    "Resources/Crafted Items/Aluminum Plate.md",
+    "Resources/Crafted Items/Navigation Component.md",
+    "General.md",
+    "Installed Objects/Machines/Alloy Furnace.md",
+    "Installed Objects/Machines/Advanced Assembler.md",
+    "Installed Objects/Machines/Assembler.md",
+    "Resources/Crafted Items/Crafted Items.md",
+    "Senza nome.md",
+    "Resources/Crafted Items/Ship Core Component.md",
+    "Resources/Raw/Cassiterite.md"
   ]
 }

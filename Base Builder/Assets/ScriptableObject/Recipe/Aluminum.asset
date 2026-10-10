@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1930e33686e0fe343a20ec312785cbc4, type: 3}
   m_Name: Aluminum
   m_EditorClassIdentifier: Assembly-CSharp::Recipe
+  <ID>k__BackingField: aluminium Recipe
+  r_name: Aluminium Recipe
   inputResources:
   - {fileID: 11400000, guid: cabc4af3fee83b443b0fdaf2fbffd4d8, type: 2}
+  input: 
   outputResources:
   - {fileID: 11400000, guid: 5181aad3c7596974b8e7c7f98188e6c5, type: 2}
-  recipeName: 
-  id: 
+  output: 
+  completionTime: 0
   energyCost: 0
-  recipeTime: 0

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 5fa629bab7e15e348b5281383de5366d
+guid: 3f2b0f19d1e2337459ea2cfcdbb7fc2a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8533293177587791561
-    second: nickel_ingot_0
+      213: -466993739257667112
+    second: press_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -77,7 +77,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 2
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -102,13 +102,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: nickel_ingot_0
+      name: press_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 7
-        width: 46
-        height: 33
+        x: 0
+        y: 0
+        width: 96
+        height: 96
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -117,8 +117,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7398d99f017a39980800000000000000
-      internalID: -8533293177587791561
+      spriteID: 8d1273b1ba7e489f0800000000000000
+      internalID: -466993739257667112
       vertices: []
       indices: 
       edges: []
@@ -137,7 +137,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      nickel_ingot_0: -8533293177587791561
+      press_0: -466993739257667112
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
