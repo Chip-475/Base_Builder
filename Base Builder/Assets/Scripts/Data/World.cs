@@ -34,7 +34,7 @@ public class World
         }
         return new Bounds((min + max) / 2f, (max - min)+new Vector3(1,1,0));
     }
-    public Cell GetCellAt(Vector3Int coords) { return cells[coords]; }
+    public Cell GetCellAt(Vector3Int coords) { if (HasCellAt(coords)) return cells[coords]; else return null; }
     public bool HasCellAt(Vector3Int coords) { return cells.ContainsKey(coords); }
     public MachineView GetMachineAt(Vector3Int coords) { return machines[coords]; }
 

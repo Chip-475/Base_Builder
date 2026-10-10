@@ -39,6 +39,7 @@ public abstract class Building
             for (int y = minY; y <= maxY; y++)
             {
                 Cell cell = WorldManager.World.GetCellAt(new Vector3Int(x, y, 0));
+                if (cell == null) continue;
                 cells.Add(cell);
             }
 
