@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Resources/Ingots/Tin.md",
+                "file": "General.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Tin"
+              "title": "General"
             }
           }
         ]
@@ -190,10 +190,16 @@
   },
   "active": "fcbb2aa86150e5cf",
   "lastOpenFiles": [
+    "World.md",
+    "Art Bible.md",
+    "General.md",
+    "Bots/Builder Bot.md",
+    "Drafts/Tungsten.md",
+    "Installed Objects/Machines/Alloy Furnace.md",
+    "Resources/Ingots/Tin.md",
     "Resources/Ingots/Titanium.md",
     "Resources/Ingots/Nickel.md",
     "Resources/Ingots/Iron.md",
-    "Resources/Ingots/Tin.md",
     "Resources/Ingots/Gold.md",
     "Resources/Ingots/Copper.md",
     "Resources/Ingots/Aluminum.md",
@@ -208,13 +214,7 @@
     "Resources/Crafted Items/Steel Plate.md",
     "Resources/Crafted Items/Aluminum Plate.md",
     "Resources/Crafted Items/Navigation Component.md",
-    "General.md",
-    "Installed Objects/Machines/Alloy Furnace.md",
     "Installed Objects/Machines/Advanced Assembler.md",
-    "Installed Objects/Machines/Assembler.md",
-    "Resources/Crafted Items/Crafted Items.md",
-    "Senza nome.md",
-    "Resources/Crafted Items/Ship Core Component.md",
-    "Resources/Raw/Cassiterite.md"
+    "Installed Objects/Machines/Assembler.md"
   ]
 }

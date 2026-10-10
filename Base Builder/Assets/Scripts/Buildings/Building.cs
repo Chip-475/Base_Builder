@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
 
 public abstract class Building
 {
@@ -9,7 +10,7 @@ public abstract class Building
     public Vector3Int Coords => SceneObj.transform.position.ToVector3Int();
     public Bounds Bounds { get; private set; }
     public Bounds ConnectionBounds { get; private set; }
-    public NetworkManager Network;
+    public NetworkManager Network; 
 
     public Building(BuildingData data, BuildingView sceneObj)
     {

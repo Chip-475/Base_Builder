@@ -12,12 +12,14 @@ public abstract class BuildingData : ScriptableObject
     public bool connectsToPower;
     public bool blocksWalking;
     public bool blocksPlacing;
-}
+    public float timeToBuild;
+    public bool builded;
+    }
 public enum BuildingType
 {
     None,
     Machine,
     Mining,
     Power,
-    Storage
+    Storage,
 }

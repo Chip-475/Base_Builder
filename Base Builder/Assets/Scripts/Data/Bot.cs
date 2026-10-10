@@ -9,6 +9,8 @@ public class Bot
     public BotView BotView { get; protected set; }
     public BotData BotData { get; protected set; }
     public BotType Type { get; protected set; } = BotType.None;
+    public BuildingData Bd {get; protected set; }
+    public Building ToBuild {get; protected set; }
 
     [Header("Runtime Data")]
     public string Id { get; protected set; }
@@ -23,6 +25,7 @@ public class Bot
 
     public Bot(BotView view, BotData data, string id = null, Vector3? coords = null, string name = null, float power = 100)
     {
+        //realizzare che i bot si possano prendere e portare in giro
         BotView = view;
         BotData = data;
         Type = data.type;
@@ -95,7 +98,6 @@ public class Bot
             MoveTo(machine.SceneObj.transform.position.ToVector3Int());
             await UniTask.WaitUntil(() => Vector3.Distance(BotView.transform.position, machine.SceneObj.transform.position) < 0.1f);
             await machine.UseSmelter(BotData.currentRecipe, BotData.currentInputResources);
-
         }
     }
     public async UniTask goToAssembler(Machine machine)
@@ -105,7 +107,6 @@ public class Bot
             MoveTo(machine.SceneObj.transform.position.ToVector3Int());
             await UniTask.WaitUntil(() => Vector3.Distance(BotView.transform.position, machine.SceneObj.transform.position) < 0.1f);
             await machine.UseAssembler(BotData.currentRecipe, BotData.currentInputResources);
-
         }
     }
     public async UniTask goToPress(Machine machine)
@@ -115,7 +116,6 @@ public class Bot
             MoveTo(machine.SceneObj.transform.position.ToVector3Int());
             await UniTask.WaitUntil(() => Vector3.Distance(BotView.transform.position, machine.SceneObj.transform.position) < 0.1f);
             await machine.UsePress(BotData.currentRecipe, BotData.currentInputResources);
-
         }
     }
     public async UniTask goToAlloyFurnace(Machine machine)
@@ -125,7 +125,6 @@ public class Bot
             MoveTo(machine.SceneObj.transform.position.ToVector3Int());
             await UniTask.WaitUntil(() => Vector3.Distance(BotView.transform.position, machine.SceneObj.transform.position) < 0.1f);
             await machine.UseAlloyFurnace(BotData.currentRecipe, BotData.currentInputResources);
-
         }
     }
     public async UniTask goToAdvancedAssembler(Machine machine)
@@ -135,9 +134,50 @@ public class Bot
             MoveTo(machine.SceneObj.transform.position.ToVector3Int());
             await UniTask.WaitUntil(() => Vector3.Distance(BotView.transform.position, machine.SceneObj.transform.position) < 0.1f);
             await machine.UseAdvancedAssembler(BotData.currentRecipe, BotData.currentInputResources);
-
         }
 }
+        public async UniTask Build(Building build)
+    {
+        if(Type == BotType.Builder)
+        {
+            MoveTo(build.SceneObj.transform.position.ToVector3Int());
+            await UniTask.WaitUntil(() => Vector3.Distance(BotView.transform.position,build.SceneObj.transform.position)< 0.1f);
+            await UniTask.WaitForSeconds(Bd.timeToBuild);
+            Bd.builded=true;
+            return;
+        }
+        Bd.builded=false;
+        return;
+    }
+    public async UniTask goToBuilderHouse(Building BuilderHouse)
+    {
+        if(Type == BotType.Builder)
+        {
+            MoveTo(BuilderHouse.SceneObj.transform.position.ToVector3Int());
+            await UniTask.WaitUntil(() => Vector3.Distance(BotView.transform.position,BuilderHouse.SceneObj.transform.position)< 0.1f);
+
+
+        }
+    }
+        //fare sistema che lui giri intondo all oggetto mentre lo builda o se disoccupato intorno casa sua 3x3
+        //bot builder va fatto che passeggia in giro o che stia fermo quando non builda e va preso e andato 
+        //a mettere a buildare lui costruisce per il tempo necessario e dopodiche si ferma o torna a casa
+}
+public class BotInventory
+{
+    public Dictionary<ResourceSO, int> Inventory { get; private set; } = new();
+    public int MaxWeight { get; private set; }
+
+    public BotInventory(BotInventory inv)
+    {
+        Inventory = new(inv.Inventory);
+        MaxWeight = inv.MaxWeight;
+    }
+    public BotInventory(int maxWeight)
+    {
+        MaxWeight = maxWeight;
+    }
+   
 }
 
 
