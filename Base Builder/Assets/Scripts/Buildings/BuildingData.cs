@@ -9,6 +9,7 @@ public abstract class BuildingData : ScriptableObject
     public BuildingType type;
     public Bounds bounds;
     public Bounds connectionBounds;
+    public Bounds InteractionBounds;
     public bool connectsToPower;
     public bool blocksWalking;
     public bool blocksPlacing;
