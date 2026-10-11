@@ -57,7 +57,6 @@ public static class Helpers
             for (int y = minY; y <= maxY; y++)
             {
                 Cell cell = WorldManager.World.GetCellAt(new Vector3Int(x, y, 0));
-                if(cell==null) continue;
                 cells.Add(cell);
             }
 
@@ -101,17 +100,15 @@ public static class Helpers
     #region Building Helpers
     public static bool CanBuildOn(this BuildingView prefab, Vector3Int gridPos)
     {
-        if (prefab == null || prefab.Data == null)
-            return false;
-        if(!WorldManager.World.HasCellAt(gridPos)) return false;
-        if (WorldManager.Instance == null || WorldManager.World == null)
-            return false;
-
         Bounds bounds = prefab.Data.bounds;
         bounds.center = gridPos;
-
         foreach (Cell cell in GetCellsInBounds(bounds))
-            if (cell == null || !cell.canBuildOn) return false;
+        {
+            if (cell == null || !cell.canBuildOn)
+                return false;
+            if(!WorldManager.World.HasCellAt(cell.Coords) || cell == PlayerManager.Instance.GetPlayerCell())
+                return false;
+        }
 
         return true;
     }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -24,7 +25,8 @@ public class MachineUI : MonoBehaviour
     [SerializeField] TMP_Text selectedRecipeDesc;
 
     [Header("Lower Right Side")]
-    public string ph = "empty";
+    [SerializeField] List<Image> inputResourceSlots;
+    [SerializeField] List<Image> outputResourceSlots;
 
     private void Awake()
     {

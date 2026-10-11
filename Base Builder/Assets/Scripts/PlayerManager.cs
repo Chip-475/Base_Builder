@@ -37,7 +37,7 @@ public class PlayerManager : MonoBehaviour
     {
         Cell nextCell =
             WorldManager.World.GetCellAt((transform.position + (Vector3)(speed * Time.deltaTime * vec)).ToVector3Int());
-        if (!nextCell.canWalkOn)
+        if (!nextCell.canWalkOn || nextCell == null)
             return;
 
         vec *= speed * Time.deltaTime;
