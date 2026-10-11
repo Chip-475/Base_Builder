@@ -623,6 +623,112 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 129342197}
   m_CullTransparentMesh: 1
+--- !u!1001 &141081289
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1855258257}
+    m_Modifications:
+    - target: {fileID: 4012968478430882894, guid: ff2da20c3c5538f459c52733b59b36a1, type: 3}
+      propertyPath: m_Name
+      value: Spaceship UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 4012968478430882894, guid: ff2da20c3c5538f459c52733b59b36a1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799955700714496163, guid: ff2da20c3c5538f459c52733b59b36a1, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799955700714496163, guid: ff2da20c3c5538f459c52733b59b36a1, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799955700714496163, guid: ff2da20c3c5538f459c52733b59b36a1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799955700714496163, guid: ff2da20c3c5538f459c52733b59b36a1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799955700714496163, guid: ff2da20c3c5538f459c52733b59b36a1, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799955700714496163, guid: ff2da20c3c5538f459c52733b59b36a1, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799955700714496163, guid: ff2da20c3c5538f459c52733b59b36a1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799955700714496163, guid: ff2da20c3c5538f459c52733b59b36a1, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799955700714496163, guid: ff2da20c3c5538f459c52733b59b36a1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799955700714496163, guid: ff2da20c3c5538f459c52733b59b36a1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799955700714496163, guid: ff2da20c3c5538f459c52733b59b36a1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799955700714496163, guid: ff2da20c3c5538f459c52733b59b36a1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799955700714496163, guid: ff2da20c3c5538f459c52733b59b36a1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799955700714496163, guid: ff2da20c3c5538f459c52733b59b36a1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799955700714496163, guid: ff2da20c3c5538f459c52733b59b36a1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799955700714496163, guid: ff2da20c3c5538f459c52733b59b36a1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799955700714496163, guid: ff2da20c3c5538f459c52733b59b36a1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799955700714496163, guid: ff2da20c3c5538f459c52733b59b36a1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799955700714496163, guid: ff2da20c3c5538f459c52733b59b36a1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799955700714496163, guid: ff2da20c3c5538f459c52733b59b36a1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ff2da20c3c5538f459c52733b59b36a1, type: 3}
+--- !u!224 &141081290 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6799955700714496163, guid: ff2da20c3c5538f459c52733b59b36a1, type: 3}
+  m_PrefabInstance: {fileID: 141081289}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &145336014
 GameObject:
   m_ObjectHideFlags: 0
@@ -2195,6 +2301,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 140a50201759f5348a0ac187457001d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpaceshipView
+  <Data>k__BackingField: {fileID: 11400000, guid: bb94aac4519fb7b4a89d927fa183d132, type: 2}
+  botSpawnPoint: {fileID: 1436723255}
+  ui: {fileID: 887848433}
 --- !u!212 &679890048
 SpriteRenderer:
   serializedVersion: 3
@@ -2252,7 +2361,7 @@ SpriteRenderer:
   m_Size: {x: 2.2, y: 1.41}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
 --- !u!4 &679890049
@@ -2772,6 +2881,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &887848433 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3206123427161022597, guid: ff2da20c3c5538f459c52733b59b36a1, type: 3}
+  m_PrefabInstance: {fileID: 141081289}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe6237743b5a8484aaf595691154628b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpaceshipUiManager
 --- !u!1 &904545494
 GameObject:
   m_ObjectHideFlags: 0
@@ -4423,6 +4543,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2cbbc2419b214a408b562ba957c98cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
+  speed: 7
+  sr: {fileID: 0}
 --- !u!212 &1430244584
 SpriteRenderer:
   serializedVersion: 3
@@ -4558,6 +4680,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2cbbc2419b214a408b562ba957c98cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
+  speed: 7
+  sr: {fileID: 0}
 --- !u!4 &1464214733
 Transform:
   m_ObjectHideFlags: 0
@@ -5615,6 +5739,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 141081290}
   - {fileID: 1872141082}
   - {fileID: 2120219521}
   - {fileID: 145336015}
