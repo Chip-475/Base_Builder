@@ -25,7 +25,7 @@ public class Generator : Building
     {
         PowerManager.powerGeneratorDB.Remove(id);
         PowerManager.instance.UnregisterBuilding();
-        //WorldManager.World.UnregisterBuilding(Coords);
+        WorldManager.World.UnregisterBuilding(Coords);
         MonoBehaviour.Destroy(SceneObj.gameObject);
     }
 

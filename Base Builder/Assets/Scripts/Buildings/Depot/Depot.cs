@@ -15,7 +15,7 @@ public class Depot : Building
     }
     public override void Destroy()
     {
-        //WorldManager.World.UnregisterBuilding(Coords);
+        WorldManager.World.UnregisterBuilding(Coords);
         MonoBehaviour.Destroy(SceneObj);
     }
     

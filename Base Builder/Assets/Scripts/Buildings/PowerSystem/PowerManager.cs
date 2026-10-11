@@ -20,8 +20,7 @@ public class PowerManager : MonoBehaviour
     public static Dictionary<string, PowerPole> powerPolesDB=new();
     public static Dictionary<string,Generator> powerGeneratorDB=new();
     public static List<Machine> machineDB=new();
-    public static int networkCounter { get { return instance.powerObj.GetComponentsInChildren<NetworkManager>().Length; } }
-    public static Stack<Color> networkColors = new Stack<Color>();
+
     [Header("Runtime Debug")]
     public int networkCount;
     public int registeredPoles;
@@ -35,7 +34,6 @@ public class PowerManager : MonoBehaviour
         powerPolesDB.Clear();
         powerGeneratorDB.Clear();
         machineDB.Clear();
-        networkColors = new Stack<Color>(GenerateColors(1000,1));
     }
     public void RegisterBuilding()
     {
@@ -45,6 +43,12 @@ public class PowerManager : MonoBehaviour
     public void UnregisterBuilding()
     {
         RebuildNetworks();
+    }
+
+    public bool CheckNetwork(Building building, out NetworkManager network)
+    {
+        network = building?.Network;
+        return network != null;
     }
 
     public void RebuildNetworks()
@@ -61,10 +65,9 @@ public class PowerManager : MonoBehaviour
         foreach (NetworkManager network in powerObj.GetComponentsInChildren<NetworkManager>())
         {
             network.gameObject.SetActive(false);
-            networkColors.Push(network.NetworkColor);
             Destroy(network.gameObject);
         }
-        foreach (Building building in buildings)
+        foreach(Building building in buildings)
         {
             building.Network = null;
         }
@@ -77,13 +80,12 @@ public class PowerManager : MonoBehaviour
             NetworkManager network = CreateNewNetwork();
             network.ConnectedBuildings.AddRange(connectedBuildings);
             foreach (Building connectedBuilding in connectedBuildings) connectedBuilding.Network = network;
-            network.drawConnections();
             network.RefreshPower();
             foreach (Building connectedBuilding in connectedBuildings)
                 if (connectedBuilding is Machine machine && machine.RequestedPower > 0)
                     machine.RefreshPowerRequest();
         }
-        PowerSystemUI.instance.Draw();
+
         RefreshDebugInfo();
     }
 
@@ -115,6 +117,14 @@ public class PowerManager : MonoBehaviour
         }
 
         networkCount = networksDebug.Count;
+    }
+
+    [ContextMenu("Print Power Networks")]
+    private void PrintNetworks()
+    {
+        RefreshDebugInfo();
+        foreach (PowerNetworkDebug network in networksDebug)
+            Debug.Log("Network " + network.id + ": " + string.Join(", ", network.connectedBuildings), this);
     }
 
     private List<Building> GetConnectedBuildings(Building firstBuilding, List<Building> buildings, List<Building> visited)
@@ -165,28 +175,5 @@ public class PowerManager : MonoBehaviour
         if (a is PowerPole pole) return pole.CanConnectTo(b);
         if (b is PowerPole otherPole) return otherPole.CanConnectTo(a);
         return false;
-    }
-    public Color[] GenerateColors(int amount,int seed)
-    {
-        System.Random random = new(seed);
-        List<Color> colors = new();
-        float hue=(float)random.NextDouble();
-        for (int i = 0; i < amount; i++)
-        {
-            hue += random.Next(1, 10) * 0.001f;
-            hue %= 1f;
-            colors.Add(Color.HSVToRGB(hue, 0.5f, 0.95f));
-            if (i > 1)
-            {
-                if (colors[i] == colors[i-1])
-                {
-                    hue += 0.001f;
-                    hue %= 1f;
-                    colors[i] = Color.HSVToRGB(hue, 0.5f, 0.95f);
-                }
-            }
-        }
-        colors.Shuffle();
-        return colors.ToArray();
     }
 }

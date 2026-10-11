@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public static class Helpers
 {
@@ -55,7 +57,6 @@ public static class Helpers
             for (int y = minY; y <= maxY; y++)
             {
                 Cell cell = WorldManager.World.GetCellAt(new Vector3Int(x, y, 0));
-                if(cell==null) continue;
                 cells.Add(cell);
             }
 
@@ -101,7 +102,7 @@ public static class Helpers
     {
         if (prefab == null || prefab.Data == null)
             return false;
-        if(!WorldManager.World.HasCellAt(gridPos)) return false;
+
         if (WorldManager.Instance == null || WorldManager.World == null)
             return false;
 
@@ -109,22 +110,17 @@ public static class Helpers
         bounds.center = gridPos;
 
         foreach (Cell cell in GetCellsInBounds(bounds))
-            if (cell == null || !cell.canBuildOn) return false;
+        {
+            if (!WorldManager.World.Cells.ContainsValue(cell)) return false;
+            if (!cell.canBuildOn) return false;
+            if (cell == PlayerManager.Instance.GetPlayerCell()) return false;
+        }
 
         return true;
     }
     #endregion
-    #region List Helpers
-    public static void Shuffle<T>(this List<T> list)
-    {
-        for (int i = list.Count - 1; i > 0; i--)
-        {
-            int j = UnityEngine.Random.Range(0, i + 1);
-            (list[i], list[j]) = (list[j], list[i]);
-        }
-    }
-    #endregion
-    #region Miscellaneous
+
+    #region Mouse Helpers
     public static Vector3 GetMousePosition()
     {
         return Mouse.current.position.ReadValue();
@@ -135,6 +131,20 @@ public static class Helpers
         pos.z = 0;
         return pos;
     }
+    public static bool IsMouseOverUI()
+    {
+        PointerEventData pointer =
+            new(EventSystem.current)
+            {
+                position = Mouse.current.position.ReadValue()
+            };
+
+        List<RaycastResult> results = new();
+        EventSystem.current.RaycastAll(pointer, results);
+
+        return results.Exists(result =>
+            result.module is GraphicRaycaster);
+    }
     #endregion
 }
 public enum Directions
@@ -143,5 +153,5 @@ public enum Directions
     Up,
     Right,
     Down,
-    Left
+    Left,
 }

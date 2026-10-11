@@ -1,5 +1,6 @@
 ___
-The furnace converts raw ores into ingots.
+
+Can smelt most item with mid efficiency
 Recipes:
 [[Smelt to Tin]]
 [[Smelt to Gold]]

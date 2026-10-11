@@ -3,22 +3,22 @@ using UnityEngine;
 using UnityEngine.UI;
 public class recipeListUI : MonoBehaviour
 {
-    public Image icona;
-    public TMP_Text nomeTesto;
-    public Button bottone;
+    //public Image icona;
+    //public TMP_Text nomeTesto;
+    //public Button bottone;
 
-    RecipeSO recipe;
-    machineRecipeUI menuPrincipale;
+    //RecipeSO recipe;
+    //machineRecipeUI menuPrincipale;
 
-    public void imposta(RecipeSO recipe1,machineRecipeUI menu)
-    {
-        recipe = recipe1;
-        menuPrincipale = menu;
-        if (icona != null && recipe1.outputResources.Length > 0) icona.sprite = recipe1.outputResources[0].Sprite;
-        if (nomeTesto != null) nomeTesto.text = recipe1.r_name;
-    }
-    public void OnClick()
-    {
-        menuPrincipale.mostraDett(recipe);
-    }
+    //public void imposta(RecipeSO recipe1,machineRecipeUI menu)
+    //{
+    //    recipe = recipe1;
+    //    menuPrincipale = menu;
+    //    if (icona != null && recipe1.outputResources.Length > 0) icona.sprite = recipe1.outputResources[0].Sprite;
+    //    if (nomeTesto != null) nomeTesto.text = recipe1.Name;
+    //}
+    //public void OnClick()
+    //{
+    //    menuPrincipale.mostraDett(recipe);
+    //}
 }

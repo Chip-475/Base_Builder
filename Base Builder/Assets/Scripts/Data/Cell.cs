@@ -7,7 +7,6 @@ public class Cell
 {
     public Vector3Int Coords{ get; protected set; }
     CellType type = CellType.Void;
-    public SpriteRenderer sr;
     public CellType Type 
     {  
         get { return type; }
@@ -48,10 +47,9 @@ public class Cell
         go.transform.position = Coords.ToVector3();
         go.name = $"Cell_{Coords.x}_{Coords.y}";
         
-        SpriteRenderer ThisSr = go.AddComponent<SpriteRenderer>();
-        ThisSr.sortingLayerName = "Floor";
-        ThisSr.sprite = WorldManager.Instance.floorSprite; // Replace when sprite system is established
-        sr= ThisSr;
+        SpriteRenderer sr = go.AddComponent<SpriteRenderer>();
+        sr.sortingLayerName = "Floor";
+        sr.sprite = WorldManager.Instance.floorSprite; // Replace when sprite system is established
     }
 }
 public enum CellType

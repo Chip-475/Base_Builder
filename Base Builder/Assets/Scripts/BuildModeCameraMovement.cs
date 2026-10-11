@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CameraMovement : MonoBehaviour
+public class BuildModeCameraMovement : MonoBehaviour
 {
     [Header("Config")]
     [SerializeField] Camera camera;
@@ -39,8 +39,8 @@ public class CameraMovement : MonoBehaviour
     }
     private void Zoom(InputAction.CallbackContext context)
     {
-        if (machineRecipeUI.instance != null && machineRecipeUI.instance.aperto) return;
         Vector2 scrollValue = context.ReadValue<Vector2>();
+
         camera.orthographicSize -= scrollValue.y * zoomSpeed;
         camera.orthographicSize = Mathf.Clamp(camera.orthographicSize, minZoom, maxZoom);
     }
