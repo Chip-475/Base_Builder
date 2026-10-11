@@ -1,10 +1,13 @@
 using UnityEngine;
 using Cysharp.Threading.Tasks;
 
-public class Machine : Building
+public class Machine : Building, IInteractable
 {
     public new MachineData Data => base.Data as MachineData;
     public new MachineView SceneObj => base.SceneObj as MachineView;
+
+    Vector3 IInteractable.Position => Coords;
+    Cell[] IInteractable.InteractionCells => GetCellsInBounds(InteractionBounds);
 
     public bool Powered { get; private set; }
     public float RequestedPower { get; private set; }
@@ -14,6 +17,7 @@ public class Machine : Building
     {
         PowerManager.machineDB.Add(this);
         PowerManager.instance.RegisterBuilding();
+        InteractionManager.Instance.interactables.Add(this);
     }
     public override void Destroy()
     {
@@ -52,23 +56,114 @@ public class Machine : Building
     {
         RequestPower(RequestedPower);
     }
-     public async UniTask<ResourceSO[]> UseMachine(RecipeSO recipe, ResourceSO[] inputResources,MachineType type,RecipeType recipeType)
+
+    public bool CanInteractWith()
     {
-            if (recipe != null && RequestPower(recipe) && (int)recipeType==(int)type)
-            {
-                await UniTask.Delay((int)(recipe.completionTime * 1000)); // da vedere quanto fare che duri ogni processo
-                ResourceSO[] WorkedResources = recipe.outputResources;
-                return WorkedResources;
-            }
-        return null;
+        var cells = GetCellsInBounds(Data.interactionBounds);
+        foreach (var item in cells)
+            if (item == PlayerManager.Instance.GetPlayerCell()) return true;
+
+        return false;
     }
+    public void Interact()
+    {
+        MachineUI.Instance.Open(this);
+    }
+
+
+    // public async UniTask<ResourceSO[]> UseSmelter(RecipeSO recipe, ResourceSO[] inputResources)
+    //{
+    //    if (Type == MachineType.Smelter)
+    //    {
+    //        if (recipe != null && RequestPower(recipe))
+    //        {
+    //            await UniTask.Delay((int)(recipe.completionTime * 1000)); // da vedere quanto fare che duri ogni processo
+    //            ResourceSO[] WorkedResources = recipe.outputResources;
+    //            return WorkedResources;
+    //        }
+    //    }
+    //    return null;
+    //}
+    //public async UniTask<ResourceSO[]> UseAssembler(RecipeSO recipe, ResourceSO[] inputResources)
+    //{
+    //    if (Type == MachineType.Assembler)
+    //    {
+    //        if (recipe != null && RequestPower(recipe))
+    //        {
+    //            await UniTask.Delay((int)(recipe.completionTime * 1000)); // da vedere quanto fare che duri ogni processo
+    //            ResourceSO[] WorkedResources = recipe.outputResources;
+    //            return WorkedResources;
+    //        }
+    //    }
+    //    return null;
+    //}
+    //public async UniTask<ResourceSO[]> UseAdvancedAssembler(RecipeSO recipe, ResourceSO[] inputResources)
+    //{
+    //    if (Type == MachineType.Advanced_Assembler)
+    //    {
+    //        if (recipe != null && RequestPower(recipe))
+    //        {
+    //            await UniTask.Delay((int)(recipe.completionTime * 1000)); // da vedere quanto fare che duri ogni processo
+    //            ResourceSO[] WorkedResources = recipe.outputResources;
+    //            return WorkedResources;
+    //        }
+    //    }
+    //    return null;
+    //}
+    //public async UniTask<ResourceSO[]> UseAlloyFurnace(RecipeSO recipe, ResourceSO[] inputResources)
+    //{
+    //    if (Type == MachineType.Alloy_Furnace)
+    //    {
+    //        if (recipe != null && RequestPower(recipe))
+    //        {
+    //            await UniTask.Delay((int)(recipe.completionTime * 1000)); // da vedere quanto fare che duri ogni processo
+    //            ResourceSO[] WorkedResources = recipe.outputResources;
+    //            return WorkedResources;
+    //        }
+    //    }
+    //    return null;
+    //}
+    //public async UniTask<ResourceSO[]> UsePress(RecipeSO recipe, ResourceSO[] inputResources)
+    //{
+    //    if (Type == MachineType.Press)
+    //    {
+    //        if (recipe != null && RequestPower(recipe))
+    //        {
+    //            await UniTask.Delay((int)(recipe.completionTime * 1000)); // da vedere quanto fare che duri ogni processo
+    //            ResourceSO[] WorkedResources = recipe.outputResources;
+    //            return WorkedResources;
+    //        }
+    //    }
+    //    return null;
+    //}
+    //public async UniTask UseMachine(RecipeSO recipe, ResourceSO[] inputResources) //cetto brutto
+    //{
+    //    switch (Type)
+    //    {
+    //        case MachineType.Smelter:
+    //            await UseSmelter(recipe, inputResources);
+    //            break;
+    //        case MachineType.Assembler:
+    //            await UseAssembler(recipe, inputResources);
+    //            break;
+    //        case MachineType.Advanced_Assembler:
+    //            await UseAdvancedAssembler(recipe, inputResources);
+    //            break;
+    //        case MachineType.Alloy_Furnace:
+    //            await UseAlloyFurnace(recipe, inputResources);
+    //            break;
+    //        case MachineType.Press:
+    //            await UsePress(recipe, inputResources);
+    //            break;
+    //    }
+    //}
 }
 public enum MachineType
 {
-    None=0,
-    Smelter=1,
-    Assembler=2,
-    Advanced_Assembler=3,
-    Alloy_Furnace=4,
-    Press=5
+    None,
+    Advanced_Assembler,
+    Alloy_Furnace,
+    Assembler,
+    Press,
+    Smelter,
 }

@@ -28,12 +28,14 @@ public class BuildMode : MonoBehaviour
     {
         Instance = this;
 
+        // UI
         toggleButton.onClick.AddListener(() => { Toggle(); SortBy(BuildingType.Machine); });
         machineSort.onClick.AddListener(() => SortBy(BuildingType.Machine));
         miningSort.onClick.AddListener(() => SortBy(BuildingType.Mining));
         powerSort.onClick.AddListener(() => SortBy(BuildingType.Power));
         storageSort.onClick.AddListener(() => SortBy(BuildingType.Storage));
         destroyMode.onClick.AddListener(() => SortBy(BuildingType.None));
+
         InitPreview();
         buildingPreview.enabled = false;
     }
@@ -41,22 +43,8 @@ public class BuildMode : MonoBehaviour
     {
         panel.SetActive(false);
         allEntries = content.GetComponentsInChildren<BuildModeEntry>().ToList();
-    }
 
-    public void Toggle()
-    {
-        Debug.Log("Toggle");
-        panel.SetActive(!IsActive);
-
-        if (IsActive) Enable();
-        else Disable();
-    }
-    void Enable()
-    {
-        panel.SetActive(true);
-        buildingPreview.enabled = true;
-
-        PlayerManager.Inputs.BuildMode.Enable();
+        // Inputs
         PlayerManager.Inputs.BuildMode.MouseMoved.performed += (_) => Hover();
         PlayerManager.Inputs.BuildMode.LeftClick.performed += (_) => Build();
         PlayerManager.Inputs.BuildMode.RightClick.performed += (_) =>
@@ -65,25 +53,32 @@ public class BuildMode : MonoBehaviour
             buildingPreview.sprite = null;
         };
     }
+
+    public void Toggle()
+    {
+        if (IsActive) Disable();
+        else Enable();
+    }
+    void Enable()
+    {
+        panel.SetActive(true);
+        buildingPreview.enabled = true;
+
+        PlayerManager.Inputs.BuildMode.Enable();
+    }
     void Disable()
     {
         panel.SetActive(false);
-        buildingPreview.enabled = false;
+        buildingPreview.sprite = null;
+        SelectedEntry = null;
 
         PlayerManager.Inputs.BuildMode.Disable();
-        PlayerManager.Inputs.BuildMode.MouseMoved.performed -= (_) => Hover();
-        PlayerManager.Inputs.BuildMode.LeftClick.performed -= (_) => Build();
-        PlayerManager.Inputs.BuildMode.RightClick.performed -= (_) =>
-        {
-            SetSelectedEntry(null);
-            buildingPreview.sprite = null;
-        };
     }
 
     void Hover()
     {
         Vector3Int mouseGridPos = Helpers.GetMouseWorldPosition().ToVector3Int();
-        if (SelectedEntry == null) //|| //Helpers.IsMouseOverUI())
+        if (SelectedEntry == null || Helpers.IsMouseOverUI())
         {
             buildingPreview.sprite = null;
             return;
@@ -100,7 +95,7 @@ public class BuildMode : MonoBehaviour
     void Build()
     {
         Vector3Int mouseGridPos = Helpers.GetMouseWorldPosition().ToVector3Int();
-        if (SelectedEntry == null)// || Helpers.IsMouseOverUI())
+        if (SelectedEntry == null || Helpers.IsMouseOverUI())
             return;
         if (!SelectedEntry.buildingPrefab.CanBuildOn(mouseGridPos))
             return;
