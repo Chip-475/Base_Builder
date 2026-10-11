@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SpaceshipGeneratorView : BuildingView
+/*public class SpaceshipGeneratorView : BuildingView
 {
     public new SpaceshipGeneratorData Data => base.Data as SpaceshipGeneratorData;
     private SpaceshipGenerator generator;
@@ -15,4 +15,4 @@ public class SpaceshipGeneratorView : BuildingView
         PowerManager.powerGeneratorDB.Remove(generator.id);
         if (PowerManager.instance != null) PowerManager.instance.UnregisterBuilding();
     }
-}
+}*/

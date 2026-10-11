@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpaceshipGenerator : Generator
+/*public class SpaceshipGenerator : Generator
 {
     public new SpaceshipGeneratorData Data => base.Data as SpaceshipGeneratorData;
     public new SpaceshipGeneratorView SceneObj => base. as SpaceshipGeneratorView;
@@ -15,4 +15,4 @@ public class SpaceshipGenerator : Generator
     }
 
 
-}
+}*/
