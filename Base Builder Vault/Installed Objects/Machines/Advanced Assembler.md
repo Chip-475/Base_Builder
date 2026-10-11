@@ -1,5 +1,4 @@
 ___
-
 The Advanced Assembler is able to produce complex components.
 Recipes:
 [[Titanium Frame]]
