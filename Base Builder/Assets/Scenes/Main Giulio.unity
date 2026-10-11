@@ -239,6 +239,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 86119358}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
 --- !u!1 &141280991
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,6 +318,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 141280991}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> parent of 4913769 (Merge branch 'newMain' of https://github.com/Chip-475/Base_Builder into newMain)
 --- !u!1 &158809709
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,6 +395,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 158809709}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
 --- !u!1 &172016313
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,6 +503,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 172016313}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> parent of 4913769 (Merge branch 'newMain' of https://github.com/Chip-475/Base_Builder into newMain)
 --- !u!1 &203079101
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,6 +570,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PowerSystemUI
   toggleButton: {fileID: 1365831003}
   isActive: 0
+<<<<<<< HEAD
 --- !u!1 &213869504
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,6 +678,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1890433699}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> parent of 4913769 (Merge branch 'newMain' of https://github.com/Chip-475/Base_Builder into newMain)
 --- !u!1001 &226049223
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -969,6 +978,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
 --- !u!1001 &268007301
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1071,6 +1081,8 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3429099292575642125, guid: 51334dee5b306a34c91c050e0798b1a9, type: 3}
   m_PrefabInstance: {fileID: 268007301}
   m_PrefabAsset: {fileID: 0}
+=======
+>>>>>>> parent of 4913769 (Merge branch 'newMain' of https://github.com/Chip-475/Base_Builder into newMain)
 --- !u!1 &282463858
 GameObject:
   m_ObjectHideFlags: 0
@@ -1266,6 +1278,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 333068962}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
 --- !u!1 &333102275
 GameObject:
   m_ObjectHideFlags: 0
@@ -1341,6 +1354,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 333102275}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> parent of 4913769 (Merge branch 'newMain' of https://github.com/Chip-475/Base_Builder into newMain)
 --- !u!1 &402547950
 GameObject:
   m_ObjectHideFlags: 0
@@ -1474,6 +1489,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 402547950}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
 --- !u!1 &410223724
 GameObject:
   m_ObjectHideFlags: 0
@@ -1612,6 +1628,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 416273765}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> parent of 4913769 (Merge branch 'newMain' of https://github.com/Chip-475/Base_Builder into newMain)
 --- !u!114 &417618027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2269,6 +2287,11 @@ MonoBehaviour:
   - key: {fileID: 837783377}
     value: 1
   world:
+<<<<<<< HEAD
+=======
+    cells: []
+    machines: []
+>>>>>>> parent of 4913769 (Merge branch 'newMain' of https://github.com/Chip-475/Base_Builder into newMain)
     WorldBounds:
       m_Center: {x: 0, y: 0, z: 0}
       m_Extent: {x: 0, y: 0, z: 0}
@@ -2332,6 +2355,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2754c593d2218904d854d8c9ae753198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::machineRecipeUI
+<<<<<<< HEAD
+=======
+  panello: {fileID: 2017182561}
+  cont: {fileID: 2090078335}
+  prefabRic: {fileID: 253488551867552507, guid: 2d4c94e1b01141c49aae3c36af34003b, type: 3}
+  titolo: {fileID: 921868388}
+  desc: {fileID: 525406556}
+  imgClick: {fileID: 0}
+>>>>>>> parent of 4913769 (Merge branch 'newMain' of https://github.com/Chip-475/Base_Builder into newMain)
 --- !u!1 &657680101
 GameObject:
   m_ObjectHideFlags: 0
@@ -2453,6 +2485,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 684132814}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
 --- !u!1 &720267549
 GameObject:
   m_ObjectHideFlags: 0
@@ -2573,6 +2606,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> parent of 4913769 (Merge branch 'newMain' of https://github.com/Chip-475/Base_Builder into newMain)
 --- !u!1 &754649118
 GameObject:
   m_ObjectHideFlags: 0
@@ -2743,8 +2778,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2cbbc2419b214a408b562ba957c98cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
+<<<<<<< HEAD
   speed: 7
   sr: {fileID: 0}
+=======
+>>>>>>> parent of 4913769 (Merge branch 'newMain' of https://github.com/Chip-475/Base_Builder into newMain)
 --- !u!1 &806446938
 GameObject:
   m_ObjectHideFlags: 0
@@ -2894,6 +2932,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2754c593d2218904d854d8c9ae753198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::machineRecipeUI
+<<<<<<< HEAD
+=======
+  panello: {fileID: 2017182561}
+  cont: {fileID: 2090078335}
+  prefabRic: {fileID: 253488551867552507, guid: 2d4c94e1b01141c49aae3c36af34003b, type: 3}
+  titolo: {fileID: 921868388}
+  desc: {fileID: 525406556}
+  imgClick: {fileID: 0}
+>>>>>>> parent of 4913769 (Merge branch 'newMain' of https://github.com/Chip-475/Base_Builder into newMain)
 --- !u!4 &836725571
 Transform:
   m_ObjectHideFlags: 0
@@ -10767,6 +10814,7 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+<<<<<<< HEAD
 --- !u!1 &850827752
 GameObject:
   m_ObjectHideFlags: 0
@@ -10884,6 +10932,8 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+=======
+>>>>>>> parent of 4913769 (Merge branch 'newMain' of https://github.com/Chip-475/Base_Builder into newMain)
 --- !u!1 &921868386
 GameObject:
   m_ObjectHideFlags: 0
@@ -11021,6 +11071,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 921868386}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
 --- !u!1 &958627204
 GameObject:
   m_ObjectHideFlags: 0
@@ -11058,6 +11109,8 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+=======
+>>>>>>> parent of 4913769 (Merge branch 'newMain' of https://github.com/Chip-475/Base_Builder into newMain)
 --- !u!1 &1054419556
 GameObject:
   m_ObjectHideFlags: 0
@@ -11800,10 +11853,19 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+<<<<<<< HEAD
   - {fileID: 863096363}
   - {fileID: 958627205}
   - {fileID: 264935134}
   - {fileID: 1510151019}
+=======
+  - {fileID: 2017182562}
+  - {fileID: 264935134}
+  - {fileID: 1882005744}
+  - {fileID: 1365831002}
+  - {fileID: 1510151019}
+  - {fileID: 1813301438}
+>>>>>>> parent of 4913769 (Merge branch 'newMain' of https://github.com/Chip-475/Base_Builder into newMain)
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -12114,17 +12176,29 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1365831001}
+<<<<<<< HEAD
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+=======
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+>>>>>>> parent of 4913769 (Merge branch 'newMain' of https://github.com/Chip-475/Base_Builder into newMain)
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1218054522}
+<<<<<<< HEAD
   m_Father: {fileID: 958627205}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -835, y: -265}
+=======
+  m_Father: {fileID: 1269952282}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 75, y: 225}
+>>>>>>> parent of 4913769 (Merge branch 'newMain' of https://github.com/Chip-475/Base_Builder into newMain)
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1365831003
@@ -12772,6 +12846,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1510151018}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
 --- !u!1 &1557054502
 GameObject:
   m_ObjectHideFlags: 0
@@ -13029,6 +13104,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1580551707}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> parent of 4913769 (Merge branch 'newMain' of https://github.com/Chip-475/Base_Builder into newMain)
 --- !u!1 &1586403433
 GameObject:
   m_ObjectHideFlags: 0
@@ -13717,18 +13794,30 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1813301437}
+<<<<<<< HEAD
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+=======
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+>>>>>>> parent of 4913769 (Merge branch 'newMain' of https://github.com/Chip-475/Base_Builder into newMain)
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1989298835}
+<<<<<<< HEAD
   m_Father: {fileID: 863096363}
+=======
+  m_Father: {fileID: 1269952282}
+>>>>>>> parent of 4913769 (Merge branch 'newMain' of https://github.com/Chip-475/Base_Builder into newMain)
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
+<<<<<<< HEAD
   m_SizeDelta: {x: 1820, y: 980}
+=======
+  m_SizeDelta: {x: 0, y: 0}
+>>>>>>> parent of 4913769 (Merge branch 'newMain' of https://github.com/Chip-475/Base_Builder into newMain)
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1813301439
 MonoBehaviour:
@@ -13794,17 +13883,29 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1882005743}
+<<<<<<< HEAD
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+=======
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+>>>>>>> parent of 4913769 (Merge branch 'newMain' of https://github.com/Chip-475/Base_Builder into newMain)
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1208217912}
+<<<<<<< HEAD
   m_Father: {fileID: 958627205}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: -835, y: -415}
+=======
+  m_Father: {fileID: 1269952282}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 75, y: 75}
+>>>>>>> parent of 4913769 (Merge branch 'newMain' of https://github.com/Chip-475/Base_Builder into newMain)
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1882005746
@@ -13964,6 +14065,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1890187001}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
 --- !u!1 &1890433695
 GameObject:
   m_ObjectHideFlags: 0
@@ -14119,6 +14221,8 @@ Transform:
   - {fileID: 224229550}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> parent of 4913769 (Merge branch 'newMain' of https://github.com/Chip-475/Base_Builder into newMain)
 --- !u!1001 &1921389362
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14434,6 +14538,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1955726896}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
 --- !u!1 &1962087318
 GameObject:
   m_ObjectHideFlags: 0
@@ -14571,6 +14676,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1962087318}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> parent of 4913769 (Merge branch 'newMain' of https://github.com/Chip-475/Base_Builder into newMain)
 --- !u!1 &1989298834
 GameObject:
   m_ObjectHideFlags: 0
@@ -14681,7 +14788,11 @@ RectTransform:
   - {fileID: 585319454}
   - {fileID: 436786429}
   - {fileID: 402547951}
+<<<<<<< HEAD
   m_Father: {fileID: 863096363}
+=======
+  m_Father: {fileID: 1269952282}
+>>>>>>> parent of 4913769 (Merge branch 'newMain' of https://github.com/Chip-475/Base_Builder into newMain)
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -14968,6 +15079,7 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+<<<<<<< HEAD
 --- !u!1 &2115735526
 GameObject:
   m_ObjectHideFlags: 0
@@ -15152,12 +15264,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2121342714}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> parent of 4913769 (Merge branch 'newMain' of https://github.com/Chip-475/Base_Builder into newMain)
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1421899056}
+<<<<<<< HEAD
   - {fileID: 720267553}
+=======
+>>>>>>> parent of 4913769 (Merge branch 'newMain' of https://github.com/Chip-475/Base_Builder into newMain)
   - {fileID: 1639805596}
   - {fileID: 794481238}
   - {fileID: 649027507}
@@ -15169,4 +15286,7 @@ SceneRoots:
   - {fileID: 509356180}
   - {fileID: 203079103}
   - {fileID: 2048470262}
+<<<<<<< HEAD
   - {fileID: 1890433699}
+=======
+>>>>>>> parent of 4913769 (Merge branch 'newMain' of https://github.com/Chip-475/Base_Builder into newMain)
