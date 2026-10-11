@@ -8,27 +8,19 @@ public abstract class Building
 
     public Vector3Int Coords => SceneObj.transform.position.ToVector3Int();
     public Bounds Bounds { get; private set; }
-    public Bounds InteractionBounds { get; private set; }
     public Bounds ConnectionBounds { get; private set; }
-    public NetworkManager Network
-    {
-        get
-        {
-            PowerManager.instance.CheckNetwork(this, out NetworkManager result);
-            return result;
-        }
-        set { }
-    }
+    public Bounds InteractionBounds {  get; private set; }
+    public NetworkManager Network;
 
     public Building(BuildingData data, BuildingView sceneObj)
     {
         Data = data;
         SceneObj = sceneObj;
 
-        WorldManager.World.RegisterBuilding(this, Coords);
+        //WorldManager.World.RegisterBuilding(this, Coords);
         Bounds = new(Coords, Data.bounds.size);
-        InteractionBounds = new(Coords, Data.interactionBounds.size);
         ConnectionBounds = new(Coords, Data.connectionBounds.size);
+        InteractionBounds = new(Coords, Data.InteractionBounds.size);
         UpdateCells(GetCellsInBounds(GetBounds()));
         PowerManager.instance.RegisterBuilding();
 
@@ -51,6 +43,7 @@ public abstract class Building
             for (int y = minY; y <= maxY; y++)
             {
                 Cell cell = WorldManager.World.GetCellAt(new Vector3Int(x, y, 0));
+                if (cell == null) continue;
                 cells.Add(cell);
             }
 
