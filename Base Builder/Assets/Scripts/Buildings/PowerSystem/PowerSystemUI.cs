@@ -6,7 +6,7 @@ public class PowerSystemUI : MonoBehaviour
 {
     public static PowerSystemUI instance;
     public Button toggleButton;
-    public bool isActive = false;
+    public bool isActive=false;
     private void Awake()
     {
         instance = this;
@@ -24,7 +24,7 @@ public class PowerSystemUI : MonoBehaviour
         {
             foreach (Building building in network.ConnectedBuildings)
             {
-                List<Cell> cellList = Helpers.GetCellsInBounds(building.ConnectionBounds).ToList();
+                List<Cell> cellList=Helpers.GetCellsInBounds(building.ConnectionBounds).ToList();
                 foreach (Cell cell in cellList)
                 {
                     cell.sr.color = isActive ? network.NetworkColor : Color.white;

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Hematite
   m_EditorClassIdentifier: Assembly-CSharp::Resources
   Name: Hematite
-  Desc: 
+  Desc: hematite
   Sprite: {fileID: 2672998837818880226, guid: 0c9a213f119676f46a8010112b0080b8, type: 3}
   toughness: 1
   weightPerUnit: 2
