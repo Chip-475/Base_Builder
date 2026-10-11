@@ -83,6 +83,7 @@ public class Bot
          bool arrivato = await muoviAsp(mineralNode.SceneObj.transform.position.ToVector3Int());
          if (arrivato)mineralNode.MineResource();
      }*/
+ 
     string PickRandomName()
 
     {

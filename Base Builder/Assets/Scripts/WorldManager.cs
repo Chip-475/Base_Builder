@@ -4,23 +4,47 @@ using System;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
+using UnityEditor.PackageManager;
 
 public class WorldManager : MonoBehaviour
 {
-    public static WorldManager Instance {  get; private set; }
+    private static WorldManager _instance;
+    public static WorldManager Instance
+    {
+        get
+        {
+            if (_instance == null) _instance = FindFirstObjectByType<WorldManager>();
+            return _instance;
+        }
+    }
 
     [SerializeField] Grid grid;
     [SerializeField] Dictionary<Tilemap, CellType> mapToType;
     [Space]
 
     [SerializeField] World world;
-    public static World World {  get { return Instance.world; } }
+    bool wordCreato;
+    public static World World
+    {
+        get
+        {
+            Instance.creaWord();
+            return Instance.world;
+        }
+    }
+    void creaWord()
+    {
+        if (wordCreato) return;
+        grid.gameObject.SetActive(false);
+        world = new(grid, mapToType);
+        wordCreato = true;
+    }
 
     public Sprite floorSprite;
 
     void Awake()
     {
-        Instance = this;
+        _instance = this;
     }
     void Start()
     {
@@ -40,4 +64,5 @@ public class WorldManager : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(world.WorldBounds.center, world.WorldBounds.size);
     }
+  
 }

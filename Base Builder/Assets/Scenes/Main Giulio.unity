@@ -2269,6 +2269,8 @@ MonoBehaviour:
   - key: {fileID: 837783377}
     value: 1
   world:
+    cells: []
+    machines: []
     WorldBounds:
       m_Center: {x: 0, y: 0, z: 0}
       m_Extent: {x: 0, y: 0, z: 0}
@@ -2332,6 +2334,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2754c593d2218904d854d8c9ae753198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::machineRecipeUI
+  panello: {fileID: 0}
+  cont: {fileID: 0}
+  prefabRic: {fileID: 0}
+  titolo: {fileID: 0}
+  desc: {fileID: 0}
+  imgClick: {fileID: 0}
 --- !u!1 &657680101
 GameObject:
   m_ObjectHideFlags: 0
@@ -2894,6 +2902,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2754c593d2218904d854d8c9ae753198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::machineRecipeUI
+  panello: {fileID: 2017182561}
+  cont: {fileID: 1054419557}
+  prefabRic: {fileID: 253488551867552507, guid: 2d4c94e1b01141c49aae3c36af34003b, type: 3}
+  titolo: {fileID: 921868388}
+  desc: {fileID: 525406556}
+  imgClick: {fileID: 158809711}
 --- !u!4 &836725571
 Transform:
   m_ObjectHideFlags: 0
@@ -13144,6 +13158,58 @@ MonoBehaviour:
   inventoryMenu: {fileID: 1813301437}
   openInventoryMenu: {fileID: 1301313506}
   closeInventoryMenu: {fileID: 2046173774}
+--- !u!1 &1649771544
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1649771546}
+  - component: {fileID: 1649771545}
+  m_Layer: 0
+  m_Name: crafiting
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1649771545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649771544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 099cccffd41003f4091be9050d3e8c7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::crafting
+  colonnaInput: {fileID: 0}
+  livelloLinee: {fileID: 0}
+  slotoutput: {fileID: 0}
+  icona: {fileID: 0}
+  quant: {fileID: 0}
+  prefabInput: {fileID: 0}
+  coloreLinea: {r: 1, g: 1, b: 1, a: 1}
+  spessore: 4
+--- !u!4 &1649771546
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649771544}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1727610130
 GameObject:
   m_ObjectHideFlags: 0
@@ -14043,6 +14109,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SpaceshipView
   <Data>k__BackingField: {fileID: 11400000, guid: ebdc7f6e5c0088648b3a10847c491b06, type: 2}
   botSpawnPoint: {fileID: 224229550}
+  ui: {fileID: 0}
 --- !u!212 &1890433698
 SpriteRenderer:
   serializedVersion: 3
@@ -15019,11 +15086,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85d3603f0a871c04eb09987caefe75dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MachineUI
-  recipeEntryPrefab: {fileID: 1943121899817967719, guid: 51334dee5b306a34c91c050e0798b1a9, type: 3}
-  recipeListContent: {fileID: 410223724}
-  backButton: {fileID: 1580551709}
-  recipeIcon: {fileID: 0}
-  craftedItemIcon: {fileID: 0}
 --- !u!114 &2115735529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15170,3 +15232,4 @@ SceneRoots:
   - {fileID: 203079103}
   - {fileID: 2048470262}
   - {fileID: 1890433699}
+  - {fileID: 1649771546}

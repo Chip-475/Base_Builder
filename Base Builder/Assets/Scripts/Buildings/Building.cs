@@ -14,6 +14,8 @@ public abstract class Building
 
     public Building(BuildingData data, BuildingView sceneObj)
     {
+        if (data == null) Debug.Log("data nullo in building ");
+        if (sceneObj == null) Debug.Log("scene obj in building ");
         Data = data;
         SceneObj = sceneObj;
 

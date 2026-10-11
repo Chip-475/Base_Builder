@@ -14,7 +14,7 @@ public class machineRecipeUI : MonoBehaviour
     public TMP_Text titolo;
     public TMP_Text desc;
     public Image imgClick;
-    public crafting grafo;
+    //public crafting grafo;
     public bool aperto
     {
         get
@@ -70,6 +70,7 @@ public class machineRecipeUI : MonoBehaviour
         }
     }
     
+
     private void pulisciLista()
     {
         for(int i=cont.childCount-1; i>=0; i--)
@@ -100,6 +101,6 @@ public class machineRecipeUI : MonoBehaviour
             desc.text = desc.text + r.Name + " ";
         }
         imgClick.sprite = getSprite(recipe);
-        grafo.mostra(recipe);
+       // grafo.mostra(recipe);
     }
 }
