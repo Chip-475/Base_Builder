@@ -1,3 +1,6 @@
+using System;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,27 +8,23 @@ public class MachineUI : MonoBehaviour
 {
     public static MachineUI Instance { get; private set; }
 
-    Machine currentSelected;
-    public Machine Selected
-    {
-        get { return currentSelected; }
-        set { currentSelected = value; Build(value); }
-    }
     public bool IsActive => panel.activeSelf;
 
     [Header("Setup")]
     [SerializeField] GameObject panel;
+    [SerializeField] Button backButton;
     [SerializeField] RecipeEntry recipeEntryPrefab;
 
-    [Header("Right side")]
+    [Header("Left side")]
     [SerializeField] GameObject recipeListContent;
 
-    [Header("Upper Left Side")]
-    [SerializeField] Button backButton;
-    [SerializeField] Image recipeIcon;
+    [Header("Upper Right Side")]
+    [SerializeField] Image selectedRecipeIcon;
+    [SerializeField] TMP_Text selectedRecipeName;
+    [SerializeField] TMP_Text selectedRecipeDesc;
 
-    [Header("Lower Left Side")]
-    [SerializeField] Image craftedItemIcon;
+    [Header("Lower Right Side")]
+    public string ph = "empty";
 
     private void Awake()
     {
@@ -34,23 +33,28 @@ public class MachineUI : MonoBehaviour
         backButton.onClick.AddListener(() => panel.SetActive(false));
     }
 
-    public void Build(Machine machine)
+    public void Open(Machine machine)
     {
-        Wipe();
-
-        // Left Side
+        WipeRecipeList();
         foreach (var recipe in machine.Data.usableRecipes)
         {
             RecipeEntry entry = Instantiate(recipeEntryPrefab, recipeListContent.transform);
             entry.Build(recipe);
         }
+    }
+    public void BuildUpperRight(RecipeEntry recipeEntry)
+    {
+        selectedRecipeIcon.sprite = recipeEntry.recipe.Sprite;
+        selectedRecipeName.text = recipeEntry.recipe.Name;
+        selectedRecipeDesc.text = recipeEntry.recipe.Desc;
+    }
+    public void BuildLowerRight()
+    {
 
-        // Upper Right Side
     }
 
-    void Wipe()
+    void WipeRecipeList()
     {
-        // Left Side
         foreach (Transform child in recipeListContent.transform)
             Destroy(child.gameObject);
     }

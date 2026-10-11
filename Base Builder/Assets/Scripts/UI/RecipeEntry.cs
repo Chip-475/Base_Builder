@@ -13,11 +13,15 @@ public class RecipeEntry : MonoBehaviour
     [SerializeField] Image craftedItem;
     [SerializeField] List<Image> requestedItems;
 
+    [Header("Runtime Data")]
+    public RecipeSO recipe;
+
     readonly Dictionary<Image, TMP_Text> quantityText = new();
 
     private void Awake()
     {
         button = GetComponent<Button>();
+        button.onClick.AddListener(() => MachineUI.Instance.BuildUpperRight(this));
 
         foreach (var item in requestedItems)
             quantityText[item] = item.GetComponentInChildren<TMP_Text>();
@@ -28,6 +32,7 @@ public class RecipeEntry : MonoBehaviour
         if (recipe.inputs.Count > 3 || recipe.outputs.Count > 1)
             throw new Exception($"Recipe {recipe.Name} is invalid.");
 
+        this.recipe = recipe;
         for (int i = 0; i < recipe.inputs.Count; i++)
         {
             Image currentEntry = requestedItems[i];

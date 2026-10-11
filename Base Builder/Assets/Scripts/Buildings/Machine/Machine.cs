@@ -67,7 +67,7 @@ public class Machine : Building, IInteractable
     }
     public void Interact()
     {
-        MachineUI.Instance.Build(this);
+        MachineUI.Instance.Open(this);
     }
 
 

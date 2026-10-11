@@ -8,6 +8,8 @@ public class RecipeSO : ScriptableObject
     [Header("Identity")]
     [field: SerializeField] public string ID { get; protected set; }
     public string Name;
+    [TextArea] public string Desc;
+    public Sprite Sprite;
 
     [Header("Characteristics")]
     [SerializeField] public Dictionary<ResourceSO, int> inputs = new();
