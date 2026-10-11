@@ -715,7 +715,7 @@ GameObject:
   - component: {fileID: 448212766061611691}
   - component: {fileID: 271838759000815575}
   m_Layer: 5
-  m_Name: Machine UI
+  m_Name: Machine UI Backup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

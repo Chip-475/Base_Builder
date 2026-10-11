@@ -21,7 +21,7 @@ public class RecipeEntry : MonoBehaviour
     private void Awake()
     {
         button = GetComponent<Button>();
-        button.onClick.AddListener(() => MachineUI.Instance.BuildUpperRight(this));
+        button.onClick.AddListener(() => MachineUI.Instance.BuildInfoPanel(this));
 
         foreach (var item in requestedItems)
             quantityText[item] = item.GetComponentInChildren<TMP_Text>();

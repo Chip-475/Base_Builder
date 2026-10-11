@@ -15,10 +15,10 @@ public class MachineUI : MonoBehaviour
     [SerializeField] Button backButton;
     [SerializeField] RecipeEntry recipeEntryPrefab;
 
-    [Header("Left side")]
+    [Header("Recipe List")]
     [SerializeField] GameObject recipeListContent;
 
-    [Header("Upper Right Side")]
+    [Header("Info Panel")]
     [SerializeField] Image selectedRecipeIcon;
     [SerializeField] TMP_Text selectedRecipeName;
     [SerializeField] TMP_Text selectedRecipeDesc;
@@ -35,6 +35,11 @@ public class MachineUI : MonoBehaviour
 
     public void Open(Machine machine)
     {
+        panel.SetActive(true);
+        BuildRecipeList(machine);
+    }
+    public void BuildRecipeList(Machine machine)
+    {
         WipeRecipeList();
         foreach (var recipe in machine.Data.usableRecipes)
         {
@@ -42,7 +47,7 @@ public class MachineUI : MonoBehaviour
             entry.Build(recipe);
         }
     }
-    public void BuildUpperRight(RecipeEntry recipeEntry)
+    public void BuildInfoPanel(RecipeEntry recipeEntry)
     {
         selectedRecipeIcon.sprite = recipeEntry.recipe.Sprite;
         selectedRecipeName.text = recipeEntry.recipe.Name;

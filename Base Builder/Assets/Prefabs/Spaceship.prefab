@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 140a50201759f5348a0ac187457001d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpaceshipView
-  <Data>k__BackingField: {fileID: 11400000, guid: ebdc7f6e5c0088648b3a10847c491b06, type: 2}
+  <Data>k__BackingField: {fileID: 11400000, guid: bb94aac4519fb7b4a89d927fa183d132, type: 2}
   botSpawnPoint: {fileID: 6008437851129965912}
   ui: {fileID: 0}
 --- !u!61 &8217305561596504931

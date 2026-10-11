@@ -48,8 +48,6 @@ public class PlayerManager : MonoBehaviour
     public void Interact(InputAction.CallbackContext context)
     {
         InteractionManager.Instance.currentInteractable?.Interact();
-        if(InteractionManager.Instance.currentInteractable != null)
-            Debug.Log("Interact");
     }
 
     public Cell GetPlayerCell()
