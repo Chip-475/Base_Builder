@@ -9,6 +9,7 @@ public abstract class Building
     public Vector3Int Coords => SceneObj.transform.position.ToVector3Int();
     public Bounds Bounds { get; private set; }
     public Bounds ConnectionBounds { get; private set; }
+    public Bounds InteractionBounds {  get; private set; }
     public NetworkManager Network;
 
     public Building(BuildingData data, BuildingView sceneObj)
@@ -19,6 +20,7 @@ public abstract class Building
         //WorldManager.World.RegisterBuilding(this, Coords);
         Bounds = new(Coords, Data.bounds.size);
         ConnectionBounds = new(Coords, Data.connectionBounds.size);
+        InteractionBounds = new(Coords, Data.InteractionBounds.size);
         UpdateCells(GetCellsInBounds(GetBounds()));
         PowerManager.instance.RegisterBuilding();
 
