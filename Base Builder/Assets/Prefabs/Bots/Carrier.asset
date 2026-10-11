@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 227f37cea1bf99546875500a29c16bf2, type: 3}
-  m_Name: Carrier Bot
+  m_Name: Carrier
   m_EditorClassIdentifier: Assembly-CSharp::BotData
   type: 2
   speed: 3
