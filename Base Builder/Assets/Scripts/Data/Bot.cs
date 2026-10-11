@@ -28,6 +28,10 @@ public class Bot
 
     public RecipeSO recipeOra { get; set; }
     public ResourceSO inputRisorse { get; set; }
+    public MachineType type;
+    public ResourceSO inputResources;
+    public RecipeType recipeType;
+    public RecipeSO recipe;
 
     public Bot(BotView view, BotData data, string id = null, Vector3? coords = null, string name = null, float power = 100)
     {
@@ -86,10 +90,6 @@ public class Bot
         string[] names_2 = { "Leader", "Keeper", "Pioneer", "Witcher", "Diver", "Bomber", "Rancher", "Taker", "Dispatcher", "Trickster" };
         return names_1[UnityEngine.Random.Range(0, names_1.Length)] + " " + names_2[UnityEngine.Random.Range(0, names_2.Length)];
     }
-    public MachineType type;
-    public ResourceSO inputResources;
-    public RecipeType recipeType;
-    public RecipeSO recipe;
    /* public async UniTask goToMachine(Machine machine,MachineType machineType)
     {
         if(Type==BotType.Worker)
