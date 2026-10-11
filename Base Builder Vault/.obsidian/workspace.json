@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Progression.md",
+                "file": "Installed Objects/Logistic/Storage.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Progression"
+              "title": "Storage"
             }
           }
         ],
@@ -205,8 +205,9 @@
   },
   "active": "2abceeb9e1475cd2",
   "lastOpenFiles": [
-    "Resources/Crafted Items/Crafted Items.md",
+    "Installed Objects/Machines/Advanced Assembler.md",
     "Progression.md",
+    "Resources/Crafted Items/Crafted Items.md",
     "General.md",
     "Resources/Raw/Pentladite.md",
     "Resources/Raw/Pyrite.md",
@@ -224,7 +225,6 @@
     "Installed Objects/Machines/Coal Furnace.md",
     "Installed Objects/Machines/Furnace mk2.md",
     "Installed Objects/Machines/Furnace mk1.md",
-    "Installed Objects/Machines/Advanced Assembler.md",
     "Installed Objects/Machines/Machines.md",
     "Bots/Miner Bot.md",
     "Bots/Carrier Bot.md",
