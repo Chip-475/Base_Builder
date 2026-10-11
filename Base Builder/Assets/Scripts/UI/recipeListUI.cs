@@ -8,14 +8,14 @@ public class recipeListUI : MonoBehaviour
     public Button bottone;
 
     RecipeSO recipe;
-    machineRecipeUI menuPrincipale;
+    MachineUI menuPrincipale;
 
-    public void imposta(RecipeSO recipe1,machineRecipeUI menu)
+    public void imposta(RecipeSO recipe1,MachineUI menu)
     {
         recipe = recipe1;
         menuPrincipale = menu;
         if (icona != null && recipe1.outputResources.Length > 0) icona.sprite = recipe1.outputResources[0].Sprite;
-        if (nomeTesto != null) nomeTesto.text = recipe1.r_name;
+        if (nomeTesto != null) nomeTesto.text = recipe1.Name;
     }
     public void OnClick()
     {

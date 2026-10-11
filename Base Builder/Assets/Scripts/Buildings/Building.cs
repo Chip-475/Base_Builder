@@ -19,8 +19,8 @@ public abstract class Building
 
         //WorldManager.World.RegisterBuilding(this, Coords);
         Bounds = new(Coords, Data.bounds.size);
+        InteractionBounds = new(Coords, Data.interactionBounds.size);
         ConnectionBounds = new(Coords, Data.connectionBounds.size);
-        InteractionBounds = new(Coords, Data.InteractionBounds.size);
         UpdateCells(GetCellsInBounds(GetBounds()));
         PowerManager.instance.RegisterBuilding();
 

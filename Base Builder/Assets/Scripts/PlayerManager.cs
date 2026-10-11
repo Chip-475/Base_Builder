@@ -18,8 +18,8 @@ public class PlayerManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        PlayerCameraMovement.Player = this;
         Inputs = new();
+        PlayerCameraMovement.Player = this;
 
         PlayerMode();
         Inputs.Player.Interact.performed += Interact;
@@ -47,7 +47,9 @@ public class PlayerManager : MonoBehaviour
     }
     public void Interact(InputAction.CallbackContext context)
     {
-
+        InteractionManager.Instance.currentInteractable?.Interact();
+        if(InteractionManager.Instance.currentInteractable != null)
+            Debug.Log("Interact");
     }
 
     public Cell GetPlayerCell()
