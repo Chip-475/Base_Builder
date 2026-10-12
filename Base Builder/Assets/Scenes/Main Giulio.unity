@@ -2334,12 +2334,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2754c593d2218904d854d8c9ae753198, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::machineRecipeUI
-  panello: {fileID: 0}
-  cont: {fileID: 0}
-  prefabRic: {fileID: 0}
-  titolo: {fileID: 0}
-  desc: {fileID: 0}
-  imgClick: {fileID: 0}
+  panel: {fileID: 2115735526}
+  backButton: {fileID: 1580551709}
+  recipeEntryPrefab: {fileID: 1943121899817967719, guid: 51334dee5b306a34c91c050e0798b1a9, type: 3}
+  recipeListContent: {fileID: 410223724}
+  selectedRecipeIcon: {fileID: 416273767}
+  selectedRecipeName: {fileID: 1557054504}
+  selectedRecipeDesc: {fileID: 1962087320}
+  inputResourceSlots: []
+  outputResourceSlots: []
 --- !u!1 &657680101
 GameObject:
   m_ObjectHideFlags: 0
@@ -2873,56 +2876,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 806446938}
   m_CullTransparentMesh: 1
---- !u!1 &836725569
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 836725571}
-  - component: {fileID: 836725570}
-  m_Layer: 0
-  m_Name: machineRecipe
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &836725570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 836725569}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2754c593d2218904d854d8c9ae753198, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::machineRecipeUI
-  panello: {fileID: 2017182561}
-  cont: {fileID: 1054419557}
-  prefabRic: {fileID: 253488551867552507, guid: 2d4c94e1b01141c49aae3c36af34003b, type: 3}
-  titolo: {fileID: 921868388}
-  desc: {fileID: 525406556}
-  imgClick: {fileID: 158809711}
---- !u!4 &836725571
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 836725569}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &837783374
 GameObject:
   m_ObjectHideFlags: 0
@@ -14107,7 +14060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 140a50201759f5348a0ac187457001d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpaceshipView
-  <Data>k__BackingField: {fileID: 11400000, guid: ebdc7f6e5c0088648b3a10847c491b06, type: 2}
+  <Data>k__BackingField: {fileID: 0}
   botSpawnPoint: {fileID: 224229550}
   ui: {fileID: 0}
 --- !u!212 &1890433698
@@ -14179,7 +14132,7 @@ Transform:
   m_GameObject: {fileID: 1890433695}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2, y: 0, z: 0}
+  m_LocalPosition: {x: -5.54, y: 0.52, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -15086,6 +15039,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85d3603f0a871c04eb09987caefe75dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MachineUI
+  panel: {fileID: 0}
+  backButton: {fileID: 0}
+  recipeEntryPrefab: {fileID: 0}
+  recipeListContent: {fileID: 0}
+  selectedRecipeIcon: {fileID: 0}
+  selectedRecipeName: {fileID: 0}
+  selectedRecipeDesc: {fileID: 0}
+  inputResourceSlots: []
+  outputResourceSlots: []
 --- !u!114 &2115735529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15225,7 +15187,6 @@ SceneRoots:
   - {fileID: 649027507}
   - {fileID: 1161565866}
   - {fileID: 649360995}
-  - {fileID: 836725571}
   - {fileID: 657680103}
   - {fileID: 1269952282}
   - {fileID: 509356180}

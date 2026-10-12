@@ -3,7 +3,6 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System;
 using TMPro;
-using Unity.VisualScripting;
 
 public class SpaceshipUiManager : MonoBehaviour
 {
@@ -95,11 +94,27 @@ public class SpaceshipUiManager : MonoBehaviour
 
         public void Initialize()
         {
+            if(botPrefabs.Count==0)
+            {
+                Debug.Log("botprefabs vuoto");
+                return;
+            }
             SwitchBot(0);
 
             // Actions
             previous.onClick.AddListener(() => SwitchBot(-1));
             next.onClick.AddListener(() => SwitchBot(1));
+        }
+
+        void botOra()
+        {
+            if(SpaceshipUiManager.spaceship==null)
+            {
+                Debug.Log("bot menu non ce");
+                return;
+            }
+            BotType tipo = botPrefabs[currentBotIndex].data.type;
+            SpaceshipUiManager.spaceship.BuildBot(tipo);
         }
 
         void SwitchBot(int amount)

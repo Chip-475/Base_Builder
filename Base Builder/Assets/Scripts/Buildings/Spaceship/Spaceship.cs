@@ -24,10 +24,15 @@ public class Spaceship : Building
 
     public Bot BuildBot(BotType type)
     {
-        BotView bot = Data.botPrefabs[type];
-        MonoBehaviour.Instantiate(bot, BotSpawnPoint.position, Quaternion.identity);
-
-        return bot.RuntimeObj;
+        if(!Data.botPrefabs.TryGetValue(type,out BotView prefab)||prefab==null)
+        {
+            Debug.Log("nessun prefab");
+            return null;
+        }
+        //BotView bot = Data.botPrefabs[type];
+        //MonoBehaviour.Instantiate(bot, BotSpawnPoint.position, Quaternion.identity);
+        BotView istanza = UnityEngine.Object.Instantiate(prefab, BotSpawnPoint.position, Quaternion.identity);
+        return istanza.RuntimeObj;
     }
 
     public void OnClick()

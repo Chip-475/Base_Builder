@@ -23,32 +23,38 @@ public class crafting : MonoBehaviour
 
     public void mostra(RecipeSO recipe)
     {
+        if (recipe == null) return;
         pulisciFigli(colonnaInput);
         pulisciFigli(livelloLinee);
         List<RectTransform> slotCreati = new List<RectTransform>();
-        for(int i=0;i<recipe.inputResources.Length;i++)
+        foreach(KeyValuePair<ResourceSO,int> ingredienti in recipe.inputs)
         {
-            ResourceSO ris=recipe.inputResources[i];
             GameObject slot = Instantiate(prefabInput, colonnaInput);
             Image icon=slot.GetComponent<Image>();
-            icon.sprite = ris.Sprite;
+            icon.sprite = ingredienti.Key.Sprite;
             TMP_Text testo=slot.GetComponent<TMP_Text>();
-            testo.text = "x" + recipe.input[i];
+            testo.text = "x" + ingredienti.Value;
             slotCreati.Add(slot.GetComponent<RectTransform>());
         }
-        if (recipe.outputResources.Length > 0)
+        bool output = false;
+        foreach(KeyValuePair<ResourceSO,int> prod in recipe.outputs)
         {
-            icona.gameObject.SetActive(true);
-            icona.sprite = recipe.outputResources[0].Sprite;
-            quant.text = "x" + recipe.output[0];
+            icona.sprite = prod.Key.Sprite;
+            quant.text = "x" + prod.Value;
+            output = true;
+            break;
         }
-        else icona.gameObject.SetActive(false);
-        Canvas.ForceUpdateCanvases();
-        LayoutRebuilder.ForceRebuildLayoutImmediate(colonnaInput);
-        foreach(RectTransform slot in slotCreati)
+        icona.gameObject.SetActive(output);
+        if(output)
         {
-            disegnaLinea(slot, slotoutput);
+            foreach(RectTransform slot in slotCreati)
+            {
+                disegnaLinea(slot, slotoutput);
+            }
         }
+        //Canvas.ForceUpdateCanvases();
+        //LayoutRebuilder.ForceRebuildLayoutImmediate(colonnaInput);
+        
     }
 
     private void disegnaLinea(RectTransform da,RectTransform a)

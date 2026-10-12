@@ -18,11 +18,11 @@ public class RecipeSO : ScriptableObject
     public int energyCost;
 }
     public enum RecipeType
-{
-    None=0,
-    Smelter=1,
-    Assembler=2,
-    Advanced_Assembler=3,
-    Alloy_Furnace=4,
-    Press=5
-}
+    {
+        None=0,
+        Smelter=1,
+        Assembler=2,
+        Advanced_Assembler=3,
+        Alloy_Furnace=4,
+        Press=5
+    }
