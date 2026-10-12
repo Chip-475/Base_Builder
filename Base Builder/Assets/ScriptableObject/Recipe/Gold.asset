@@ -13,12 +13,10 @@ MonoBehaviour:
   m_Name: Gold
   m_EditorClassIdentifier: Assembly-CSharp::Recipe
   <ID>k__BackingField: 
-  r_name: Gold
-  inputResources:
-  - {fileID: 11400000, guid: a63e372a913454d4794c5bc6f9b8289f, type: 2}
-  input: 
-  outputResources:
-  - {fileID: 11400000, guid: a753ae9da1d3d474f8c515e6dc2116e9, type: 2}
-  output: 00000000i
+  Name: 
+  Desc: 
+  Sprite: {fileID: 0}
+  inputs: []
+  outputs: []
   completionTime: 0
   energyCost: 0

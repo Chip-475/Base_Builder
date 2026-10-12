@@ -16,7 +16,6 @@ public class MachineView : BuildingView
 
     void OnMouseDown()
     {
-        if (Obj != null && Data != null) machineRecipeUI.instance.apri(Obj);
-        else Debug.Log("null");
+        MachineUI.Instance.Open(Obj);
     }
 }

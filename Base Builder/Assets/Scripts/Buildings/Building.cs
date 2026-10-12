@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Building
-{
+{ 
     public BuildingData Data { get; private set; }
     public BuildingView SceneObj { get; private set; }
 
@@ -21,8 +21,8 @@ public abstract class Building
 
         //WorldManager.World.RegisterBuilding(this, Coords);
         Bounds = new(Coords, Data.bounds.size);
+        InteractionBounds = new(Coords, Data.interactionBounds.size);
         ConnectionBounds = new(Coords, Data.connectionBounds.size);
-        InteractionBounds = new(Coords, Data.InteractionBounds.size);
         UpdateCells(GetCellsInBounds(GetBounds()));
         PowerManager.instance.RegisterBuilding();
 

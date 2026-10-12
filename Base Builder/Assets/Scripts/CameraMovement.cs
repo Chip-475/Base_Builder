@@ -39,7 +39,7 @@ public class CameraMovement : MonoBehaviour
     }
     private void Zoom(InputAction.CallbackContext context)
     {
-        if (machineRecipeUI.instance != null && machineRecipeUI.instance.aperto) return;
+        if (MachineUI.Instance != null && MachineUI.Instance.IsActive) return;
         Vector2 scrollValue = context.ReadValue<Vector2>();
         camera.orthographicSize -= scrollValue.y * zoomSpeed;
         camera.orthographicSize = Mathf.Clamp(camera.orthographicSize, minZoom, maxZoom);

@@ -18,8 +18,8 @@ public class PlayerManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        PlayerCameraMovement.Player = this;
         Inputs = new();
+        PlayerCameraMovement.Player = this;
 
         PlayerMode();
         Inputs.Player.Interact.performed += Interact;
@@ -37,7 +37,7 @@ public class PlayerManager : MonoBehaviour
     {
         Cell nextCell =
             WorldManager.World.GetCellAt((transform.position + (Vector3)(speed * Time.deltaTime * vec)).ToVector3Int());
-        if (!nextCell.canWalkOn)
+        if (!nextCell.canWalkOn || nextCell == null)
             return;
 
         vec *= speed * Time.deltaTime;
@@ -47,7 +47,7 @@ public class PlayerManager : MonoBehaviour
     }
     public void Interact(InputAction.CallbackContext context)
     {
-
+        InteractionManager.Instance.currentInteractable?.Interact();
     }
 
     public Cell GetPlayerCell()
