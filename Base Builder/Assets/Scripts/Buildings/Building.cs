@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Building
-{
+{ 
     public BuildingData Data { get; private set; }
     public BuildingView SceneObj { get; private set; }
 

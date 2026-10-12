@@ -13,4 +13,9 @@ public class MachineView : BuildingView
     {
         Obj = new Machine(Data, this);
     }
+
+    void OnMouseDown()
+    {
+        MachineUI.Instance.Open(Obj);
+    }
 }
