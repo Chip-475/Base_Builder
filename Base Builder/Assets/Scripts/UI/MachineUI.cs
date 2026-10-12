@@ -28,6 +28,11 @@ public class MachineUI : MonoBehaviour
     [SerializeField] List<Image> inputResourceSlots;
     [SerializeField] List<Image> outputResourceSlots;
 
+    public void apri()
+    {
+        panel.SetActive(true);
+    }
+
     private void Awake()
     {
         Instance = this;
