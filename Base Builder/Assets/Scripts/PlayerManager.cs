@@ -7,13 +7,17 @@ public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Instance {  get; private set; }
     public static PlayerInputs Inputs { get; private set; }
-    public static event Action CheckForInteractable;
 
     [Header("Settings")]
     [SerializeField][Tooltip("7f standard.")] float speed = 7f;
 
-    [Header("Components")]
+    [Header("Setup")]
     [SerializeField] SpriteRenderer sr;
+    public Transform botCarryPoint;
+    public Transform botDropPoint;
+
+    [Header("Runtime")]
+    public bool IsCarryingBot { get; set; }
 
     void Awake()
     {
@@ -42,8 +46,9 @@ public class PlayerManager : MonoBehaviour
 
         vec *= speed * Time.deltaTime;
         transform.position += (Vector3)vec;
-
-        CheckForInteractable?.Invoke();
+        if (vec.x == 0)
+            return;
+        transform.localScale = new(MathF.Sign(vec.x), transform.localScale.y);
     }
     public void Interact(InputAction.CallbackContext context)
     {

@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
+
 public enum BotType
 {
     None,
@@ -12,7 +12,7 @@ public enum BotType
     Specialist
 }
 [Serializable]
-public class Bot
+public class Bot : IInteractable
 {
     public BotView BotView { get; protected set; }
     public BotData BotData { get; protected set; }
@@ -25,13 +25,12 @@ public class Bot
     public float Power { get; protected set; }
     public int CarryCapacity { get; protected set; }
     public BotInventory Inventory { get; protected set; }
+    public Bounds InteractionBounds { get; set; } = new();
+    public bool PickedUp { get; protected set; }
 
-    public RecipeSO recipeOra { get; set; }
-    public ResourceSO inputRisorse { get; set; }
-    public MachineType type;
-    public ResourceSO inputResources;
-    public RecipeType recipeType;
-    public RecipeSO recipe;
+    [Header("Intefaces")]
+    public Vector3 Position => BotView.transform.position;
+    public Cell[] InteractionCells => Helpers.GetCellsInBounds(InteractionBounds);
 
     public Bot(BotView view, BotData data, string id = null, Vector3? coords = null, string name = null, float power = 100)
     {
@@ -49,59 +48,38 @@ public class Bot
 
         // View
         BotView.name = Name;
+        InteractionManager.Instance.interactables.Add(this);
     }
 
-    /* public bool MoveTo(Vector3Int coords)
-     {
-
-         BotView.SetDestination(coords);
-         BotView.StartMoving();
-         bool raggiungibile = BotView.SetDestination(coords);
-
-         if (raggiungibile)
-         {
-             BotView.StartMoving();
-         }
-
-         return raggiungibile;
-     }
-     async UniTask<bool> muoviAsp(Vector3Int coords)
-     {
-         if (!MoveTo(coords))
-         {
-             Debug.Log(Name + ": nessun percorso verso " + coords);
-             return false;
-         }
-
-         await UniTask.WaitUntil(() => !BotView.IsMoving, cancellationToken: BotView.GetCancellationTokenOnDestroy());
-         return true;
-     }
-
-     public async UniTask goToMineralNode(MineralNode mineralNode)
-     {
-         if (Type != BotType.Miner)return;
-         bool arrivato = await muoviAsp(mineralNode.SceneObj.transform.position.ToVector3Int());
-         if (arrivato)mineralNode.MineResource();
-     }*/
- 
     string PickRandomName()
     {
         string[] names_1 = { "Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "Hotel", "India", "Juliett" };
         string[] names_2 = { "Leader", "Keeper", "Pioneer", "Witcher", "Diver", "Bomber", "Rancher", "Taker", "Dispatcher", "Trickster" };
         return names_1[UnityEngine.Random.Range(0, names_1.Length)] + " " + names_2[UnityEngine.Random.Range(0, names_2.Length)];
     }
-   /* public async UniTask goToMachine(Machine machine,MachineType machineType)
-    {
-        if(Type==BotType.Worker)
-        {
-            MoveTo(machine.SceneObj.transform.position.ToVector3Int());
-            await UniTask.WaitUntil(() => Vector3.Distance(BotView.transform.position, machine.SceneObj.transform.position) < 0.1f);
-            await machine.UseMachine(recipe,recipe.inputResources,type,recipeType);
 
+    public bool CanInteractWith()
+    {
+        throw new NotImplementedException();
+    }
+    public void Interact()
+    {
+        if (!PickedUp)
+        {
+            BotView.transform.parent = PlayerManager.Instance.transform;
+            BotView.transform.SetPositionAndRotation(PlayerManager.Instance.botCarryPoint.position, Quaternion.Euler(0, 0, 90));
+            PickedUp = true;
+            PlayerManager.Instance.IsCarryingBot = true;
+        }
+        else
+        {
+            BotView.transform.parent = null;
+            BotView.transform.SetPositionAndRotation(PlayerManager.Instance.botDropPoint.position, Quaternion.Euler(0, 0, 0));
+            PickedUp = false;
+            PlayerManager.Instance.IsCarryingBot = false;
         }
     }
-    */
- }
+
     public class BotInventory
     {
         public Dictionary<ResourceSO, int> Inventory { get; private set; } = new();
@@ -118,3 +96,4 @@ public class Bot
         }
 
     }
+}

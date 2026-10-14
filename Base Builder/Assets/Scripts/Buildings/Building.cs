@@ -25,8 +25,6 @@ public abstract class Building
         ConnectionBounds = new(Coords, Data.connectionBounds.size);
         UpdateCells(GetCellsInBounds(GetBounds()));
         PowerManager.instance.RegisterBuilding();
-
-        PlayerManager.CheckForInteractable += CheckForInteractable;
     }
     public abstract void Destroy();
 
@@ -59,6 +57,7 @@ public abstract class Building
         {
             cell.canWalkOn = !Data.blocksWalking;
             cell.canBuildOn = !Data.blocksPlacing;
+            cell.Building = this;
         }
     }
     protected void FreeUpCells(Cell[] cells)
@@ -67,17 +66,7 @@ public abstract class Building
         {
             cell.canWalkOn = true;
             cell.canBuildOn = true;
+            cell.Building = null;
         }
-    }
-
-    void CheckForInteractable()
-    {
-        Cell playerCell = PlayerManager.Instance.GetPlayerCell();
-        Cell[] interactionCells = GetCellsInBounds(InteractionBounds);
-        foreach (Cell cell in interactionCells)
-            if (playerCell == cell)
-            {
-
-            }
     }
 }

@@ -13,6 +13,7 @@ public class Cell
         get { return type; }
         protected set { type = value; }
     }
+    public Building Building { get; set; }
 
     public bool canWalkOn = true;
     public bool canBuildOn = true;

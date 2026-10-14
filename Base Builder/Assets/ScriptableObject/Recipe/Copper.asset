@@ -13,12 +13,10 @@ MonoBehaviour:
   m_Name: Copper
   m_EditorClassIdentifier: Assembly-CSharp::Recipe
   <ID>k__BackingField: copper
-  r_name: Copper
-  inputResources:
-  - {fileID: 11400000, guid: d16511fdb89b39846a0e6c3e26a1f7e0, type: 2}
-  input: 
-  outputResources:
-  - {fileID: 11400000, guid: d8291ed90a9a40d488355edab31852fc, type: 2}
-  output: 
+  Name: Copper
+  Desc: 
+  Sprite: {fileID: 0}
+  inputs: []
+  outputs: []
   completionTime: 2
   energyCost: 3
