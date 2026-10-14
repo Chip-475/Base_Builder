@@ -1339,9 +1339,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 1.7024806, y: -3.3536453, z: -0.048818402}
+    m_Target: {x: 1067.871, y: 539.1767, z: -6.571847}
     speed: 2
-    m_Value: {x: 0, y: 0, z: 0}
+    m_Value: {x: 1.7024806, y: -3.3536453, z: -0.048818402}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1392,9 +1392,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 7.0056605
+    m_Target: 731.5145
     speed: 2
-    m_Value: 10
+    m_Value: 7.0056605
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1833,11 +1833,11 @@ MonoBehaviour:
       m_rawData: 1099511656477
     m_ExpandedIDs:
     - m_rawData: 0
-    - m_rawData: 1099511656635
-    - m_rawData: 1099511656636
-    - m_rawData: 1099511656637
-    - m_rawData: 1099511656638
-    - m_rawData: 1099511656639
+    - m_rawData: 1099511656569
+    - m_rawData: 1099511656570
+    - m_rawData: 1099511656571
+    - m_rawData: 1099511656572
+    - m_rawData: 1099511656573
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1871,11 +1871,11 @@ MonoBehaviour:
       m_rawData: 0
     m_ExpandedIDs:
     - m_rawData: 0
-    - m_rawData: 1099511656635
-    - m_rawData: 1099511656636
-    - m_rawData: 1099511656637
-    - m_rawData: 1099511656638
-    - m_rawData: 1099511656639
+    - m_rawData: 1099511656569
+    - m_rawData: 1099511656570
+    - m_rawData: 1099511656571
+    - m_rawData: 1099511656572
+    - m_rawData: 1099511656573
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2026,11 +2026,11 @@ MonoBehaviour:
       m_rawData: 29686813979061
     m_ExpandedIDs:
     - m_rawData: 0
-    - m_rawData: 1099511656635
-    - m_rawData: 1099511656636
-    - m_rawData: 1099511656637
-    - m_rawData: 1099511656638
-    - m_rawData: 1099511656639
+    - m_rawData: 1099511656569
+    - m_rawData: 1099511656570
+    - m_rawData: 1099511656571
+    - m_rawData: 1099511656572
+    - m_rawData: 1099511656573
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2064,11 +2064,11 @@ MonoBehaviour:
       m_rawData: 0
     m_ExpandedIDs:
     - m_rawData: 0
-    - m_rawData: 1099511656635
-    - m_rawData: 1099511656636
-    - m_rawData: 1099511656637
-    - m_rawData: 1099511656638
-    - m_rawData: 1099511656639
+    - m_rawData: 1099511656569
+    - m_rawData: 1099511656570
+    - m_rawData: 1099511656571
+    - m_rawData: 1099511656572
+    - m_rawData: 1099511656573
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
