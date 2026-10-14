@@ -3,12 +3,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 
+[RequireComponent(typeof(CircleCollider2D))]
 public class BotView : MonoBehaviour
 {
     public BotData data;
     public Bot RuntimeObj { get; private set; }
 
     [Header("Components")]
+    public CircleCollider2D collider;
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] Animator animator;
 
@@ -16,7 +18,12 @@ public class BotView : MonoBehaviour
 
     void Start()
     {
+        collider = GetComponent<CircleCollider2D>();
         RuntimeObj = new Bot(this, data);
+    }
+    private void Update()
+    {
+        RuntimeObj.InteractionBounds = new(transform.position, new Vector3(2f, 2f, 0));
     }
 
     public void SetDestination(Vector3Int coords)
