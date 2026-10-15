@@ -27,6 +27,7 @@ public class Bot : IInteractable
     public BotInventory Inventory { get; protected set; }
     public Bounds InteractionBounds { get; set; } = new();
     public bool PickedUp { get; protected set; }
+    public bool Occupied { get; set; }
 
     [Header("Intefaces")]
     public Vector3 Position => BotView.transform.position;

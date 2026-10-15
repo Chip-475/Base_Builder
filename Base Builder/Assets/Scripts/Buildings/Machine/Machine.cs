@@ -72,14 +72,16 @@ public class Machine : Building, IInteractable
     {
         MachineUI.Instance.Open(this);
     }
-    public UniTask<Dictionary<ResourceSO, int>> Craft(RecipeSO recipe, Dictionary<ResourceSO, int> materials)
+    public RecipeSO Craft(RecipeSO recipe, Dictionary<ResourceSO, int> materials)
     {
         bool valid = true;
 
-        foreach (var mats_r in recipe.inputs.Keys)
-            foreach(var mats_m in materials.Keys)
+        foreach (var kvp_r in recipe.inputs)
+            foreach(var kvp_m in materials)
             {
-                if (mats_r != mats_m)
+                if (kvp_r.Key != kvp_m.Key)
+                    valid = false;
+                if(kvp_r.Value < kvp_m.Value)
                     valid = false;
             }
 
@@ -88,8 +90,11 @@ public class Machine : Building, IInteractable
         if (!valid)
             throw new Exception("Input materials are not valid.");
 
-        UniTask.WaitForSeconds(recipe.completionTime);
-        return new(recipe.outputs);
+        return recipe;
+    }
+    public void AssignBot(Bot bot)
+    {
+        bot.Occupied = true;
     }
 }
 public enum MachineType
