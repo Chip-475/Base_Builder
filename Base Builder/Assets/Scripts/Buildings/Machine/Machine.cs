@@ -1,7 +1,8 @@
-using UnityEngine;
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Machine : Building, IInteractable
 {
@@ -94,7 +95,28 @@ public class Machine : Building, IInteractable
     }
     public void AssignBot(Bot bot)
     {
+        if (!CanAssignBot(bot))
+            return;
+
         bot.Occupied = true;
+        bot.BotView.SetDestination(SceneObj.BotWorkPoint.transform.position.ToVector3Int());
+        bot.BotView.StartMoving();
+    }
+    bool CanAssignBot(Bot bot)
+    {
+        if (bot.Occupied)
+        {
+            Debug.Log("Bot is not available.");
+            return false;
+        }
+        Pathfinder.Pathfind(bot.Coords.ToVector3Int(), SceneObj.BotWorkPoint.transform.position.ToVector3Int(), out List<Vector3Int> path);
+        if (path.Count == 0)
+        {
+            Debug.Log("Cannot pathfind to target location.");
+            return false;
+        }
+
+        return true;
     }
 }
 public enum MachineType
