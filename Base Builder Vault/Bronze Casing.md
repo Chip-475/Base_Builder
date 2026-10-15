@@ -1,0 +1,1 @@
+4 [[Bronze Plate]] + 2 [[Bronze Rod]]

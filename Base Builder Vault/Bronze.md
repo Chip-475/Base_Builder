@@ -1,0 +1,1 @@
+3 [[Malachite]] + 1 [[Cassiterite]] for 2 ingots
