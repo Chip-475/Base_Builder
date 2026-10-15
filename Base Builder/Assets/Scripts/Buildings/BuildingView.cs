@@ -4,6 +4,7 @@ public abstract class BuildingView : MonoBehaviour
 {
     [field: SerializeField] public BuildingData Data { get; protected set; }
     public Building Obj { get; protected set; }
+    [field: SerializeField] public Transform BotWorkPoint { get; protected set; }
 
     protected void OnDrawGizmos()
     {

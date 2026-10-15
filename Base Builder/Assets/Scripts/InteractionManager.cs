@@ -25,9 +25,6 @@ public class InteractionManager : MonoBehaviour
 
     IInteractable FindClosestInteractable()
     {
-        if (PlayerManager.Instance.IsCarryingBot)
-            return currentInteractable;
-
         List<IInteractable> allInteractables = new(interactables);
         List<IInteractable> inRange = new();
         IInteractable toReturn = null;
