@@ -27,12 +27,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Installed Objects/Machines/Coal Furnace.md",
+                "file": "Progression.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Coal Furnace"
+              "title": "Progression"
             }
           }
         ],
@@ -98,7 +98,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 429.5
   },
   "right": {
     "id": "e8e48f589878ce85",
@@ -205,31 +205,34 @@
   },
   "active": "2abceeb9e1475cd2",
   "lastOpenFiles": [
-    "Installed Objects/Machines/Furnace mk1.md",
-    "Installed Objects/Machines/Furnace mk2.md",
-    "Installed Objects/Logistic/Storage.md",
-    "Installed Objects/Logistic/Charging station.md",
-    "Resources/Resources.md",
-    "Resources/Crafted Items/Titanium Plate.md",
-    "Resources/Crafted Items/Titanium Frame.md",
-    "Resources/Crafted Items/Steel Plate.md",
-    "Resources/Crafted Items/Navigation Component.md",
-    "Resources/Crafted Items/Ship Core Component.md",
-    "Resources/Crafted Items/Copper Wire.md",
-    "Resources/Crafted Items/Circuit Board.md",
-    "Resources/Crafted Items/Aluminum Plate.md",
-    "Drafts/Tungsten.md",
-    "Resources/Raw/Raw.md",
-    "Recipes/Recipes.md",
-    "Installed Objects/Machines/Advanced Assembler.md",
-    "Progression.md",
-    "Resources/Crafted Items/Crafted Items.md",
     "General.md",
-    "Resources/Raw/Pentladite.md",
-    "Resources/Raw/Pyrite.md",
+    "Bronze Plate.md",
+    "to set up later/Iron Plates.md",
+    "Bronze Casing.md",
+    "Progression.md",
+    "World.md",
+    "Resources/Crafted Items/Steel Plate.md",
+    "Iron Rods.md",
+    "Recipes/Recipes.md",
+    "Copper Plate.md",
+    "Machine Frame.md",
+    "Reinforced Plate.md",
+    "Buildings/Machines/Press.md",
     "Resources/Raw/Cassiterite.md",
-    "Resources/Raw/Malachite.md",
-    "Resources/Raw/Ilmenite.md",
-    "Resources/Raw/Bauxite.md"
+    "Bronze.md",
+    "Iron Casing.md",
+    "Iron Gear.md",
+    "Demo Scope.md",
+    "Docs.md",
+    "Craftable things.md",
+    "to set up later/Stone Brick.md",
+    "to set up later",
+    "Resources/Raw/Stone.md",
+    "Resources/Crafted Items/Aluminum Plate.md",
+    "Resources/Crafted Items/Circuit Board.md",
+    "Buildings/Machines/Assembler.md",
+    "Buildings/Machines/Furnace mk1.md",
+    "Buildings/Power System",
+    "Senza nome.canvas"
   ]
 }

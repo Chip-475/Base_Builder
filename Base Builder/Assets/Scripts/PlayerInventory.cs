@@ -22,10 +22,13 @@ public class PlayerInventory
         }
 
         Items[item] -= amount;
+        Items[item] = Mathf.Clamp(Items[item], 0, 999);
         return (item, amount);
     }
     public int GetQuantityOf(ResourceSO item)
     {
+        if (!Items.ContainsKey(item))
+            return 0;
         return Items[item];
     }
 

@@ -27,18 +27,12 @@ public class MachineUI : MonoBehaviour
     [Header("Lower Right Side")]
     [SerializeField] List<Image> inputResourceSlots;
     [SerializeField] List<Image> outputResourceSlots;
-/*
-    public void apri()
-    {
-        panel.SetActive(true);
-    }
-*/
+
     private void Awake()
     {
         Instance = this;
 
         backButton.onClick.AddListener(() => panel.SetActive(false));
-        Debug.Log("sono in awake");
     }
 
     public void Open(Machine machine)
