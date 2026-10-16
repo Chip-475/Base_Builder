@@ -19,11 +19,11 @@ public abstract class Building
         Data = data;
         SceneObj = sceneObj;
 
-        //WorldManager.World.RegisterBuilding(this, Coords);
         Bounds = new(Coords, Data.bounds.size);
         InteractionBounds = new(Coords, Data.interactionBounds.size);
         ConnectionBounds = new(Coords, Data.connectionBounds.size);
         UpdateCells(GetCellsInBounds(GetBounds()));
+        BuildingManager.RegisterBuilding(this);
         PowerManager.instance.RegisterBuilding();
     }
     public abstract void Destroy();

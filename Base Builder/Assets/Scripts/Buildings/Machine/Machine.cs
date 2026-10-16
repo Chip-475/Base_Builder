@@ -18,7 +18,6 @@ public class Machine : Building, IInteractable
 
     public Machine(MachineData data, MachineView sceneObj) : base(data, sceneObj)
     {
-        WorldManager.World.RegisterBuilding(Coords, this);
         PowerManager.machineDB.Add(this);
         PowerManager.instance.RegisterBuilding();
         InteractionManager.Instance.interactables.Add(this);
@@ -26,7 +25,7 @@ public class Machine : Building, IInteractable
     public override void Destroy()
     {
         FreeUpCells(GetCellsInBounds(GetBounds()));
-        WorldManager.World.UnregisterBuilding(Coords);
+        BuildingManager.UnregisterBuilding(this);
         MonoBehaviour.Destroy(SceneObj.gameObject);
     }
 
@@ -71,6 +70,7 @@ public class Machine : Building, IInteractable
     }
     public void Interact()
     {
+        MachineUI.Instance.Machine = this;
         MachineUI.Instance.Open(this);
     }
     public RecipeSO Craft(RecipeSO recipe, Dictionary<ResourceSO, int> materials)
@@ -92,31 +92,6 @@ public class Machine : Building, IInteractable
             throw new Exception("Input materials are not valid.");
 
         return recipe;
-    }
-    public void AssignBot(Bot bot)
-    {
-        if (!CanAssignBot(bot))
-            return;
-
-        bot.Occupied = true;
-        bot.BotView.SetDestination(SceneObj.BotWorkPoint.transform.position.ToVector3Int());
-        bot.BotView.StartMoving();
-    }
-    bool CanAssignBot(Bot bot)
-    {
-        if (bot.Occupied)
-        {
-            Debug.Log("Bot is not available.");
-            return false;
-        }
-        Pathfinder.Pathfind(bot.Coords.ToVector3Int(), SceneObj.BotWorkPoint.transform.position.ToVector3Int(), out List<Vector3Int> path);
-        if (path.Count == 0)
-        {
-            Debug.Log("Cannot pathfind to target location.");
-            return false;
-        }
-
-        return true;
     }
 }
 public enum MachineType

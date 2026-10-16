@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 227f37cea1bf99546875500a29c16bf2, type: 3}
   m_Name: Carrier
   m_EditorClassIdentifier: Assembly-CSharp::BotData
+  sprite: {fileID: 6799967465745104397, guid: abff66fdd2364bb449a25c9551003523, type: 3}
   type: 2
   speed: 3
   maxWeight: 100
   maxPower: 25
+  carryCapacity: 0
+  currentRecipe: {fileID: 0}
+  currentInputResources: []

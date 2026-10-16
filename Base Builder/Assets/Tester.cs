@@ -19,8 +19,7 @@ public class Tester : MonoBehaviour
     [ContextMenu("Work Test")]
     public void WorkTest()
     {
-        var toWorkAt = building as MachineView;
-        toWorkAt.Obj.AssignBot(bot.RuntimeObj);
+        
     }
 
     [ContextMenu("Move Test")]

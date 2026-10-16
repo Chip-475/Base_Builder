@@ -305,7 +305,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 43
+    y: 0
     width: 1360
     height: 36
   m_SerializedDataModeController:
@@ -692,7 +692,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 79
+    y: 24
     width: 233
     height: 335
   m_SerializedDataModeController:
@@ -772,8 +772,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Scene\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 234
-    y: 79
+    x: 235
+    y: 24
     width: 790
     height: 335
   m_SerializedDataModeController:
@@ -1406,7 +1406,7 @@ MonoBehaviour:
   m_Position:
     m_Target: {x: -0.6711355, y: -0.010756448, z: 0.00387552}
     speed: 2
-    m_Value: {x: -3.7365582, y: 0.78452086, z: -0.010426358}
+    m_Value: {x: -0.6711355, y: -0.010756448, z: 0.00387552}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1459,7 +1459,7 @@ MonoBehaviour:
   m_Size:
     m_Target: 5.9760633
     speed: 2
-    m_Value: 2.1722782
+    m_Value: 5.9760633
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1565,8 +1565,8 @@ MonoBehaviour:
     m_TextWithWhitespace: "Inspector\u200B"
   m_Pos:
     serializedVersion: 2
-    x: 1026
-    y: 79
+    x: 1027
+    y: 24
     width: 333
     height: 595
   m_SerializedDataModeController:
@@ -1942,15 +1942,14 @@ MonoBehaviour:
       m_rawData: 1099511656819
     m_ExpandedIDs:
     - m_rawData: 0
-    - m_rawData: 1099511656589
-    - m_rawData: 1099511656590
-    - m_rawData: 1099511656591
-    - m_rawData: 1099511656592
-    - m_rawData: 1099511656593
-    - m_rawData: 1099511656594
-    - m_rawData: 1099511656595
-    - m_rawData: 1099511656596
-    - m_rawData: 1099511656795
+    - m_rawData: 1099511656557
+    - m_rawData: 1099511656558
+    - m_rawData: 1099511656559
+    - m_rawData: 1099511656560
+    - m_rawData: 1099511656561
+    - m_rawData: 1099511656562
+    - m_rawData: 1099511656563
+    - m_rawData: 1099511656564
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1984,14 +1983,14 @@ MonoBehaviour:
       m_rawData: 0
     m_ExpandedIDs:
     - m_rawData: 0
-    - m_rawData: 1099511656589
-    - m_rawData: 1099511656590
-    - m_rawData: 1099511656591
-    - m_rawData: 1099511656592
-    - m_rawData: 1099511656593
-    - m_rawData: 1099511656594
-    - m_rawData: 1099511656595
-    - m_rawData: 1099511656596
+    - m_rawData: 1099511656557
+    - m_rawData: 1099511656558
+    - m_rawData: 1099511656559
+    - m_rawData: 1099511656560
+    - m_rawData: 1099511656561
+    - m_rawData: 1099511656562
+    - m_rawData: 1099511656563
+    - m_rawData: 1099511656564
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2092,7 +2091,7 @@ MonoBehaviour:
   m_Pos:
     serializedVersion: 2
     x: 0
-    y: 440
+    y: 385
     width: 1025
     height: 234
   m_SerializedDataModeController:
@@ -2146,15 +2145,14 @@ MonoBehaviour:
       m_rawData: 1099511656798
     m_ExpandedIDs:
     - m_rawData: 0
-    - m_rawData: 1099511656589
-    - m_rawData: 1099511656590
-    - m_rawData: 1099511656591
-    - m_rawData: 1099511656592
-    - m_rawData: 1099511656593
-    - m_rawData: 1099511656594
-    - m_rawData: 1099511656595
-    - m_rawData: 1099511656596
-    - m_rawData: 1099511656795
+    - m_rawData: 1099511656557
+    - m_rawData: 1099511656558
+    - m_rawData: 1099511656559
+    - m_rawData: 1099511656560
+    - m_rawData: 1099511656561
+    - m_rawData: 1099511656562
+    - m_rawData: 1099511656563
+    - m_rawData: 1099511656564
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -2188,14 +2186,14 @@ MonoBehaviour:
       m_rawData: 0
     m_ExpandedIDs:
     - m_rawData: 0
-    - m_rawData: 1099511656589
-    - m_rawData: 1099511656590
-    - m_rawData: 1099511656591
-    - m_rawData: 1099511656592
-    - m_rawData: 1099511656593
-    - m_rawData: 1099511656594
-    - m_rawData: 1099511656595
-    - m_rawData: 1099511656596
+    - m_rawData: 1099511656557
+    - m_rawData: 1099511656558
+    - m_rawData: 1099511656559
+    - m_rawData: 1099511656560
+    - m_rawData: 1099511656561
+    - m_rawData: 1099511656562
+    - m_rawData: 1099511656563
+    - m_rawData: 1099511656564
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

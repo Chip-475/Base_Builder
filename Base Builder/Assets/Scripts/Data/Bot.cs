@@ -39,6 +39,7 @@ public class Bot : IInteractable
         BotView = view;
         BotData = data;
         Type = data.type;
+
         // Self
         Id = id ?? Guid.NewGuid().ToString();
         Coords = coords ?? Vector3.zero;
@@ -47,9 +48,11 @@ public class Bot : IInteractable
         CarryCapacity = data.carryCapacity;
         Inventory = new BotInventory(data.carryCapacity);
 
-
         // View
         BotView.name = Name;
+
+        // ID
+        BotManager.RegisterBot(this);
         InteractionManager.Instance.interactables.Add(this);
     }
 
