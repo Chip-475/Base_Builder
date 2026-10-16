@@ -1,0 +1,1 @@
+4 [[Iron Plate]] + 2 [[Bronze Gear]] + 1 [[Advanced Frame]] 

@@ -1,1 +1,0 @@
-4 [[Iron Plates]] + 4 [[Iron Rods]]
