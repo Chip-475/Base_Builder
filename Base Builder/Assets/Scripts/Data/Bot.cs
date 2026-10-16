@@ -74,6 +74,8 @@ public class Bot : IInteractable
             BotView.transform.parent = PlayerManager.Instance.transform;
             BotView.transform.SetPositionAndRotation(PlayerManager.Instance.botCarryPoint.position, Quaternion.Euler(0, 0, 90));
             PickedUp = true;
+            Occupied = false;
+            WorkingAt = null;
             PlayerManager.Instance.IsCarryingBot = true;
         }
         else
