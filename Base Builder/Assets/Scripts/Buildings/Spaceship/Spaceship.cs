@@ -6,13 +6,15 @@ public class Spaceship : Building
 {
     public new SpaceshipData Data => base.Data as SpaceshipData;
     public new SpaceshipView SceneObj => base.SceneObj as SpaceshipView;
-
+    
+    public static Spaceship instance;
     public Transform BotSpawnPoint { get; private set; }
     public float PowerGeneration => Data.powerGeneration;
     public SpaceshipUiManager UI { get; private set; }
 
     public Spaceship(SpaceshipData data, SpaceshipView sceneObj, Transform botSpawnPoint, SpaceshipUiManager ui) : base(data, sceneObj)
     {
+        instance = this;
         BotSpawnPoint = botSpawnPoint;
         SpaceshipUiManager.spaceship = this;
         UI = ui;

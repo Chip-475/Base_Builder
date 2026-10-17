@@ -10,9 +10,11 @@ public class Generator : Building
     public string id;
 
     public float Power { get { return Data.productionRate; } }
-    public bool Running { get; private set; }
+    public bool Running = true; // { get; private set; }
 
     public bool isPowered;
+
+
 
     public Dictionary<ResourceSO, float> inventory;
     public Generator(GeneratorData data, GeneratorView sceneObj) : base(data, sceneObj)
@@ -20,6 +22,7 @@ public class Generator : Building
         id = Guid.NewGuid().ToString();
         PowerManager.powerGeneratorDB[id] = this;
         PowerManager.instance.RegisterBuilding();
+
     }
     public override void Destroy()
     {
