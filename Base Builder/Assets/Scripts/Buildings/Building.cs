@@ -11,6 +11,7 @@ public abstract class Building
     public Bounds ConnectionBounds { get; private set; }
     public Bounds InteractionBounds {  get; private set; }
     public NetworkManager Network;
+    public bool Occupied { get; set; }
 
     public Building(BuildingData data, BuildingView sceneObj)
     {

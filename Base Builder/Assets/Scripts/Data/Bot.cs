@@ -47,7 +47,7 @@ public class Bot : IInteractable
         Power = power;
         CarryCapacity = data.carryCapacity;
         Inventory = new BotInventory(data.carryCapacity);
-
+        
         // View
         BotView.name = Name;
 
@@ -102,5 +102,63 @@ public class Bot : IInteractable
             MaxWeight = maxWeight;
         }
 
+        public void AddItem(ResourceSO resource, int amount)
+        {
+            if(!CanAddItem(resource, amount))
+            {
+                Debug.Log("Cannot add item.");
+                return;
+            }
+
+            Inventory[resource] = Inventory.GetValueOrDefault(resource) + amount;
+        }
+        public bool CanAddItem(ResourceSO resource, int amount)
+        {
+            float requestWeight = resource.weightPerUnit * amount;
+            float newWeight = requestWeight + GetWeight();
+            if (newWeight > MaxWeight)
+                return false;
+
+            return true;
+        }
+
+        public KeyValuePair<ResourceSO, int> RemoveItem(ResourceSO resource, int amount)
+        {
+            if(!CanRemoveItem(resource, amount))
+            {
+                Debug.Log("Cannot remove item.");
+                return new(null, 0);
+            }
+
+            Inventory[resource] = Inventory.GetValueOrDefault(resource) - amount;
+            return new(resource, amount);
+        }
+        public bool CanRemoveItem(ResourceSO resource, int amount)
+        {
+            if (!Inventory.ContainsKey(resource))
+                return false;
+            if (Inventory[resource] - amount < 0)
+                return false;
+
+            return true;
+        }
+
+        public float GetWeight()
+        {
+            float totWeight = 0f;
+            foreach(var kvp in Inventory)
+                totWeight += kvp.Key.weightPerUnit * kvp.Value;
+
+            return totWeight;
+        }
+        public float GetSpecificWeight(ResourceSO resource)
+        {
+            float weight = 0f;
+            foreach (var kvp in Inventory)
+                if(kvp.Key == resource) 
+                    weight += kvp.Key.weightPerUnit * kvp.Value;
+
+            return weight;
+        }
     }
 }

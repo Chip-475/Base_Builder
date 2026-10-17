@@ -12,7 +12,7 @@ public class BuildingBotEntry : MonoBehaviour
 
     private void Update()
     {
-        button.interactable = bot.Occupied == false && MachineUI.Instance.Machine != null && MachineUI.Instance.selectedRecipeEntry != null;
+        button.interactable = bot.Occupied == false && MachineUI.Instance.Machine != null && MachineUI.Instance.Machine.Occupied == false && MachineUI.Instance.selectedRecipeEntry != null;
     }
     public void Initialize(Bot bot)
     {

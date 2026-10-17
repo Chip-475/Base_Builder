@@ -68,6 +68,11 @@ public class BotManager : MonoBehaviour
             Debug.Log("Bot is not available.");
             return false;
         }
+        if (request.building.Occupied)
+        {
+            Debug.Log("Building is occupied.");
+            return false;
+        }
         Pathfinder.Pathfind(request.bot.Coords.ToVector3Int(), request.building.SceneObj.BotWorkPoint.transform.position.ToVector3Int(), out List<Vector3Int> path);
         if (path.Count == 0)
         {
