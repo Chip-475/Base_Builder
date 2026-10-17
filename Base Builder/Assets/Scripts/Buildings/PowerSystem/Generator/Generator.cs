@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Generator : Building
+public class Generator : Building,IInteractable
 {
     public new GeneratorData Data => base.Data as GeneratorData;
     public new GeneratorView SceneObj => base.SceneObj as GeneratorView;
@@ -14,7 +14,8 @@ public class Generator : Building
 
     public bool isPowered;
 
-
+    Vector3 IInteractable.Position => Coords;
+    Cell[] IInteractable.InteractionCells => GetCellsInBounds(InteractionBounds);
 
     public Dictionary<ResourceSO, float> inventory;
     public Generator(GeneratorData data, GeneratorView sceneObj) : base(data, sceneObj)
@@ -31,7 +32,14 @@ public class Generator : Building
         //WorldManager.World.UnregisterBuilding(Coords);
         MonoBehaviour.Destroy(SceneObj.gameObject);
     }
+    public bool CanInteractWith()
+    {
+        var cells = GetCellsInBounds(Data.interactionBounds);
+        foreach (var item in cells)
+            if (item == PlayerManager.Instance.GetPlayerCell()) return true;
 
+        return false;
+    }
     public void SwitchState(bool state) //to link to the ui button
     {
         Running = state;
