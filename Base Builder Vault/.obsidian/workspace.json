@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Recipes/other Eras/Alloy Smelting to Steel.md",
+                "file": "Buildings/Logistic/Storage.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Alloy Smelting to Steel"
+              "title": "Storage"
             }
           },
           {
@@ -204,9 +204,9 @@
   },
   "active": "fcbb2aa86150e5cf",
   "lastOpenFiles": [
+    "Recipes/other Eras/Alloy Smelting to Steel.md",
     "Buildings/Machines/Alloy Furnace.md",
     "Recipes/other Eras/Alloy Smelting to Invar.md",
-    "Recipes/other Eras/Alloy Smelting to Steel.md",
     "Resources/Crafted Items/Crafted Items.md",
     "Recipes/other Eras/Smelt to Titanium.md",
     "Buildings/Machines/Press.md",

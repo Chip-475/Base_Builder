@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -37,15 +36,44 @@ public class MachineUI : MonoBehaviour
 
     public void Open(Machine machine)
     {
-        panel.SetActive(true);
-        BuildRecipeList(machine);
+        if(machine==null)
+        {
+            Debug.Log("machine è null");
+            return;
+        }
+        if(machine.Data==null)
+        {
+            Debug.Log("machine data è null");
+            return;
+        }
+        Open(machine.Data.usableRecipes);
     }
-    public void BuildRecipeList(Machine machine)
+
+    public void Open(List<RecipeSO> ricette)
+    {
+        if(ricette==null)
+        {
+            Debug.Log("lista null");
+            return;
+        }
+        panel.SetActive(true);
+        BuildRecipeList(ricette);
+    }
+
+    public void BuildRecipeList(List<RecipeSO>ricette)
     {
         WipeRecipeList();
+        /*
         foreach(var recipe in machine.Data.usableRecipes)
         {
             RecipeEntry entry = Instantiate(recipeEntryPrefab, recipeListContent.transform);
+            entry.Build(recipe);
+        }
+        */
+        foreach(RecipeSO recipe in ricette)
+        {
+            if(recipe==null) continue;
+            RecipeEntry entry=Instantiate(recipeEntryPrefab,recipeListContent.transform);
             entry.Build(recipe);
         }
     }

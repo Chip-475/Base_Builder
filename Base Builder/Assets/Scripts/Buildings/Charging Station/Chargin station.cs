@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class Charginstation : MonoBehaviour//Building //, IInteractable
 {
-    
+    /*
     public Bot[] bot=GameObject.Find("bot");
     public Button button
 
@@ -19,7 +19,7 @@ public class Charginstation : MonoBehaviour//Building //, IInteractable
     //bisogna mettere che il bot quando ha poca vita va a caricarsi fino al 100%
     private void vaiCarica(Bot b)
     {
-        GameObject obj=GetComponent<GameObject>();ù
+        //GameObject obj=GetComponent<GameObject>();
         
     }
 
@@ -29,7 +29,7 @@ public class Charginstation : MonoBehaviour//Building //, IInteractable
 
 
     }
-
+    */
     
 }
 

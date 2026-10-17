@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 public class alloyFurnace : Building
 {
     public new alloyData data
