@@ -24,6 +24,7 @@ public abstract class Building
         InteractionBounds = new(Data.bounds.center + Coords, Data.interactionBounds.size);
         ConnectionBounds = new(Data.bounds.center + Coords, Data.connectionBounds.size);
         UpdateCells(GetCellsInBounds(GetBounds()));
+        BuildingManager.RegisterBuilding(this);
         PowerManager.instance.RegisterBuilding();
     }
     public abstract void Destroy();
@@ -55,7 +56,11 @@ public abstract class Building
     {
         foreach(var cell in cells)
         {
-            cell.canWalkOn = !Data.blocksWalking;
+            if(SceneObj.BotWorkPoint != null && cell == WorldManager.World.GetCellAt(SceneObj.BotWorkPoint.position.ToVector3Int()))
+                cell.canWalkOn = Data.blocksWalking;
+            else
+                cell.canWalkOn = !Data.blocksWalking;
+
             cell.canBuildOn = !Data.blocksPlacing;
             cell.Building = this;
         }

@@ -28,6 +28,7 @@ public class Bot : IInteractable
     public Bounds InteractionBounds { get; set; } = new();
     public bool PickedUp { get; protected set; }
     public bool Occupied { get; set; }
+    public Machine WorkingAt { get; set; }
 
     [Header("Intefaces")]
     public Vector3 Position => BotView.transform.position;
@@ -38,6 +39,7 @@ public class Bot : IInteractable
         BotView = view;
         BotData = data;
         Type = data.type;
+
         // Self
         Id = id ?? Guid.NewGuid().ToString();
         Coords = coords ?? Vector3.zero;
@@ -46,9 +48,11 @@ public class Bot : IInteractable
         CarryCapacity = data.carryCapacity;
         Inventory = new BotInventory(data.carryCapacity);
 
-
         // View
         BotView.name = Name;
+
+        // ID
+        BotManager.RegisterBot(this);
         InteractionManager.Instance.interactables.Add(this);
     }
 
@@ -70,6 +74,8 @@ public class Bot : IInteractable
             BotView.transform.parent = PlayerManager.Instance.transform;
             BotView.transform.SetPositionAndRotation(PlayerManager.Instance.botCarryPoint.position, Quaternion.Euler(0, 0, 90));
             PickedUp = true;
+            Occupied = false;
+            WorkingAt = null;
             PlayerManager.Instance.IsCarryingBot = true;
         }
         else

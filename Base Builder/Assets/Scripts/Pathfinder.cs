@@ -50,6 +50,9 @@ public static class Pathfinder
 
             foreach (var neighbourCell in current.Cell.GetNeighbours())
             {
+                if (neighbourCell == null)
+                    continue;
+
                 SearchCell neighbour = GetSearchCell(neighbourCell.Coords, searchCells);
                 var delta = neighbour.Coords - current.Coords;
                 if (!neighbour.Cell.canWalkOn || closedSet.Contains(neighbour))

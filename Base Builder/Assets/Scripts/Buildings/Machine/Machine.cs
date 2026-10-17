@@ -1,7 +1,8 @@
-using UnityEngine;
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Machine : Building, IInteractable
 {
@@ -17,7 +18,6 @@ public class Machine : Building, IInteractable
 
     public Machine(MachineData data, MachineView sceneObj) : base(data, sceneObj)
     {
-        WorldManager.World.RegisterBuilding(Coords, this);
         PowerManager.machineDB.Add(this);
         PowerManager.instance.RegisterBuilding();
         InteractionManager.Instance.interactables.Add(this);
@@ -25,7 +25,7 @@ public class Machine : Building, IInteractable
     public override void Destroy()
     {
         FreeUpCells(GetCellsInBounds(GetBounds()));
-        WorldManager.World.UnregisterBuilding(Coords);
+        BuildingManager.UnregisterBuilding(this);
         MonoBehaviour.Destroy(SceneObj.gameObject);
     }
 
@@ -70,6 +70,7 @@ public class Machine : Building, IInteractable
     }
     public void Interact()
     {
+        MachineUI.Instance.Machine = this;
         MachineUI.Instance.Open(this);
     }
     public RecipeSO Craft(RecipeSO recipe, Dictionary<ResourceSO, int> materials)
@@ -91,10 +92,6 @@ public class Machine : Building, IInteractable
             throw new Exception("Input materials are not valid.");
 
         return recipe;
-    }
-    public void AssignBot(Bot bot)
-    {
-        bot.Occupied = true;
     }
 }
 public enum MachineType
