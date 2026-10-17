@@ -13,16 +13,16 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Recipes/other Eras/Alloy Smelting to Steel.md",
+                "file": "Resources/Crafted Items/First Era/Reinforced Plate.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Alloy Smelting to Steel"
+              "title": "Reinforced Plate"
             }
           },
           {
-            "id": "4cfae6021e8e414b",
+            "id": "853f2d1b6aaa5d95",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -35,7 +35,8 @@
               "title": "Alloy Smelting to Invar"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -202,34 +203,34 @@
       "bases:Crea nuova Base": false
     }
   },
-  "active": "fcbb2aa86150e5cf",
+  "active": "853f2d1b6aaa5d95",
   "lastOpenFiles": [
-    "Buildings/Machines/Alloy Furnace.md",
-    "Recipes/other Eras/Alloy Smelting to Invar.md",
+    "Recipes/other Eras/Assemble to Titanium Frame.md",
+    "Recipes/other Eras/Press to  Alumium Plate.md",
+    "Recipes/other Eras/Assemble to Navigation Component.md",
+    "Recipes/other Eras/Assemble into Ship Core Component.md",
     "Recipes/other Eras/Alloy Smelting to Steel.md",
-    "Resources/Crafted Items/Crafted Items.md",
-    "Recipes/other Eras/Smelt to Titanium.md",
-    "Buildings/Machines/Press.md",
-    "Recipes/Recipes.md",
-    "Resources/Ingots/Nickel.md",
-    "Resources/Crafted Items/First Era/Iron Plate.md",
-    "Resources/Crafted Items/First Era/Reinforced Plate.md",
-    "Recipes/First Era recipe/Metal/Metalworking/Assemble to Reinforced Plate.md",
-    "Buildings/Machines/Machines.md",
-    "explorer-order.md",
-    "Spaceship.md",
-    "Buildings/Power System/Electric Poles.md",
-    "Buildings/Power System/Power Pole.md",
-    "Docs.md",
+    "Recipes/other Eras/Alloy Smelting to Invar.md",
     "Buildings/Machines/name this with a good name for a bench that makes electric stuffs.md",
-    "Recipes/First Era recipe/Metal/Metalworking/Assemble to Machine Frame.md",
-    "Resources/Crafted Items/First Era/Machine Frame.md",
-    "Resources/Crafted Items/First Era/Iron Rod.md",
-    "Recipes/First Era recipe/Metal/Metalworking/Assemble to Iron Rod.md",
-    "Recipes/First Era recipe/Metal/Metalworking/Assemble to Iron Gear.md",
-    "Recipes/First Era recipe/Metal/Metalworking/Press to Iron Plate.md",
+    "Buildings/Power System/Generator mk1.md",
+    "Buildings/Power System/Power Pole.md",
+    "Buildings/Power System/Electric Poles.md",
+    "Buildings/Machines/Advanced Assembler.md",
+    "Buildings/Logistic/Charging station.md",
+    "Drafts/Tungsten.md",
+    "Resources/Crafted Items/First Era/Bronze Casing.md",
     "Resources/Crafted Items/First Era/Iron Gear.md",
+    "Resources/Crafted Items/First Era/Iron Rod.md",
     "Resources/Crafted Items/First Era/Iron Casing.md",
+    "Resources/Crafted Items/First Era/Bronze Rod.md",
+    "Resources/Crafted Items/First Era/Bronze Gear.md",
+    "Resources/Crafted Items/First Era/Copper Plate.md",
+    "Resources/Crafted Items/First Era/Bronze Plate.md",
+    "To do list.md",
+    "Resources/Crafted Items/First Era/Machine Frame.md",
+    "Resources/Crafted Items/First Era/Circuit Board.md",
+    "Resources/Crafted Items/First Era/Iron Plate.md",
+    "Resources/Crafted Items/First Era/Insulator.md",
     "Resources/Crafted Items/other Eras",
     "Resources/Crafted Items/First Era",
     "Recipes/other Eras",
