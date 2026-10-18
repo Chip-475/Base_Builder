@@ -6,13 +6,15 @@ public class Spaceship : Building
 {
     public new SpaceshipData Data => base.Data as SpaceshipData;
     public new SpaceshipView SceneObj => base.SceneObj as SpaceshipView;
-
+    
+    public static Spaceship instance;
     public Transform BotSpawnPoint { get; private set; }
     public float PowerGeneration => Data.powerGeneration;
     public SpaceshipUiManager UI { get; private set; }
 
     public Spaceship(SpaceshipData data, SpaceshipView sceneObj, Transform botSpawnPoint, SpaceshipUiManager ui) : base(data, sceneObj)
     {
+        instance = this;
         BotSpawnPoint = botSpawnPoint;
         SpaceshipUiManager.spaceship = this;
         UI = ui;
@@ -24,15 +26,13 @@ public class Spaceship : Building
 
     public Bot BuildBot(BotType type)
     {
-        if(!Data.botPrefabs.TryGetValue(type,out BotView prefab)||prefab==null)
+        if (!Data.botPrefabs.ContainsKey(type))
         {
-            Debug.Log("nessun prefab");
+            Debug.Log($"No bot of type {type} found.");
             return null;
         }
-        //BotView bot = Data.botPrefabs[type];
-        //MonoBehaviour.Instantiate(bot, BotSpawnPoint.position, Quaternion.identity);
-        BotView istanza = UnityEngine.Object.Instantiate(prefab, BotSpawnPoint.position, Quaternion.identity);
-        return istanza.RuntimeObj;
+
+        return MonoBehaviour.Instantiate(Data.botPrefabs[type], BotSpawnPoint.position, Quaternion.identity).RuntimeObj;
     }
 
     public void OnClick()

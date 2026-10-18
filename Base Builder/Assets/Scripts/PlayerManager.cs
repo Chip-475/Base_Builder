@@ -1,12 +1,30 @@
 using System;
-using Unity.VisualScripting;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+[DefaultExecutionOrder(-1)]
 public class PlayerManager : MonoBehaviour
 {
-    public static PlayerManager Instance {  get; private set; }
-    public static PlayerInputs Inputs { get; private set; }
+    static PlayerManager _instance;
+    public static PlayerManager Instance 
+    {
+        /*
+        get
+        {
+            if (_instance == null) _instance = new FindFirstObjectByType<PlayerManager>();
+        }
+        return _instance;*/
+        get; private set;   
+    }
+    static PlayerInputs _inputs;
+    public static PlayerInputs Inputs 
+    { 
+        get
+        {
+            if(_inputs==null)_inputs=new PlayerInputs();
+            return _inputs;
+        }
+    }
 
     [Header("Settings")]
     [SerializeField][Tooltip("7f standard.")] float speed = 7f;
@@ -22,9 +40,8 @@ public class PlayerManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        Inputs = new();
+        //Inputs = new();
         PlayerCameraMovement.Player = this;
-
         PlayerMode();
         Inputs.Player.Interact.performed += Interact;
     }

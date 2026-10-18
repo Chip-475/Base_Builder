@@ -28,6 +28,8 @@ public class Bot : IInteractable
     public Bounds InteractionBounds { get; set; } = new();
     public bool PickedUp { get; protected set; }
     public bool Occupied { get; set; }
+    public Machine WorkingAt { get; set; }
+    public int MiningLevel { get; protected set; }
 
     [Header("Intefaces")]
     public Vector3 Position => BotView.transform.position;
@@ -38,6 +40,7 @@ public class Bot : IInteractable
         BotView = view;
         BotData = data;
         Type = data.type;
+
         // Self
         Id = id ?? Guid.NewGuid().ToString();
         Coords = coords ?? Vector3.zero;
@@ -45,10 +48,12 @@ public class Bot : IInteractable
         Power = power;
         CarryCapacity = data.carryCapacity;
         Inventory = new BotInventory(data.carryCapacity);
-
-
+        
         // View
         BotView.name = Name;
+
+        // ID
+        BotManager.RegisterBot(this);
         InteractionManager.Instance.interactables.Add(this);
     }
 
@@ -70,6 +75,8 @@ public class Bot : IInteractable
             BotView.transform.parent = PlayerManager.Instance.transform;
             BotView.transform.SetPositionAndRotation(PlayerManager.Instance.botCarryPoint.position, Quaternion.Euler(0, 0, 90));
             PickedUp = true;
+            Occupied = false;
+            WorkingAt = null;
             PlayerManager.Instance.IsCarryingBot = true;
         }
         else
@@ -83,12 +90,12 @@ public class Bot : IInteractable
 
     public class BotInventory
     {
-        public Dictionary<ResourceSO, int> Inventory { get; private set; } = new();
+        public Dictionary<ResourceSO, int> Items { get; private set; } = new();
         public int MaxWeight { get; private set; }
 
         public BotInventory(BotInventory inv)
         {
-            Inventory = new(inv.Inventory);
+            Items = new(inv.Items);
             MaxWeight = inv.MaxWeight;
         }
         public BotInventory(int maxWeight)
@@ -96,5 +103,63 @@ public class Bot : IInteractable
             MaxWeight = maxWeight;
         }
 
+        public void AddItem(ResourceSO resource, int amount)
+        {
+            if(!CanAddItem(resource, amount))
+            {
+                Debug.Log("Cannot add item.");
+                return;
+            }
+
+            Items[resource] = Items.GetValueOrDefault(resource) + amount;
+        }
+        public bool CanAddItem(ResourceSO resource, int amount)
+        {
+            float requestWeight = resource.weightPerUnit * amount;
+            float newWeight = requestWeight + GetWeight();
+            if (newWeight > MaxWeight)
+                return false;
+
+            return true;
+        }
+
+        public KeyValuePair<ResourceSO, int> RemoveItem(ResourceSO resource, int amount)
+        {
+            if(!CanRemoveItem(resource, amount))
+            {
+                Debug.Log("Cannot remove item.");
+                return new(null, 0);
+            }
+
+            Items[resource] = Items.GetValueOrDefault(resource) - amount;
+            return new(resource, amount);
+        }
+        public bool CanRemoveItem(ResourceSO resource, int amount)
+        {
+            if (!Items.ContainsKey(resource))
+                return false;
+            if (Items[resource] - amount < 0)
+                return false;
+
+            return true;
+        }
+
+        public float GetWeight()
+        {
+            float totWeight = 0f;
+            foreach(var kvp in Items)
+                totWeight += kvp.Key.weightPerUnit * kvp.Value;
+
+            return totWeight;
+        }
+        public float GetSpecificWeight(ResourceSO resource)
+        {
+            float weight = 0f;
+            foreach (var kvp in Items)
+                if(kvp.Key == resource) 
+                    weight += kvp.Key.weightPerUnit * kvp.Value;
+
+            return weight;
+        }
     }
 }

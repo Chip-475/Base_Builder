@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "TO DO LIST.md",
+                "file": "Buildings/Power System/Generator mk1.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "TO DO LIST"
+              "title": "Generator mk1"
             }
           },
           {
@@ -204,6 +204,8 @@
   },
   "active": "5843b5bf98733669",
   "lastOpenFiles": [
+    "Recipes/First Era recipe/Electricity/Electrify to big pcb.md",
+    "To do list.md",
     "Buildings/Power System/Generator mk1.md",
     "Buildings/Power System/Electric Poles.md",
     "Buildings/Power System/Power Pole.md",
@@ -228,8 +230,6 @@
     "Resources/Crafted Items/First Era/Stone Brick.md",
     "Resources/Crafted Items/First Era/Reinforced Plate.md",
     "Resources/Crafted Items/First Era/Bronze Rod.md",
-    "Resources/Crafted Items/other Eras/Steel Plate.md",
-    "Recipes/other Eras/Alloy Smelting to Steel.md",
     "Resources/Crafted Items/other Eras",
     "Resources/Crafted Items/First Era",
     "Recipes/other Eras",

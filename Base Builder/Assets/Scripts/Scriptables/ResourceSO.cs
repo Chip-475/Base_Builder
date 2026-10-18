@@ -12,9 +12,13 @@ public class ResourceSO : ScriptableObject
     public Sprite Sprite;
 
     [Header("Characteristics")]
-    public int toughness = 1;
     public float weightPerUnit = 1f;
-    public int energyPerUnit = 0;
+    [Space]
+    public int toughness = 1;
+    public float timeToMine = 1f;
+    [Space]
+    public int fuelValue = 0;
+    public float timeToConsume = 1f;
 
     #if UNITY_EDITOR
     void OnValidate()

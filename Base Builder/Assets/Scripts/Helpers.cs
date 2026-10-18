@@ -104,10 +104,26 @@ public static class Helpers
         bounds.center = gridPos;
         foreach (Cell cell in GetCellsInBounds(bounds))
         {
-            if (cell == null || !cell.canBuildOn)
+            if (cell == null)
+            {
+                Debug.Log("cella nulla");
                 return false;
-            if(!WorldManager.World.HasCellAt(cell.Coords) || cell == PlayerManager.Instance.GetPlayerCell())
+            }
+            if(!cell.canBuildOn)
+            {
+                Debug.Log("cella non buildabile");
                 return false;
+            }
+            if (!WorldManager.World.HasCellAt(cell.Coords))
+            {
+                Debug.Log("cella fuori world");
+                return false;
+            }
+            if(cell == PlayerManager.Instance.GetPlayerCell())
+            {
+                Debug.Log("player sopra");
+                return false;
+            }
         }
 
         return true;

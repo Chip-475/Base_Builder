@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,11 +10,13 @@ public class MachineUI : MonoBehaviour
     public static MachineUI Instance { get; private set; }
 
     public bool IsActive => panel.activeSelf;
+    Machine machine;
 
     [Header("Setup")]
     [SerializeField] GameObject panel;
     [SerializeField] Button backButton;
     [SerializeField] RecipeEntry recipeEntryPrefab;
+    [SerializeField] BuildingBotEntry botEntryPrefab;
 
     [Header("Recipe List")]
     [SerializeField] GameObject recipeListContent;
@@ -23,57 +26,55 @@ public class MachineUI : MonoBehaviour
     [SerializeField] TMP_Text selectedRecipeName;
     [SerializeField] TMP_Text selectedRecipeDesc;
 
-    [Header("Lower Right Side")]
-    [SerializeField] List<Image> inputResourceSlots;
-    [SerializeField] List<Image> outputResourceSlots;
+    [Header("Bot List")]
+    [SerializeField] GameObject botListContent;
+
+    [Header("Runtime")]
+    public Machine Machine { get => machine; set => machine = value; }
+    public RecipeEntry selectedRecipeEntry;
 
     private void Awake()
     {
         Instance = this;
 
         backButton.onClick.AddListener(() => panel.SetActive(false));
+        backButton.onClick.AddListener(() => selectedRecipeEntry = null);
     }
 
     public void Open(Machine machine)
     {
-        if(machine==null)
-        {
-            Debug.Log("machine è null");
-            return;
-        }
-        if(machine.Data==null)
-        {
-            Debug.Log("machine data è null");
-            return;
-        }
-        Open(machine.Data.usableRecipes);
-    }
-
-    public void Open(List<RecipeSO> ricette)
-    {
-        if(ricette==null)
-        {
-            Debug.Log("lista null");
-            return;
-        }
         panel.SetActive(true);
-        BuildRecipeList(ricette);
+        BuildRecipeList(machine);
+        BuildBotList();
     }
-
-    public void BuildRecipeList(List<RecipeSO>ricette)
+    public void BuildRecipeList(Machine machine)
     {
         WipeRecipeList();
-        /*
-        foreach(var recipe in machine.Data.usableRecipes)
+
+        if (machine == null)
         {
-            RecipeEntry entry = Instantiate(recipeEntryPrefab, recipeListContent.transform);
-            entry.Build(recipe);
+            Debug.LogError("Cannot build the machine recipe list because the machine is null.", this);
+            return;
         }
-        */
-        foreach(RecipeSO recipe in ricette)
+
+        if (machine.Data == null)
         {
-            if(recipe==null) continue;
-            RecipeEntry entry=Instantiate(recipeEntryPrefab,recipeListContent.transform);
+            Debug.LogError("Cannot build the machine recipe list because the machine has no MachineData.", this);
+            return;
+        }
+
+        if (machine.Data.usableRecipes == null)
+        {
+            Debug.LogError($"Machine data '{machine.Data.name}' has no usable recipe list.", machine.Data);
+            return;
+        }
+
+        foreach (var recipe in machine.Data.usableRecipes)
+        {
+            if (recipe == null)
+                continue;
+
+            RecipeEntry entry = Instantiate(recipeEntryPrefab, recipeListContent.transform);
             entry.Build(recipe);
         }
     }
@@ -83,14 +84,25 @@ public class MachineUI : MonoBehaviour
         selectedRecipeName.text = recipeEntry.recipe.Name;
         selectedRecipeDesc.text = recipeEntry.recipe.Desc;
     }
-    public void BuildLowerRight()
+    public void BuildBotList()
     {
+        WipeBotList();
 
+        foreach (Bot bot in BotManager.Bots)
+        {
+            BuildingBotEntry go = Instantiate(botEntryPrefab, botListContent.transform);
+            go.Initialize(bot);
+        }
     }
 
     void WipeRecipeList()
     {
         foreach (Transform child in recipeListContent.transform)
+            Destroy(child.gameObject);
+    }
+    void WipeBotList()
+    {
+        foreach(Transform child in botListContent.transform)
             Destroy(child.gameObject);
     }
 }

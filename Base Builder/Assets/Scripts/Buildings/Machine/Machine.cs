@@ -1,7 +1,8 @@
-using UnityEngine;
+using Cysharp.Threading.Tasks;
 using System;
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Machine : Building, IInteractable
 {
@@ -17,7 +18,6 @@ public class Machine : Building, IInteractable
 
     public Machine(MachineData data, MachineView sceneObj) : base(data, sceneObj)
     {
-        WorldManager.World.RegisterBuilding(Coords, this);
         PowerManager.machineDB.Add(this);
         PowerManager.instance.RegisterBuilding();
         InteractionManager.Instance.interactables.Add(this);
@@ -25,7 +25,7 @@ public class Machine : Building, IInteractable
     public override void Destroy()
     {
         FreeUpCells(GetCellsInBounds(GetBounds()));
-        WorldManager.World.UnregisterBuilding(Coords);
+        BuildingManager.UnregisterBuilding(this);
         MonoBehaviour.Destroy(SceneObj.gameObject);
     }
 
@@ -70,31 +70,30 @@ public class Machine : Building, IInteractable
     }
     public void Interact()
     {
+        MachineUI.Instance.Machine = this;
         MachineUI.Instance.Open(this);
     }
-    public RecipeSO Craft(RecipeSO recipe, Dictionary<ResourceSO, int> materials)
+    public RecipeSO Craft(RecipeSO recipe, Bot bot)
     {
-        bool valid = true;
-
-        foreach (var kvp_r in recipe.inputs)
-            foreach(var kvp_m in materials)
-            {
-                if (kvp_r.Key != kvp_m.Key)
-                    valid = false;
-                if(kvp_r.Value < kvp_m.Value)
-                    valid = false;
-            }
-
-        if (recipe.inputs.Count != materials.Count)
-            throw new Exception("Dictionaries have different counts.");
-        if (!valid)
-            throw new Exception("Input materials are not valid.");
+        if (!CanCraft(recipe, bot))
+            return null;
 
         return recipe;
     }
-    public void AssignBot(Bot bot)
+    public bool CanCraft(RecipeSO recipe, Bot bot)
     {
-        bot.Occupied = true;
+        if (bot.Type != BotType.Worker)
+            return false;
+
+        foreach (var kvp in recipe.inputs)
+        {
+            if (!bot.Inventory.Items.ContainsKey(kvp.Key))
+                return false;
+            if (bot.Inventory.Items[kvp.Key] < kvp.Value)
+                return false;
+        }
+
+        return true;
     }
 }
 public enum MachineType

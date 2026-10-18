@@ -90,7 +90,7 @@ public class NetworkManager : MonoBehaviour
     {
         yield return null;
         if (!generator.Running) yield break;
-        if (generator.inventory.Count == 0) { generator.SwitchState(false); yield break; }//to modify
+        if (generator.Inventory.Count == 0) { generator.SwitchState(false); yield break; }//to modify
         generator.SwitchState(true);
         yield return new WaitForSeconds(waitingTime);
         StartCoroutine(BurnFuel(generator, waitingTime));
