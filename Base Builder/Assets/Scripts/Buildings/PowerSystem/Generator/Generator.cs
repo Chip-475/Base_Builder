@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,18 +8,18 @@ public class Generator : Building,IInteractable
     public new GeneratorData Data => base.Data as GeneratorData;
     public new GeneratorView SceneObj => base.SceneObj as GeneratorView;
 
+    [Header("Runtime")]
     public string id;
-
-    public ResourceSO selected;
-    public float Power { get { return selected.fv; } }
-    public bool Running = true; // { get; private set; }
-
-    public bool isPowered;
+    [Space]
+    public ResourceSO fuelInUse;
+    public Dictionary<ResourceSO, int> Inventory { get; private set; } = new();
+    public float Power { get { return fuelInUse.fuelValue; } }
+    public bool Running { get; private set; }
+    Coroutine consumer;
 
     Vector3 IInteractable.Position => Coords;
     Cell[] IInteractable.InteractionCells => GetCellsInBounds(InteractionBounds);
 
-    public Dictionary<ResourceSO, float> inventory;
     public Generator(GeneratorData data, GeneratorView sceneObj) : base(data, sceneObj)
     {
         id = Guid.NewGuid().ToString();
@@ -33,6 +34,28 @@ public class Generator : Building,IInteractable
         BuildingManager.UnregisterBuilding(this);
         MonoBehaviour.Destroy(SceneObj.gameObject);
     }
+
+    public void StartGenerator()
+    {
+        consumer = SceneObj.StartCoroutine(ConsumeFuel(fuelInUse));
+    }
+    public void StopGenerator()
+    {
+        SceneObj.StopCoroutine(consumer);
+        Running = false;
+    }
+    public void SwitchState(bool state) //to link to the ui button
+    {
+        Running = state;
+        if (Network != null)
+            Network.RefreshPower();
+    }
+
+    public void Interact()
+    {
+        GeneratorUI.Instance.Generator = this;
+        GeneratorUI.Instance.Open(this);
+    }
     public bool CanInteractWith()
     {
         var cells = GetCellsInBounds(Data.interactionBounds);
@@ -41,15 +64,14 @@ public class Generator : Building,IInteractable
 
         return false;
     }
-    public void Interact()
+
+    IEnumerator ConsumeFuel(ResourceSO fuel)
     {
-        GeneratorUI.instance.Generator = this;
-        GeneratorUI.instance.Open(this);
-    }
-    public void SwitchState(bool state) //to link to the ui button
-    {
-        Running = state;
-        if (Network != null)
-            Network.RefreshPower();
+        if(!Inventory.TryGetValue(fuel, out _))
+            StopGenerator();
+
+        Inventory[fuel] -= 1;
+        yield return new WaitForSeconds(fuel.timeToConsume);
+        consumer = SceneObj.StartCoroutine(ConsumeFuel(fuel));
     }
 }

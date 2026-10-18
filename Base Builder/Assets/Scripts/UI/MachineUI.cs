@@ -1,7 +1,10 @@
+using System;
+using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
+
 public class MachineUI : MonoBehaviour
 {
     public static MachineUI Instance { get; private set; }
@@ -40,43 +43,15 @@ public class MachineUI : MonoBehaviour
 
     public void Open(Machine machine)
     {
-        if(machine==null)
-        {
-            Debug.Log("machine è null");
-            return;
-        }
-        if(machine.Data==null)
-        {
-            Debug.Log("machine data è null");
-            return;
-        }
-        Open(machine.Data.usableRecipes);
         panel.SetActive(true);
-        BuildRecipeList(machine.Data.usableRecipes);
+        BuildRecipeList(machine);
         BuildBotList();
     }
-
-    public void Open(List<RecipeSO> ricette)
-    {
-        if(ricette==null)
-        {
-            Debug.Log("lista null");
-            return;
-        }
-        panel.SetActive(true);
-        BuildRecipeList(ricette);
-    }
-
-    public void BuildRecipeList(List<RecipeSO>ricette)
+    public void BuildRecipeList(Machine machine)
     {
         WipeRecipeList();
 
-        /*
-        foreach(var recipe in machine.Data.usableRecipes)
-=======
-
         if (machine == null)
->>>>>>> giulio'sWork
         {
             Debug.LogError("Cannot build the machine recipe list because the machine is null.", this);
             return;
@@ -100,13 +75,6 @@ public class MachineUI : MonoBehaviour
                 continue;
 
             RecipeEntry entry = Instantiate(recipeEntryPrefab, recipeListContent.transform);
-            entry.Build(recipe);
-        }
-        */
-        foreach(RecipeSO recipe in ricette)
-        {
-            if(recipe==null) continue;
-            RecipeEntry entry=Instantiate(recipeEntryPrefab,recipeListContent.transform);
             entry.Build(recipe);
         }
     }

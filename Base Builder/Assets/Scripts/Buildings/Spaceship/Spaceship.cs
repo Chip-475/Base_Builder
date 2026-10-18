@@ -26,15 +26,13 @@ public class Spaceship : Building
 
     public Bot BuildBot(BotType type)
     {
-        if(!Data.botPrefabs.TryGetValue(type,out BotView prefab)||prefab==null)
+        if (!Data.botPrefabs.ContainsKey(type))
         {
-            Debug.Log("nessun prefab");
+            Debug.Log($"No bot of type {type} found.");
             return null;
         }
-        //BotView bot = Data.botPrefabs[type];
-        //MonoBehaviour.Instantiate(bot, BotSpawnPoint.position, Quaternion.identity);
-        BotView istanza = UnityEngine.Object.Instantiate(prefab, BotSpawnPoint.position, Quaternion.identity);
-        return istanza.RuntimeObj;
+
+        return MonoBehaviour.Instantiate(Data.botPrefabs[type], BotSpawnPoint.position, Quaternion.identity).RuntimeObj;
     }
 
     public void OnClick()

@@ -21,8 +21,8 @@ public class FuelEntry : MonoBehaviour
     private void Awake()
     {
         button = GetComponent<Button>();
-        button.onClick.AddListener(() => GeneratorUI.instance.selectedFuelEntry = this);
-        button.onClick.AddListener(() => GeneratorUI.instance.BuildInfoPanel(this));
+        button.onClick.AddListener(() => GeneratorUI.Instance.selectedFuelEntry = this);
+        button.onClick.AddListener(() => GeneratorUI.Instance.BuildInfoPanel(this));
 
         quantityText = GetComponentInChildren<TMP_Text>();
     }
@@ -31,6 +31,6 @@ public class FuelEntry : MonoBehaviour
     {
         this.recipe = recipe;
         Sprite currentEntry = recipe.Sprite;
-        quantityText.text = recipe.name + " (" + recipe.fv + "/s )";
+        quantityText.text = recipe.name + " (" + recipe.fuelValue + "/s )";
     }
 }

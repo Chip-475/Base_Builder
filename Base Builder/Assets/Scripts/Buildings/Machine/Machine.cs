@@ -73,25 +73,27 @@ public class Machine : Building, IInteractable
         MachineUI.Instance.Machine = this;
         MachineUI.Instance.Open(this);
     }
-    public RecipeSO Craft(RecipeSO recipe, Dictionary<ResourceSO, int> materials)
+    public RecipeSO Craft(RecipeSO recipe, Bot bot)
     {
-        bool valid = true;
-
-        foreach (var kvp_r in recipe.inputs)
-            foreach(var kvp_m in materials)
-            {
-                if (kvp_r.Key != kvp_m.Key)
-                    valid = false;
-                if(kvp_r.Value < kvp_m.Value)
-                    valid = false;
-            }
-
-        if (recipe.inputs.Count != materials.Count)
-            throw new Exception("Dictionaries have different counts.");
-        if (!valid)
-            throw new Exception("Input materials are not valid.");
+        if (!CanCraft(recipe, bot))
+            return null;
 
         return recipe;
+    }
+    public bool CanCraft(RecipeSO recipe, Bot bot)
+    {
+        if (bot.Type != BotType.Worker)
+            return false;
+
+        foreach (var kvp in recipe.inputs)
+        {
+            if (!bot.Inventory.Items.ContainsKey(kvp.Key))
+                return false;
+            if (bot.Inventory.Items[kvp.Key] < kvp.Value)
+                return false;
+        }
+
+        return true;
     }
 }
 public enum MachineType
