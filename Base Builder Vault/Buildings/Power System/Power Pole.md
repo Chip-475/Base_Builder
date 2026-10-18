@@ -1,0 +1,1 @@
+3 [[Iron Rod]] + 2 [[Copper Wire]] + 2 [[Insulator]] 
