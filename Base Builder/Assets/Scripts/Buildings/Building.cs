@@ -7,23 +7,24 @@ public abstract class Building
     public BuildingView SceneObj { get; private set; }
 
     public Vector3Int Coords => SceneObj.transform.position.ToVector3Int();
-    public Bounds Bounds { get; private set; }
-    public Bounds ConnectionBounds { get; private set; }
-    public Bounds InteractionBounds {  get; private set; }
+    public Bounds Bounds { get; set; }
+    public Bounds ConnectionBounds { get; set; }
+    public Bounds InteractionBounds {  get; set; }
     public NetworkManager Network;
 
     public Building(BuildingData data, BuildingView sceneObj)
     {
+
         if (data == null) Debug.Log("data nullo in building ");
         if (sceneObj == null) Debug.Log("scene obj in building ");
         Data = data;
         SceneObj = sceneObj;
-
         //WorldManager.World.RegisterBuilding(this, Coords);
-        Bounds = new(Coords, Data.bounds.size);
-        InteractionBounds = new(Coords, Data.interactionBounds.size);
-        ConnectionBounds = new(Coords, Data.connectionBounds.size);
+        Bounds = new(Data.bounds.center+Coords, Data.bounds.size);
+        InteractionBounds = new(Data.bounds.center + Coords, Data.interactionBounds.size);
+        ConnectionBounds = new(Data.bounds.center + Coords, Data.connectionBounds.size);
         UpdateCells(GetCellsInBounds(GetBounds()));
+        BuildingManager.RegisterBuilding(this);
         PowerManager.instance.RegisterBuilding();
     }
     public abstract void Destroy();
@@ -55,7 +56,11 @@ public abstract class Building
     {
         foreach(var cell in cells)
         {
-            cell.canWalkOn = !Data.blocksWalking;
+            if(SceneObj.BotWorkPoint != null && cell == WorldManager.World.GetCellAt(SceneObj.BotWorkPoint.position.ToVector3Int()))
+                cell.canWalkOn = Data.blocksWalking;
+            else
+                cell.canWalkOn = !Data.blocksWalking;
+
             cell.canBuildOn = !Data.blocksPlacing;
             cell.Building = this;
         }

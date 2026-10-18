@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
 public class alloyFurnace : Building
 {
     public new alloyData data
@@ -26,7 +25,7 @@ public class alloyFurnace : Building
         FreeUpCells(GetCellsInBounds(GetBounds()));
         UnityEngine.Object.Destroy(SceneObj.gameObject);
     }
-    
+    /*
     public bool accettaInput(ResourceSO risorsa)
     {
         foreach(RecipeSO recipe in data.ricette)
@@ -97,5 +96,5 @@ public class alloyFurnace : Building
         output[risorsa] = disp-quant;
         if(output[risorsa]==0)output.Remove(risorsa);
         return true;
-    }
+    }*/
 }

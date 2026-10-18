@@ -21,6 +21,7 @@ public class RecipeEntry : MonoBehaviour
     private void Awake()
     {
         button = GetComponent<Button>();
+        button.onClick.AddListener(() => MachineUI.Instance.selectedRecipeEntry = this);
         button.onClick.AddListener(() => MachineUI.Instance.BuildInfoPanel(this));
 
         foreach (var item in requestedItems)

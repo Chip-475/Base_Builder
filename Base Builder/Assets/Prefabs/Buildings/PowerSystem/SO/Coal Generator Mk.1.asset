@@ -18,7 +18,10 @@ MonoBehaviour:
   type: 3
   bounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 6.5, y: 4.5, z: 0}
+    m_Extent: {x: 0.5, y: 0.5, z: 0}
+  interactionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 1.5, y: 1.5, z: 0}
   connectionBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 0.5, z: 0}
@@ -27,5 +30,5 @@ MonoBehaviour:
   blocksPlacing: 1
   id: 
   allowedFuels: []
-  fuelConsumptionRate: 0
+  fuelConsumptionRate: 1
   productionRate: 10

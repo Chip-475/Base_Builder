@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DepotView
   <Data>k__BackingField: {fileID: 11400000, guid: 34cdcc0b51692d041af3a424413ffafc, type: 2}
+  <BotWorkPoint>k__BackingField: {fileID: 0}
 --- !u!212 &7153129810117478357
 SpriteRenderer:
   serializedVersion: 3
@@ -91,8 +92,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 401745
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: -3805855729511957650, guid: ab5f72b3897cd2448a8cc20183a21666, type: 3}
