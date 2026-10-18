@@ -13,6 +13,7 @@ public class Generator : Building,IInteractable
     [Space]
     public ResourceSO fuelInUse;
     public Dictionary<ResourceSO, int> Inventory { get; private set; } = new();
+    public int Quantity { get { return Inventory[fuelInUse]; } private set { } }
     public float Power { get { return fuelInUse.fuelValue; } }
     public bool Running { get; private set; }
     Coroutine consumer;
@@ -25,7 +26,7 @@ public class Generator : Building,IInteractable
         id = Guid.NewGuid().ToString();
         PowerManager.powerGeneratorDB[id] = this;
         PowerManager.instance.RegisterBuilding();
-
+        InteractionManager.Instance.interactables.Add(this);
     }
     public override void Destroy()
     {

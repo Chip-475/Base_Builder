@@ -1,3 +1,3 @@
 ___
-Alloy
+Alloy formed from [[Copper]] and [[Tin]]
 

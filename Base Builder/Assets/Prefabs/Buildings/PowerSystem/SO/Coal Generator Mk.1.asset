@@ -29,6 +29,5 @@ MonoBehaviour:
   blocksWalking: 1
   blocksPlacing: 1
   id: 
-  allowedFuels: []
-  fuelConsumptionRate: 1
-  productionRate: 10
+  allowedFuels:
+  - {fileID: 11400000, guid: 8454d85e6a52b5f45a50308c97089684, type: 2}

@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 public class GeneratorUI : MonoBehaviour
@@ -21,6 +22,12 @@ public class GeneratorUI : MonoBehaviour
     [SerializeField] Image selectedFuelIcon;
     [SerializeField] TMP_Text selectedFuelName;
     [SerializeField] TMP_Text selectedFuelAmount;
+    [SerializeField] TMP_Text status;
+    [SerializeField] TMP_Text genConsuption;
+    [SerializeField] TMP_Text genProduction;
+    [SerializeField] TMP_Text netConsuption;
+    [SerializeField] TMP_Text netProduction;
+    [SerializeField] Button switchButton;
 
     [Header("Bot List")]
     [SerializeField] GameObject botListContent;
@@ -35,6 +42,7 @@ public class GeneratorUI : MonoBehaviour
 
         backButton.onClick.AddListener(() => panel.SetActive(false));
         backButton.onClick.AddListener(() => selectedFuelEntry = null);
+        switchButton.onClick.AddListener(() => generator.SwitchState(!generator.Running));
     }
 
     public void Open(Generator gen)
@@ -77,8 +85,13 @@ public class GeneratorUI : MonoBehaviour
     public void BuildInfoPanel(FuelEntry fuelEntry)
     {
         selectedFuelIcon.sprite = fuelEntry.recipe.Sprite;
-        selectedFuelName.text = fuelEntry.recipe.Name;
-        selectedFuelAmount.text = fuelEntry.recipe.Desc;
+        selectedFuelName.text = generator.fuelInUse.Name;
+        selectedFuelAmount.text = generator.Quantity.ToString();
+        status.text ="Status: \n" + (generator.Running ? "On" : "Off");
+        netConsuption.text = "Network \n Consuption \n " + generator.Network.Consumption.ToString();
+        netProduction.text = "Network \n Production \n " + generator.Network.Generation.ToString();
+        genConsuption.text = "placeholder";
+        genProduction.text = "placeholder";
     }
     public void BuildBotList()
     {
