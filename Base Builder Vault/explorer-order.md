@@ -2,7 +2,7 @@ This note is maintained by the Explorer Order Editor plugin. It stores the manua
 
 ```json
 {
-  "/": ["General.md","Demo Scope.md","Art Bible.md","World.md","Progression.md","Spaceship.md","Resources","Drafts","Buildings","Bots","Recipes","Docs.md","open.url"],
+  "/": ["To do list.md","General.md","Demo Scope.md","Art Bible.md","World.md","Progression.md","Spaceship.md","Resources","Drafts","Buildings","Bots","Recipes","Docs.md","open.url"],
   "Buildings/Machines": ["Advanced Assembler.md","Alloy Furnace.md","Assembler.md","Coal Furnace.md","Furnace mk1.md","Furnace mk2.md","Machines.md","name this with a good name for a bench that makes electric stuffs.md","Press.md"],
   "Buildings/Power System": ["Electric Poles.md","Power Pole.md","Generator mk1.md"],
   "Recipes": ["First Era recipe","Recipes.md","other Eras"],
