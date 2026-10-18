@@ -7,13 +7,11 @@ public class MineralNode : Building
 
     public MineralNode(MineralNodeData data, MineralNodeView sceneObj) : base(data, sceneObj)
     {
-        // una funzione scava che deve tornare che risorsa ti sta dando e quanta
-        //ogni node ha quanto ti da di base di una risorsa e una purezza amount*purezza(int)
-        //avere una funzione che torna risorsa data e quantità data
+        
     }
     public override void Destroy()
     {
-        //WorldManager.World.UnregisterBuilding(Coords);
+        BuildingManager.RegisterBuilding(this);
         MonoBehaviour.Destroy(SceneObj);
     }
 
