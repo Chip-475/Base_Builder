@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Buildings/Machines/Alloy Furnace.md",
+                "file": "Buildings/Machines/name this with a good name for a bench that makes electric stuffs.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Alloy Furnace"
+              "title": "name this with a good name for a bench that makes electric stuffs"
             }
           },
           {
@@ -204,10 +204,13 @@
   },
   "active": "fcbb2aa86150e5cf",
   "lastOpenFiles": [
-    "Buildings/Machines/Furnace mk1.md",
+    "Buildings/Machines/Press.md",
+    "Buildings/Machines/name this with a good name for a bench that makes electric stuffs.md",
     "Buildings/Machines/Coal Furnace.md",
-    "Buildings/Machines/Advanced Assembler.md",
     "Buildings/Machines/Assembler.md",
+    "Buildings/Machines/Alloy Furnace.md",
+    "Buildings/Machines/Furnace mk1.md",
+    "Buildings/Machines/Advanced Assembler.md",
     "Buildings/Power System/Electric Poles.md",
     "Buildings/Logistic/Charging station.md",
     "Resources/Crafted Items/Crafted Items.md",
@@ -216,10 +219,7 @@
     "Recipes/Recipes.md",
     "Recipes/First Era recipe/Electricity/Assemble Circuit Board.md",
     "Resources/Resources.md",
-    "Buildings/Machines/name this with a good name for a bench that makes electric stuffs.md",
     "To do list.md",
-    "Buildings/Machines/Alloy Furnace.md",
-    "Buildings/Machines/Press.md",
     "Buildings/Machines/Furnace mk2.md",
     "Buildings/Logistic/Storage.md",
     "Recipes/other Eras/Alloy Smelting to Steel.md",

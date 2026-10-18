@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daa9b0d2bfec3d146aec9f104666aaf4, type: 3}
   m_Name: alloyFurnace
   m_EditorClassIdentifier: Assembly-CSharp::MachineData
-  name: 
-  description: 
+  name: Alloy Furnace
+  description: ...
   sprite: {fileID: 0}
-  type: 0
+  type: 1
   bounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
@@ -26,6 +26,6 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   connectsToPower: 0
-  blocksWalking: 0
-  blocksPlacing: 0
+  blocksWalking: 1
+  blocksPlacing: 1
   usableRecipes: []
