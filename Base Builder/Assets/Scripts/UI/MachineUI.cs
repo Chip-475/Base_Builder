@@ -51,29 +51,8 @@ public class MachineUI : MonoBehaviour
     {
         WipeRecipeList();
 
-        if (machine == null)
-        {
-            Debug.LogError("Cannot build the machine recipe list because the machine is null.", this);
-            return;
-        }
-
-        if (machine.Data == null)
-        {
-            Debug.LogError("Cannot build the machine recipe list because the machine has no MachineData.", this);
-            return;
-        }
-
-        if (machine.Data.usableRecipes == null)
-        {
-            Debug.LogError($"Machine data '{machine.Data.name}' has no usable recipe list.", machine.Data);
-            return;
-        }
-
         foreach (var recipe in machine.Data.usableRecipes)
         {
-            if (recipe == null)
-                continue;
-
             RecipeEntry entry = Instantiate(recipeEntryPrefab, recipeListContent.transform);
             entry.Build(recipe);
         }

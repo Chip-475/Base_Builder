@@ -1438,6 +1438,7 @@ GameObject:
   - component: {fileID: 848618135}
   - component: {fileID: 848618134}
   - component: {fileID: 848618136}
+  - component: {fileID: 848618137}
   m_Layer: 0
   m_Name: UI Manager
   m_TagString: Untagged
@@ -1499,6 +1500,28 @@ MonoBehaviour:
   selectedRecipeDesc: {fileID: 6094314154044868972}
   botListContent: {fileID: 439411068}
   selectedRecipeEntry: {fileID: 0}
+--- !u!114 &848618137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 848618133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 210791f90f52b2640a73cb2605cab564, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GeneratorUI
+  panel: {fileID: 0}
+  backButton: {fileID: 0}
+  fuelEntryPrefab: {fileID: 0}
+  botEntryPrefab: {fileID: 0}
+  fuelListContent: {fileID: 0}
+  botListContent: {fileID: 0}
+  selectedFuelIcon: {fileID: 0}
+  selectedFuelName: {fileID: 0}
+  selectedFuelAmount: {fileID: 0}
+  selectedFuelEntry: {fileID: 0}
 --- !u!1 &874107205
 GameObject:
   m_ObjectHideFlags: 0

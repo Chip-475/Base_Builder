@@ -11,19 +11,19 @@ public class GeneratorUI : MonoBehaviour
     [Header("Setup")]
     [SerializeField] GameObject panel;
     [SerializeField] Button backButton;
-    [SerializeField] FuelEntry recipeEntryPrefab;
+    [SerializeField] FuelEntry fuelEntryPrefab;
     [SerializeField] BuildingBotEntry botEntryPrefab;
 
     [Header("Recipe List")]
-    [SerializeField] GameObject recipeListContent;
+    [SerializeField] GameObject fuelListContent;
+
+    [Header("Bot List")]
+    [SerializeField] GameObject botListContent;
 
     [Header("Info Panel")]
     [SerializeField] Image selectedFuelIcon;
     [SerializeField] TMP_Text selectedFuelName;
     [SerializeField] TMP_Text selectedFuelAmount;
-
-    [Header("Bot List")]
-    [SerializeField] GameObject botListContent;
 
     [Header("Runtime")]
     public Generator Generator { get => generator; set => generator = value; }
@@ -37,48 +37,22 @@ public class GeneratorUI : MonoBehaviour
         backButton.onClick.AddListener(() => selectedFuelEntry = null);
     }
 
-    public void Open(Generator gen)
+    public void Open(Generator generator)
     {
         panel.SetActive(true);
-        BuildRecipeList(gen);
+        BuildFuelList(generator);
         BuildBotList();
     }
-    public void BuildRecipeList(Generator gen)
+
+    public void BuildFuelList(Generator generator)
     {
         WipeRecipeList();
 
-        if (gen == null)
+        foreach (var fuel in generator.Data.allowedFuels)
         {
-            Debug.LogError("Cannot build the machine recipe list because the machine is null.", this);
-            return;
-        }
-
-        if (gen.Data == null)
-        {
-            Debug.LogError("Cannot build the machine recipe list because the machine has no MachineData.", this);
-            return;
-        }
-
-        if (gen.Data.allowedFuels == null)
-        {
-            Debug.LogError($"Machine data '{gen.Data.name}' has no usable recipe list.", gen.Data);
-            return;
-        }
-
-        foreach (var fuel in gen.Data.allowedFuels)
-        {
-            if (fuel == null)
-                continue;
-
-            FuelEntry entry = Instantiate(recipeEntryPrefab, recipeListContent.transform);
+            FuelEntry entry = Instantiate(fuelEntryPrefab, fuelListContent.transform);
             entry.Build(fuel);
         }
-    }
-    public void BuildInfoPanel(FuelEntry fuelEntry)
-    {
-        selectedFuelIcon.sprite = fuelEntry.recipe.Sprite;
-        selectedFuelName.text = fuelEntry.recipe.Name;
-        selectedFuelAmount.text = fuelEntry.recipe.Desc;
     }
     public void BuildBotList()
     {
@@ -90,10 +64,16 @@ public class GeneratorUI : MonoBehaviour
             go.Initialize(bot);
         }
     }
-
+    public void BuildInfoPanel(FuelEntry fuelEntry)
+    {
+        selectedFuelIcon.sprite = fuelEntry.recipe.Sprite;
+        selectedFuelName.text = fuelEntry.recipe.Name;
+        selectedFuelAmount.text = fuelEntry.recipe.Desc;
+    }
+    
     void WipeRecipeList()
     {
-        foreach (Transform child in recipeListContent.transform)
+        foreach (Transform child in fuelListContent.transform)
             Destroy(child.gameObject);
     }
     void WipeBotList()
