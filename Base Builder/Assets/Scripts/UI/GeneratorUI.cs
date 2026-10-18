@@ -1,97 +1,87 @@
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class GeneratorUI : MonoBehaviour
 {
     public static GeneratorUI Instance { get; private set; }
 
     public bool IsActive => panel.activeSelf;
-    Generator generator;
 
     [Header("Setup")]
     [SerializeField] GameObject panel;
     [SerializeField] Button backButton;
-    [SerializeField] FuelEntry recipeEntryPrefab;
+    [SerializeField] FuelEntry fuelEntryPrefab;
     [SerializeField] BuildingBotEntry botEntryPrefab;
 
-    [Header("Recipe List")]
-    [SerializeField] GameObject recipeListContent;
-
-    [Header("Info Panel")]
-    [SerializeField] Image selectedFuelIcon;
-    [SerializeField] TMP_Text selectedFuelName;
-    [SerializeField] TMP_Text selectedFuelAmount;
-    [SerializeField] TMP_Text status;
-    [SerializeField] TMP_Text genConsuption;
-    [SerializeField] TMP_Text genProduction;
-    [SerializeField] TMP_Text netConsuption;
-    [SerializeField] TMP_Text netProduction;
-    [SerializeField] Button switchButton;
+    [Header("Fuel List")]
+    [SerializeField] GameObject fuelListContent;
 
     [Header("Bot List")]
     [SerializeField] GameObject botListContent;
 
+    [Header("Info Panel")]
+    [SerializeField] TMP_Text status;
+    [SerializeField] Button switchButton;
+    [Space]
+    [SerializeField] Image selectedFuelIcon;
+    [SerializeField] TMP_Text selectedFuelName;
+    [SerializeField] TMP_Text selectedFuelAmount;
+    [Space]
+    [SerializeField] TMP_Text genProduction;
+    [SerializeField] TMP_Text genConsuption;
+    [Space]
+    [SerializeField] TMP_Text netProduction;
+    [SerializeField] TMP_Text netConsuption;
+
     [Header("Runtime")]
-    public Generator Generator { get => generator; set => generator = value; }
-    public FuelEntry selectedFuelEntry;
+    public Generator Generator { get; set ; }
+    public FuelEntry selectedEntry;
 
     private void Awake()
     {
         Instance = this;
 
         backButton.onClick.AddListener(() => panel.SetActive(false));
-        backButton.onClick.AddListener(() => selectedFuelEntry = null);
-        switchButton.onClick.AddListener(() => generator.SwitchState(!generator.Running));
+        backButton.onClick.AddListener(() => selectedEntry = null);
+        switchButton.onClick.AddListener(() => Generator.SwitchState(!Generator.Running));
     }
-
-    public void Open(Generator gen)
+    private void Update()
     {
-        panel.SetActive(true);
-        BuildRecipeList(gen);
-        BuildBotList();
-    }
-    public void BuildRecipeList(Generator gen)
-    {
-        WipeRecipeList();
-
-        if (gen == null)
-        {
-            Debug.LogError("Cannot build the machine recipe list because the machine is null.", this);
+        if (!IsActive)
             return;
-        }
 
-        if (gen.Data == null)
-        {
-            Debug.LogError("Cannot build the machine recipe list because the machine has no MachineData.", this);
-            return;
-        }
-
-        if (gen.Data.allowedFuels == null)
-        {
-            Debug.LogError($"Machine data '{gen.Data.name}' has no usable recipe list.", gen.Data);
-            return;
-        }
-
-        foreach (var fuel in gen.Data.allowedFuels)
-        {
-            if (fuel == null)
-                continue;
-
-            FuelEntry entry = Instantiate(recipeEntryPrefab, recipeListContent.transform);
-            entry.Build(fuel);
-        }
-    }
-    public void BuildInfoPanel(FuelEntry fuelEntry)
-    {
-        selectedFuelIcon.sprite = fuelEntry.recipe.Sprite;
-        selectedFuelName.text = generator.fuelInUse.Name;
-        selectedFuelAmount.text = generator.Quantity.ToString();
-        status.text ="Status: \n" + (generator.Running ? "On" : "Off");
-        netConsuption.text = "Network \n Consuption \n " + generator.Network.Consumption.ToString();
-        netProduction.text = "Network \n Production \n " + generator.Network.Generation.ToString();
+        status.text = "Status: \n" + (Generator.Running ? "On" : "Off");
+        netConsuption.text = "Network \n Consuption \n " + Generator.Network.Consumption.ToString();
+        netProduction.text = "Network \n Production \n " + Generator.Network.Generation.ToString();
         genConsuption.text = "placeholder";
         genProduction.text = "placeholder";
+    }
+
+    public void Open(Generator generator)
+    {
+        Generator = generator;
+        panel.SetActive(true);
+        BuildFuelList(generator);
+        BuildBotList();
+    }
+    
+    public void BuildInfoPanel(FuelEntry fuelEntry)
+    {
+        selectedFuelIcon.sprite = fuelEntry.fuel.Sprite;
+        selectedFuelName.text = Generator.fuelInUse.Name;
+        selectedFuelAmount.text = Generator.Quantity.ToString();
+    }
+
+    public void BuildFuelList(Generator generator)
+    {
+        WipeFuelList();
+
+        foreach (var fuel in generator.Data.allowedFuels)
+        {
+            FuelEntry entry = Instantiate(fuelEntryPrefab, fuelListContent.transform);
+            entry.Build(fuel);
+        }
     }
     public void BuildBotList()
     {
@@ -104,9 +94,9 @@ public class GeneratorUI : MonoBehaviour
         }
     }
 
-    void WipeRecipeList()
+    void WipeFuelList()
     {
-        foreach (Transform child in recipeListContent.transform)
+        foreach (Transform child in fuelListContent.transform)
             Destroy(child.gameObject);
     }
     void WipeBotList()

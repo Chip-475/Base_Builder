@@ -16,8 +16,8 @@ public class NetworkManager : MonoBehaviour
     public int debugPoles;
     public int debugGenerators;
     public int debugMachines;
-    public List<GameObject> debugConnectedBuildings = new List<GameObject>();
-    public List<LineRenderer> lineRenderers = new List<LineRenderer>();
+    public List<GameObject> debugConnectedBuildings = new();
+    public List<LineRenderer> lineRenderers = new();
     private Dictionary<Machine, float> machineRequests = new();
 
     private void Awake()
