@@ -2,7 +2,7 @@ using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+[DefaultExecutionOrder(-1)]
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Instance {  get; private set; }
