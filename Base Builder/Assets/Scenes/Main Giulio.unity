@@ -11074,7 +11074,7 @@ GameObject:
   - component: {fileID: 745470810}
   - component: {fileID: 745470809}
   m_Layer: 5
-  m_Name: Desc (2)
+  m_Name: blText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11974,7 +11974,7 @@ GameObject:
   - component: {fileID: 862531403}
   - component: {fileID: 862531402}
   m_Layer: 5
-  m_Name: Desc (4)
+  m_Name: netCon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12113,7 +12113,7 @@ GameObject:
   - component: {fileID: 881605086}
   - component: {fileID: 881605085}
   m_Layer: 5
-  m_Name: Desc
+  m_Name: awText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12539,7 +12539,7 @@ GameObject:
   - component: {fileID: 970731842}
   - component: {fileID: 970731841}
   m_Layer: 5
-  m_Name: Desc (6)
+  m_Name: stat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13602,6 +13602,7 @@ GameObject:
   - component: {fileID: 1087447151}
   - component: {fileID: 1087447153}
   - component: {fileID: 1087447152}
+  - component: {fileID: 1087447154}
   m_Layer: 0
   m_Name: UI Manager
   m_TagString: Untagged
@@ -13663,6 +13664,34 @@ MonoBehaviour:
   inventoryMenu: {fileID: 1014620925}
   openInventoryMenu: {fileID: 2032189768}
   closeInventoryMenu: {fileID: 1840471843}
+--- !u!114 &1087447154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1087447150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 210791f90f52b2640a73cb2605cab564, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GeneratorUI
+  panel: {fileID: 419152369}
+  backButton: {fileID: 1323378071}
+  recipeEntryPrefab: {fileID: 6214060585613250945, guid: 99cc03b362505244db7ec739a1248fa9, type: 3}
+  botEntryPrefab: {fileID: 1982994397743922869, guid: 640502168b9d7cc4582e17249ee3b4bc, type: 3}
+  recipeListContent: {fileID: 1259819247}
+  selectedFuelIcon: {fileID: 1690706021}
+  selectedFuelName: {fileID: 640177067}
+  selectedFuelAmount: {fileID: 10905757}
+  status: {fileID: 970731841}
+  genConsuption: {fileID: 1089749923}
+  genProduction: {fileID: 1315265586}
+  netConsuption: {fileID: 862531402}
+  netProduction: {fileID: 1961064767}
+  switchButton: {fileID: 1531544808}
+  botListContent: {fileID: 2113653480}
+  selectedFuelEntry: {fileID: 0}
 --- !u!1 &1089071795
 GameObject:
   m_ObjectHideFlags: 0
@@ -13759,7 +13788,7 @@ GameObject:
   - component: {fileID: 1089749924}
   - component: {fileID: 1089749923}
   m_Layer: 5
-  m_Name: Desc (5)
+  m_Name: genCon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14263,7 +14292,7 @@ GameObject:
   - component: {fileID: 1315265587}
   - component: {fileID: 1315265586}
   m_Layer: 5
-  m_Name: Desc (1)
+  m_Name: genProd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14575,7 +14604,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1321324256}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c3bb024b6792ee4b8b3e8568ce00c88, type: 3}
   m_Name: 
@@ -16500,7 +16529,7 @@ GameObject:
   - component: {fileID: 1961064768}
   - component: {fileID: 1961064767}
   m_Layer: 5
-  m_Name: Desc (3)
+  m_Name: netProd
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

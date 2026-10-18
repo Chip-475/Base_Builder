@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 public class GeneratorUI : MonoBehaviour
@@ -11,19 +12,25 @@ public class GeneratorUI : MonoBehaviour
     [Header("Setup")]
     [SerializeField] GameObject panel;
     [SerializeField] Button backButton;
-    [SerializeField] FuelEntry fuelEntryPrefab;
+    [SerializeField] FuelEntry recipeEntryPrefab;
     [SerializeField] BuildingBotEntry botEntryPrefab;
 
     [Header("Recipe List")]
-    [SerializeField] GameObject fuelListContent;
-
-    [Header("Bot List")]
-    [SerializeField] GameObject botListContent;
+    [SerializeField] GameObject recipeListContent;
 
     [Header("Info Panel")]
     [SerializeField] Image selectedFuelIcon;
     [SerializeField] TMP_Text selectedFuelName;
     [SerializeField] TMP_Text selectedFuelAmount;
+    [SerializeField] TMP_Text status;
+    [SerializeField] TMP_Text genConsuption;
+    [SerializeField] TMP_Text genProduction;
+    [SerializeField] TMP_Text netConsuption;
+    [SerializeField] TMP_Text netProduction;
+    [SerializeField] Button switchButton;
+
+    [Header("Bot List")]
+    [SerializeField] GameObject botListContent;
 
     [Header("Runtime")]
     public Generator Generator { get => generator; set => generator = value; }
@@ -35,24 +42,56 @@ public class GeneratorUI : MonoBehaviour
 
         backButton.onClick.AddListener(() => panel.SetActive(false));
         backButton.onClick.AddListener(() => selectedFuelEntry = null);
+        switchButton.onClick.AddListener(() => generator.SwitchState(!generator.Running));
     }
 
-    public void Open(Generator generator)
+    public void Open(Generator gen)
     {
         panel.SetActive(true);
-        BuildFuelList(generator);
+        BuildRecipeList(gen);
         BuildBotList();
     }
-
-    public void BuildFuelList(Generator generator)
+    public void BuildRecipeList(Generator gen)
     {
         WipeRecipeList();
 
-        foreach (var fuel in generator.Data.allowedFuels)
+        if (gen == null)
         {
-            FuelEntry entry = Instantiate(fuelEntryPrefab, fuelListContent.transform);
+            Debug.LogError("Cannot build the machine recipe list because the machine is null.", this);
+            return;
+        }
+
+        if (gen.Data == null)
+        {
+            Debug.LogError("Cannot build the machine recipe list because the machine has no MachineData.", this);
+            return;
+        }
+
+        if (gen.Data.allowedFuels == null)
+        {
+            Debug.LogError($"Machine data '{gen.Data.name}' has no usable recipe list.", gen.Data);
+            return;
+        }
+
+        foreach (var fuel in gen.Data.allowedFuels)
+        {
+            if (fuel == null)
+                continue;
+
+            FuelEntry entry = Instantiate(recipeEntryPrefab, recipeListContent.transform);
             entry.Build(fuel);
         }
+    }
+    public void BuildInfoPanel(FuelEntry fuelEntry)
+    {
+        selectedFuelIcon.sprite = fuelEntry.recipe.Sprite;
+        selectedFuelName.text = generator.fuelInUse.Name;
+        selectedFuelAmount.text = generator.Quantity.ToString();
+        status.text ="Status: \n" + (generator.Running ? "On" : "Off");
+        netConsuption.text = "Network \n Consuption \n " + generator.Network.Consumption.ToString();
+        netProduction.text = "Network \n Production \n " + generator.Network.Generation.ToString();
+        genConsuption.text = "placeholder";
+        genProduction.text = "placeholder";
     }
     public void BuildBotList()
     {
@@ -64,16 +103,10 @@ public class GeneratorUI : MonoBehaviour
             go.Initialize(bot);
         }
     }
-    public void BuildInfoPanel(FuelEntry fuelEntry)
-    {
-        selectedFuelIcon.sprite = fuelEntry.recipe.Sprite;
-        selectedFuelName.text = fuelEntry.recipe.Name;
-        selectedFuelAmount.text = fuelEntry.recipe.Desc;
-    }
-    
+
     void WipeRecipeList()
     {
-        foreach (Transform child in fuelListContent.transform)
+        foreach (Transform child in recipeListContent.transform)
             Destroy(child.gameObject);
     }
     void WipeBotList()
