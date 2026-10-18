@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Buildings/Machines/name this with a good name for a bench that makes electric stuffs.md",
+                "file": "Resources/Alloys/Bronze.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "name this with a good name for a bench that makes electric stuffs"
+              "title": "Bronze"
             }
           },
           {
@@ -60,7 +60,7 @@
                 "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
-              "title": "Esplora file"
+              "title": "Files"
             }
           },
           {
@@ -193,43 +193,43 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Apri selettore rapido": false,
-      "graph:Apri vista grafo": false,
-      "canvas:Crea nuova lavagna": false,
-      "daily-notes:Apri nota giornaliera": false,
-      "templates:Inserisci modello": false,
-      "command-palette:Apri riquadro comandi": false,
-      "bases:Crea nuova Base": false
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
     }
   },
   "active": "fcbb2aa86150e5cf",
   "lastOpenFiles": [
-    "Buildings/Machines/Press.md",
-    "Buildings/Machines/name this with a good name for a bench that makes electric stuffs.md",
-    "Buildings/Machines/Coal Furnace.md",
-    "Buildings/Machines/Assembler.md",
-    "Buildings/Machines/Alloy Furnace.md",
-    "Buildings/Machines/Furnace mk1.md",
-    "Buildings/Machines/Advanced Assembler.md",
-    "Buildings/Power System/Electric Poles.md",
-    "Buildings/Logistic/Charging station.md",
-    "Resources/Crafted Items/Crafted Items.md",
-    "Bots/Bots.md",
-    "Progression.md",
-    "Recipes/Recipes.md",
-    "Recipes/First Era recipe/Electricity/Assemble Circuit Board.md",
-    "Resources/Resources.md",
     "To do list.md",
-    "Buildings/Machines/Furnace mk2.md",
-    "Buildings/Logistic/Storage.md",
-    "Recipes/other Eras/Alloy Smelting to Steel.md",
-    "Recipes/other Eras/Alloy Smelting to Invar.md",
-    "Recipes/other Eras/Smelt to Titanium.md",
+    "Recipes/First Era recipe/Electricity/Electrify to electric component.md",
+    "Resources/Alloys/Invar.md",
+    "Resources/Alloys/Bronze.md",
+    "Resources/Raw/Malachite.md",
+    "Resources/Raw/Pentladite.md",
+    "Resources/Raw/Ilmenite.md",
+    "Resources/Raw/Hematite.md",
+    "Resources/Raw/Bauxite.md",
+    "Resources/Raw/Coal.md",
+    "Resources/Raw/Gold Ore.md",
+    "Resources/Raw/Magnetite.md",
+    "Resources/Raw/Cassiterite.md",
+    "Resources/Raw/Stone.md",
+    "Resources/Ingots/Titanium.md",
     "Resources/Ingots/Nickel.md",
-    "Resources/Crafted Items/First Era/Iron Plate.md",
-    "Resources/Crafted Items/First Era/Reinforced Plate.md",
-    "Recipes/First Era recipe/Metal/Metalworking/Assemble to Reinforced Plate.md",
-    "Buildings/Machines/Machines.md",
+    "Resources/Ingots/Gold.md",
+    "Resources/Ingots/Iron.md",
+    "Resources/Ingots/Tin.md",
+    "Resources/Ingots/Aluminum.md",
+    "Resources/Ingots/Copper.md",
+    "Resources/Raw/Pyrite.md",
+    "Resources/Crafted Items/First Era/TO DO LIST.md",
+    "Recipes/First Era recipe/Metal/Metalworking/Assemble to Machine Frame.md",
+    "Recipes/First Era recipe/Metal/Metalworking/Assemble to Iron Casing.md",
+    "Recipes/First Era recipe/Metal/Metalworking/Assemble to Advanced Frame.md",
     "Resources/Crafted Items/other Eras",
     "Resources/Crafted Items/First Era",
     "Recipes/other Eras",
