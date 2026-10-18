@@ -35,6 +35,30 @@ public class PowerManager : MonoBehaviour
     public static List<Machine> machineDB = new();
     public static int networkCounter { get { return instance.powerObj.GetComponentsInChildren<NetworkManager>().Length; } }
     public static Stack<Color> networkColors = new Stack<Color>();
+    public static float Consuption
+    {
+        get
+        {
+            float c=0;
+            foreach(NetworkManager n in instance.powerObj.GetComponentsInChildren<NetworkManager>())
+            {
+                c += n.Consumption;
+            }
+            return c;
+        }
+    }
+    public static float Production
+    {
+        get
+        {
+            float c = 0;
+            foreach (NetworkManager n in instance.powerObj.GetComponentsInChildren<NetworkManager>())
+            {
+                c += n.Generation;
+            }
+            return c;
+        }
+    }
     [Header("Runtime Debug")]
     public int networkCount;
     public int registeredPoles;

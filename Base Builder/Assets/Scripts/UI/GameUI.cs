@@ -4,8 +4,6 @@ using UnityEngine.UI;
 
 public class GameUI : MonoBehaviour
 {
-    public int TotalPowerConsumption;
-    public int TotalPowerProduction;
 
     [Header("Default Screen")]
     [SerializeField] TMP_Text powerCounter;
@@ -25,7 +23,7 @@ public class GameUI : MonoBehaviour
     }
     private void Update()
     {
-        powerCounter.text = $"{TotalPowerConsumption} / {TotalPowerProduction}";
+        powerCounter.text = $"{PowerManager.Consuption} / {PowerManager.Production}";
         botsCounter.text = $"[insert bot count]";
     }
 

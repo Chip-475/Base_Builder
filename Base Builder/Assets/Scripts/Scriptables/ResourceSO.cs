@@ -14,7 +14,7 @@ public class ResourceSO : ScriptableObject
     [Header("Characteristics")]
     public int toughness = 1;
     public float weightPerUnit = 1f;
-    public int energyPerUnit = 0;
+    public int fv = 0;
 
     #if UNITY_EDITOR
     void OnValidate()
