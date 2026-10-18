@@ -6,79 +6,79 @@ public class GeneratorUI : MonoBehaviour
     public static GeneratorUI instance { get; private set; }
 
     public bool IsActive => panel.activeSelf;
-    Machine machine;
+    Generator generator;
 
     [Header("Setup")]
     [SerializeField] GameObject panel;
     [SerializeField] Button backButton;
-    [SerializeField] RecipeEntry recipeEntryPrefab;
+    [SerializeField] FuelEntry recipeEntryPrefab;
     [SerializeField] BuildingBotEntry botEntryPrefab;
 
     [Header("Recipe List")]
     [SerializeField] GameObject recipeListContent;
 
     [Header("Info Panel")]
-    [SerializeField] Image selectedRecipeIcon;
-    [SerializeField] TMP_Text selectedRecipeName;
-    [SerializeField] TMP_Text selectedRecipeDesc;
+    [SerializeField] Image selectedFuelIcon;
+    [SerializeField] TMP_Text selectedFuelName;
+    [SerializeField] TMP_Text selectedFuelAmount;
 
     [Header("Bot List")]
     [SerializeField] GameObject botListContent;
 
     [Header("Runtime")]
-    public Machine Machine { get => machine; set => machine = value; }
-    public RecipeEntry selectedRecipeEntry;
+    public Generator Generator { get => generator; set => generator = value; }
+    public FuelEntry selectedFuelEntry;
 
     private void Awake()
     {
         instance = this;
 
         backButton.onClick.AddListener(() => panel.SetActive(false));
-        backButton.onClick.AddListener(() => selectedRecipeEntry = null);
+        backButton.onClick.AddListener(() => selectedFuelEntry = null);
     }
 
-    public void Open(Machine machine)
+    public void Open(Generator gen)
     {
         panel.SetActive(true);
-        BuildRecipeList(machine);
+        BuildRecipeList(gen);
         BuildBotList();
     }
-    public void BuildRecipeList(Machine machine)
+    public void BuildRecipeList(Generator gen)
     {
         WipeRecipeList();
 
-        if (machine == null)
+        if (gen == null)
         {
             Debug.LogError("Cannot build the machine recipe list because the machine is null.", this);
             return;
         }
 
-        if (machine.Data == null)
+        if (gen.Data == null)
         {
             Debug.LogError("Cannot build the machine recipe list because the machine has no MachineData.", this);
             return;
         }
 
-        if (machine.Data.usableRecipes == null)
+        if (gen.Data.allowedFuels == null)
         {
             Debug.LogError($"Machine data '{machine.Data.name}' has no usable recipe list.", machine.Data);
             return;
         }
 
-        foreach (var recipe in machine.Data.usableRecipes)
+        foreach (var fuel in gen.Data.allowedFuels)
         {
-            if (recipe == null)
+            if (fuel == null)
                 continue;
 
-            RecipeEntry entry = Instantiate(recipeEntryPrefab, recipeListContent.transform);
-            entry.Build(recipe);
+            FuelEntry entry = Instantiate(recipeEntryPrefab, recipeListContent.transform);
+            entry.Build(fuel);
         }
     }
-    public void BuildInfoPanel(RecipeEntry recipeEntry)
+    public void BuildInfoPanel(FuelEntry fuelEntry)
     {
-        selectedRecipeIcon.sprite = recipeEntry.recipe.Sprite;
-        selectedRecipeName.text = recipeEntry.recipe.Name;
-        selectedRecipeDesc.text = recipeEntry.recipe.Desc;
+        selectedFuelIcon.sprite = fuelEntry.recipe.Sprite;
+        selectedFuelName.text = fuelEntry.recipe.Name;
+        selectedFuelAmount.text = fuelEntry.recipe.Desc;
     }
     public void BuildBotList()
     {

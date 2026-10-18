@@ -9,7 +9,8 @@ public class Generator : Building,IInteractable
 
     public string id;
 
-    public float Power { get { return Data.productionRate; } }
+    public ResourceSO selected;
+    public float Power { get { return selected.fv; } }
     public bool Running = true; // { get; private set; }
 
     public bool isPowered;
@@ -29,7 +30,7 @@ public class Generator : Building,IInteractable
     {
         PowerManager.powerGeneratorDB.Remove(id);
         PowerManager.instance.UnregisterBuilding();
-        //WorldManager.World.UnregisterBuilding(Coords);
+        BuildingManager.UnregisterBuilding(this);
         MonoBehaviour.Destroy(SceneObj.gameObject);
     }
     public bool CanInteractWith()
@@ -42,8 +43,8 @@ public class Generator : Building,IInteractable
     }
     public void Interact()
     {
-        //GeneratorUI.instance.Machine = this;
-        //GeneratorUI.instance.Open(this);
+        GeneratorUI.instance.Generator = this;
+        GeneratorUI.instance.Open(this);
     }
     public void SwitchState(bool state) //to link to the ui button
     {
