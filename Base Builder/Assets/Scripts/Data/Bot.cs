@@ -29,6 +29,7 @@ public class Bot : IInteractable
     public bool PickedUp { get; protected set; }
     public bool Occupied { get; set; }
     public Machine WorkingAt { get; set; }
+    public int MiningLevel { get; protected set; }
 
     [Header("Intefaces")]
     public Vector3 Position => BotView.transform.position;
@@ -89,12 +90,12 @@ public class Bot : IInteractable
 
     public class BotInventory
     {
-        public Dictionary<ResourceSO, int> Inventory { get; private set; } = new();
+        public Dictionary<ResourceSO, int> Items { get; private set; } = new();
         public int MaxWeight { get; private set; }
 
         public BotInventory(BotInventory inv)
         {
-            Inventory = new(inv.Inventory);
+            Items = new(inv.Items);
             MaxWeight = inv.MaxWeight;
         }
         public BotInventory(int maxWeight)
@@ -110,7 +111,7 @@ public class Bot : IInteractable
                 return;
             }
 
-            Inventory[resource] = Inventory.GetValueOrDefault(resource) + amount;
+            Items[resource] = Items.GetValueOrDefault(resource) + amount;
         }
         public bool CanAddItem(ResourceSO resource, int amount)
         {
@@ -130,14 +131,14 @@ public class Bot : IInteractable
                 return new(null, 0);
             }
 
-            Inventory[resource] = Inventory.GetValueOrDefault(resource) - amount;
+            Items[resource] = Items.GetValueOrDefault(resource) - amount;
             return new(resource, amount);
         }
         public bool CanRemoveItem(ResourceSO resource, int amount)
         {
-            if (!Inventory.ContainsKey(resource))
+            if (!Items.ContainsKey(resource))
                 return false;
-            if (Inventory[resource] - amount < 0)
+            if (Items[resource] - amount < 0)
                 return false;
 
             return true;
@@ -146,7 +147,7 @@ public class Bot : IInteractable
         public float GetWeight()
         {
             float totWeight = 0f;
-            foreach(var kvp in Inventory)
+            foreach(var kvp in Items)
                 totWeight += kvp.Key.weightPerUnit * kvp.Value;
 
             return totWeight;
@@ -154,7 +155,7 @@ public class Bot : IInteractable
         public float GetSpecificWeight(ResourceSO resource)
         {
             float weight = 0f;
-            foreach (var kvp in Inventory)
+            foreach (var kvp in Items)
                 if(kvp.Key == resource) 
                     weight += kvp.Key.weightPerUnit * kvp.Value;
 

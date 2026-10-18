@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class GeneratorUI : MonoBehaviour
 {
-    public static GeneratorUI instance { get; private set; }
+    public static GeneratorUI Instance { get; private set; }
 
     public bool IsActive => panel.activeSelf;
     Generator generator;
@@ -31,7 +31,7 @@ public class GeneratorUI : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        Instance = this;
 
         backButton.onClick.AddListener(() => panel.SetActive(false));
         backButton.onClick.AddListener(() => selectedFuelEntry = null);
@@ -61,7 +61,7 @@ public class GeneratorUI : MonoBehaviour
 
         if (gen.Data.allowedFuels == null)
         {
-            Debug.LogError($"Machine data '{machine.Data.name}' has no usable recipe list.", machine.Data);
+            Debug.LogError($"Machine data '{gen.Data.name}' has no usable recipe list.", gen.Data);
             return;
         }
 
