@@ -58,7 +58,7 @@ public class NetworkManager : MonoBehaviour
                 Generation += generator.Power;
 
         Consumption = 0;
-        foreach (KeyValuePair<Machine, float> request in machineRequests) //KeyValuePair � la tupla chiave/valore contenuta nel dizionario
+        foreach (KeyValuePair<Machine, float> request in machineRequests) //KeyValuePair e la tupla chiave/valore contenuta nel dizionario
             Consumption += request.Value;
 
         UpdateDebugInfo();
@@ -101,7 +101,7 @@ public class NetworkManager : MonoBehaviour
             if (building is Generator generator && generator.Running)
                 generator.SwitchState(false);
     }
-public void drawConnections()
+    public void drawConnections()
     {
         //clear old connections
         foreach (LineRenderer line in lineRenderers)

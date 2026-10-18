@@ -7,7 +7,7 @@ public class SpaceshipView : BuildingView
     public new SpaceshipData Data => base.Data as SpaceshipData;
     public Spaceship RuntimeObj { get; private set; }
     [SerializeField] Transform botSpawnPoint;
-    [SerializeField] SpaceshipUiManager ui;
+    [SerializeField] SpaceshipUI ui;
 
     private void Start()
     {
