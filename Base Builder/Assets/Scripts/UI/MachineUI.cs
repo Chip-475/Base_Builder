@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
+using System.Collections.Generic;
 public class MachineUI : MonoBehaviour
 {
     public static MachineUI Instance { get; private set; }
@@ -40,7 +40,6 @@ public class MachineUI : MonoBehaviour
 
     public void Open(Machine machine)
     {
-<<<<<<< HEAD
         if(machine==null)
         {
             Debug.Log("machine è null");
@@ -52,11 +51,9 @@ public class MachineUI : MonoBehaviour
             return;
         }
         Open(machine.Data.usableRecipes);
-=======
         panel.SetActive(true);
-        BuildRecipeList(machine);
+        BuildRecipeList(machine.Data.usableRecipes);
         BuildBotList();
->>>>>>> giulio'sWork
     }
 
     public void Open(List<RecipeSO> ricette)
@@ -73,7 +70,7 @@ public class MachineUI : MonoBehaviour
     public void BuildRecipeList(List<RecipeSO>ricette)
     {
         WipeRecipeList();
-<<<<<<< HEAD
+
         /*
         foreach(var recipe in machine.Data.usableRecipes)
 =======

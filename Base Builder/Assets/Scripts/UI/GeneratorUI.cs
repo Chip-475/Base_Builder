@@ -61,7 +61,7 @@ public class GeneratorUI : MonoBehaviour
 
         if (gen.Data.allowedFuels == null)
         {
-            Debug.LogError($"Machine data '{machine.Data.name}' has no usable recipe list.", machine.Data);
+            //Debug.LogError($"Machine data '{machine.Data.name}' has no usable recipe list.", machine.Data);
             return;
         }
 
