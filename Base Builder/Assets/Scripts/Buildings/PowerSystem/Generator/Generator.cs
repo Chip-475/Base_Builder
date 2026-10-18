@@ -40,6 +40,11 @@ public class Generator : Building,IInteractable
 
         return false;
     }
+    public void Interact()
+    {
+        //GeneratorUI.instance.Machine = this;
+        //GeneratorUI.instance.Open(this);
+    }
     public void SwitchState(bool state) //to link to the ui button
     {
         Running = state;
