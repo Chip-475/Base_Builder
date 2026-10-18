@@ -1,2 +1,1 @@
-Navigation Component
-Ship Core Component
+Machine Frame
