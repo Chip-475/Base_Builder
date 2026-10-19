@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Assemble to Bronze Rod
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
   <ID>k__BackingField: 
-  Name: 
+  Name: Bronze Rod
   Desc: 
   Sprite: {fileID: 0}
   inputs: []

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Assemble to Advanced Frame
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
   <ID>k__BackingField: 
-  Name: 
+  Name: Advanced Frame
   Desc: 
   Sprite: {fileID: 0}
   inputs: []

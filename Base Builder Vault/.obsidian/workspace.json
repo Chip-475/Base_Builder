@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Recipes/First Era recipe/Metal/Metalworking/Assemble to Iron Casing.md",
+                "file": "Recipes/other Eras/Assemble into Ship Core Component.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Assemble to Iron Casing"
+              "title": "Assemble into Ship Core Component"
             }
           }
         ]
@@ -99,7 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Recipes/First Era recipe/Metal/Metalworking/Assemble to Iron Casing.md",
+                "file": "Recipes/other Eras/Assemble into Ship Core Component.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +118,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Recipes/First Era recipe/Metal/Metalworking/Assemble to Iron Casing.md",
+                "file": "Recipes/other Eras/Assemble into Ship Core Component.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -161,7 +161,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Recipes/First Era recipe/Metal/Metalworking/Assemble to Iron Casing.md",
+                "file": "Recipes/other Eras/Assemble into Ship Core Component.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -190,6 +190,17 @@
   },
   "active": "8c8353c35e764004",
   "lastOpenFiles": [
+    "Recipes/other Eras/Alloy Smelting to Steel.md",
+    "Recipes/other Eras/Alloy Smelting to Invar.md",
+    "Recipes/First Era recipe/Misc/Assemble to Stone brick.md",
+    "Recipes/First Era recipe/Metal/Metalworking/Press to Iron Plate.md",
+    "Recipes/First Era recipe/Metal/Metalworking/Press to Copper Plate.md",
+    "Recipes/First Era recipe/Metal/Metalworking/Press to Bronze Plate.md",
+    "Recipes/First Era recipe/Metal/Metalworking/Assemble to Reinforced Plate.md",
+    "Recipes/First Era recipe/Metal/Metalworking/Assemble to Machine Frame.md",
+    "Recipes/First Era recipe/Metal/Metalworking/Assemble to Iron Rod.md",
+    "Recipes/First Era recipe/Metal/Metalworking/Assemble to Iron Gear.md",
+    "Recipes/First Era recipe/Metal/Metalworking/Assemble to Iron Casing.md",
     "Recipes/First Era recipe/Metal/Metalworking/Assemble to Bronze Rod.md",
     "Recipes/First Era recipe/Metal/Metalworking/Assemble to Bronze Gear.md",
     "Recipes/First Era recipe/Metal/Metalworking/Assemble to Advanced Frame.md",
@@ -204,15 +215,6 @@
     "Recipes/First Era recipe/Electricity/Assemble Electric Core.md",
     "Resources/Crafted Items/First Era/Insulator.md",
     "Resources/Crafted Items/First Era/Bronze Casing.md",
-    "Resources/Crafted Items/First Era/Iron Casing.md",
-    "Resources/Crafted Items/First Era/Bronze Gear.md",
-    "Resources/Crafted Items/First Era/Copper Plate.md",
-    "Resources/Crafted Items/First Era/Bronze Plate.md",
-    "Resources/Crafted Items/First Era/Stone Brick.md",
-    "Resources/Resources.md",
-    "Buildings/Machines/Coal Furnace.md",
-    "Resources/Raw/Bauxite.md",
-    "Resources/Raw/Raw.md",
-    "TO DO LIST.md"
+    "Resources/Crafted Items/First Era/Iron Casing.md"
   ]
 }

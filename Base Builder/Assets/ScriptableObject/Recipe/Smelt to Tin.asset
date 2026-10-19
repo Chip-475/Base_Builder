@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Smelt to Tin
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
   <ID>k__BackingField: 
-  Name: 
+  Name: Smelt to Tin
   Desc: 
   Sprite: {fileID: 0}
   inputs: []

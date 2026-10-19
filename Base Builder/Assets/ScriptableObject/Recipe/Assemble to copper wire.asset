@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Assemble to copper wire
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
   <ID>k__BackingField: 
-  Name: 
+  Name: copper wire
   Desc: 
   Sprite: {fileID: 0}
   inputs: []

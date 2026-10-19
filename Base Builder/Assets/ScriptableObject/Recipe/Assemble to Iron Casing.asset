@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Assemble to Iron Casing
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
   <ID>k__BackingField: 
-  Name: 
+  Name: Iron Casing
   Desc: 
   Sprite: {fileID: 0}
   inputs: []

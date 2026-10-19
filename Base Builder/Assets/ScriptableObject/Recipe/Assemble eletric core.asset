@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Assemble eletric core
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
   <ID>k__BackingField: 
-  Name: 
+  Name: eletric core
   Desc: 
   Sprite: {fileID: 0}
   inputs: []

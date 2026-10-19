@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AssembleCircuitBoard
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
   <ID>k__BackingField: 
-  Name: Asseble circuit board
+  Name: circuit board
   Desc: 
   Sprite: {fileID: 0}
   inputs: []

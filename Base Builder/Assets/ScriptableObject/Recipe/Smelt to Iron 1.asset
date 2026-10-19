@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Smelt to Iron 1
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
   <ID>k__BackingField: 
-  Name: 
+  Name: Smelt to Iron 1
   Desc: 
   Sprite: {fileID: 0}
   inputs: []
