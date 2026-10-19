@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1930e33686e0fe343a20ec312785cbc4, type: 3}
-  m_Name: Steel
+  m_Name: Smelt to Invar
   m_EditorClassIdentifier: Assembly-CSharp::Recipe
   <ID>k__BackingField: 
-  Name: Steel
+  Name: Invar
   Desc: 
   Sprite: {fileID: 0}
   inputs: []

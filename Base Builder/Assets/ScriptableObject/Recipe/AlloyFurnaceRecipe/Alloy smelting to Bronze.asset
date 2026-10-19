@@ -10,13 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1930e33686e0fe343a20ec312785cbc4, type: 3}
-  m_Name: Copper
-  m_EditorClassIdentifier: Assembly-CSharp::Recipe
+  m_Name: Alloy smelting to Bronze
+  m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
   <ID>k__BackingField: 
-  Name: Copper
+  Name: Bronze
   Desc: 
   Sprite: {fileID: 0}
-  inputs: []
-  outputs: []
-  completionTime: 2
+  inputs:
+  - key: {fileID: 11400000, guid: d16511fdb89b39846a0e6c3e26a1f7e0, type: 2}
+    value: 3
+  - key: {fileID: 11400000, guid: 6ade9ebeec44c7445b36addbe8f7846f, type: 2}
+    value: 1
+  outputs:
+  - key: {fileID: 11400000, guid: 1ef3269b54e249c43956104dffe2c724, type: 2}
+    value: 2
+  completionTime: 12
   energyCost: 3

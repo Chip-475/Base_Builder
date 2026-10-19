@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1930e33686e0fe343a20ec312785cbc4, type: 3}
-  m_Name: Iron_hematite
-  m_EditorClassIdentifier: Assembly-CSharp::Recipe
-  <ID>k__BackingField: 
-  Name: Iron hematite
+  m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
+  m_Name: Electric Component
+  m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
+  Name: 
   Desc: 
   Sprite: {fileID: 0}
-  inputs: []
-  outputs: []
-  completionTime: 0
-  energyCost: 0
+  weightPerUnit: 1
+  toughness: 1
+  timeToMine: 1
+  fuelValue: 0
+  timeToConsume: 1

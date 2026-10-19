@@ -1,5 +1,5 @@
 ___
 input:
-xx [[Pyrite]]
+1 [[Pyrite]]
 output:
-1x [[Iron]]
+1 [[Iron]]
