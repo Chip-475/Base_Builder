@@ -13428,11 +13428,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6628184724725329942, guid: ce87f932c642391448385f8f89b0fe96, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 2.93614
+      value: 4.76
       objectReference: {fileID: 0}
     - target: {fileID: 6628184724725329942, guid: ce87f932c642391448385f8f89b0fe96, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -1.98379
+      value: -4.55
       objectReference: {fileID: 0}
     - target: {fileID: 6628184724725329942, guid: ce87f932c642391448385f8f89b0fe96, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -13779,20 +13779,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GeneratorUI
   panel: {fileID: 419152369}
   backButton: {fileID: 1323378071}
-  recipeEntryPrefab: {fileID: 6214060585613250945, guid: 99cc03b362505244db7ec739a1248fa9, type: 3}
+  fuelEntryPrefab: {fileID: 0}
   botEntryPrefab: {fileID: 1982994397743922869, guid: 640502168b9d7cc4582e17249ee3b4bc, type: 3}
-  recipeListContent: {fileID: 1259819247}
+  fuelListContent: {fileID: 0}
+  botListContent: {fileID: 2113653480}
+  status: {fileID: 970731841}
+  switchButton: {fileID: 1531544808}
   selectedFuelIcon: {fileID: 1690706021}
   selectedFuelName: {fileID: 640177067}
   selectedFuelAmount: {fileID: 10905757}
-  status: {fileID: 970731841}
-  genConsuption: {fileID: 1089749923}
   genProduction: {fileID: 1315265586}
-  netConsuption: {fileID: 862531402}
+  genConsuption: {fileID: 1089749923}
   netProduction: {fileID: 1961064767}
-  switchButton: {fileID: 1531544808}
-  botListContent: {fileID: 2113653480}
-  selectedFuelEntry: {fileID: 0}
+  netConsuption: {fileID: 862531402}
+  selectedEntry: {fileID: 0}
 --- !u!1 &1089071795
 GameObject:
   m_ObjectHideFlags: 0
@@ -14598,7 +14598,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpaceshipView
   <Data>k__BackingField: {fileID: 11400000, guid: bb94aac4519fb7b4a89d927fa183d132, type: 2}
-  <BotWorkPoint>k__BackingField: {fileID: 0}
+  <BotWorkPoint>k__BackingField: {fileID: 58833499}
   botSpawnPoint: {fileID: 58833499}
   ui: {fileID: 664421011}
 --- !u!212 &1320691437

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 [CreateAssetMenu(fileName = "Tech", menuName = "Tech")]
 public class Tech : ScriptableObject
@@ -9,7 +10,12 @@ public class Tech : ScriptableObject
         public string id;
         public bool unlocked;
     }
-
+    [Serializable]
+    public struct costo
+    {
+        public ResourceSO res;
+        public int quant;
+    }
     [Tooltip("Set by hand.")] public string id;
     public bool unlocked;
     [Space]
