@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1930e33686e0fe343a20ec312785cbc4, type: 3}
   m_Name: Copper
   m_EditorClassIdentifier: Assembly-CSharp::Recipe
-  <ID>k__BackingField: copper
+  <ID>k__BackingField: 
   Name: Copper
   Desc: 
   Sprite: {fileID: 0}

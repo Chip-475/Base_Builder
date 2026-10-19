@@ -16,8 +16,8 @@ public class NetworkManager : MonoBehaviour
     public int debugPoles;
     public int debugGenerators;
     public int debugMachines;
-    public List<GameObject> debugConnectedBuildings = new List<GameObject>();
-    public List<LineRenderer> lineRenderers = new List<LineRenderer>();
+    public List<GameObject> debugConnectedBuildings = new();
+    public List<LineRenderer> lineRenderers = new();
     private Dictionary<Machine, float> machineRequests = new();
 
     private void Awake()
@@ -58,7 +58,7 @@ public class NetworkManager : MonoBehaviour
                 Generation += generator.Power;
 
         Consumption = 0;
-        foreach (KeyValuePair<Machine, float> request in machineRequests) //KeyValuePair � la tupla chiave/valore contenuta nel dizionario
+        foreach (KeyValuePair<Machine, float> request in machineRequests) //KeyValuePair e la tupla chiave/valore contenuta nel dizionario
             Consumption += request.Value;
 
         UpdateDebugInfo();
@@ -101,7 +101,7 @@ public class NetworkManager : MonoBehaviour
             if (building is Generator generator && generator.Running)
                 generator.SwitchState(false);
     }
-public void drawConnections()
+    public void drawConnections()
     {
         //clear old connections
         foreach (LineRenderer line in lineRenderers)

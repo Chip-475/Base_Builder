@@ -13,12 +13,10 @@ MonoBehaviour:
   m_Name: Iron_hematite
   m_EditorClassIdentifier: Assembly-CSharp::Recipe
   <ID>k__BackingField: 
-  r_name: hematite
-  inputResources:
-  - {fileID: 11400000, guid: e76ecbd53161e044fb81a60d2b909173, type: 2}
-  input: 00000000i
-  outputResources:
-  - {fileID: 11400000, guid: f44b38d183a6d48409ecf1890b1f4cd8, type: 2}
-  output: 00000000i
+  Name: Iron hematite
+  Desc: 
+  Sprite: {fileID: 0}
+  inputs: []
+  outputs: []
   completionTime: 0
   energyCost: 0

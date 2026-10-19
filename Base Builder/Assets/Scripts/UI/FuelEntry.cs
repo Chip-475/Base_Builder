@@ -1,36 +1,33 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 [RequireComponent(typeof(Button))]
 public class FuelEntry : MonoBehaviour
 {
     [Header("Setup")]
     [SerializeField] Button button;
-    [SerializeField] Image fuel;
+    [SerializeField] Image fuelIcon;
     [SerializeField] TMP_Text fuelText; //form "name x fv/s"
 
     [Header("Runtime Data")]
-    public ResourceSO recipe;
+    public ResourceSO fuel;
 
     TMP_Text quantityText;
 
     private void Awake()
     {
         button = GetComponent<Button>();
-        button.onClick.AddListener(() => GeneratorUI.Instance.selectedFuelEntry = this);
+        button.onClick.AddListener(() => GeneratorUI.Instance.selectedEntry = this);
         button.onClick.AddListener(() => GeneratorUI.Instance.BuildInfoPanel(this));
-
+        
         quantityText = GetComponentInChildren<TMP_Text>();
     }
 
-    public void Build(ResourceSO recipe)
+    public void Build(ResourceSO fuel)
     {
-        this.recipe = recipe;
-        Sprite currentEntry = recipe.Sprite;
-        quantityText.text = recipe.name + " (" + recipe.fuelValue + "/s )";
+        this.fuel = fuel;
+        fuelIcon.sprite = fuel.Sprite;
+        quantityText.text = fuel.name + " (" + fuel.fuelValue + "/s )";
     }
 }

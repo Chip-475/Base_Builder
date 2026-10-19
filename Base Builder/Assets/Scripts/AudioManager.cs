@@ -1,5 +1,3 @@
-using DG.Tweening;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,7 +24,7 @@ public class AudioManager : MonoBehaviour
     {
         if (!sfxClips.Contains(clip))
         {
-            Debug.Log("Clip is not a SFX.");
+            Debug.Log("Clip is not in SFX.");
             return;
         }
 
@@ -39,7 +37,7 @@ public class AudioManager : MonoBehaviour
     {
         if (!bgmClips.Contains(clip))
         {
-            Debug.Log("Clip is not a BGM.");
+            Debug.Log("Clip is not in BGM.");
             return;
         }
         if(clip == currentBgmPlaying) return;
