@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-public class Machine : Building, IInteractable
+public class Machine : Building, IInteractable, IWorkplace
 {
     public new MachineData Data => base.Data as MachineData;
     public new MachineView SceneObj => base.SceneObj as MachineView;
@@ -60,6 +60,15 @@ public class Machine : Building, IInteractable
         RequestPower(RequestedPower);
     }
 
+    // IInteractable
+    public void Interact()
+    {
+        if (!CanInteractWith())
+            return;
+
+        MachineUI.Instance.Machine = this;
+        MachineUI.Instance.Open(this);
+    }
     public bool CanInteractWith()
     {
         var cells = GetCellsInBounds(Data.interactionBounds);
@@ -68,23 +77,26 @@ public class Machine : Building, IInteractable
 
         return false;
     }
-    public void Interact()
+    
+    // IWorkplace
+    public RecipeSO Work(RecipeSO recipe, Bot bot)
     {
-        MachineUI.Instance.Machine = this;
-        MachineUI.Instance.Open(this);
-    }
-    public RecipeSO Craft(RecipeSO recipe, Bot bot)
-    {
-        if (!CanCraft(recipe, bot))
+        if (!CanWork(recipe, bot))
+            return null;
+        if (!HasRequiredItems(recipe, bot))
             return null;
 
         return recipe;
     }
-    public bool CanCraft(RecipeSO recipe, Bot bot)
+    public bool CanWork(RecipeSO recipe, Bot bot)
     {
         if (bot.Type != BotType.Worker)
             return false;
 
+        return true;
+    }
+    public bool HasRequiredItems(RecipeSO recipe, Bot bot)
+    {
         foreach (var kvp in recipe.inputs)
         {
             if (!bot.Inventory.Items.ContainsKey(kvp.Key))

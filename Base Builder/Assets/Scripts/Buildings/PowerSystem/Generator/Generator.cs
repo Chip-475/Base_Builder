@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Generator : Building,IInteractable
+public class Generator : Building, IInteractable, IWorkplace
 {
     public new GeneratorData Data => base.Data as GeneratorData;
     public new GeneratorView SceneObj => base.SceneObj as GeneratorView;
@@ -51,9 +51,22 @@ public class Generator : Building,IInteractable
         if (Network != null)
             Network.RefreshPower();
     }
+    IEnumerator ConsumeFuel(ResourceSO fuel)
+    {
+        if (!Inventory.TryGetValue(fuel, out _))
+            StopGenerator();
 
+        Inventory[fuel] -= 1;
+        yield return new WaitForSeconds(fuel.timeToConsume);
+        consumer = SceneObj.StartCoroutine(ConsumeFuel(fuel));
+    }
+
+    // IInteractable
     public void Interact()
     {
+        if (!CanInteractWith())
+            return;
+
         GeneratorUI.Instance.Generator = this;
         GeneratorUI.Instance.Open(this);
     }
@@ -66,13 +79,34 @@ public class Generator : Building,IInteractable
         return false;
     }
 
-    IEnumerator ConsumeFuel(ResourceSO fuel)
+    // IWorkplace
+    /// <summary> MUST have only 1 input and 0 outputs. </summary>
+    public RecipeSO Work(RecipeSO recipe, Bot bot)
     {
-        if(!Inventory.TryGetValue(fuel, out _))
-            StopGenerator();
+        if (!CanWork(recipe, bot))
+            return null;
 
-        Inventory[fuel] -= 1;
-        yield return new WaitForSeconds(fuel.timeToConsume);
-        consumer = SceneObj.StartCoroutine(ConsumeFuel(fuel));
+        return recipe;
+    }
+    /// <summary> MUST have only 1 input and 0 outputs. </summary>
+    public bool CanWork(RecipeSO recipe, Bot bot)
+    {
+        if (bot.Type == BotType.Carrier)
+            return false;
+
+        return false;
+    }
+    /// <summary> MUST have only 1 input and 0 outputs. </summary>
+    public bool HasRequiredItems(RecipeSO recipe, Bot bot)
+    {
+        foreach (var kvp in recipe.inputs)
+        {
+            if (!bot.Inventory.Items.ContainsKey(kvp.Key))
+                return false;
+            if (bot.Inventory.Items[kvp.Key] < kvp.Value)
+                return false;
+        }
+
+        return true;
     }
 }

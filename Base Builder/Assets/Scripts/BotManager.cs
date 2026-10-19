@@ -1,8 +1,7 @@
-using UnityEngine;
-using System;
+using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using System.Linq;
+using UnityEngine;
 
 public class BotManager : MonoBehaviour
 {
@@ -11,13 +10,17 @@ public class BotManager : MonoBehaviour
         public WorkRequest(Bot bot, Building building, RecipeSO recipe)
         {
             this.bot = bot;
-            this.building = building;
             this.recipe = recipe;
+
+            this.building = building;
+            iWorkplace = building as IWorkplace;
         }
 
         public Bot bot;
-        public Building building;
         public RecipeSO recipe;
+
+        public Building building;
+        public IWorkplace iWorkplace;
     }
 
     public static BotManager Instance { get; private set; }
@@ -49,20 +52,36 @@ public class BotManager : MonoBehaviour
         Bots.Remove(bot);
     }
 
-    public static void ProcessRequest(WorkRequest request)
+    public static IEnumerator ProcessRequest(WorkRequest request)
     {
         if (!IsRequestValid(request))
         {
             Debug.Log("Request is invalid.");
-            Debug.Log($@"");
+            yield break;
         }
 
-        request.bot.Occupied = true;
-        request.bot.BotView.SetDestination(request.building.SceneObj.BotWorkPoint.transform.position.ToVector3Int());
-        request.bot.BotView.StartMoving();
+        if(!request.iWorkplace.HasRequiredItems(request.recipe, request.bot))
+        {
+
+        }
+        else
+        {
+            request.bot.Occupied = true;
+
+            request.bot.BotView.SetDestination(request.building.SceneObj.BotWorkPoint.transform.position.ToVector3Int());
+            request.bot.BotView.StartMoving();
+            yield return new WaitUntil(() => Vector3.Distance(
+                request.bot.BotView.transform.position,
+                request.building.SceneObj.transform.position) < 0.05f);
+            request.iWorkplace.Work(request.recipe, request.bot);
+
+            request.bot.Occupied = false;
+        }
     }
     public static bool IsRequestValid(WorkRequest request)
     {
+        Pathfinder.Pathfind(request.bot.Coords.ToVector3Int(), request.building.SceneObj.BotWorkPoint.transform.position.ToVector3Int(), out List<Vector3Int> path);
+
         if (request.bot.Occupied)
         {
             Debug.Log("Bot is not available.");
@@ -73,13 +92,12 @@ public class BotManager : MonoBehaviour
             Debug.Log("Building is occupied.");
             return false;
         }
-        Pathfinder.Pathfind(request.bot.Coords.ToVector3Int(), request.building.SceneObj.BotWorkPoint.transform.position.ToVector3Int(), out List<Vector3Int> path);
         if (path.Count == 0)
         {
             Debug.Log("Cannot pathfind to target location.");
             return false;
         }
-
+        
         return true;
     }
 
