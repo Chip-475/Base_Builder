@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Alloy Smelting to Invar
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
   <ID>k__BackingField: 
-  Name: 
+  Name: Invar
   Desc: 
   Sprite: {fileID: 0}
   inputs: []

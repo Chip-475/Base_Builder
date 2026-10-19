@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Assemble to Stone brick
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
   <ID>k__BackingField: 
-  Name: 
+  Name: Stone brick
   Desc: 
   Sprite: {fileID: 0}
   inputs: []

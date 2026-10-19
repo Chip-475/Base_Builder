@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Alloy smelting to Bronze
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
   <ID>k__BackingField: 
-  Name: Alloy smelting to Bronze
+  Name: ' Bronze'
   Desc: 
   Sprite: {fileID: 0}
   inputs: []

@@ -16773,23 +16773,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e52862261037df45b9db20d6e0f7586, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpaceshipUiManager
-  closeButton: {fileID: 0}
-  botMenuButton: {fileID: 0}
-  spaceshipMenuButton: {fileID: 0}
-  inventoryMenuButton: {fileID: 0}
-  techTreeMenuButton: {fileID: 0}
-  botMenuPanel: {fileID: 0}
+  closeButton: {fileID: 893308697258496026}
+  botMenuButton: {fileID: 7693817506913881636}
+  spaceshipMenuButton: {fileID: 3533958767484948451}
+  inventoryMenuButton: {fileID: 7876237268740930800}
+  techTreeMenuButton: {fileID: 888842664767137087}
+  botMenuPanel: {fileID: 1935533040838126092}
   botMenu:
-    botListContent: {fileID: 0}
-    botImage: {fileID: 0}
-    botName: {fileID: 0}
-    previous: {fileID: 0}
-    next: {fileID: 0}
-    build: {fileID: 0}
+    botListContent: {fileID: 9196199027614108414}
+    botImage: {fileID: 8051615249053942780}
+    botName: {fileID: 4460020917808562595}
+    previous: {fileID: 8086994319808532719}
+    next: {fileID: 4335872213258286302}
+    build: {fileID: 1069550258436285582}
     botPrefabs: []
-  spaceshipMenuPanel: {fileID: 0}
-  inventoryMenuPanel: {fileID: 0}
-  techTreeMenuPanel: {fileID: 0}
+  spaceshipMenuPanel: {fileID: 3672312096928952599}
+  inventoryMenuPanel: {fileID: 1941440857588427150}
+  techTreeMenuPanel: {fileID: 8487178195448678784}
 --- !u!224 &3270353035445245394
 RectTransform:
   m_ObjectHideFlags: 0
