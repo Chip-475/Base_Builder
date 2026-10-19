@@ -11,7 +11,7 @@ public class BotManager : MonoBehaviour
         {
             this.bot = bot;
             this.recipe = recipe;
-
+            
             this.building = building;
             iWorkplace = building as IWorkplace;
         }
