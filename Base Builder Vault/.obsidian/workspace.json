@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Resources/Crafted Items/First Era/Bronze Casing.md",
+                "file": "Recipes/First Era recipe/Metal/Metalworking/Assemble to Iron Casing.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Bronze Casing"
+              "title": "Assemble to Iron Casing"
             }
           }
         ]
@@ -99,7 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Resources/Crafted Items/First Era/Bronze Casing.md",
+                "file": "Recipes/First Era recipe/Metal/Metalworking/Assemble to Iron Casing.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +118,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Resources/Crafted Items/First Era/Bronze Casing.md",
+                "file": "Recipes/First Era recipe/Metal/Metalworking/Assemble to Iron Casing.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -161,7 +161,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Resources/Crafted Items/First Era/Bronze Casing.md",
+                "file": "Recipes/First Era recipe/Metal/Metalworking/Assemble to Iron Casing.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -190,6 +190,20 @@
   },
   "active": "8c8353c35e764004",
   "lastOpenFiles": [
+    "Recipes/First Era recipe/Metal/Metalworking/Assemble to Bronze Rod.md",
+    "Recipes/First Era recipe/Metal/Metalworking/Assemble to Bronze Gear.md",
+    "Recipes/First Era recipe/Metal/Metalworking/Assemble to Advanced Frame.md",
+    "Recipes/First Era recipe/Metal/Metalworking/Assemble to bronze casing.md",
+    "Recipes/First Era recipe/Metal/Foundry/Smelt to Copper.md",
+    "Recipes/First Era recipe/Metal/Foundry/Alloy smelting to Bronze.md",
+    "Recipes/First Era recipe/Metal/Foundry/Smelt to Tin.md",
+    "Recipes/First Era recipe/Metal/Foundry/Smelt to Iron 1.md",
+    "Recipes/First Era recipe/Electricity/Electrify to big pcb.md",
+    "Recipes/First Era recipe/Electricity/Assemble to Insulator.md",
+    "Recipes/First Era recipe/Electricity/Assemble to Copper Wire.md",
+    "Recipes/First Era recipe/Electricity/Assemble Electric Core.md",
+    "Resources/Crafted Items/First Era/Insulator.md",
+    "Resources/Crafted Items/First Era/Bronze Casing.md",
     "Resources/Crafted Items/First Era/Iron Casing.md",
     "Resources/Crafted Items/First Era/Bronze Gear.md",
     "Resources/Crafted Items/First Era/Copper Plate.md",
