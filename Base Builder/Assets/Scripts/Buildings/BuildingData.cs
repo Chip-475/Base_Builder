@@ -8,6 +8,7 @@ public abstract class BuildingData : ScriptableObject
     public Sprite sprite;
     public BuildingType type;
     public Bounds bounds;
+    public Bounds interactionBounds;
     public Bounds connectionBounds;
     public bool connectsToPower;
     public bool blocksWalking;

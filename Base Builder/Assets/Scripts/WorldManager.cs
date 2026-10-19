@@ -7,14 +7,14 @@ using Unity.VisualScripting;
 
 public class WorldManager : MonoBehaviour
 {
-    public static WorldManager Instance {  get; private set; }
+    public static WorldManager Instance { get; private set; }
 
     [SerializeField] Grid grid;
     [SerializeField] Dictionary<Tilemap, CellType> mapToType;
     [Space]
 
     [SerializeField] World world;
-    public static World World {  get { return Instance.world; } }
+    public static World World { get { return Instance.world; } }
 
     public Sprite floorSprite;
 

@@ -2,20 +2,28 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class BotView : MonoBehaviour
 {
-    [SerializeField] BotData data;
+    public BotData data;
+    public Bot RuntimeObj { get; private set; }
 
     [Header("Components")]
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] Animator animator;
+    [SerializeField] Image powerBar;
 
     List<Vector3Int> path = new();
 
     void Start()
     {
-        new Bot(this, data);
+        RuntimeObj = new Bot(this, data);
+    }
+    private void Update()
+    {
+        RuntimeObj.InteractionBounds = new(transform.position, new Vector3(2f, 2f, 0));
+        powerBar.fillAmount = RuntimeObj.Power / 100;
     }
 
     public void SetDestination(Vector3Int coords)

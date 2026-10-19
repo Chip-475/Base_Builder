@@ -22,18 +22,22 @@ public class BuildMode : MonoBehaviour
 
     List<BuildModeEntry> allEntries = new();
     public BuildModeEntry SelectedEntry { get; private set; }
+    public Building SelectedBuilding { get; private set; }
     SpriteRenderer buildingPreview;
+    bool destroying;
 
     private void Awake()
     {
         Instance = this;
 
-        toggleButton.onClick.AddListener(() => { Toggle(); SortBy(BuildingType.Machine); });
-        machineSort.onClick.AddListener(() => SortBy(BuildingType.Machine));
-        miningSort.onClick.AddListener(() => SortBy(BuildingType.Mining));
-        powerSort.onClick.AddListener(() => SortBy(BuildingType.Power));
-        storageSort.onClick.AddListener(() => SortBy(BuildingType.Storage));
-        destroyMode.onClick.AddListener(() => SortBy(BuildingType.None));
+        // UI
+        toggleButton.onClick.AddListener(() => { Toggle(); SortBy(BuildingType.Machine); destroying = false; });
+        machineSort.onClick.AddListener(() => { SortBy(BuildingType.Machine); destroying = false; });
+        miningSort.onClick.AddListener(() => { SortBy(BuildingType.Mining); destroying = false; });
+        powerSort.onClick.AddListener(() => { SortBy(BuildingType.Power); destroying = false; });
+        storageSort.onClick.AddListener(() => { SortBy(BuildingType.Storage); destroying = false; });
+        destroyMode.onClick.AddListener(() => { SortBy(BuildingType.None); destroying = true; });
+
         InitPreview();
         buildingPreview.enabled = false;
     }
@@ -41,15 +45,29 @@ public class BuildMode : MonoBehaviour
     {
         panel.SetActive(false);
         allEntries = content.GetComponentsInChildren<BuildModeEntry>().ToList();
+
+        // Inputs
+        PlayerManager.Inputs.BuildMode.MouseMoved.performed += (_) =>
+        {
+            if(!destroying) BuildHover();
+            else DestroyHover();
+        };
+        PlayerManager.Inputs.BuildMode.LeftClick.performed += (_) =>
+        {
+            if (!destroying) Build();
+            else Destroy();
+        };
+        PlayerManager.Inputs.BuildMode.RightClick.performed += (_) =>
+        {
+            SetSelectedEntry(null);
+            buildingPreview.sprite = null;
+        };
     }
 
     public void Toggle()
     {
-        Debug.Log("Toggle");
-        panel.SetActive(!IsActive);
-
-        if (IsActive) Enable();
-        else Disable();
+        if (IsActive) Disable();
+        else Enable();
     }
     void Enable()
     {
@@ -57,30 +75,17 @@ public class BuildMode : MonoBehaviour
         buildingPreview.enabled = true;
 
         PlayerManager.Inputs.BuildMode.Enable();
-        PlayerManager.Inputs.BuildMode.MouseMoved.performed += (_) => Hover();
-        PlayerManager.Inputs.BuildMode.LeftClick.performed += (_) => Build();
-        PlayerManager.Inputs.BuildMode.RightClick.performed += (_) =>
-        {
-            SetSelectedEntry(null);
-            buildingPreview.sprite = null;
-        };
     }
     void Disable()
     {
         panel.SetActive(false);
-        buildingPreview.enabled = false;
+        buildingPreview.sprite = null;
+        SelectedEntry = null;
 
         PlayerManager.Inputs.BuildMode.Disable();
-        PlayerManager.Inputs.BuildMode.MouseMoved.performed -= (_) => Hover();
-        PlayerManager.Inputs.BuildMode.LeftClick.performed -= (_) => Build();
-        PlayerManager.Inputs.BuildMode.RightClick.performed -= (_) =>
-        {
-            SetSelectedEntry(null);
-            buildingPreview.sprite = null;
-        };
     }
 
-    void Hover()
+    void BuildHover()
     {
         Vector3Int mouseGridPos = Helpers.GetMouseWorldPosition().ToVector3Int();
         if (SelectedEntry == null || Helpers.IsMouseOverUI())
@@ -97,6 +102,11 @@ public class BuildMode : MonoBehaviour
         else
             buildingPreview.color = Color.red;
     }
+    void DestroyHover()
+    {
+        Vector3Int mouseGridPos = Helpers.GetMouseWorldPosition().ToVector3Int();
+        SelectedBuilding = WorldManager.World.GetCellAt(mouseGridPos).Building;
+    }
     void Build()
     {
         Vector3Int mouseGridPos = Helpers.GetMouseWorldPosition().ToVector3Int();
@@ -106,6 +116,10 @@ public class BuildMode : MonoBehaviour
             return;
 
         Instantiate(SelectedEntry.buildingPrefab, mouseGridPos, Quaternion.identity);
+    }
+    void Destroy()
+    {
+        SelectedBuilding?.Destroy();
     }
 
     void InitPreview()

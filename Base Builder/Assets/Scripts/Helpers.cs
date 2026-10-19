@@ -100,22 +100,34 @@ public static class Helpers
     #region Building Helpers
     public static bool CanBuildOn(this BuildingView prefab, Vector3Int gridPos)
     {
-        if (prefab == null || prefab.Data == null)
-            return false;
-
-        if (WorldManager.Instance == null || WorldManager.World == null)
-            return false;
-
         Bounds bounds = prefab.Data.bounds;
         bounds.center = gridPos;
-
         foreach (Cell cell in GetCellsInBounds(bounds))
-            if (cell == null || !cell.canBuildOn) return false;
+        {
+            if (cell == null)
+                return false;
+            if (!cell.canBuildOn)
+                return false;
+            if (!WorldManager.World.HasCellAt(cell.Coords))
+                return false;
+            if (cell == PlayerManager.Instance.GetPlayerCell())
+                return false;
+        }
 
         return true;
     }
     #endregion
 
+    #region List Helpers
+    public static void Shuffle<T>(this List<T> list)
+    {
+        for (int i = list.Count - 1; i > 0; i--)
+        {
+            int j = UnityEngine.Random.Range(0, i + 1);
+            (list[i], list[j]) = (list[j], list[i]);
+        }
+    }
+    #endregion
     #region Mouse Helpers
     public static Vector3 GetMousePosition()
     {
@@ -149,5 +161,5 @@ public enum Directions
     Up,
     Right,
     Down,
-    Left,
+    Left
 }

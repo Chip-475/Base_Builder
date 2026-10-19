@@ -7,19 +7,25 @@ public class Tester : MonoBehaviour
 {
     public static Tester Instance { get; private set; }
 
-    public Vector3Int coords;
+    public BuildingView building;
+    public BotView bot;
+    public Vector3 pos;
 
     private void Awake()
     {
         Instance = this;
     }
-
-    [ContextMenu("Test")]
-    public void WorldDatabaseTest()
+    
+    [ContextMenu("Work Test")]
+    public void WorkTest()
     {
-        if (WorldManager.World.Buildings[coords] is Machine)
-            Debug.Log(true);
-        else
-            Debug.Log(false);
+        
+    }
+
+    [ContextMenu("Move Test")]
+    public void MoveTest()
+    {
+        bot.SetDestination(pos.ToVector3Int());
+        bot.StartMoving();
     }
 }

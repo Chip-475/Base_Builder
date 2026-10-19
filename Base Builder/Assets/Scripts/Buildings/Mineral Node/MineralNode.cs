@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class MineralNode : Building
 {
@@ -7,21 +8,32 @@ public class MineralNode : Building
 
     public MineralNode(MineralNodeData data, MineralNodeView sceneObj) : base(data, sceneObj)
     {
-        // una funzione scava che deve tornare che risorsa ti sta dando e quanta
-        //ogni node ha quanto ti da di base di una risorsa e una purezza amount*purezza(int)
-        //avere una funzione che torna risorsa data e quantità data
+        
     }
     public override void Destroy()
     {
-        WorldManager.World.UnregisterBuilding(Coords);
+        BuildingManager.RegisterBuilding(this);
         MonoBehaviour.Destroy(SceneObj);
     }
 
-    public (ResourceSO resource, int quantity) MineResource()
+    public KeyValuePair<ResourceSO, int> Mine(Bot bot)
     {
-        //bot.Mine qua ci va la funzione del bot che aspetta oer minare il materiale
-        ResourceSO type = Data.resource;
-        int mineralQuantity = Data.baseAmountGiven * (int)Data.purity;
-        return (type, mineralQuantity);
+        if (!CanMine(bot))
+            return new(null, 0);
+
+        return new(Data.resource, Data.baseAmountGiven * (int)Data.purity);
+    }
+    public bool CanMine(Bot bot)
+    {
+        KeyValuePair<ResourceSO, int> output = new(Data.resource, Data.baseAmountGiven * (int)Data.purity);
+
+        if (bot.Type != BotType.Miner)
+            return false;
+        if (bot.MiningLevel < output.Key.toughness)
+            return false;
+        if (!bot.Inventory.CanAddItem(output.Key, output.Value))
+            return false;
+
+        return true;
     }
 }

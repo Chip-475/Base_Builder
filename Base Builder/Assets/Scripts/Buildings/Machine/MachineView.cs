@@ -11,6 +11,27 @@ public class MachineView : BuildingView
 
     private void Start()
     {
+        InitializeMachine();
+    }
+
+    void OnMouseDown()
+    {
+        // A machine instantiated from BuildMode can receive its first mouse
+        // event before Unity has called Start().
+        InitializeMachine();
+    }
+
+    private void InitializeMachine()
+    {
+        if (Obj != null)
+            return;
+
+        if (Data == null)
+        {
+            Debug.LogError($"Machine '{name}' has no MachineData assigned.", this);
+            return;
+        }
+
         Obj = new Machine(Data, this);
     }
 }

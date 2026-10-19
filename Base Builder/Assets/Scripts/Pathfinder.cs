@@ -50,6 +50,9 @@ public static class Pathfinder
 
             foreach (var neighbourCell in current.Cell.GetNeighbours())
             {
+                if (neighbourCell == null)
+                    continue;
+
                 SearchCell neighbour = GetSearchCell(neighbourCell.Coords, searchCells);
                 var delta = neighbour.Coords - current.Coords;
                 if (!neighbour.Cell.canWalkOn || closedSet.Contains(neighbour))
@@ -113,5 +116,23 @@ public static class Pathfinder
         path.Add(start.Coords);
         path.Reverse();
         return path;
+    }
+    public static void pathfindAdiacente(Vector3Int start, Vector3Int obb, out List<Vector3Int> path)
+    {
+        path = new List<Vector3Int>();
+        Cell obbCell = WorldManager.World.GetCellAt(obb);
+        if (obbCell == null) return;
+        if (obbCell.canWalkOn)
+        {
+            Pathfind(start, obb, out path);
+            return;
+        }
+        foreach(var i in obbCell.GetNeighbours())
+        {
+            if(!i.canWalkOn) continue;
+            Pathfind(start, i.Coords, out List<Vector3Int> candidati);
+            if (candidati.Count == 0) continue;
+            if (path.Count == 0 || candidati.Count < path.Count) path = candidati;
+        }    
     }
 }
