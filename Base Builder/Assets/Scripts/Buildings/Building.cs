@@ -21,9 +21,9 @@ public abstract class Building
         Data = data;
         SceneObj = sceneObj;
         //WorldManager.World.RegisterBuilding(this, Coords);
-        Bounds = new(Data.bounds.center+Coords, Data.bounds.size);
-        InteractionBounds = new(Data.bounds.center + Coords, Data.interactionBounds.size);
-        ConnectionBounds = new(Data.bounds.center + Coords, Data.connectionBounds.size);
+        Bounds = new(Data.bounds.center + Coords, Data.bounds.size);
+        InteractionBounds = new(Data.interactionBounds.center + Coords, Data.interactionBounds.size);
+        ConnectionBounds = new(Data.connectionBounds.center + Coords, Data.connectionBounds.size);
         UpdateCells(GetCellsInBounds(GetBounds()));
         BuildingManager.RegisterBuilding(this);
         PowerManager.instance.RegisterBuilding();

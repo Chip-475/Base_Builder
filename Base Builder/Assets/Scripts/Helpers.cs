@@ -105,25 +105,13 @@ public static class Helpers
         foreach (Cell cell in GetCellsInBounds(bounds))
         {
             if (cell == null)
-            {
-                Debug.Log("cella nulla");
                 return false;
-            }
-            if(!cell.canBuildOn)
-            {
-                Debug.Log("cella non buildabile");
+            if (!cell.canBuildOn)
                 return false;
-            }
             if (!WorldManager.World.HasCellAt(cell.Coords))
-            {
-                Debug.Log("cella fuori world");
                 return false;
-            }
-            if(cell == PlayerManager.Instance.GetPlayerCell())
-            {
-                Debug.Log("player sopra");
+            if (cell == PlayerManager.Instance.GetPlayerCell())
                 return false;
-            }
         }
 
         return true;
