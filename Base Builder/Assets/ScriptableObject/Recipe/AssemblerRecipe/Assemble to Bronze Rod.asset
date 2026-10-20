@@ -16,7 +16,11 @@ MonoBehaviour:
   Name: Bronze Rod
   Desc: 
   Sprite: {fileID: 0}
-  inputs: []
-  outputs: []
-  completionTime: 0
-  energyCost: 0
+  inputs:
+  - key: {fileID: 11400000, guid: 02126ec745c8dee41b0072d5a038ffda, type: 2}
+    value: 1
+  outputs:
+  - key: {fileID: 11400000, guid: cb83a0928ac067e4e9f7fe4b1934573e, type: 2}
+    value: 3
+  completionTime: 3
+  energyCost: 1

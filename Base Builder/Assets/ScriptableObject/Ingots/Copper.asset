@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Copper
   m_EditorClassIdentifier: Assembly-CSharp::Resources
-  Name: 
+  Name: Copper
   Desc: 
   Sprite: {fileID: -8911606324414404349, guid: 7dc09831611dceb45a7d621063a1a1d8, type: 3}
-  toughness: 1
   weightPerUnit: 1
-  energyPerUnit: 0
+  toughness: 1
+  timeToMine: 1
+  fuelValue: 0
+  timeToConsume: 1

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Assemble to Insulator
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
   <ID>k__BackingField: 
-  Name: Insulator
+  Name: WIP Insulator
   Desc: 
   Sprite: {fileID: 0}
   inputs: []

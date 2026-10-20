@@ -16,7 +16,11 @@ MonoBehaviour:
   Name: big pcb
   Desc: 
   Sprite: {fileID: 0}
-  inputs: []
+  inputs:
+  - key: {fileID: 0}
+    value: 0
+  - key: {fileID: 0}
+    value: 0
   outputs: []
   completionTime: 0
   energyCost: 0
