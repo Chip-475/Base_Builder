@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1930e33686e0fe343a20ec312785cbc4, type: 3}
-  m_Name: Alloy Smelting to Steel
-  m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
-  <ID>k__BackingField: 
-  Name: ' Steel'
+  m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
+  m_Name: Bronze Plate
+  m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
+  Name: 
   Desc: 
   Sprite: {fileID: 0}
-  inputs: []
-  outputs: []
-  completionTime: 0
-  energyCost: 0
+  weightPerUnit: 1
+  toughness: 1
+  timeToMine: 1
+  fuelValue: 0
+  timeToConsume: 1

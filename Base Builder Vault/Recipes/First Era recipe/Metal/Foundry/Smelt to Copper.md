@@ -1,5 +1,5 @@
 ___
 input:
-xx Malachite
+1 [[Malachite]]
 output:
-xx Copper
+1 [[Copper]]
