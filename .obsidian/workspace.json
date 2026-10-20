@@ -1,0 +1,220 @@
+{
+  "main": {
+    "id": "5fc36f094760623b",
+    "type": "split",
+    "children": [
+      {
+        "id": "7f8c558b48b631e1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "39362ecabcb27e1a",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Base Builder Vault/Resources/Alloys/Bronze.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Bronze"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "c21fdb453b5a1750",
+    "type": "split",
+    "children": [
+      {
+        "id": "210421efb5bdcbea",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "40e9ee8dcefcdc58",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Esplora file"
+            }
+          },
+          {
+            "id": "3e7f538dea6f8543",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Ricerca"
+            }
+          },
+          {
+            "id": "0f5701134aa0ba79",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "Segnalibri"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "4c578b778152076d",
+    "type": "split",
+    "children": [
+      {
+        "id": "1247cd42c633e26f",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e9c9acbd9a743b19",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Base Builder Vault/Resources/Alloys/Bronze.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Riferimenti"
+            }
+          },
+          {
+            "id": "9891086eda07b679",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Base Builder Vault/Resources/Alloys/Bronze.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Collegamenti in uscita"
+            }
+          },
+          {
+            "id": "aa209f4fcea3ab8c",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Etichette"
+            }
+          },
+          {
+            "id": "83742aeae7af3d37",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "Tutte le proprietà"
+            }
+          },
+          {
+            "id": "248953250983b1c3",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Base Builder Vault/Resources/Alloys/Bronze.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Struttura"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Apri selettore rapido": false,
+      "graph:Apri vista grafo": false,
+      "canvas:Crea nuova lavagna": false,
+      "daily-notes:Apri nota giornaliera": false,
+      "templates:Inserisci modello": false,
+      "command-palette:Apri riquadro comandi": false,
+      "bases:Crea nuova Base": false
+    }
+  },
+  "active": "39362ecabcb27e1a",
+  "lastOpenFiles": [
+    "powerSystem.png",
+    "Base Builder Vault/Spaceship.md",
+    "Base Builder Vault/Resources/Raw/Malachite.md",
+    "Base Builder Vault/Buildings/Power System/Generator mk1.md",
+    "Base Builder Vault/Bots/Bots.md",
+    "Base Builder Vault/Resources/Resources.md",
+    "Base Builder Vault/Art Bible.md",
+    "Base Builder Vault/Demo Scope.md",
+    "Base Builder Vault/Docs.md",
+    "Base Builder Vault/explorer-order.md",
+    "README.md",
+    "waypoint.png",
+    "coal.png",
+    "buildMode.png",
+    "bb.png",
+    "Base Builder Vault/Buildings/Machines/Machines.md",
+    "Base Builder Vault/Buildings/Machines/Furnace mk1.md",
+    "Base Builder Vault/Buildings/Machines/Coal Furnace.md",
+    "Base Builder Vault/Buildings/Machines/Assembler.md",
+    "Base Builder Vault/Buildings/Machines/Alloy Furnace.md",
+    "Base Builder Vault/Buildings/Machines/Advanced Assembler.md",
+    "Base Builder Vault/Buildings/Logistic/Storage.md",
+    "Base Builder Vault/Buildings/Logistic/Charging station.md",
+    "Base Builder Vault/World.md",
+    "Base Builder Vault/Progression.md",
+    "Base Builder Vault/General.md"
+  ]
+}
