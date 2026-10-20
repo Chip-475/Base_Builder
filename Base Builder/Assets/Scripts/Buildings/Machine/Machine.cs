@@ -1,5 +1,6 @@
 using Cysharp.Threading.Tasks;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -71,37 +72,37 @@ public class Machine : Building, IInteractable, IWorkplace
     }
     public bool CanInteractWith()
     {
-        var cells = GetCellsInBounds(Data.interactionBounds);
+        var cells = GetCellsInBounds(InteractionBounds);
         foreach (var item in cells)
             if (item == PlayerManager.Instance.GetPlayerCell()) return true;
 
         return false;
     }
-    
-    // IWorkplace
-    public RecipeSO Work(RecipeSO recipe, Bot bot)
-    {
-        if (!CanWork(recipe, bot))
-            return null;
-        if (!HasRequiredItems(recipe, bot))
-            return null;
 
-        return recipe;
-    }
-    public bool CanWork(RecipeSO recipe, Bot bot)
+    // IWorkplace
+    public IEnumerator Work(BotManager.WorkRequest request)
     {
-        if (bot.Type != BotType.Worker)
+        if (!CanWork(request))
+            yield break;
+
+        yield return new WaitForSeconds(request.recipe.completionTime);
+        foreach (var kvp in request.recipe.outputs)
+            request.bot.Inventory.AddItem(kvp.Key, kvp.Value);
+    }
+    public bool CanWork(BotManager.WorkRequest request)
+    {
+        if (request.bot.Type != BotType.Worker)
             return false;
 
         return true;
     }
-    public bool HasRequiredItems(RecipeSO recipe, Bot bot)
+    public bool HasRequiredItems(BotManager.WorkRequest request)
     {
-        foreach (var kvp in recipe.inputs)
+        foreach (var kvp in request.recipe.inputs)
         {
-            if (!bot.Inventory.Items.ContainsKey(kvp.Key))
+            if (!request.bot.Inventory.Items.ContainsKey(kvp.Key))
                 return false;
-            if (bot.Inventory.Items[kvp.Key] < kvp.Value)
+            if (request.bot.Inventory.Items[kvp.Key] < kvp.Value)
                 return false;
         }
 

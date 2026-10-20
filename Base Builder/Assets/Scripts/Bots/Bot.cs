@@ -1,29 +1,55 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
-public enum BotType
-{
-    None,
-    Miner,
-    Carrier,
-    Worker,
-    Builder,
-    Specialist
-}
 [Serializable]
 public class Bot : IInteractable
 {
+    public class BotConfig
+    {
+        public BotConfig() => Standardize();
+        public static Transform baseSpawnPoint;
+
+        public string id = "";
+        public Vector3 coords = baseSpawnPoint.position;
+        public string name = "";
+        public const float maxPower = 100;
+        public float power = 0;
+        public int maxWeight = 15;
+
+        public void Standardize()
+        {
+            if(string.IsNullOrEmpty(id))
+                id = new GUID().ToString();
+
+            // coords
+
+            if (string.IsNullOrEmpty(name))
+                name = PickRandomName();
+
+            if (power == 0)
+                power = 20;
+        }
+
+        public string PickRandomName()
+        {
+            string[] names_1 = { "Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "Hotel", "India", "Juliett" };
+            string[] names_2 = { "Leader", "Keeper", "Pioneer", "Witcher", "Diver", "Bomber", "Rancher", "Taker", "Dispatcher", "Trickster" };
+            return names_1[UnityEngine.Random.Range(0, names_1.Length)] + " " + names_2[UnityEngine.Random.Range(0, names_2.Length)];
+        }
+    }
+
     public BotView BotView { get; protected set; }
     public BotData BotData { get; protected set; }
-    public BotType Type { get; protected set; } = BotType.None;
 
     [Header("Runtime Data")]
     public string Id { get; protected set; }
     public Vector3 Coords { get; protected set; }
     public string Name { get; protected set; }
     public float Power { get; protected set; }
-    public int CarryCapacity { get; protected set; }
+    public int MaxWeight { get; protected set; }
+    // ---
     public BotInventory Inventory { get; protected set; }
     public Bounds InteractionBounds { get; set; } = new();
     public bool PickedUp { get; protected set; }
@@ -31,37 +57,28 @@ public class Bot : IInteractable
     public Machine WorkingAt { get; set; }
     public int MiningLevel { get; protected set; }
 
-    [Header("Intefaces")]
+    [Header("Interfaces")]
     public Vector3 Position => BotView.transform.position;
     public Cell[] InteractionCells => Helpers.GetCellsInBounds(InteractionBounds);
 
-    public Bot(BotView view, BotData data, string id = null, Vector3? coords = null, string name = null, float power = 100)
+    public Bot(BotView view, BotData data, BotConfig config)
     {
         BotView = view;
         BotData = data;
-        Type = data.type;
 
-        // Self
-        Id = id ?? Guid.NewGuid().ToString();
-        Coords = coords ?? Vector3.zero;
-        Name = name ?? PickRandomName();
-        Power = power;
-        CarryCapacity = data.carryCapacity;
+        // Config
+        Id = config.id;
+        Coords = config.coords;
+        Name = config.name;
+        Power = config.power;
+        MaxWeight = data.carryCapacity;
+
         Inventory = new BotInventory(data.carryCapacity);
-        
-        // View
         BotView.name = Name;
 
-        // ID
+        // Initiation
         BotManager.RegisterBot(this);
         InteractionManager.Instance.interactables.Add(this);
-    }
-
-    string PickRandomName()
-    {
-        string[] names_1 = { "Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "Hotel", "India", "Juliett" };
-        string[] names_2 = { "Leader", "Keeper", "Pioneer", "Witcher", "Diver", "Bomber", "Rancher", "Taker", "Dispatcher", "Trickster" };
-        return names_1[UnityEngine.Random.Range(0, names_1.Length)] + " " + names_2[UnityEngine.Random.Range(0, names_2.Length)];
     }
 
     public bool CanInteractWith()

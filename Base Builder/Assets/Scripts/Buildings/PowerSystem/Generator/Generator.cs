@@ -81,29 +81,29 @@ public class Generator : Building, IInteractable, IWorkplace
 
     // IWorkplace
     /// <summary> MUST have only 1 input and 0 outputs. </summary>
-    public RecipeSO Work(RecipeSO recipe, Bot bot)
+    public IEnumerator Work(BotManager.WorkRequest request)
     {
-        if (!CanWork(recipe, bot))
-            return null;
+        if (!CanWork(request))
+            yield break;
 
-        return recipe;
+        yield return new WaitForSeconds(request.recipe.completionTime);
     }
     /// <summary> MUST have only 1 input and 0 outputs. </summary>
-    public bool CanWork(RecipeSO recipe, Bot bot)
+    public bool CanWork(BotManager.WorkRequest request)
     {
-        if (bot.Type == BotType.Carrier)
+        if (request.bot.Type == BotType.Carrier)
             return false;
 
         return false;
     }
     /// <summary> MUST have only 1 input and 0 outputs. </summary>
-    public bool HasRequiredItems(RecipeSO recipe, Bot bot)
+    public bool HasRequiredItems(BotManager.WorkRequest request)
     {
-        foreach (var kvp in recipe.inputs)
+        foreach (var kvp in request.recipe.inputs)
         {
-            if (!bot.Inventory.Items.ContainsKey(kvp.Key))
+            if (!request.bot.Inventory.Items.ContainsKey(kvp.Key))
                 return false;
-            if (bot.Inventory.Items[kvp.Key] < kvp.Value)
+            if (request.bot.Inventory.Items[kvp.Key] < kvp.Value)
                 return false;
         }
 

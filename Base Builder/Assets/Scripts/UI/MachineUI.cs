@@ -67,8 +67,12 @@ public class MachineUI : MonoBehaviour
     {
         WipeBotList();
 
-        foreach (Bot bot in BotManager.Bots)
+        List<Bot> workers = new(BotManager.Bots);
+        workers.Sort((a, b) => a.Occupied.CompareTo(b.Occupied));
+        foreach (Bot bot in workers)
         {
+            if (bot.Type != BotType.Worker)
+                continue;
             BuildingBotEntry go = Instantiate(botEntryPrefab, botListContent.transform);
             go.Initialize(bot);
         }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 public class BotManager : MonoBehaviour
@@ -52,7 +53,7 @@ public class BotManager : MonoBehaviour
         Bots.Remove(bot);
     }
 
-    public static IEnumerator ProcessRequest(WorkRequest request)
+    public IEnumerator ProcessRequest(WorkRequest request)
     {
         if (!IsRequestValid(request))
         {
@@ -60,25 +61,59 @@ public class BotManager : MonoBehaviour
             yield break;
         }
 
-        if(!request.iWorkplace.HasRequiredItems(request.recipe, request.bot))
+        if(!request.iWorkplace.HasRequiredItems(request))
         {
+            foreach (var kvp in request.recipe.inputs)
+            {
+                if (!Depot.Inventory.Items.ContainsKey(kvp.Key))
+                    yield break;
+                if (Depot.Inventory.Items[kvp.Key] < kvp.Value)
+                    yield break;
+            }
 
+            yield return StartCoroutine(Fetch(request));
         }
-        else
-        {
-            request.bot.Occupied = true;
 
-            request.bot.BotView.SetDestination(request.building.SceneObj.BotWorkPoint.transform.position.ToVector3Int());
-            request.bot.BotView.StartMoving();
-            yield return new WaitUntil(() => Vector3.Distance(
-                request.bot.BotView.transform.position,
-                request.building.SceneObj.transform.position) < 0.05f);
-            request.iWorkplace.Work(request.recipe, request.bot);
-
-            request.bot.Occupied = false;
-        }
+        yield return StartCoroutine(Work(request));
     }
-    public static bool IsRequestValid(WorkRequest request)
+    public IEnumerator Work(WorkRequest request)
+    {
+        request.bot.Occupied = true;
+
+        request.bot.BotView.SetDestination(request.building.SceneObj.BotWorkPoint.transform.position.ToVector3Int());
+        request.bot.BotView.StartMoving();
+        yield return new WaitUntil(() => Vector3.Distance(
+            request.bot.BotView.transform.position,
+            request.building.SceneObj.transform.position) < 0.05f);
+        StartCoroutine(request.iWorkplace.Work(request));
+        yield return new WaitForSeconds(request.recipe.completionTime);
+
+        request.bot.Occupied = false;
+    }
+    public IEnumerator Fetch(WorkRequest request)
+    {
+        request.bot.Occupied = true;
+
+        request.bot.BotView.SetDestination(
+            BuildingManager.GetClosestAvailableBuilding(
+                request.bot.Coords.ToVector3Int(),
+                typeof(Building)).SceneObj.BotWorkPoint.transform.position.ToVector3Int());
+
+        request.bot.BotView.StartMoving();
+        yield return new WaitUntil(() => Vector3.Distance(
+            request.bot.BotView.transform.position,
+            request.building.SceneObj.transform.position) < 0.05f);
+        
+        foreach (var kvp in request.recipe.inputs)
+        {
+            Depot.Inventory.Remove(kvp.Key, kvp.Value);
+            request.bot.Inventory.AddItem(kvp.Key, kvp.Value);
+        }
+
+        request.bot.Occupied = false;
+    }
+
+    public bool IsRequestValid(WorkRequest request)
     {
         Pathfinder.Pathfind(request.bot.Coords.ToVector3Int(), request.building.SceneObj.BotWorkPoint.transform.position.ToVector3Int(), out List<Vector3Int> path);
 
@@ -97,9 +132,10 @@ public class BotManager : MonoBehaviour
             Debug.Log("Cannot pathfind to target location.");
             return false;
         }
-        
+
         return true;
     }
+
 
     public static Bot GetClosestAvailableBot(Building building)
     {

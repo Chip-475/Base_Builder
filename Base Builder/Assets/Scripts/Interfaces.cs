@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public interface IInteractable
 {
@@ -7,9 +8,14 @@ public interface IInteractable
     public void Interact();
     public bool CanInteractWith();
 }
+
+public interface IWorker
+{
+    public IWorkplace Workplace { get; set; }
+}
 public interface IWorkplace
 {
-    public RecipeSO Work(RecipeSO recipe, Bot bot);
-    public bool CanWork(RecipeSO recipe, Bot bot);
-    public bool HasRequiredItems(RecipeSO recipe, Bot bot);
+    public IEnumerator Work(BotManager.WorkRequest request);
+    public bool CanWork(BotManager.WorkRequest request);
+    public bool HasRequiredItems(BotManager.WorkRequest request);
 }
