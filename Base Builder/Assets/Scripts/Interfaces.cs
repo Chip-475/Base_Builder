@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public interface IInteractable
 {
@@ -9,13 +10,18 @@ public interface IInteractable
     public bool CanInteractWith();
 }
 
+// Work needs worker, workplace and what it needs to do
+// What it needs to do can be expressed as:
+// - Dictionary of resource to int amount as input
+// - Dictionary of resource to int amount as output
 public interface IWorker
 {
-    public IWorkplace Workplace { get; set; }
+    public Bot GetBot();
+    public bool CanPerform(Bot.WorkTask task);
+    public void Perform(Bot.WorkTask task);
+    public bool Fail(Bot.WorkTask task, string reason);
 }
 public interface IWorkplace
 {
-    public IEnumerator Work(BotManager.WorkRequest request);
-    public bool CanWork(BotManager.WorkRequest request);
-    public bool HasRequiredItems(BotManager.WorkRequest request);
+    public Building GetBuilding();
 }

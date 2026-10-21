@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 [Serializable]
-public class Bot : IInteractable
+public abstract class Bot : IWorker, IInteractable
 {
     public class BotConfig
     {
@@ -37,6 +37,23 @@ public class Bot : IInteractable
             string[] names_1 = { "Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "Hotel", "India", "Juliett" };
             string[] names_2 = { "Leader", "Keeper", "Pioneer", "Witcher", "Diver", "Bomber", "Rancher", "Taker", "Dispatcher", "Trickster" };
             return names_1[UnityEngine.Random.Range(0, names_1.Length)] + " " + names_2[UnityEngine.Random.Range(0, names_2.Length)];
+        }
+    }
+    /// <summary>
+    /// Always call Standardize() when creating.
+    /// </summary>
+    public struct WorkTask
+    {
+        public IWorker Worker { get; set; }
+        public IWorkplace Workplace { get; set; }
+        public RecipeSO Recipe { get; set; }
+        public Dictionary<ResourceSO, int> Inputs { get; set; }
+        public Dictionary<ResourceSO, int> Output { get; set; }
+
+        public void Standardize()
+        {
+            Inputs = new(Recipe != null ? Recipe.inputs : null);
+            Output = new(Recipe != null ? Recipe.outputs : null);
         }
     }
 
@@ -72,7 +89,7 @@ public class Bot : IInteractable
         Name = config.name;
         Power = config.power;
         MaxWeight = data.carryCapacity;
-
+        // ---
         Inventory = new BotInventory(data.carryCapacity);
         BotView.name = Name;
 
@@ -81,10 +98,13 @@ public class Bot : IInteractable
         InteractionManager.Instance.interactables.Add(this);
     }
 
-    public bool CanInteractWith()
-    {
-        throw new NotImplementedException();
-    }
+    // IWorker
+    public Bot GetBot() { return this; }
+    public abstract bool CanPerform(WorkTask task);
+    public abstract void Perform(WorkTask task);
+    public abstract bool Fail(WorkTask task, string reason);
+
+    // IInteractable
     public void Interact()
     {
         if (!PickedUp)
@@ -103,6 +123,10 @@ public class Bot : IInteractable
             PickedUp = false;
             PlayerManager.Instance.IsCarryingBot = false;
         }
+    }
+    public bool CanInteractWith()
+    {
+        throw new NotImplementedException();
     }
 
     public class BotInventory

@@ -12,6 +12,7 @@ public abstract class Building
     public Bounds InteractionBounds {  get; set; }
     public NetworkManager Network;
     public bool Occupied { get; set; }
+    public bool IsConnected => Network != null;
 
     public Building(BuildingData data, BuildingView sceneObj)
     {
