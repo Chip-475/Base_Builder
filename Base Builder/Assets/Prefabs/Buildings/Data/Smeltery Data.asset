@@ -29,5 +29,5 @@ MonoBehaviour:
   blocksWalking: 1
   blocksPlacing: 1
   usableRecipes:
-  - {fileID: 11400000, guid: c3c17b313190684458fe68e7f36816af, type: 2}
-  - {fileID: 11400000, guid: 8da9b5e57e3c97e4aa120909f7e9b9ca, type: 2}
+  - {fileID: 11400000, guid: 6e5420020047dd14e8134d17a87f8f53, type: 2}
+  - {fileID: 11400000, guid: 836ecaedf80c6d6439425be2762c435a, type: 2}
