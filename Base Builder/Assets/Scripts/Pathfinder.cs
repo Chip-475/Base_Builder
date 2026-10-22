@@ -19,6 +19,11 @@ public static class Pathfinder
         }
     }
 
+    public static bool CanPathfind(Vector3Int start, Vector3Int goal)
+    {
+        Pathfind(start, goal, out List<Vector3Int> path);
+        return path.Count != 0;
+    }
     public static void Pathfind(Vector3Int start, Vector3Int goal, out List<Vector3Int> path)
     {
         path = new();
@@ -116,23 +121,5 @@ public static class Pathfinder
         path.Add(start.Coords);
         path.Reverse();
         return path;
-    }
-    public static void pathfindAdiacente(Vector3Int start, Vector3Int obb, out List<Vector3Int> path)
-    {
-        path = new List<Vector3Int>();
-        Cell obbCell = WorldManager.World.GetCellAt(obb);
-        if (obbCell == null) return;
-        if (obbCell.canWalkOn)
-        {
-            Pathfind(start, obb, out path);
-            return;
-        }
-        foreach(var i in obbCell.GetNeighbours())
-        {
-            if(!i.canWalkOn) continue;
-            Pathfind(start, i.Coords, out List<Vector3Int> candidati);
-            if (candidati.Count == 0) continue;
-            if (path.Count == 0 || candidati.Count < path.Count) path = candidati;
-        }    
     }
 }

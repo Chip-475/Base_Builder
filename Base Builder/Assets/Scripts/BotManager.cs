@@ -47,8 +47,8 @@ public class BotManager : MonoBehaviour
         Bot closest = bots[0];
         foreach (Bot bot in bots)
         {
-            float closestDis = Vector3.Distance(closest.BotView.transform.position, building.SceneObj.transform.position);
-            float nextDis = Vector3.Distance(bot.BotView.transform.position, building.SceneObj.transform.position);
+            float closestDis = Vector3.Distance(closest.SceneObj.transform.position, building.SceneObj.transform.position);
+            float nextDis = Vector3.Distance(bot.SceneObj.transform.position, building.SceneObj.transform.position);
 
             if(nextDis < closestDis)
                 closest = bot;

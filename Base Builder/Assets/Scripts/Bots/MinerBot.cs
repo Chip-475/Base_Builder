@@ -1,30 +1,64 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class MinerBot : Bot
 {
+    public MineralNode Node { get; set; }
+    public Building Crate { get; set; } // To change to Crate once it is created
+
     public MinerBot(BotView view, BotData data, BotConfig config) : base(view, data, config)
     {
     }
 
     // IWorker
-    public override bool CanPerform(WorkTask task)
+    public override IEnumerator Pipeline()
     {
-        if (task.Workplace.GetBuilding() is not MineralNode workplace)
-            return Fail(task, "Workplace is not a MineralNode.");
-        Pathfinder.Pathfind(task.Worker.GetBot().Coords.ToVector3Int(), workplace.SceneObj.BotWorkPoint.position.ToVector3Int(), out List<Vector3Int> path)
-        if (path.Count == 0)
-            return Fail(task, "Cannot pathfind to workplace.");
-        // inventory check
+        Dictionary<ResourceSO, int> workOutput = Node.GetWorkOutputs();
 
-        return true;
-    }
-    public override void Perform(WorkTask task)
-    {
-        throw new System.NotImplementedException();
-    }
-    public override bool Fail(WorkTask task, string reason)
-    {
-        throw new System.NotImplementedException();
+        while (true)
+        {
+            if (!Pathfinder.CanPathfind(Coords.ToVector3Int(), Node.Coords))
+                Fail("Cannot pathfind to node.");
+            if (!Pathfinder.CanPathfind(Coords.ToVector3Int(), Crate.Coords))
+                Fail("Cannot pathfind to crate.");
+
+            if (Inventory.IsEmpty)
+            {
+                if (IsInWorkRange(Node))
+                {
+                    // Work
+                    continue;
+                }
+                else
+                {
+                    // Move towards Node
+                    continue;
+                }
+            }
+            else
+            {
+                if (Crate.CanAddItems())
+                {
+                    if (IsInWorkRange(Crate))
+                    {
+                        Crate.AddItems(Inventory.Items);
+                        Inventory.Items.Clear();
+                        continue;
+                    }
+                    else
+                    {
+                        // Move towards Crate
+                        continue;
+                    }
+                }
+                else
+                {
+                    Fail("Crate cannot accomodate items.");
+                }
+            }
+        }
     }
 }

@@ -17,11 +17,14 @@ public interface IInteractable
 public interface IWorker
 {
     public Bot GetBot();
-    public bool CanPerform(Bot.WorkTask task);
-    public void Perform(Bot.WorkTask task);
-    public bool Fail(Bot.WorkTask task, string reason);
+    public IEnumerator Pipeline();
+    public void Fail(string reason);
+
+    public bool IsWorking { get; }
+    public Coroutine WorkRoutine { get; }
 }
 public interface IWorkplace
 {
     public Building GetBuilding();
+    public Dictionary<ResourceSO, int> GetWorkOutputs();
 }

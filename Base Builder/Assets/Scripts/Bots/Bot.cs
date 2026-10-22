@@ -1,7 +1,9 @@
-using UnityEngine;
+using Mono.Cecil;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using UnityEngine;
 
 [Serializable]
 public abstract class Bot : IWorker, IInteractable
@@ -39,27 +41,10 @@ public abstract class Bot : IWorker, IInteractable
             return names_1[UnityEngine.Random.Range(0, names_1.Length)] + " " + names_2[UnityEngine.Random.Range(0, names_2.Length)];
         }
     }
-    /// <summary>
-    /// Always call Standardize() when creating.
-    /// </summary>
-    public struct WorkTask
-    {
-        public IWorker Worker { get; set; }
-        public IWorkplace Workplace { get; set; }
-        public RecipeSO Recipe { get; set; }
-        public Dictionary<ResourceSO, int> Inputs { get; set; }
-        public Dictionary<ResourceSO, int> Output { get; set; }
 
-        public void Standardize()
-        {
-            Inputs = new(Recipe != null ? Recipe.inputs : null);
-            Output = new(Recipe != null ? Recipe.outputs : null);
-        }
-    }
-
-    public BotView BotView { get; protected set; }
-    public BotData BotData { get; protected set; }
-
+    public BotData Data { get; protected set; }
+    public BotView SceneObj { get; protected set; }
+  
     [Header("Runtime Data")]
     public string Id { get; protected set; }
     public Vector3 Coords { get; protected set; }
@@ -74,14 +59,18 @@ public abstract class Bot : IWorker, IInteractable
     public Machine WorkingAt { get; set; }
     public int MiningLevel { get; protected set; }
 
-    [Header("Interfaces")]
-    public Vector3 Position => BotView.transform.position;
+    [Header("IWorker")]
+    public bool IsWorking { get; protected set; }
+    public Coroutine WorkRoutine { get; protected set; }
+
+    [Header("IInteractable")]
+    public Vector3 Position => SceneObj.transform.position;
     public Cell[] InteractionCells => Helpers.GetCellsInBounds(InteractionBounds);
 
     public Bot(BotView view, BotData data, BotConfig config)
     {
-        BotView = view;
-        BotData = data;
+        SceneObj = view;
+        Data = data;
 
         // Config
         Id = config.id;
@@ -91,26 +80,34 @@ public abstract class Bot : IWorker, IInteractable
         MaxWeight = data.carryCapacity;
         // ---
         Inventory = new BotInventory(data.carryCapacity);
-        BotView.name = Name;
+        SceneObj.name = Name;
 
         // Initiation
         BotManager.RegisterBot(this);
         InteractionManager.Instance.interactables.Add(this);
     }
 
-    // IWorker
+    // Work
     public Bot GetBot() { return this; }
-    public abstract bool CanPerform(WorkTask task);
-    public abstract void Perform(WorkTask task);
-    public abstract bool Fail(WorkTask task, string reason);
+    public abstract IEnumerator Pipeline();
+    public void Fail(string reason)
+    {
+        Debug.Log(reason);
+        SceneObj.StopCoroutine(WorkRoutine);
+    }
+
+    public bool IsInWorkRange(Building workplace)
+    {
+        return Vector3.Distance(Coords, workplace.SceneObj.BotWorkPoint.position) < 0.05f;
+    }
 
     // IInteractable
     public void Interact()
     {
         if (!PickedUp)
         {
-            BotView.transform.parent = PlayerManager.Instance.transform;
-            BotView.transform.SetPositionAndRotation(PlayerManager.Instance.botCarryPoint.position, Quaternion.Euler(0, 0, 90));
+            SceneObj.transform.parent = PlayerManager.Instance.transform;
+            SceneObj.transform.SetPositionAndRotation(PlayerManager.Instance.botCarryPoint.position, Quaternion.Euler(0, 0, 90));
             PickedUp = true;
             Occupied = false;
             WorkingAt = null;
@@ -118,8 +115,8 @@ public abstract class Bot : IWorker, IInteractable
         }
         else
         {
-            BotView.transform.parent = null;
-            BotView.transform.SetPositionAndRotation(PlayerManager.Instance.botDropPoint.position, Quaternion.Euler(0, 0, 0));
+            SceneObj.transform.parent = null;
+            SceneObj.transform.SetPositionAndRotation(PlayerManager.Instance.botDropPoint.position, Quaternion.Euler(0, 0, 0));
             PickedUp = false;
             PlayerManager.Instance.IsCarryingBot = false;
         }
@@ -133,6 +130,8 @@ public abstract class Bot : IWorker, IInteractable
     {
         public Dictionary<ResourceSO, int> Items { get; private set; } = new();
         public int MaxWeight { get; private set; }
+
+        public bool IsEmpty => Items.Count == 0;
 
         public BotInventory(BotInventory inv)
         {
@@ -154,12 +153,31 @@ public abstract class Bot : IWorker, IInteractable
 
             Items[resource] = Items.GetValueOrDefault(resource) + amount;
         }
+        public void AddItems(Dictionary<ResourceSO, int> mats)
+        {
+            if (!CanAddItems(mats))
+            {
+                Debug.Log("Cannot add items to inventory.");
+                return;
+            }    
+
+            foreach (var mat in mats)
+                AddItem(mat.Key, mat.Value);
+        }
         public bool CanAddItem(ResourceSO resource, int amount)
         {
             float requestWeight = resource.weightPerUnit * amount;
             float newWeight = requestWeight + GetWeight();
             if (newWeight > MaxWeight)
                 return false;
+
+            return true;
+        }
+        public bool CanAddItems(Dictionary<ResourceSO, int> mats)
+        {
+            foreach (var mat in mats)
+                if (!CanAddItem(mat.Key, mat.Value))
+                    return false;
 
             return true;
         }
@@ -173,6 +191,9 @@ public abstract class Bot : IWorker, IInteractable
             }
 
             Items[resource] = Items.GetValueOrDefault(resource) - amount;
+            if (Items[resource] == 0)
+                Items.Remove(resource);
+
             return new(resource, amount);
         }
         public bool CanRemoveItem(ResourceSO resource, int amount)
@@ -201,6 +222,20 @@ public abstract class Bot : IWorker, IInteractable
                     weight += kvp.Key.weightPerUnit * kvp.Value;
 
             return weight;
+        }
+        public bool Contains(Dictionary<ResourceSO, int> mats)
+        {
+            bool toReturn = true;
+
+            foreach (var mat in mats)
+            {
+                if (!Items.ContainsKey(mat.Key))
+                    toReturn = false;
+                if (Items[mat.Key] < mat.Value)
+                    toReturn = false;
+            }
+
+            return toReturn;
         }
     }
 }
