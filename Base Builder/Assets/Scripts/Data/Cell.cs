@@ -14,7 +14,7 @@ public class Cell
         protected set { type = value; }
     }
     public Building Building { get; set; }
-
+    public bool isPowered=false;
     public bool canWalkOn = true;
     public bool canBuildOn = true;
 

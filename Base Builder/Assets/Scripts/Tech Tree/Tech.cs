@@ -20,12 +20,29 @@ public class Tech : ScriptableObject
     public bool unlocked;
     [Space]
     public new string name;
+    public Sprite icona;
+    [SerializeField]
+    public List<costo> costoList=new List<costo>();
     [SerializeField] public Dictionary<ResourceSO, int> cost = new();
+
+    public void OnAfterDeserialize()
+    {
+        cost=new Dictionary<ResourceSO, int>();
+        foreach(costo voce in costoList)
+        {
+            cost[voce.res]=voce.quant;
+        }
+    }
 
     public void Unlock()
     {
         if (!IsUnlockable())
             return;
+
+        foreach(KeyValuePair<ResourceSO,int> voce in cost)
+        {
+            Depot.Inventory.Items[voce.Key]-=voce.Value;
+        }
 
         unlocked = true;
     }

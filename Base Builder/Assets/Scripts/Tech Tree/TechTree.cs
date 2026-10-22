@@ -7,14 +7,21 @@ public class TechTree
 
     public void Initialize()
     {
+        TechDB.Clear();
         Tech[] techAssets = Resources.LoadAll<Tech>("Tech");
         foreach (Tech tech in techAssets)
+        {
+            tech.unlocked=false;
             TechDB[tech.id] = tech;
+        }
+            
     }
     public void Load(Tech.SaveData[] saveData)
     {
         foreach(Tech.SaveData data in saveData)
-            TechDB[data.id].unlocked = data.unlocked;
+        {
+            if(TechDB.TryGetValue(data.id,out Tech tech))TechDB[data.id].unlocked = data.unlocked;
+        }
     }
 
     public bool IsTechUnlocked(string id)

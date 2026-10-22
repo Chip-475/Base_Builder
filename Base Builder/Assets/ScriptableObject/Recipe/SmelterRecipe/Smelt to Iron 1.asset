@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Smelt to Iron 1
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
   <ID>k__BackingField: 
-  Name: Smelt to Iron 1
+  Name: Iron
   Desc: 
   Sprite: {fileID: 0}
   inputs:
@@ -22,5 +22,5 @@ MonoBehaviour:
   outputs:
   - key: {fileID: 11400000, guid: f44b38d183a6d48409ecf1890b1f4cd8, type: 2}
     value: 1
-  completionTime: 0
-  energyCost: 0
+  completionTime: 7
+  energyCost: 1

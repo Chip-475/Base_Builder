@@ -16,7 +16,11 @@ MonoBehaviour:
   Name: copper wire
   Desc: 
   Sprite: {fileID: 0}
-  inputs: []
-  outputs: []
-  completionTime: 0
-  energyCost: 0
+  inputs:
+  - key: {fileID: 11400000, guid: d8291ed90a9a40d488355edab31852fc, type: 2}
+    value: 1
+  outputs:
+  - key: {fileID: 11400000, guid: 7e9a04e493d517648926644a9917a171, type: 2}
+    value: 2
+  completionTime: 2
+  energyCost: 1

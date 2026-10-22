@@ -9,6 +9,13 @@ public class TechTreeEntry : MonoBehaviour
     
     private void Start()
     {
+        if(tech==null)
+        {
+            Debug.Log("tech null problema");
+            enabled=false;
+            return;
+        }
+        if(icon!=null)icon.sprite=tech.icona;
         button.onClick.AddListener(() => tech.Unlock());
     }
     private void Update()

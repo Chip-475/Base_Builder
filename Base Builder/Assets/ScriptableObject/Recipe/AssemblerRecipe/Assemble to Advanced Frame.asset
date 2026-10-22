@@ -16,7 +16,13 @@ MonoBehaviour:
   Name: Advanced Frame
   Desc: 
   Sprite: {fileID: 0}
-  inputs: []
-  outputs: []
-  completionTime: 0
-  energyCost: 0
+  inputs:
+  - key: {fileID: 11400000, guid: 3253d5026f77f624e8123392986645b4, type: 2}
+    value: 1
+  - key: {fileID: 11400000, guid: 221efdb17276688478b286a17e1fa32d, type: 2}
+    value: 2
+  outputs:
+  - key: {fileID: 11400000, guid: 4b42c168ea98b314983b3b1ce80fa64e, type: 2}
+    value: 1
+  completionTime: 10
+  energyCost: 2
