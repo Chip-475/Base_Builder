@@ -21,6 +21,6 @@ public class BuildingBotEntry : MonoBehaviour
         icon.sprite = bot.Data.sprite;
         nameText.text = bot.Name;
 
-        button.onClick.AddListener(() => BotManager.Instance.ProcessRequest(new(bot, MachineUI.Instance.Machine, MachineUI.Instance.selectedRecipeEntry.recipe)));
+        // to add listener to button
     }
 }

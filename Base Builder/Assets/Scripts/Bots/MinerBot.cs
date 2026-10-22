@@ -7,7 +7,7 @@ using UnityEngine;
 public class MinerBot : Bot
 {
     public MineralNode Node { get; set; }
-    public Building Crate { get; set; } // To change to Crate once it is created
+    public MineralCrate Crate { get; set; } // To change to Crate once it is created
 
     public MinerBot(BotView view, BotData data, BotConfig config) : base(view, data, config)
     {
@@ -30,27 +30,33 @@ public class MinerBot : Bot
                 if (IsInWorkRange(Node))
                 {
                     // Work
+                    yield return null;
                     continue;
                 }
                 else
                 {
-                    // Move towards Node
+                    SetDestination(Node.Coords);
+                    MoveTowardsDestination();
+                    yield return null;
                     continue;
                 }
             }
             else
             {
-                if (Crate.CanAddItems())
+                if (Crate.CanAddItems(workOutput))
                 {
                     if (IsInWorkRange(Crate))
                     {
                         Crate.AddItems(Inventory.Items);
                         Inventory.Items.Clear();
+                        yield return null;
                         continue;
                     }
                     else
                     {
-                        // Move towards Crate
+                        SetDestination(Crate.Coords);
+                        MoveTowardsDestination();
+                        yield return null;
                         continue;
                     }
                 }
@@ -59,6 +65,8 @@ public class MinerBot : Bot
                     Fail("Crate cannot accomodate items.");
                 }
             }
+
+            yield return null;
         }
     }
 }

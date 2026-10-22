@@ -79,34 +79,10 @@ public class Machine : Building, IInteractable, IWorkplace
         return false;
     }
 
-    // IWorkplace
-    public IEnumerator Work(BotManager.WorkRequest request)
+    // Work
+    public override Dictionary<ResourceSO, int> GetWorkOutputs()
     {
-        if (!CanWork(request))
-            yield break;
-
-        yield return new WaitForSeconds(request.recipe.completionTime);
-        foreach (var kvp in request.recipe.outputs)
-            request.bot.Inventory.AddItem(kvp.Key, kvp.Value);
-    }
-    public bool CanWork(BotManager.WorkRequest request)
-    {
-        if (request.bot.Type != BotType.Worker)
-            return false;
-
-        return true;
-    }
-    public bool HasRequiredItems(BotManager.WorkRequest request)
-    {
-        foreach (var kvp in request.recipe.inputs)
-        {
-            if (!request.bot.Inventory.Items.ContainsKey(kvp.Key))
-                return false;
-            if (request.bot.Inventory.Items[kvp.Key] < kvp.Value)
-                return false;
-        }
-
-        return true;
+        throw new NotImplementedException();
     }
 }
 public enum MachineType

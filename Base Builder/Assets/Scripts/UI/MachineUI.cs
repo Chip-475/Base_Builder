@@ -71,7 +71,7 @@ public class MachineUI : MonoBehaviour
         workers.Sort((a, b) => a.Occupied.CompareTo(b.Occupied));
         foreach (Bot bot in workers)
         {
-            if (bot.Type != BotType.Worker)
+            if (bot is not WorkerBot)
                 continue;
             BuildingBotEntry go = Instantiate(botEntryPrefab, botListContent.transform);
             go.Initialize(bot);

@@ -9,23 +9,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daa9b0d2bfec3d146aec9f104666aaf4, type: 3}
-  m_Name: alloyFurnace
-  m_EditorClassIdentifier: Assembly-CSharp::MachineData
-  name: Alloy Furnace
-  description: ...
-  sprite: {fileID: 0}
-  type: 1
+  m_Script: {fileID: 11500000, guid: aea066afeca49cc47a03e80cbdc5133e, type: 3}
+  m_Name: Pyrite Node
+  m_EditorClassIdentifier: Assembly-CSharp::MineralNodeData
+  name: 
+  description: 
+  sprite: {fileID: -3805855729511957650, guid: ab5f72b3897cd2448a8cc20183a21666, type: 3}
+  type: 2
   bounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 1.5, y: 1.5, z: 0}
   interactionBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   connectionBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
+  workRange: 0.1
   connectsToPower: 0
-  blocksWalking: 1
+  blocksWalking: 0
   blocksPlacing: 1
-  usableRecipes: []
+  resource: {fileID: 11400000, guid: 26ceadd0129b8474789f0131ab6a6737, type: 2}
+  baseAmountGiven: 1
+  purity: 1
+  timeToMine: 4

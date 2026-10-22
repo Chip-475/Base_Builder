@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Generator : Building, IInteractable, IWorkplace
+public class Generator : Building, IInteractable
 {
     public new GeneratorData Data => base.Data as GeneratorData;
     public new GeneratorView SceneObj => base.SceneObj as GeneratorView;
@@ -61,6 +61,9 @@ public class Generator : Building, IInteractable, IWorkplace
         consumer = SceneObj.StartCoroutine(ConsumeFuel(fuel));
     }
 
+    // Work
+    public override Dictionary<ResourceSO, int> GetWorkOutputs() => null;
+
     // IInteractable
     public void Interact()
     {
@@ -77,36 +80,5 @@ public class Generator : Building, IInteractable, IWorkplace
             if (item == PlayerManager.Instance.GetPlayerCell()) return true;
 
         return false;
-    }
-
-    // IWorkplace
-    /// <summary> MUST have only 1 input and 0 outputs. </summary>
-    public IEnumerator Work(BotManager.WorkRequest request)
-    {
-        if (!CanWork(request))
-            yield break;
-
-        yield return new WaitForSeconds(request.recipe.completionTime);
-    }
-    /// <summary> MUST have only 1 input and 0 outputs. </summary>
-    public bool CanWork(BotManager.WorkRequest request)
-    {
-        if (request.bot.Type == BotType.Carrier)
-            return false;
-
-        return false;
-    }
-    /// <summary> MUST have only 1 input and 0 outputs. </summary>
-    public bool HasRequiredItems(BotManager.WorkRequest request)
-    {
-        foreach (var kvp in request.recipe.inputs)
-        {
-            if (!request.bot.Inventory.Items.ContainsKey(kvp.Key))
-                return false;
-            if (request.bot.Inventory.Items[kvp.Key] < kvp.Value)
-                return false;
-        }
-
-        return true;
     }
 }

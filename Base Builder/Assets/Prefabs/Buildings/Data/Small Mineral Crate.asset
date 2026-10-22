@@ -9,23 +9,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daa9b0d2bfec3d146aec9f104666aaf4, type: 3}
-  m_Name: pressData
-  m_EditorClassIdentifier: Assembly-CSharp::MachineData
-  name: Press
-  description: press
-  sprite: {fileID: 0}
-  type: 0
+  m_Script: {fileID: 11500000, guid: b4a7ec49a5a677644a78c2f13b9f2143, type: 3}
+  m_Name: Small Mineral Crate
+  m_EditorClassIdentifier: Assembly-CSharp::MineralCrateData
+  name: Small Mineral Crate
+  description: 
+  sprite: {fileID: 7482667652216324306, guid: 377bd7fa44b3937418054b9b64892216, type: 3}
+  type: 2
   bounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0.5, y: 0.5, z: 0}
   interactionBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   connectionBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
+  workRange: 2
   connectsToPower: 0
-  blocksWalking: 0
-  blocksPlacing: 0
-  usableRecipes: []
+  blocksWalking: 1
+  blocksPlacing: 1
+  maxWeight: 10

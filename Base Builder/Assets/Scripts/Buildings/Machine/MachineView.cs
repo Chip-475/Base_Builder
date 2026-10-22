@@ -3,10 +3,10 @@ using UnityEngine;
 public class MachineView : BuildingView
 {
     public new MachineData Data => base.Data as MachineData;
-    public new Machine Obj
+    public new Machine RuntimeObj
     {
-        get { return base.Obj as Machine; }
-        set { base.Obj = value; }
+        get { return base.RuntimeObj as Machine; }
+        set { base.RuntimeObj = value; }
     }
 
     private void Start()
@@ -23,7 +23,7 @@ public class MachineView : BuildingView
 
     private void InitializeMachine()
     {
-        if (Obj != null)
+        if (RuntimeObj != null)
             return;
 
         if (Data == null)
@@ -32,6 +32,6 @@ public class MachineView : BuildingView
             return;
         }
 
-        Obj = new Machine(Data, this);
+        RuntimeObj = new Machine(Data, this);
     }
 }

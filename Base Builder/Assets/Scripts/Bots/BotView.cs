@@ -14,11 +14,9 @@ public class BotView : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] Image powerBar;
 
-    List<Vector3Int> path = new();
-
     void Start()
     {
-        RuntimeObj = new Bot(this, data);
+        RuntimeObj = new Bot(this, data, new() { coords = Vector3.zero });
     }
     private void Update()
     {
@@ -26,16 +24,9 @@ public class BotView : MonoBehaviour
         powerBar.fillAmount = RuntimeObj.Power / 100;
     }
 
-    public void SetDestination(Vector3Int coords)
-    {
-        var myPos = transform.position.ToVector3Int();
-        Pathfinder.Pathfind(myPos, coords, out List<Vector3Int> path);
-        this.path = path;
-    }
-
     public void StartMoving()
     {
-        if(path.Count > 0)
+        if(RuntimeObj.Path.Count > 0)
             StartCoroutine(FollowPath());
     }
     public void StopMoving()
@@ -44,9 +35,9 @@ public class BotView : MonoBehaviour
     }
     IEnumerator FollowPath()
     {
-        for (int i = 1; i < path.Count; i++)
+        for (int i = 1; i < RuntimeObj.Path.Count; i++)
         {
-            Vector3 target = path[i];
+            Vector3 target = RuntimeObj.Path[i];
 
             while (Vector3.Distance(transform.position, target) > 0.01f)
             {
