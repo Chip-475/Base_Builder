@@ -62,7 +62,7 @@ public abstract class Building : IWorkplace
         foreach(var cell in cells)
         {
             if(SceneObj.BotWorkPoint != null && cell == WorldManager.World.GetCellAt(SceneObj.BotWorkPoint.position.ToVector3Int()))
-                cell.canWalkOn = Data.blocksWalking;
+                cell.canWalkOn = true;
             else
                 cell.canWalkOn = !Data.blocksWalking;
 

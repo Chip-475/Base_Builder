@@ -7,7 +7,7 @@ public class Tester : MonoBehaviour
 {
     public static Tester Instance { get; private set; }
 
-    public BotView bot;
+    public MinerBotView bot;
     public MineralNodeView node;
     public MineralCrateView crate;
     
@@ -21,7 +21,7 @@ public class Tester : MonoBehaviour
     [ContextMenu("Work Test")]
     public void WorkTest()
     {
-        MinerBot bot = this.bot.RuntimeObj as MinerBot;
+        MinerBot bot = this.bot.RuntimeObj;
         bot.Node = node.RuntimeObj as MineralNode;
         bot.Crate = crate.RuntimeObj as MineralCrate;
 

@@ -7,16 +7,16 @@ using UnityEngine.UI;
 public class BotView : MonoBehaviour
 {
     public BotData data;
-    public Bot RuntimeObj { get; private set; }
+    public Bot RuntimeObj { get; protected set; }
 
     [Header("Components")]
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] Animator animator;
     [SerializeField] Image powerBar;
 
-    void Start()
+    protected virtual void Start()
     {
-        RuntimeObj = new Bot(this, data, new() { coords = Vector3.zero });
+        RuntimeObj = new Bot(this, data, new() { baseSpawnCoords = Vector3.zero });
     }
     private void Update()
     {

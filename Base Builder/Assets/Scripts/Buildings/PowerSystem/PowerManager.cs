@@ -33,8 +33,8 @@ public class PowerManager : MonoBehaviour
     public static Dictionary<string, PowerPole> powerPolesDB = new();
     public static Dictionary<string, Generator> powerGeneratorDB = new();
     public static List<Machine> machineDB = new();
-    public static int networkCounter { get { return instance.powerObj.GetComponentsInChildren<NetworkManager>().Length; } }
-    public static Stack<Color> networkColors = new Stack<Color>();
+    public static int NetworkCounter { get { return instance.powerObj.GetComponentsInChildren<NetworkManager>().Length; } }
+    public static Stack<Color> networkColors = new();
     public static float Consuption
     {
         get

@@ -21,6 +21,9 @@ public static class Pathfinder
 
     public static bool CanPathfind(Vector3Int start, Vector3Int goal)
     {
+        if (start == goal)
+            return true;
+
         Pathfind(start, goal, out List<Vector3Int> path);
         return path.Count != 0;
     }
@@ -120,6 +123,7 @@ public static class Pathfinder
 
         path.Add(start.Coords);
         path.Reverse();
+        path.RemoveAt(0);
         return path;
     }
 }

@@ -2331,8 +2331,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97f2cc98eb3d1064eb5dcf646b467a81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Tester
-  bot: {fileID: 0}
-  node: {fileID: 0}
+  bot: {fileID: 2136110706}
+  node: {fileID: 1839272488}
   crate: {fileID: 0}
   pos: {x: 0, y: 0, z: 0}
 --- !u!4 &874107207
@@ -5868,6 +5868,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1820025101}
   m_CullTransparentMesh: 1
+--- !u!114 &1839272488 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4147401959276618759, guid: 64b0a33a3bed83f44b757db0dac0fe08, type: 3}
+  m_PrefabInstance: {fileID: 862740978}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f7475e56de280d41bf8432e192aecee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MineralNodeView
 --- !u!1 &1855258256
 GameObject:
   m_ObjectHideFlags: 0
@@ -15401,6 +15412,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2134197566}
   m_CullTransparentMesh: 1
+--- !u!114 &2136110706 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2375721541604936971, guid: 408212d5901d69e4b9987faf67335c58, type: 3}
+  m_PrefabInstance: {fileID: 253597556}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e1041fd6edae6e41bc216e4451d027b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MinerBotView
 --- !u!224 &6248445901360014
 RectTransform:
   m_ObjectHideFlags: 0

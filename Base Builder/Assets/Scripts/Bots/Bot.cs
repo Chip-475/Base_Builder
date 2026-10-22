@@ -14,7 +14,7 @@ public class Bot : IWorker, IInteractable
         public static Transform baseSpawnPoint;
 
         public string id = "";
-        public Vector3 coords; // = baseSpawnPoint.position; 
+        public Vector3 baseSpawnCoords; // = baseSpawnPoint.position; 
         public string name = "";
         public const float maxPower = 100;
         public float power = 0;
@@ -47,7 +47,11 @@ public class Bot : IWorker, IInteractable
 
     [Header("Runtime Data")]
     public string Id { get; protected set; }
-    public Vector3 Coords { get; protected set; }
+    public Vector3 Coords
+    {
+        get => SceneObj.transform.position;
+        set => SceneObj.transform.position = value;
+    }
     public string Name { get; protected set; }
     public float Power { get; protected set; }
     public int MaxWeight { get; protected set; }
@@ -75,7 +79,6 @@ public class Bot : IWorker, IInteractable
 
         // Config
         Id = config.id;
-        Coords = config.coords;
         Name = config.name;
         Power = config.power;
         MaxWeight = data.carryCapacity;
@@ -96,6 +99,9 @@ public class Bot : IWorker, IInteractable
     }
     public void MoveTowardsDestination()
     {
+        if (Path.Count <= 0)
+            return;
+
         SceneObj.transform.position = Vector3.MoveTowards(Coords, Path[0], Data.speed * Time.deltaTime);
         if (Vector3.Distance(Coords, Path[0]) < 0.05f)
             Path.RemoveAt(0);

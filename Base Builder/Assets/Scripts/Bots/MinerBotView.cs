@@ -2,15 +2,14 @@ using UnityEngine;
 
 public class MinerBotView : BotView
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public new MinerBot RuntimeObj
     {
-        
+        get { return base.RuntimeObj as MinerBot; }
+        set { base.RuntimeObj = value; }
     }
 
-    // Update is called once per frame
-    void Update()
+    protected override void Start()
     {
-        
+        RuntimeObj = new MinerBot(this, data, new() { baseSpawnCoords = Vector3.zero });
     }
 }
