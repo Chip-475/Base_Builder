@@ -36,7 +36,7 @@ Starter: 1x [[Assembler]], 1x [[Furnace mk1]]
 [[Assemble to Copper Wire]]
 [[Press to Copper Plate]]
 
-20 [[Stone Brick]]
+5 [[Iron Gear]]
 
 6:
 [[Electric core]]
@@ -44,29 +44,41 @@ Starter: 1x [[Assembler]], 1x [[Furnace mk1]]
 [[Generator mk1]]
 [[Power Pole]]
 
+30 [[Copper Wire]]
 
 7:
 [[Smelt to Tin]]
 [[Alloy smelting to Bronze]]
 [[Alloy Furnace]]
 
+10 [[Reinforced Plate]] + 10 [[Insulator]]
+
+
 8:
 [[Assemble to Bronze Rod]]
 [[Press to Bronze Plate]]
+
+5 [[Tin]] + 10 [[Copper Plate]]
 
 9:
 [[Assemble to bronze casing]]
 [[Assemble to Bronze Gear]]
 
+10 [[Bronze Rod]] + 5 [[Bronze Plate]]
+
 10:
+
 [[Assemble Circuit Board]]
 [[Electric Workbench]]
 [[Electrify to Motherboard]]
+
+5 [[Reinforced Plate]] + 10 [[Copper Plate]] + 20 [[Copper Wire]]
 
 11:
 [[Carrier Bot]]
 [[Miner Bot]]
 [[Worker Bot]]
 
+3 [[Circuit Board]] + 5 [[Bronze Casing]]
 ### Second Era
 
