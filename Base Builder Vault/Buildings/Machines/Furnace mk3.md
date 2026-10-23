@@ -1,6 +1,6 @@
 ___
 
-Use coal to smelt basic ores
+Can smelt all items with high efficiency
 Recipes:
 [[Smelt to Tin]]
 [[Smelt to Gold]]
