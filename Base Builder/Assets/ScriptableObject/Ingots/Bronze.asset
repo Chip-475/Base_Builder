@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
   Name: Bronze
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: -9106178577589017257, guid: 9c83ce99ca1abcb4d9888c8fb23320f8, type: 3}
   weightPerUnit: 2
   toughness: 1
   timeToMine: 1
