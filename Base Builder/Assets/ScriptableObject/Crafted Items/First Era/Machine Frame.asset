@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
   Name: 
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: -4410545568904133956, guid: 9b7caaee9e204c24980c8720675446e4, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

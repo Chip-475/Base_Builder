@@ -93,7 +93,7 @@ public class Machine : Building, IInteractable
         return;
     }
 
-    async UniTaskVoid prova()
+   /* async UniTaskVoid prova()
     {
         var token=SceneObj.GetCancellationTokenOnDestroy();
         while(true)
@@ -102,6 +102,7 @@ public class Machine : Building, IInteractable
             
         }
     }
+    */
 
     public bool CanInteractWith()
     {
