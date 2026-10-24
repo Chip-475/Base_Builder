@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Resources/Crafted Items/First Era/Bot Frame.md",
+                "file": "Buildings/Machines/Advanced Assembler.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Bot Frame"
+              "title": "Advanced Assembler"
             }
           },
           {
@@ -117,7 +117,7 @@
                 "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
-              "title": "Esplora file"
+              "title": "Files"
             }
           },
           {
@@ -250,44 +250,50 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Apri selettore rapido": false,
-      "graph:Apri vista grafo": false,
-      "canvas:Crea nuova lavagna": false,
-      "daily-notes:Apri nota giornaliera": false,
-      "templates:Inserisci modello": false,
-      "command-palette:Apri riquadro comandi": false,
-      "bases:Crea nuova Base": false
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
     }
   },
   "active": "2d75123aef14ab63",
   "lastOpenFiles": [
-    "Resources/Crafted Items/First Era/Motherboard.md",
-    "Resources/Crafted Items/First Era/Circuit Board.md",
-    "Resources/Crafted Items/First Era/Bot Frame.md",
-    "Resources/Crafted Items/Crafted Items.md",
-    "Buildings/Logistic/Storage.md",
-    "Buildings/Machines/Furnace mk3.md",
-    "Buildings/Machines/Furnace mk2.md",
+    "Resources/Crafted Items/Second Era/Steel Plate.md",
+    "Resources/Crafted Items/Second Era/Steel Plate.md",
+    "Buildings/Machines/Advanced Assembler.md",
+    "Resources/Crafted Items/Second Era/Steel Casing.md",
     "Buildings/Machines/Furnace mk1.md",
+    "Buildings/Machines/Furnace mk2.md",
     "Buildings/Machines/Assembler.md",
     "Buildings/Machines/Alloy Furnace.md",
-    "Buildings/Machines/Advanced Assembler.md",
-    "Buildings/Machines/Electric Workbench.md",
-    "Buildings/Machines/Press.md",
-    "Buildings/Power System/Electric Poles.md",
-    "Buildings/Power System/Power Pole.md",
-    "Buildings/Power System/Generator mk1.md",
-    "Bots/Specialist Bot.md",
-    "Spaceship.md",
-    "Progression.md",
-    "Resources/Crafted Items/other Eras/Steel Plate.md",
-    "General.md",
+    "Resources/Crafted Items/Second Era/Steel Reinforced Plate.md",
+    "Recipes/Second Era recipe/Metal/Metalworking/Assemble to Steel Reinforced Plate.md",
+    "Recipes/First Era recipe/Metal/Metalworking/Assemble to Reinforced Plate.md",
+    "Recipes/First Era recipe/Metal/Metalworking/Press to Iron Plate.md",
     "Tech Tree/Tech Tree.md",
+    "Recipes/Second Era recipe/Metal/Metalworking/Assemble to Steel Casing.md",
+    "Recipes/First Era recipe/Metal/Metalworking/Assemble to Iron Casing.md",
+    "Recipes/Second Era recipe/Metal/Metalworking/Press to  Alumium Plate.md",
+    "Resources/Crafted Items/Second Era/Steel Gear.md",
+    "Recipes/Second Era recipe/Metal/Metalworking/Assemble to Steel Gear.md",
+    "Recipes/First Era recipe/Metal/Metalworking/Assemble to Iron Gear.md",
+    "Recipes/Second Era recipe/Metal/Metalworking/Assemble to Steel Rod.md",
+    "Recipes/First Era recipe/Metal/Metalworking/Assemble to Machine Frame.md",
+    "Resources/Crafted Items/Second Era/Steel Rod.md",
+    "Recipes/First Era recipe/Metal/Metalworking/Assemble to Bronze Rod.md",
+    "Recipes/First Era recipe/Metal/Metalworking/Assemble to Iron Rod.md",
+    "Recipes/Second Era recipe/Metal/Metalworking/Press to Steel Plate.md",
+    "Recipes/First Era recipe/Metal/Metalworking/Press to Bronze Plate.md",
+    "Recipes/Second Era recipe/Metal/Metalworking",
+    "Recipes/Second Era recipe/Metal/Foundry",
+    "Recipes/Second Era recipe/Metal",
+    "Resources/Crafted Items/Second Era/Untitled",
+    "Recipes/Second Era recipe",
+    "Resources/Crafted Items/Second Era",
     "Pasted image 20261023194307.png",
-    "Recipes/First Era recipe/Misc/Assemble to Stone brick.md",
-    "Bots/Worker Bot.md",
-    "Bots/Miner Bot.md",
-    "Bots/Carrier Bot.md",
     "Tech Tree"
   ]
 }
