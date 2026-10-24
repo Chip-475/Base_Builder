@@ -1,5 +1,5 @@
 ___
-8 [[Iron Plate]] + 2 [[Iron Gear]] + 1 [[Machine Frame]]
+10 [[Stone Brick]] + 3 [[Iron Rod]]
  
 
 The Press converts metal ingots into plates.

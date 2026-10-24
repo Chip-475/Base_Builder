@@ -8,7 +8,9 @@ Repairing the ship requires the hardest mats to get in that planet and once done
 
 Ores progression Order:
 
+[[Stone]]
 [[Coal]]
+[[Polymer]]
 [[Iron]]
 [[Copper]]
 [[Tin]]

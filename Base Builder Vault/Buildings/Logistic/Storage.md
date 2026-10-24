@@ -4,3 +4,6 @@ Each storage increment total storage capacity.
 All stored item are synced between storages.
 [[Carrier Bot]] automatically deposit and retrieve resources. 
 3x3
+
+[[Resources]]:
+10 [[Iron Casing]] + 2 [[Iron Gear]]
