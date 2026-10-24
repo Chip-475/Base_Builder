@@ -1,7 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MachineView : BuildingView
 {
+    [Header("test")]
+    public RecipeSO test;
     public new MachineData Data => base.Data as MachineData;
     public new Machine Obj
     {
@@ -33,5 +36,16 @@ public class MachineView : BuildingView
         }
 
         Obj = new Machine(Data, this);
+    }
+
+    //test 
+    private void testInput()
+    {
+        InitializeMachine();
+        if (Obj == null || test == null) return;
+        foreach(KeyValuePair<ResourceSO,int> ric in test.inputs)
+        {
+            Obj.aggIn(ric.Key, ric.Value);
+        }
     }
 }
