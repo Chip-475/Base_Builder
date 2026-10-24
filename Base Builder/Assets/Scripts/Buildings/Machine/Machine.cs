@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem.LowLevel;
 using Cysharp.Threading.Tasks;
 using System.Runtime.InteropServices.WindowsRuntime;
+using Unity.VisualScripting;
 public class Machine : Building, IInteractable
 {
     public new MachineData Data => base.Data as MachineData;
@@ -177,7 +178,7 @@ public class Machine : Building, IInteractable
         if (res == null || quant <= 0||!accettaIn(res)) return false;
         input.TryGetValue(res, out int attuale);
         input[res]= attuale;
-        //prova ad andare sola
+        tryAutoStart();
         return true;
     }
 
@@ -235,9 +236,53 @@ public class Machine : Building, IInteractable
             if (!start(rec)) continue;
             if(rec.energyCost>0&&!RequestPower(rec))
             {
+                aspeEne = true;
+                return;
+            }
+            aspeEne = false;
+            startCraft(rec).Forget();
+            return;
+        }
+        aspeEne = false;
+    }
 
+    async UniTask startCraft(RecipeSO rec)
+    {
+        lavoro = true;
+        ricOra = rec;
+        progresso = 0f;
+        foreach(KeyValuePair<ResourceSO,int> richiesta in rec.inputs)
+        {
+            input[richiesta.Key] = input[richiesta.Key] - richiesta.Value;
+            if(input[richiesta.Key] == 0) input.Remove(richiesta.Key);
+        }
+        var token = SceneObj.GetCancellationTokenOnDestroy();
+        float trascorso = 0f;
+        while(trascorso<rec.completionTime)
+        {
+            bool annullato = await UniTask.Yield(PlayerLoopTiming.Update, token).SuppressCancellationThrow();
+            if(annullato)
+            {
+                lavoro = false;
+                ricOra = null;
+                return;
+            }
+            if(rec.energyCost<=0||Powered)
+            {
+                trascorso = trascorso + Time.deltaTime;
+                progresso = Mathf.Clamp01(trascorso / rec.completionTime);
             }
         }
+        if (rec.energyCost > 0) StopPowerRequest();
+        foreach(KeyValuePair<ResourceSO,int>prodotto in rec.outputs)
+        {
+            output.TryGetValue(prodotto.Key, out int attuale);
+            output[prodotto.Key] = attuale+prodotto.Value;
+        }
+        lavoro = false;
+        ricOra = null;
+        progresso = 0f;
+        tryAutoStart();
     }
 }
 public enum MachineType
