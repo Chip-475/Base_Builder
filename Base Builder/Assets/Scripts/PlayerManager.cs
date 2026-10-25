@@ -72,7 +72,7 @@ public class PlayerManager : MonoBehaviour
         Debug.Log("pressed interact");
         if (InteractionManager.Instance.currentInteractable == null) Debug.Log("no interactable found");
         else Debug.Log("Interactable found:" + InteractionManager.Instance.currentInteractable);
-            InteractionManager.Instance.currentInteractable?.Interact();
+            InteractionManager.Instance.currentInteractable.Interact();
     }
 
     public Cell GetPlayerCell()

@@ -134,11 +134,11 @@ public class Machine : Building, IInteractable, IWorkplace
     }
     public void Interact()
     {
-        if (!CanInteractWith())
+       /* if (!CanInteractWith())
         {
             Debug.Log("can't interact");
             return;
-        }
+        }*/
         Debug.Log("inside");
         MachineUI.Instance.Machine = this;
         MachineUI.Instance.Open(this);

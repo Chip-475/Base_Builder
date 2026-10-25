@@ -42,7 +42,7 @@ public class RecipeEntry : MonoBehaviour
             var Values = recipe.outputs.Keys.ToArray();
 
             currentEntry.sprite = Keys[i].Sprite;
-            quantityText[currentEntry].text = Values[i].ToString();
+            quantityText[currentEntry].text = recipe.inputs[Keys[i]].ToString();
         }
     }
 }

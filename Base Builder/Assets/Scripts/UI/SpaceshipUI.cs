@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System;
 using TMPro;
+using System.Linq;
 
 public class SpaceshipUI : MonoBehaviour
 {
@@ -81,6 +82,7 @@ public class SpaceshipUI : MonoBehaviour
     {
         [Header("Setup")]
         [SerializeField] GameObject botListContent;
+        [SerializeField] Transform botSpawnpoint;
         [Space]
         [SerializeField] Image botImage;
         [SerializeField] TMP_Text botName;
@@ -100,6 +102,7 @@ public class SpaceshipUI : MonoBehaviour
             // Actions
             previous.onClick.AddListener(() => SwitchBot(-1));
             next.onClick.AddListener(() => SwitchBot(1));
+            build.onClick.AddListener(() => Build());
         }
 
         void SwitchBot(int amount)
@@ -111,6 +114,15 @@ public class SpaceshipUI : MonoBehaviour
             botImage.sprite = botPrefabs[nextIndex].data.sprite;
             botName.text = botPrefabs[nextIndex].data.name;
             currentBotIndex = nextIndex;
+        }
+
+        void Build()
+        {
+            if(BotManager.Bots.Any(bot => bot.SceneObj.transform.position == botSpawnpoint.position))
+            {
+                botSpawnpoint.position += new Vector3(UnityEngine.Random.Range(-1.2f, +1.2f), UnityEngine.Random.Range(-3f, +3f),0);
+            }
+            Instantiate(botPrefabs[currentBotIndex],botSpawnpoint.position,Quaternion.identity);
         }
     }
     [Serializable]

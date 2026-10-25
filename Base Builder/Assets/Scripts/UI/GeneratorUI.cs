@@ -69,7 +69,7 @@ public class GeneratorUI : MonoBehaviour
     public void BuildInfoPanel(FuelEntry fuelEntry)
     {
         selectedFuelIcon.sprite = fuelEntry.fuel.Sprite;
-        selectedFuelName.text = Generator.fuelInUse.Name;
+        if(Generator.fuelInUse!=null)selectedFuelName.text = Generator.fuelInUse.Name;
         selectedFuelAmount.text = Generator.Quantity.ToString();
     }
 
