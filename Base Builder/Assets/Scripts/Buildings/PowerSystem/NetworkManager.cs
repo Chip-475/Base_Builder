@@ -119,7 +119,7 @@ public class NetworkManager : MonoBehaviour
         {
             if (building is PowerPole pole)
             {
-                pole.getConnectedBuildings();
+                pole.GetConnectedBuildings();
                 connectionsCount[pole] = 0; //fill the dictionary with all pps
             }
         }
@@ -198,7 +198,7 @@ public class NetworkManager : MonoBehaviour
 
         foreach (var connection in connections)//draw the connetions
         {
-            connection.Item1.drawConnection(connection.Item2.SceneObj.transform.position);
+            connection.Item1.DrawConnection(connection.Item2.SceneObj.transform.position);
         }
     }
     public void OnDestroy()

@@ -7,7 +7,7 @@ public class PowerPole : Building
     public new PowerPoleView SceneObj => base.SceneObj as PowerPoleView;
 
     public string poleId;
-    public List<Building> connectedBuildings = new List<Building>();
+    public List<Building> connectedBuildings = new();
 
     public PowerPole(PowerPoleData data, PowerPoleView sceneObj) : base(data, sceneObj)
     {
@@ -23,12 +23,15 @@ public class PowerPole : Building
         MonoBehaviour.Destroy(SceneObj.gameObject);
     }
 
+    // Work
+    public override Dictionary<ResourceSO, int> GetWorkOutputs() => null;
+
     public bool CanConnectTo(Building other)
     {
         if (other == null) return false;
         return Helpers.Overlaps(GetCellsInBounds(ConnectionBounds), GetCellsInBounds(other.ConnectionBounds));
     }
-    public void getConnectedBuildings()
+    public void GetConnectedBuildings()
     {
         connectedBuildings.Clear();
         foreach (var building in Network.ConnectedBuildings)
@@ -40,9 +43,9 @@ public class PowerPole : Building
             }
         }
     }
-    public void drawConnection(Vector3 target)
+    public void DrawConnection(Vector3 target)
     {
-            GameObject go= new GameObject("ConnectionLine");
+            GameObject go= new("ConnectionLine");
             LineRenderer lineRenderer = go.AddComponent<LineRenderer>();
             Network.lineRenderers.Add(lineRenderer);
             lineRenderer.positionCount = 2;

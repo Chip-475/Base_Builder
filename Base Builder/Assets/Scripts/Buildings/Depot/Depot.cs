@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 
@@ -31,6 +32,10 @@ public class Depot : Building, IInteractable
         Inventory.Remove(resource, quantity);
     }
 
+    // Work
+    public override Dictionary<ResourceSO, int> GetWorkOutputs() => null;
+
+    // Interaction
     public bool CanInteractWith()
     {
         var cells = GetCellsInBounds(Data.interactionBounds);

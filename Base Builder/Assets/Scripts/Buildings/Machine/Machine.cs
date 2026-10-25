@@ -1,10 +1,11 @@
-using UnityEngine;
-using System.Collections.Generic;
-using UnityEngine.InputSystem.LowLevel;
 using Cysharp.Threading.Tasks;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Unity.VisualScripting;
-public class Machine : Building, IInteractable
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UIElements;
+
+public class Machine : Building, IInteractable, IWorkplace
 {
     public new MachineData Data => base.Data as MachineData;
     public new MachineView SceneObj => base.SceneObj as MachineView;
@@ -126,20 +127,17 @@ public class Machine : Building, IInteractable
     }
     public void Interact()
     {
+        if (!CanInteractWith())
+            return;
+
         MachineUI.Instance.Machine = this;
         MachineUI.Instance.Open(this);
     }
-    public RecipeSO Craft(RecipeSO recipe, Bot bot)
+    public bool CanInteractWith()
     {
-        if (!CanCraft(recipe, bot))
-            return null;
-
-        return recipe;
-    }
-    public bool CanCraft(RecipeSO recipe, Bot bot)
-    {
-        if (bot.Type != BotType.Worker)
-            return false;
+        var cells = GetCellsInBounds(InteractionBounds);
+        foreach (var item in cells)
+            if (item == PlayerManager.Instance.GetPlayerCell()) return true;
 
         foreach (var kvp in recipe.inputs)
         {
@@ -180,6 +178,13 @@ public class Machine : Building, IInteractable
         input[res]= attuale;
         tryAutoStart();
         return true;
+        return false;
+    }
+
+    // Work
+    public override Dictionary<ResourceSO, int> GetWorkOutputs()
+    {
+        throw new NotImplementedException();
     }
 
     public bool depositDaBot(Bot bot)

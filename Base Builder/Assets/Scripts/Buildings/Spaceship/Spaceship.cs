@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 public class Spaceship : Building
 {
@@ -22,16 +23,21 @@ public class Spaceship : Building
         throw new NotImplementedException();
     }
 
-    public Bot BuildBot(BotType type)
+    public Bot BuildBot(BotView botPrefab)
     {
-        if (!Data.botPrefabs.ContainsKey(type))
+        if (!Data.botPrefabs.Contains(botPrefab))
         {
-            Debug.Log($"No bot of type {type} found.");
+            Debug.Log($"No bot of type {botPrefab.name} found.");
             return null;
         }
 
-        return MonoBehaviour.Instantiate(Data.botPrefabs[type], BotSpawnPoint.position, Quaternion.identity).RuntimeObj;
+        return MonoBehaviour.Instantiate(botPrefab, BotSpawnPoint.position, Quaternion.identity).RuntimeObj;
     }
+
+    // Work
+    public override Dictionary<ResourceSO, int> GetWorkOutputs() => null;
+
+    // Interact
 
     public void OnClick()
     {
