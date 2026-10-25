@@ -4,17 +4,7 @@ using UnityEngine.InputSystem;
 [DefaultExecutionOrder(-1)]
 public class PlayerManager : MonoBehaviour
 {
-    static PlayerManager _instance;
-    public static PlayerManager Instance 
-    {
-        /*
-        get
-        {
-            if (_instance == null) _instance = new FindFirstObjectByType<PlayerManager>();
-        }
-        return _instance;*/
-        get; private set;   
-    }
+    public static PlayerManager Instance { get; private set; }
     static PlayerInputs _inputs;
     public static PlayerInputs Inputs 
     { 
@@ -39,7 +29,7 @@ public class PlayerManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        //Inputs = new();
+        // Inputs = new();
         PlayerCameraMovement.Player = this;
         PlayerMode();
         Inputs.Player.Interact.performed += Interact;
@@ -68,10 +58,10 @@ public class PlayerManager : MonoBehaviour
     }
     public void Interact(InputAction.CallbackContext context)
     {
-        Debug.Log("pressed interact");
-        if (InteractionManager.Instance.currentInteractable == null) Debug.Log("no interactable found");
-        else Debug.Log("Interactable found:" + InteractionManager.Instance.currentInteractable);
-            InteractionManager.Instance.currentInteractable?.Interact();
+        if (InteractionManager.Instance == null)
+            return;
+
+        InteractionManager.Instance.currentInteractable?.Interact();
     }
 
     public Cell GetPlayerCell()

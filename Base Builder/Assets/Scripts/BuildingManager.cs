@@ -73,25 +73,28 @@ public class BuildingManager : MonoBehaviour
 
         return closest;
     }
-    public static Building GetClosestAvailableBuilding(Vector3Int coords, Type type)
+    public static T GetClosestAvailableBuilding<T>(Vector3Int coords)
+    where T : Building
     {
-        List<Building> buildings = new(Buildings.Values.Where((building) => building.Occupied == false));
+        List<T> buildings = Buildings.Values
+            .OfType<T>()
+            .Where(building => !building.Occupied)
+            .ToList();
+
         if (buildings.Count == 0)
         {
-            Debug.Log("No available buildings.");
+            Debug.Log($"No available buildings of type {typeof(T).Name}.");
             return null;
         }
 
-        Building closest = buildings[0];
-        foreach (Building building in buildings)
+        T closest = buildings[0];
+
+        foreach (T building in buildings)
         {
-            if (building.GetType() != type)
-                continue;
+            float closestDistance = Vector3.Distance(closest.Coords, coords);
+            float buildingDistance = Vector3.Distance(building.Coords, coords);
 
-            float closestDis = Vector3.Distance(closest.Coords, coords);
-            float nextDis = Vector3.Distance(building.Coords, coords);
-
-            if (nextDis < closestDis)
+            if (buildingDistance < closestDistance)
                 closest = building;
         }
 

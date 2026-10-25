@@ -56,7 +56,7 @@ public class Inventory
 
         return true;
     }
-
+    
     public KeyValuePair<ResourceSO, int> RemoveItem(ResourceSO resource, int amount)
     {
         if (!CanRemoveItem(resource, amount))
@@ -71,6 +71,17 @@ public class Inventory
 
         return new(resource, amount);
     }
+    public void RemoveItems(Dictionary<ResourceSO, int> mats)
+    {
+        if (!CanRemoveItems(mats))
+        {
+            Debug.Log("Cannot remove items to inventory.");
+            return;
+        }
+
+        foreach (var mat in mats)
+            RemoveItem(mat.Key, mat.Value);
+    }
     public bool CanRemoveItem(ResourceSO resource, int amount)
     {
         if (!Items.ContainsKey(resource))
@@ -79,6 +90,19 @@ public class Inventory
             return false;
 
         return true;
+    }
+    public bool CanRemoveItems(Dictionary<ResourceSO, int> mats)
+    {
+        foreach (var mat in mats)
+            if (!CanRemoveItem(mat.Key, mat.Value))
+                return false;
+
+        return true;
+    }
+
+    public void SetMaxWeight(int amount)
+    {
+        MaxWeight = amount;
     }
 
     public float GetWeight()
