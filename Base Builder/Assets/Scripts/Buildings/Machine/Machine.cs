@@ -169,7 +169,7 @@ public class Machine : Building, IInteractable, IWorkplace
         }
         if (res == null || quant <= 0||!accettaIn(res)) return false;
         input.TryGetValue(res, out int attuale);
-        input[res]= attuale;
+        input[res]= attuale+quant;
         tryAutoStart();
         return true;
         return false;
