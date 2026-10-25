@@ -1515,7 +1515,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &419152370
 RectTransform:
   m_ObjectHideFlags: 0
@@ -10455,8 +10455,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 216}
-  m_SizeDelta: {x: 512, y: 432}
+  m_AnchoredPosition: {x: 0, y: 176.03601}
+  m_SizeDelta: {x: 512, y: 352.072}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &581391436
 MonoBehaviour:
@@ -13779,9 +13779,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GeneratorUI
   panel: {fileID: 419152369}
   backButton: {fileID: 1323378071}
-  fuelEntryPrefab: {fileID: 0}
+  fuelEntryPrefab: {fileID: 6214060585613250945, guid: 99cc03b362505244db7ec739a1248fa9, type: 3}
   botEntryPrefab: {fileID: 1982994397743922869, guid: 640502168b9d7cc4582e17249ee3b4bc, type: 3}
-  fuelListContent: {fileID: 0}
+  fuelListContent: {fileID: 1259819247}
   botListContent: {fileID: 2113653480}
   status: {fileID: 970731841}
   switchButton: {fileID: 1531544808}
@@ -14129,8 +14129,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -216}
-  m_SizeDelta: {x: 512, y: 432}
+  m_AnchoredPosition: {x: 0, y: -254.36542}
+  m_SizeDelta: {x: 512, y: 355.2692}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1151633084
 MonoBehaviour:
@@ -15338,7 +15338,6 @@ MonoBehaviour:
   - key: {fileID: 506964577}
     value: 1
   world:
-    cells: []
     WorldBounds:
       m_Center: {x: 0, y: 0, z: 0}
       m_Extent: {x: 0, y: 0, z: 0}
@@ -17317,7 +17316,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 138, y: 25}
+  m_SizeDelta: {x: 138, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &2113653482
 MonoBehaviour:
