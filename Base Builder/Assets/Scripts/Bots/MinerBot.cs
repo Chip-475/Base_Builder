@@ -43,11 +43,11 @@ public class MinerBot : Bot
             }
             else
             {
-                if (Crate.CanAddItems(workOutput))
+                if (Crate.Inventory.CanAddItems(workOutput))
                 {
                     if (IsInWorkRange(Crate))
                     {
-                        Crate.AddItems(Inventory.Items);
+                        Crate.Inventory.AddItems(Inventory.Items);
                         Inventory.Items.Clear();
                         yield return null;
                         continue;

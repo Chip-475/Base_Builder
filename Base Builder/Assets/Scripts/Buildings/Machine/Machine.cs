@@ -165,7 +165,6 @@ public class Machine : Building, IInteractable, IWorkplace
         input[res]= attuale;
         tryAutoStart();
         return true;
-        return false;
     }
 
     // Work
