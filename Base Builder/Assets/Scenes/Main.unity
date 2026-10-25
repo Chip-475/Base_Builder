@@ -9195,7 +9195,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4478986103164719549, guid: e763b3d5351920f42acc546fc68ce11e, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4478986103164719549, guid: e763b3d5351920f42acc546fc68ce11e, type: 3}
       propertyPath: <Data>k__BackingField
