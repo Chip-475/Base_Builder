@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,10 @@ public class BotManager : MonoBehaviour
 {
     public static BotManager Instance { get; private set; }
     public static List<Bot> Bots { get; private set; } = new();
+
+    // bots info
+    public static int BotCount { get {  return Bots.Count; } }
+    public static int EmployedBots { get { return Bots.Where(bot => bot.IsWorking).Count(); } }
 
     private void Awake()
     {

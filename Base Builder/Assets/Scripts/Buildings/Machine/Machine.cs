@@ -106,7 +106,7 @@ public class Machine : Building, IInteractable, IWorkplace
         return;
     }*/
 
-   /* async UniTaskVoid prova()
+    /*async UniTaskVoid prova()
     {
         var token=SceneObj.GetCancellationTokenOnDestroy();
         while(true)
@@ -114,8 +114,8 @@ public class Machine : Building, IInteractable, IWorkplace
             bool annulato=await UniTask.Delay(500,cancellationToken token).SuppressCancellationThrow();
             
         }
-    }
-    */
+    }*/
+    
 
     public bool CanInteractWith()
     {
@@ -128,26 +128,13 @@ public class Machine : Building, IInteractable, IWorkplace
     public void Interact()
     {
         if (!CanInteractWith())
+        {
+            Debug.Log("can't interact");
             return;
-
+        }
+        Debug.Log("inside");
         MachineUI.Instance.Machine = this;
         MachineUI.Instance.Open(this);
-    }
-    public bool CanInteractWith()
-    {
-        var cells = GetCellsInBounds(InteractionBounds);
-        foreach (var item in cells)
-            if (item == PlayerManager.Instance.GetPlayerCell()) return true;
-
-        foreach (var kvp in recipe.inputs)
-        {
-            if (!bot.Inventory.Items.ContainsKey(kvp.Key))
-                return false;
-            if (bot.Inventory.Items[kvp.Key] < kvp.Value)
-                return false;
-        }
-
-        return true;
     }
 
     //cuoci automatico
@@ -189,7 +176,7 @@ public class Machine : Building, IInteractable, IWorkplace
 
     public bool depositDaBot(Bot bot)
     {
-        if (!cuociAuto || bot.Type != BotType.Worker) return false;
+        if (!cuociAuto || bot is not WorkerBot) return false;
         bool depo = false;
         List<ResourceSO> ris = new List<ResourceSO>(bot.Inventory.Items.Keys);
         foreach(ResourceSO r in ris)

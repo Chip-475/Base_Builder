@@ -12,6 +12,7 @@ public class SpaceshipUI : MonoBehaviour
     readonly Stack<GameObject> history = new();
     GameObject lastOpened;
 
+    [SerializeField] GameObject panel;
     [Header("Buttons")]
     [SerializeField] Button closeButton;
     [Space]
@@ -50,7 +51,7 @@ public class SpaceshipUI : MonoBehaviour
         if (Helpers.IsMouseOverUI())
             return;
 
-        gameObject.SetActive(true);
+        panel.SetActive(true);
         PlayerManager.DisableAll();
 
         if (lastOpened != null)
@@ -60,7 +61,7 @@ public class SpaceshipUI : MonoBehaviour
     }
     public void Close()
     {
-        gameObject.SetActive(false);
+        panel.SetActive(false);
         PlayerManager.PlayerMode();
     }
     void ToggleMenu(GameObject menu)

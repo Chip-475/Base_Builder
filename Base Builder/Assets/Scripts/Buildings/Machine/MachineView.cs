@@ -39,7 +39,7 @@ public class MachineView : BuildingView
     }
 
     //test 
-    private void testInput()
+   /* private void testInput()
     {
         InitializeMachine();
         if (Obj == null || test == null) return;
@@ -47,5 +47,5 @@ public class MachineView : BuildingView
         {
             Obj.aggIn(ric.Key, ric.Value);
         }
-    }
+    }*/
 }
