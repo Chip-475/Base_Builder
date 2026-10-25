@@ -1,5 +1,5 @@
 ___
 input:
-xx [[Cassiterite]]
+1 [[Cassiterite]]
 output:
-xx [[Tin]]
+1 [[Tin]]

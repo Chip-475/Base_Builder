@@ -52,8 +52,8 @@ public class GeneratorUI : MonoBehaviour
             return;
 
         status.text = "Status: \n" + (Generator.Running ? "On" : "Off");
-        netConsuption.text = "Network \n Consuption \n " + Generator.Network.Consumption.ToString();
-        netProduction.text = "Network \n Production \n " + Generator.Network.Generation.ToString();
+        netConsuption.text = Generator.Network != null ? "Network \n Consuption \n " + Generator.Network.Consumption.ToString() : "Connect to a Power Pole\n to create a network";
+        netProduction.text = Generator.Network != null ? "Network \n Production \n " + Generator.Network.Generation.ToString()  : "Connect to a Power Pole\n to create a network";
         genConsuption.text = "placeholder";
         genProduction.text = "placeholder";
     }
@@ -69,7 +69,7 @@ public class GeneratorUI : MonoBehaviour
     public void BuildInfoPanel(FuelEntry fuelEntry)
     {
         selectedFuelIcon.sprite = fuelEntry.fuel.Sprite;
-        selectedFuelName.text = Generator.fuelInUse.Name;
+        if(Generator.fuelInUse!=null)selectedFuelName.text = Generator.fuelInUse.Name;
         selectedFuelAmount.text = Generator.Quantity.ToString();
     }
 

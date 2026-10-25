@@ -6,6 +6,7 @@ public class MineralNodeData : BuildingData
     public ResourceSO resource;
     public int baseAmountGiven;
     public NodePurity purity;
+    public float timeToMine;
 }
 public enum NodePurity
 {

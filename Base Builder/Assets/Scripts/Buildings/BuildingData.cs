@@ -10,6 +10,7 @@ public abstract class BuildingData : ScriptableObject
     public Bounds bounds;
     public Bounds interactionBounds;
     public Bounds connectionBounds;
+    public float workRange;
     public bool connectsToPower;
     public bool blocksWalking;
     public bool blocksPlacing;

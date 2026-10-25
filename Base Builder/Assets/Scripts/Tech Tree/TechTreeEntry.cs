@@ -15,7 +15,7 @@ public class TechTreeEntry : MonoBehaviour
             enabled=false;
             return;
         }
-        if(icon!=null)icon.sprite=tech.icona;
+        if(icon!=null)icon.sprite=tech.icon;
         button.onClick.AddListener(() => tech.Unlock());
     }
     private void Update()

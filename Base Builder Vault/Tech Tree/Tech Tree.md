@@ -61,7 +61,7 @@ Starter: 1x [[Assembler]], 1x [[Furnace mk1]]
 5 [[Tin]] + 10 [[Copper Plate]]
 
 9:
-[[Assemble to bronze casing]]
+[[Assemble to Bronze casing]]
 [[Assemble to Bronze Gear]]
 
 10 [[Bronze Rod]] + 5 [[Bronze Plate]]

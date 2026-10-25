@@ -1,27 +1,18 @@
-using UnityEngine;
-using System;
+using Cysharp.Threading.Tasks;
+using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using System.Linq;
+using UnityEditor.PackageManager.Requests;
+using UnityEngine;
 
 public class BotManager : MonoBehaviour
 {
-    public struct WorkRequest
-    {
-        public WorkRequest(Bot bot, Building building, RecipeSO recipe)
-        {
-            this.bot = bot;
-            this.building = building;
-            this.recipe = recipe;
-        }
-
-        public Bot bot;
-        public Building building;
-        public RecipeSO recipe;
-    }
-
     public static BotManager Instance { get; private set; }
     public static List<Bot> Bots { get; private set; } = new();
+
+    // bots info
+    public static int BotCount { get {  return Bots.Count; } }
+    public static int EmployedBots { get { return Bots.Where(bot => bot.IsWorking).Count(); } }
 
     private void Awake()
     {
@@ -49,40 +40,6 @@ public class BotManager : MonoBehaviour
         Bots.Remove(bot);
     }
 
-    public static void ProcessRequest(WorkRequest request)
-    {
-        if (!IsRequestValid(request))
-        {
-            Debug.Log("Request is invalid.");
-            Debug.Log($@"");
-        }
-
-        request.bot.Occupied = true;
-        request.bot.BotView.SetDestination(request.building.SceneObj.BotWorkPoint.transform.position.ToVector3Int());
-        request.bot.BotView.StartMoving();
-    }
-    public static bool IsRequestValid(WorkRequest request)
-    {
-        if (request.bot.Occupied)
-        {
-            Debug.Log("Bot is not available.");
-            return false;
-        }
-        if (request.building.Occupied)
-        {
-            Debug.Log("Building is occupied.");
-            return false;
-        }
-        Pathfinder.Pathfind(request.bot.Coords.ToVector3Int(), request.building.SceneObj.BotWorkPoint.transform.position.ToVector3Int(), out List<Vector3Int> path);
-        if (path.Count == 0)
-        {
-            Debug.Log("Cannot pathfind to target location.");
-            return false;
-        }
-
-        return true;
-    }
-
     public static Bot GetClosestAvailableBot(Building building)
     {
         List<Bot> bots = new(Bots.Where((bot) => bot.Occupied == false));
@@ -95,8 +52,8 @@ public class BotManager : MonoBehaviour
         Bot closest = bots[0];
         foreach (Bot bot in bots)
         {
-            float closestDis = Vector3.Distance(closest.BotView.transform.position, building.SceneObj.transform.position);
-            float nextDis = Vector3.Distance(bot.BotView.transform.position, building.SceneObj.transform.position);
+            float closestDis = Vector3.Distance(closest.SceneObj.transform.position, building.SceneObj.transform.position);
+            float nextDis = Vector3.Distance(bot.SceneObj.transform.position, building.SceneObj.transform.position);
 
             if(nextDis < closestDis)
                 closest = bot;

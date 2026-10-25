@@ -24,7 +24,7 @@ public class GameUI : MonoBehaviour
     private void Update()
     {
         powerCounter.text = $"{PowerManager.Consuption} / {PowerManager.Production}";
-        botsCounter.text = $"[insert bot count]";
+        botsCounter.text = $"{BotManager.EmployedBots} / {BotManager.BotCount}";
     }
 
     void ToggleStatMenu()

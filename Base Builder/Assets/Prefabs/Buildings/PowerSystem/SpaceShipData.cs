@@ -5,5 +5,5 @@ using System.Collections.Generic;
 public class SpaceshipData : BuildingData
 {
     public float powerGeneration;
-    [SerializeField] public Dictionary<BotType, BotView> botPrefabs = new();
+    public List<BotView> botPrefabs = new();
 }

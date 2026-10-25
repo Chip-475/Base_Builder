@@ -7,8 +7,10 @@ public class Tester : MonoBehaviour
 {
     public static Tester Instance { get; private set; }
 
-    public BuildingView building;
-    public BotView bot;
+    public MinerBotView bot;
+    public MineralNodeView node;
+    public MineralCrateView crate;
+    
     public Vector3 pos;
 
     private void Awake()
@@ -19,13 +21,10 @@ public class Tester : MonoBehaviour
     [ContextMenu("Work Test")]
     public void WorkTest()
     {
-        
-    }
+        MinerBot bot = this.bot.RuntimeObj;
+        bot.Node = node.RuntimeObj as MineralNode;
+        bot.Crate = crate.RuntimeObj as MineralCrate;
 
-    [ContextMenu("Move Test")]
-    public void MoveTest()
-    {
-        bot.SetDestination(pos.ToVector3Int());
-        bot.StartMoving();
+        bot.StartWorking();
     }
 }

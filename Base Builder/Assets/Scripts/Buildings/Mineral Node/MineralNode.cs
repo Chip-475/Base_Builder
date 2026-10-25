@@ -1,10 +1,15 @@
-using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UIElements;
 
-public class MineralNode : Building
+public class MineralNode : Building, IInteractable
 {
     public new MineralNodeData Data => base.Data as MineralNodeData;
     public new MineralNodeView SceneObj => base.SceneObj as MineralNodeView;
+
+    Vector3 IInteractable.Position => Coords;
+    Cell[] IInteractable.InteractionCells => GetCellsInBounds(InteractionBounds);
 
     public MineralNode(MineralNodeData data, MineralNodeView sceneObj) : base(data, sceneObj)
     {
@@ -16,24 +21,29 @@ public class MineralNode : Building
         MonoBehaviour.Destroy(SceneObj);
     }
 
-    public KeyValuePair<ResourceSO, int> Mine(Bot bot)
+    // IWorkplace
+    public override Dictionary<ResourceSO, int> GetWorkOutputs()
     {
-        if (!CanMine(bot))
-            return new(null, 0);
-
-        return new(Data.resource, Data.baseAmountGiven * (int)Data.purity);
+        return new()
+        {
+            [Data.resource] = Data.baseAmountGiven * (int)Data.purity
+        };
     }
-    public bool CanMine(Bot bot)
+
+    // IInteractable
+    public void Interact()
     {
-        KeyValuePair<ResourceSO, int> output = new(Data.resource, Data.baseAmountGiven * (int)Data.purity);
+        if (!CanInteractWith())
+            return;
 
-        if (bot.Type != BotType.Miner)
-            return false;
-        if (bot.MiningLevel < output.Key.toughness)
-            return false;
-        if (!bot.Inventory.CanAddItem(output.Key, output.Value))
-            return false;
+        // open UI
+    }
+    public bool CanInteractWith()
+    {
+        var cells = GetCellsInBounds(InteractionBounds);
+        foreach (var item in cells)
+            if (item == PlayerManager.Instance.GetPlayerCell()) return true;
 
-        return true;
+        return false;
     }
 }

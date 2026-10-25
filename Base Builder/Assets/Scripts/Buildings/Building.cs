@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Building
+public abstract class Building : IWorkplace
 { 
     public BuildingData Data { get; private set; }
     public BuildingView SceneObj { get; private set; }
@@ -12,15 +12,15 @@ public abstract class Building
     public Bounds InteractionBounds {  get; set; }
     public NetworkManager Network;
     public bool Occupied { get; set; }
+    public bool IsConnected => Network != null;
 
     public Building(BuildingData data, BuildingView sceneObj)
     {
-
         if (data == null) Debug.Log("data nullo in building ");
         if (sceneObj == null) Debug.Log("scene obj in building ");
         Data = data;
         SceneObj = sceneObj;
-        //WorldManager.World.RegisterBuilding(this, Coords);
+
         Bounds = new(Data.bounds.center + Coords, Data.bounds.size);
         InteractionBounds = new(Data.interactionBounds.center + Coords, Data.interactionBounds.size);
         ConnectionBounds = new(Data.connectionBounds.center + Coords, Data.connectionBounds.size);
@@ -29,6 +29,10 @@ public abstract class Building
         PowerManager.instance.RegisterBuilding();
     }
     public abstract void Destroy();
+
+    // IWorkplace
+    public Building GetBuilding() => this;
+    public abstract Dictionary<ResourceSO, int> GetWorkOutputs();
 
     // Getters - Setters
     public Bounds GetBounds() { return Bounds; }
@@ -58,7 +62,7 @@ public abstract class Building
         foreach(var cell in cells)
         {
             if(SceneObj.BotWorkPoint != null && cell == WorldManager.World.GetCellAt(SceneObj.BotWorkPoint.position.ToVector3Int()))
-                cell.canWalkOn = Data.blocksWalking;
+                cell.canWalkOn = true;
             else
                 cell.canWalkOn = !Data.blocksWalking;
 
