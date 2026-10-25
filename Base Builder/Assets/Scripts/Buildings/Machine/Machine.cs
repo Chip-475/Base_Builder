@@ -36,6 +36,7 @@ public class Machine : Building, IInteractable, IWorkplace
 
     public Machine(MachineData data, MachineView sceneObj) : base(data, sceneObj)
     {
+        Type = data.machineType;
         PowerManager.machineDB.Add(this);
         PowerManager.instance.RegisterBuilding();
         InteractionManager.Instance.interactables.Add(this);
@@ -119,10 +120,16 @@ public class Machine : Building, IInteractable, IWorkplace
 
     public bool CanInteractWith()
     {
-        var cells = GetCellsInBounds(Data.interactionBounds);
+        Bounds area = new Bounds(Coords,Data.interactionBounds.size);
+        /*var cells = GetCellsInBounds(Data.interactionBounds);
         foreach (var item in cells)
             if (item == PlayerManager.Instance.GetPlayerCell()) return true;
-
+        */
+        Cell cell = PlayerManager.Instance.GetPlayerCell();
+        foreach (Cell cella in GetCellsInBounds(area))
+        {
+            if(cella==cell)return true;
+        }
         return false;
     }
     public void Interact()
