@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerManager : MonoBehaviour
 {
     static PlayerManager _instance;
+    
     public static PlayerManager Instance 
     {
         /*
