@@ -1,3 +1,4 @@
+using Mono.Cecil;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -71,6 +72,27 @@ public class Inventory
 
         return new(resource, amount);
     }
+
+    public Dictionary<ResourceSO,int> RemoveItems(Dictionary<ResourceSO,int> mats)
+    {
+        Dictionary<ResourceSO, int> toReturn=new();
+        foreach (var mat in mats)
+        {
+            if (!CanRemoveItem(mat.Key, mat.Value))
+            {
+                Debug.Log("Cannot remove item.");
+                return null;
+            }
+
+            Items[mat.Key] = Items.GetValueOrDefault(mat.Key) - mat.Value;
+            if (Items[mat.Key] == 0)
+            {
+                toReturn[mat.Key] = mat.Value;
+                Items.Remove(mat.Key);
+            }
+        }
+        return toReturn;
+    }
     public bool CanRemoveItem(ResourceSO resource, int amount)
     {
         if (!Items.ContainsKey(resource))
@@ -79,6 +101,21 @@ public class Inventory
             return false;
 
         return true;
+    }
+
+    public bool CanRemoveItems(Dictionary<ResourceSO, int> mats)
+    {
+        foreach (var mat in mats)
+        {
+            if (!Items.ContainsKey(mat.Key)) return false;
+            if (Items[mat.Key] - mat.Value < 0) return false;
+        }
+        return true;
+    }
+
+    public void SetMaxWeight(int amount)
+    {
+        MaxWeight = amount;
     }
 
     public float GetWeight()

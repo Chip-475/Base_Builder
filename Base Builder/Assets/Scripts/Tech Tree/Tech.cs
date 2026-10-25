@@ -16,19 +16,16 @@ public class Tech : ScriptableObject
     [Space]
     public new string name;
     public Sprite icon;
+    public List<RecipeSO> recipes;
     [SerializeField] public Dictionary<ResourceSO, int> cost = new();
 
 
     public void Unlock()
     {
-        if (!IsUnlockable())
-            return;
-
-        foreach(KeyValuePair<ResourceSO,int> voce in cost)
-        {
-            Depot.Inventory.Items[voce.Key]-=voce.Value;
-        }
-        //foreach()
+        if (!IsUnlockable()) return;
+        if (!Depot.Inventory.CanRemoveItems(cost)) return;
+        Depot.Inventory.RemoveItems(cost);
+        foreach (RecipeSO re in recipes) re.isUnlocked = true;
         unlocked = true;
     }
     public bool IsUnlockable()
