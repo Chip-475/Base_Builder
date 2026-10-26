@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 [Serializable]
 public class World
 {
-    [SerializeField] Dictionary<Vector3Int, Cell> cells = new();
+    public Dictionary<Vector3Int, Cell> Cells { get; private set; } = new();
     Dictionary<Vector3Int, Building> buildings = new();
     public Bounds WorldBounds;
 
@@ -18,25 +18,29 @@ public class World
                 if (!tilemap.HasTile(coord))
                     continue;
 
-                cells[coord] = new(coord, mapToType[tilemap], true);
+                Cells[coord] = new(coord, mapToType[tilemap], true);
             }
         WorldBounds = GetWorldBounds();
     }
     public Bounds GetWorldBounds()
     {
-        if (cells.Count == 0) return new Bounds(Vector3.zero, Vector3.zero);
+        if (Cells.Count == 0) return new Bounds(Vector3.zero, Vector3.zero);
         Vector3 min = new(float.MaxValue, float.MaxValue, float.MaxValue);
         Vector3 max = new(float.MinValue, float.MinValue, float.MinValue);
-        foreach (Vector3Int coord in cells.Keys)
+        foreach (Vector3Int coord in Cells.Keys)
         {
             min = Vector3.Min(min, coord);
             max = Vector3.Max(max, coord);
         }
         return new Bounds((min + max) / 2f, (max - min)+new Vector3(1,1,0));
     }
-    public Cell GetCellAt(Vector3Int coords) { if (HasCellAt(coords)) return cells[coords]; else return null; }
-    public bool HasCellAt(Vector3Int coords) { return cells.ContainsKey(coords); }
-    
+    public Cell GetCellAt(Vector3Int coords) { if (HasCellAt(coords)) return Cells[coords]; else return null; }
+    public bool HasCellAt(Vector3Int coords)
+    {
+        //if(Cells==null) return false;
+        return Cells.ContainsKey(coords);
+    }
+
     public void RegisterBuilding(Vector3Int coords, Building building)
     {
         if (!buildings.ContainsKey(coords))

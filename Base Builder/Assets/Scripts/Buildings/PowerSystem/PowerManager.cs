@@ -33,14 +33,14 @@ public class PowerManager : MonoBehaviour
     public static Dictionary<string, PowerPole> powerPolesDB = new();
     public static Dictionary<string, Generator> powerGeneratorDB = new();
     public static List<Machine> machineDB = new();
-    public static int networkCounter { get { return instance.powerObj.GetComponentsInChildren<NetworkManager>().Length; } }
-    public static Stack<Color> networkColors = new Stack<Color>();
+    public static int NetworkCounter { get { return instance.powerObj.GetComponentsInChildren<NetworkManager>().Length; } }
+    public static Stack<Color> networkColors = new();
     public static float Consuption
     {
         get
         {
-            float c=0;
-            foreach(NetworkManager n in instance.powerObj.GetComponentsInChildren<NetworkManager>())
+            float c = 0;
+            foreach (NetworkManager n in instance.powerObj.GetComponentsInChildren<NetworkManager>())
             {
                 c += n.Consumption;
             }
@@ -114,7 +114,9 @@ public class PowerManager : MonoBehaviour
                 if (connectedBuilding is Machine machine && machine.RequestedPower > 0)
                     machine.RefreshPowerRequest(); //refresh the powerRequest sent from machines to the network
         }
+        SetCellStatus(); // set the connection status of the cell
         PowerSystemUI.instance.Draw(); //if electric view is enabled show cells inside the network
+
         RefreshDebugInfo();
     }
 
@@ -220,5 +222,24 @@ public class PowerManager : MonoBehaviour
         }
         colors.Shuffle();
         return colors.ToArray();
+    }
+    public void SetCellStatus()
+    {
+        List<Cell> connectedCells= new List<Cell>();
+        List<Cell> allCells = WorldManager.World.Cells.Values.ToList();
+        foreach (NetworkManager network in powerObj.GetComponentsInChildren<NetworkManager>())
+        {
+            foreach (Building building in network.ConnectedBuildings)
+            {
+                connectedCells.AddRange(building.GetCellsInBounds(building.ConnectionBounds));
+            }
+            foreach (var item in connectedCells)
+            {
+                item.isPowered = true;
+                allCells.Remove(item);
+            }
+            connectedCells.Clear();
+        }
+        allCells.ForEach(cell => cell.isPowered=false);
     }
 }

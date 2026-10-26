@@ -1,13 +1,9 @@
 ___
-
-Can smelt most item with mid efficiency
+Smelt basic ores
 Recipes:
-[[Smelt to Tin]]
-[[Smelt to Gold]]
 [[Smelt to Iron 1]]
-[[Smelt to Iron 2]]
-[[Smelt to Iron 3]]
+[[Smelt to Tin]]
 [[Smelt to Copper]]
-[[Smelt to Nickel]]
-[[Smelt to Alumium]]
-[[Smelt to Titanium]]
+
+[[Resources]]:
+1 [[Machine Frame]] + 4 [[Iron Casing]]

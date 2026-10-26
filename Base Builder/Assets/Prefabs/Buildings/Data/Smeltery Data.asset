@@ -25,9 +25,12 @@ MonoBehaviour:
   connectionBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 1.5, y: 1.5, z: 0}
+  workRange: 0
   connectsToPower: 1
   blocksWalking: 1
   blocksPlacing: 1
+  machineType: 0
   usableRecipes:
-  - {fileID: 11400000, guid: c3c17b313190684458fe68e7f36816af, type: 2}
-  - {fileID: 11400000, guid: 8da9b5e57e3c97e4aa120909f7e9b9ca, type: 2}
+  - {fileID: 11400000, guid: af48c80fe8995b54883e2ea22182389f, type: 2}
+  - {fileID: 11400000, guid: 6e5420020047dd14e8134d17a87f8f53, type: 2}
+  - {fileID: 11400000, guid: 7f10f1b1695046e45a6a1c121431bedb, type: 2}

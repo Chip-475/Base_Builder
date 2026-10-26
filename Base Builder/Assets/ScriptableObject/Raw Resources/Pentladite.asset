@@ -15,6 +15,8 @@ MonoBehaviour:
   Name: Pentladite
   Desc: 
   Sprite: {fileID: -8755302247901961974, guid: 519b89536e55bb9409230dd3816391d4, type: 3}
+  weightPerUnit: 1
   toughness: 1
-  weightPerUnit: 0
-  energyPerUnit: 0
+  timeToMine: 1
+  fuelValue: 0
+  timeToConsume: 1

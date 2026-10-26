@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 using UnityEngine.UIElements;
 
 public class BuildingManager : MonoBehaviour
@@ -49,5 +50,64 @@ public class BuildingManager : MonoBehaviour
 
         Debug.Log($"No building of type {type} found at {position}");
         return null;
+    }
+
+    public static Building GetClosestAvailableBuilding(Vector3Int coords)
+    {
+        List<Building> buildings = new(Buildings.Values.Where((building) => building.Occupied == false));
+        if (buildings.Count == 0)
+        {
+            Debug.Log("No available buildings.");
+            return null;
+        }
+
+        Building closest = buildings[0];
+        foreach (Building building in buildings)
+        {
+            float closestDis = Vector3.Distance(closest.Coords, coords);
+            float nextDis = Vector3.Distance(building.Coords, coords);
+
+            if (nextDis < closestDis)
+                closest = building;
+        }
+
+        return closest;
+    }
+    public static T GetClosestAvailableBuilding<T>(Vector3Int coords)
+    where T : Building
+    {
+        List<T> buildings = Buildings.Values
+            .OfType<T>()
+            .Where(building => !building.Occupied)
+            .ToList();
+
+        if (buildings.Count == 0)
+        {
+            Debug.Log($"No available buildings of type {typeof(T).Name}.");
+            return null;
+        }
+
+        T closest = buildings[0];
+
+        foreach (T building in buildings)
+        {
+            if (!Pathfinder.CanPathfind(coords, building.Coords))
+                continue;
+
+            float closestDistance = Vector3.Distance(closest.Coords, coords);
+            float buildingDistance = Vector3.Distance(building.Coords, coords);
+
+            if (buildingDistance < closestDistance)
+                closest = building;
+        }
+
+        return closest;
+    }
+
+    public static T[] GetBuildingsOfType<T>()
+        where T : Building
+    {
+        T[] buildings = Buildings.Values.OfType<T>().ToArray();
+        return buildings;
     }
 }

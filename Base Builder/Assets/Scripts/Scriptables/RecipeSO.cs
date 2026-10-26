@@ -16,6 +16,8 @@ public class RecipeSO : ScriptableObject
     [SerializeField] public Dictionary<ResourceSO, int> outputs = new();
     public float completionTime;
     public int energyCost;
+
+    public bool isUnlocked;
 }
     public enum RecipeType
     {

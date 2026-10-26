@@ -1,4 +1,4 @@
 input:
-1 [[Iron Plate]] 
+1 [[Iron]] 
 output:
-2 [[Iron Rod]]
+3 [[Iron Rod]]

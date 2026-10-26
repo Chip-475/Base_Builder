@@ -2,4 +2,4 @@ ___
 input:
 1 [[Bronze Plate]]
 output:
-1 [[Bronze Rod]]
+3 [[Bronze Rod]]

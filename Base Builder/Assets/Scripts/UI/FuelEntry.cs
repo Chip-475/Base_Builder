@@ -28,6 +28,6 @@ public class FuelEntry : MonoBehaviour
     {
         this.fuel = fuel;
         fuelIcon.sprite = fuel.Sprite;
-        quantityText.text = fuel.name + " (" + fuel.fuelValue + "/s )";
+        fuelText.text = fuel.name + " (" + fuel.fuelValue + "fv/s )";
     }
 }

@@ -5,7 +5,12 @@ using UnityEngine.EventSystems;
 public class SpaceshipView : BuildingView
 {
     public new SpaceshipData Data => base.Data as SpaceshipData;
-    public Spaceship RuntimeObj { get; private set; }
+    public new Spaceship RuntimeObj
+    {
+        get { return base.RuntimeObj as Spaceship; }
+        set { base.RuntimeObj = value; }
+    }
+
     [SerializeField] Transform botSpawnPoint;
     [SerializeField] SpaceshipUI ui;
 

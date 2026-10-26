@@ -1,0 +1,1 @@
+Inventory is shared between all [[Storage]] but each storage add weight to the maximum the inventory can hold.

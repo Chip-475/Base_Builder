@@ -30,6 +30,7 @@ public class RecipeEntry : MonoBehaviour
 
     public void Build(RecipeSO recipe)
     {
+        if(recipe==null)Debug.Log("ricetta null why");
         if (recipe.inputs.Count > 3 || recipe.outputs.Count > 1)
             throw new Exception($"Recipe {recipe.Name} is invalid.");
 
@@ -41,7 +42,7 @@ public class RecipeEntry : MonoBehaviour
             var Values = recipe.outputs.Keys.ToArray();
 
             currentEntry.sprite = Keys[i].Sprite;
-            quantityText[currentEntry].text = Values[i].ToString();
+            quantityText[currentEntry].text = recipe.inputs[Keys[i]].ToString();
         }
     }
 }

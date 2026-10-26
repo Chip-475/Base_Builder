@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
-
+[DefaultExecutionOrder(-10)]
 public class WorldManager : MonoBehaviour
 {
     public static WorldManager Instance { get; private set; }

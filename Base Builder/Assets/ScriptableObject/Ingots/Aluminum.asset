@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Aluminum
   m_EditorClassIdentifier: Assembly-CSharp::Resources
-  Name: 
+  Name: Aluminum
   Desc: 
   Sprite: {fileID: -7338505459348056181, guid: 64b9e168b69b06241b0048d5b9563a8f, type: 3}
-  toughness: 1
   weightPerUnit: 1
-  energyPerUnit: 0
+  toughness: 1
+  timeToMine: 1
+  fuelValue: 0
+  timeToConsume: 1

@@ -19,8 +19,9 @@ public class InteractionManager : MonoBehaviour
     private void Update()
     {
         currentInteractable = FindClosestInteractable();
+
         if (currentInteractable == null) interactionPrompt.SetActive(false);
-        else interactionPrompt.SetActive(true);
+        else { interactionPrompt.SetActive(true); }
     }
 
     IInteractable FindClosestInteractable()

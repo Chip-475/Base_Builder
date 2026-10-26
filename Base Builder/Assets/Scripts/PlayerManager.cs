@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerManager : MonoBehaviour
 {
     static PlayerManager _instance;
+    
     public static PlayerManager Instance 
     {
         /*
@@ -68,7 +69,10 @@ public class PlayerManager : MonoBehaviour
     }
     public void Interact(InputAction.CallbackContext context)
     {
-        InteractionManager.Instance.currentInteractable?.Interact();
+        Debug.Log("pressed interact");
+        if (InteractionManager.Instance.currentInteractable == null) Debug.Log("no interactable found");
+        else Debug.Log("Interactable found:" + InteractionManager.Instance.currentInteractable);
+            InteractionManager.Instance.currentInteractable.Interact();
     }
 
     public Cell GetPlayerCell()
