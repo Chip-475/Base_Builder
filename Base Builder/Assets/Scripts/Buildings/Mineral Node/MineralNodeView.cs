@@ -17,7 +17,11 @@ public class MineralNodeView : BuildingView
 
     private void OnMouseDown()
     {
+        Debug.Log("Clicked");
+
         var bot = BotManager.GetClosestAvailableBot<MinerBot>(RuntimeObj);
-        
+        bot.Node = RuntimeObj;
+        bot.Crate = BuildingManager.GetClosestAvailableBuilding<MineralCrate>(RuntimeObj.Coords);
+        bot.StartWorking();
     }
 }

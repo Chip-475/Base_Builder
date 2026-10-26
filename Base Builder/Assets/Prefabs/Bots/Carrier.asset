@@ -17,6 +17,6 @@ MonoBehaviour:
   speed: 3
   maxWeight: 100
   maxPower: 25
-  carryCapacity: 0
+  carryCapacity: 100
   currentRecipe: {fileID: 0}
   currentInputResources: []

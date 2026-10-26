@@ -124,16 +124,14 @@ public class Inventory
     }
     public bool Contains(Dictionary<ResourceSO, int> mats)
     {
-        bool toReturn = true;
-
         foreach (var mat in mats)
         {
             if (!Items.ContainsKey(mat.Key))
-                toReturn = false;
+                return false;
             if (Items[mat.Key] < mat.Value)
-                toReturn = false;
+                return false;
         }
 
-        return toReturn;
+        return true;
     }
 }

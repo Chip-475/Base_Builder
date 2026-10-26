@@ -23,7 +23,7 @@ public class LogisticsManager : MonoBehaviour
     }
 
     public static LogisticsManager Instance { get; private set; }
-    public static List<LogisticsRequest> Requests { get; private set; }
+    public static List<LogisticsRequest> Requests { get; private set; } = new();
 
     private void Awake()
     {

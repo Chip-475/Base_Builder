@@ -11937,6 +11937,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5441098884379404551, guid: 408212d5901d69e4b9987faf67335c58, type: 3}
   m_PrefabInstance: {fileID: 855609895}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &870654512
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 870654513}
+  - component: {fileID: 870654514}
+  m_Layer: 0
+  m_Name: Logistics Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &870654513
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870654512}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1505352995}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &870654514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 870654512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfdac16859286fb47807cfa114b0ac08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LogisticsManager
 --- !u!1001 &893252480
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14983,6 +15027,7 @@ Transform:
   - {fileID: 123483504}
   - {fileID: 1884853520}
   - {fileID: 1087208563}
+  - {fileID: 870654513}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1524942977

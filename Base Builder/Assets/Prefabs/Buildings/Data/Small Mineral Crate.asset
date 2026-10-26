@@ -27,6 +27,6 @@ MonoBehaviour:
     m_Extent: {x: 0, y: 0, z: 0}
   workRange: 2
   connectsToPower: 0
-  blocksWalking: 1
+  blocksWalking: 0
   blocksPlacing: 1
   maxWeight: 10

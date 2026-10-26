@@ -25,6 +25,14 @@ public class MineralCrate : Building
             if (request.requester == this)
                 return;
 
-        LogisticsManager.Requests.Add(new(this, Inventory.Items, Inventory, BuildingManager.GetClosestAvailableBuilding<Depot>(Coords).Coords));
+        Depot destination = BuildingManager.GetClosestAvailableBuilding<Depot>(Coords);
+        if (destination == null)
+            return;
+
+        LogisticsManager.Requests.Add(new(
+            this,
+            new Dictionary<ResourceSO, int>(Inventory.Items),
+            Inventory,
+            destination.Coords));
     }
 }
