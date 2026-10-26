@@ -7,4 +7,5 @@ public class DepotData : BuildingData
 {
     //Size se serve fare avere la grandezza del deposito
     public int MaxCapacity = 5;
+    public float Range;
 }

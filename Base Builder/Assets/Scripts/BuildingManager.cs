@@ -91,6 +91,9 @@ public class BuildingManager : MonoBehaviour
 
         foreach (T building in buildings)
         {
+            if (!Pathfinder.CanPathfind(coords, building.Coords))
+                continue;
+
             float closestDistance = Vector3.Distance(closest.Coords, coords);
             float buildingDistance = Vector3.Distance(building.Coords, coords);
 
@@ -99,5 +102,12 @@ public class BuildingManager : MonoBehaviour
         }
 
         return closest;
+    }
+
+    public static T[] GetBuildingsOfType<T>()
+        where T : Building
+    {
+        T[] buildings = Buildings.Values.OfType<T>().ToArray();
+        return buildings;
     }
 }
