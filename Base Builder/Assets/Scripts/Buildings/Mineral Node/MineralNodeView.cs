@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class MineralNodeView : BuildingView
 {
@@ -12,5 +13,11 @@ public class MineralNodeView : BuildingView
     private void Start()
     {
         RuntimeObj = new MineralNode(Data, this);
+    }
+
+    private void OnMouseDown()
+    {
+        var bot = BotManager.GetClosestAvailableBot<MinerBot>(RuntimeObj);
+        
     }
 }
