@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Progression.md",
+                "file": "Buildings/Machines/Machines.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Progression"
+              "title": "Machines"
             }
           }
         ]
@@ -190,8 +190,14 @@
   },
   "active": "2d75123aef14ab63",
   "lastOpenFiles": [
-    "Buildings/Machines/Press.md",
+    "Buildings/Machines/Alloy Furnace.md",
+    "Resources/Ingots/Ingots.md",
+    "Resources/Crafted Items/Crafted Items.md",
+    "Buildings/Machines/Machines.md",
+    "Recipes/First Era recipe/Electricity/Assemble Electric Core.md",
+    "Recipes/First Era recipe/Electricity/Assemble Circuit Board.md",
     "Progression.md",
+    "Buildings/Machines/Press.md",
     "Buildings/Machines/Electric Workbench.md",
     "Advanced Press.md",
     "General.md",
@@ -204,7 +210,6 @@
     "Build Mode.md",
     "World.md",
     "Art Bible.md",
-    "Buildings/Machines/Machines.md",
     "Resources/Crafted Items/other Eras/Ship Core Component.md",
     "Resources/Crafted Items/other Eras/Navigation Component.md",
     "Tech Tree/Tech Tree.md",
@@ -212,11 +217,6 @@
     "Resources/Crafted Items/First Era/Iron Casing.md",
     "Resources/Crafted Items/First Era/Iron Gear.md",
     "Resources/Crafted Items/First Era/Machine Frame.md",
-    "Resources/Crafted Items/First Era/Reinforced Plate.md",
-    "Resources/Crafted Items/First Era/Electric core.md",
-    "Resources/Crafted Items/First Era/Circuit Board.md",
-    "Resources/Crafted Items/First Era/Motherboard.md",
-    "Resources/Crafted Items/other Eras/Aluminum Plate.md",
     "Tech Tree"
   ]
 }

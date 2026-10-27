@@ -98,7 +98,6 @@ public class SpaceshipUI : MonoBehaviour
         public void Initialize()
         {
             SwitchBot(0);
-
             // Actions
             previous.onClick.AddListener(() => SwitchBot(-1));
             next.onClick.AddListener(() => SwitchBot(1));
@@ -111,7 +110,7 @@ public class SpaceshipUI : MonoBehaviour
             if (nextIndex < 0) nextIndex = botPrefabs.Count - 1;
             else if (nextIndex > botPrefabs.Count - 1) nextIndex = 0;
 
-            botImage.sprite = botPrefabs[nextIndex].data.sprite;
+            botImage.sprite = botPrefabs[nextIndex].data.sprite;  //null pure qui
             botName.text = botPrefabs[nextIndex].data.name;
             currentBotIndex = nextIndex;
         }
