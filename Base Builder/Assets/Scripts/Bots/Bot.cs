@@ -106,7 +106,11 @@ public class Bot : IWorker, IInteractable
         if (Path.Count <= 0)
             return;
 
+        Vector3 previousCoords = Position;
         SceneObj.transform.position = Vector3.MoveTowards(Coords, Path[0], Data.speed * Time.deltaTime);
+        if (Position.x - previousCoords.x != 0)
+            SceneObj.spriteRenderer.flipX = Mathf.Sign(Position.x - previousCoords.x) < 0;
+
         if (Vector3.Distance(Coords, Path[0]) < 0.05f)
             Path.RemoveAt(0);
     }
@@ -169,7 +173,7 @@ public class Bot : IWorker, IInteractable
     }
     public bool AtWorkPoint(Building workplace)
     {
-        return (Coords - GetWorkPoint(workplace)).sqrMagnitude < 0.05f * 0.05f;
+        return (Coords - GetWorkPoint(workplace)).sqrMagnitude < 1f * 1f;
     }
 
     #region Interaction

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
+using System.Threading.Tasks;
 
 public class MinerBot : Bot
 {
@@ -27,7 +29,7 @@ public class MinerBot : Bot
         {
             if (Inventory.IsEmpty)
             {
-                Mine(workOutput);
+                await Mine(workOutput);
             }
             else
             {
@@ -38,10 +40,11 @@ public class MinerBot : Bot
         }
     }
 
-    void Mine(Dictionary<ResourceSO, int> workOutput)
+   async UniTask Mine(Dictionary<ResourceSO, int> workOutput)
     {
         if (AtWorkPoint(Node))
         {
+            await UniTask.WaitForSeconds(Node.Data.resource.timeToMine);
             Inventory.AddItems(workOutput);
             return;
         }

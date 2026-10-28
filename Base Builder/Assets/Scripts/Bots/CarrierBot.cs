@@ -189,7 +189,7 @@ public class CarrierBot : Bot
 
     bool IsInRange(Vector3Int target)
     {
-        return (Coords - target).sqrMagnitude < 0.05f * 0.05f;
+        return (Coords - target).sqrMagnitude < 1f * 1f;
     }
 
     void OccupyRequest(LogisticsManager.LogisticsRequest request)

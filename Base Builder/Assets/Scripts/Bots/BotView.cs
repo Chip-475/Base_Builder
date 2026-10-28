@@ -10,9 +10,9 @@ public class BotView : MonoBehaviour
     public Bot RuntimeObj { get; protected set; }
 
     [Header("Components")]
-    [SerializeField] SpriteRenderer spriteRenderer;
-    [SerializeField] Animator animator;
-    [SerializeField] Image powerBar;
+    public SpriteRenderer spriteRenderer;
+    public Animator animator;
+    public Image powerBar;
 
     protected virtual void Start()
     {
