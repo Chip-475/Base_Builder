@@ -7,6 +7,7 @@ The player gathers raw resources, refines them into materials and components, an
 ![Base Builder waypoints](waypoint.png) Waypoints (Week 2)
 ![Base Builder Build Mode](buildMode.png) Build Mode (Week 3)
 ![Base Builder Power System](powerSystem.png) Power System (Week 4)
+![Base Builder Power System](furnace.png) (Week 6)
 
 ## Project highlights
 
@@ -36,6 +37,13 @@ The player gathers raw resources, refines them into materials and components, an
 - Spaceship UI
 - Machine UI
 - Player 
+- auto smleting(on furnace,alloy furnace)
+- bot's IA
+- furnace UI
+- new Scriptable object for recipe and other
+- obsidian updates
+- Generator UI
+- Adding new sprite for the game
 ## Current status
 The game is still in early development, none of the features are fully implemented yet, and the game is not yet playable.
 ## Installation

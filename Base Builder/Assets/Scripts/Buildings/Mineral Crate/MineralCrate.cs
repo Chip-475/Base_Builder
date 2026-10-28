@@ -18,13 +18,21 @@ public class MineralCrate : Building
         MonoBehaviour.Destroy(SceneObj);
     }
     public override Dictionary<ResourceSO, int> GetWorkOutputs() => null;
+    
+    public void IssueLogisticsRequest()
+    {
+        foreach (var request in LogisticsManager.Requests)
+            if (request.requester == this)
+                return;
 
-    public void AddItem(ResourceSO resource, int amount) => Inventory.AddItem(resource, amount);
-    public void AddItems(Dictionary<ResourceSO, int> mats) => Inventory.AddItems(mats);
+        Depot destination = BuildingManager.GetClosestAvailableBuilding<Depot>(Coords);
+        if (destination == null)
+            return;
 
-    public bool CanAddItem(ResourceSO resource, int amount) => Inventory.CanAddItem(resource, amount);
-    public bool CanAddItems(Dictionary<ResourceSO, int> mats) => Inventory.CanAddItems(mats);
-
-    public KeyValuePair<ResourceSO, int> RemoveItem(ResourceSO resource, int amount) => Inventory.RemoveItem(resource, amount);
-    public bool CanRemoveItem(ResourceSO resource, int amount) => Inventory.CanRemoveItem(resource, amount);
+        LogisticsManager.Requests.Add(new(
+            this,
+            new Dictionary<ResourceSO, int>(Inventory.Items),
+            Inventory,
+            destination.Coords));
+    }
 }

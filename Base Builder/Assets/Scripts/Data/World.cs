@@ -6,7 +6,7 @@ using UnityEngine.Tilemaps;
 [Serializable]
 public class World
 {
-    public Dictionary<Vector3Int, Cell> Cells = new();
+    public Dictionary<Vector3Int, Cell> Cells { get; private set; } = new();
     Dictionary<Vector3Int, Building> buildings = new();
     public Bounds WorldBounds;
 

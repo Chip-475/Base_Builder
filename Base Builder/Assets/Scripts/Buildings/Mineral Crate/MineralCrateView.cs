@@ -13,4 +13,9 @@ public class MineralCrateView : BuildingView
     {
         RuntimeObj = new MineralCrate(Data, this);
     }
+    private void Update()
+    {
+        if (!RuntimeObj.Inventory.IsEmpty)
+            RuntimeObj.IssueLogisticsRequest();
+    }
 }

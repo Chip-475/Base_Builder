@@ -19,10 +19,15 @@ MonoBehaviour:
   bounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 1.5, y: 1.5, z: 0}
+  interactionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   connectionBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
+  workRange: 0
   connectsToPower: 0
-  blocksWalking: 1
+  blocksWalking: 0
   blocksPlacing: 1
   MaxCapacity: 25
+  Range: 3

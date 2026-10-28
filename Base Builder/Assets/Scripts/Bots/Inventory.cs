@@ -1,4 +1,3 @@
-using Mono.Cecil;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -57,7 +56,7 @@ public class Inventory
 
         return true;
     }
-
+    
     public KeyValuePair<ResourceSO, int> RemoveItem(ResourceSO resource, int amount)
     {
         if (!CanRemoveItem(resource, amount))
@@ -72,26 +71,16 @@ public class Inventory
 
         return new(resource, amount);
     }
-
-    public Dictionary<ResourceSO,int> RemoveItems(Dictionary<ResourceSO,int> mats)
+    public void RemoveItems(Dictionary<ResourceSO, int> mats)
     {
-        Dictionary<ResourceSO, int> toReturn=new();
-        foreach (var mat in mats)
+        if (!CanRemoveItems(mats))
         {
-            if (!CanRemoveItem(mat.Key, mat.Value))
-            {
-                Debug.Log("Cannot remove item.");
-                return null;
-            }
-
-            Items[mat.Key] = Items.GetValueOrDefault(mat.Key) - mat.Value;
-            if (Items[mat.Key] == 0)
-            {
-                toReturn[mat.Key] = mat.Value;
-                Items.Remove(mat.Key);
-            }
+            Debug.Log("Cannot remove items to inventory.");
+            return;
         }
-        return toReturn;
+
+        foreach (var mat in mats)
+            RemoveItem(mat.Key, mat.Value);
     }
     public bool CanRemoveItem(ResourceSO resource, int amount)
     {
@@ -102,14 +91,12 @@ public class Inventory
 
         return true;
     }
-
     public bool CanRemoveItems(Dictionary<ResourceSO, int> mats)
     {
         foreach (var mat in mats)
-        {
-            if (!Items.ContainsKey(mat.Key)) return false;
-            if (Items[mat.Key] - mat.Value < 0) return false;
-        }
+            if (!CanRemoveItem(mat.Key, mat.Value))
+                return false;
+
         return true;
     }
 
@@ -137,16 +124,14 @@ public class Inventory
     }
     public bool Contains(Dictionary<ResourceSO, int> mats)
     {
-        bool toReturn = true;
-
         foreach (var mat in mats)
         {
             if (!Items.ContainsKey(mat.Key))
-                toReturn = false;
+                return false;
             if (Items[mat.Key] < mat.Value)
-                toReturn = false;
+                return false;
         }
 
-        return toReturn;
+        return true;
     }
 }

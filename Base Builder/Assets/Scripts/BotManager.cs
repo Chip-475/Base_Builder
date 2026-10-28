@@ -2,7 +2,7 @@ using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.PackageManager.Requests;
+//using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 public class BotManager : MonoBehaviour
@@ -56,6 +56,28 @@ public class BotManager : MonoBehaviour
             float nextDis = Vector3.Distance(bot.SceneObj.transform.position, building.SceneObj.transform.position);
 
             if(nextDis < closestDis)
+                closest = bot;
+        }
+
+        return closest;
+    }
+    public static T GetClosestAvailableBot<T>(Building building)
+        where T : Bot
+    {
+        List<T> bots = new(Bots.OfType<T>().Where((bot) => bot.Occupied == false));
+        if (bots.Count == 0)
+        {
+            Debug.Log("No available bots.");
+            return null;
+        }
+
+        T closest = bots[0];
+        foreach (T bot in bots)
+        {
+            float closestDis = Vector3.Distance(closest.SceneObj.transform.position, building.SceneObj.transform.position);
+            float nextDis = Vector3.Distance(bot.SceneObj.transform.position, building.SceneObj.transform.position);
+
+            if (nextDis < closestDis)
                 closest = bot;
         }
 

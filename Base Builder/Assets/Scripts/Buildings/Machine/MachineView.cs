@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class MachineView : BuildingView
 {
-    [Header("test")]
-    public RecipeSO test;
+    //[Header("test")]
+    //public RecipeSO test;
     public new MachineData Data => base.Data as MachineData;
     public new Machine RuntimeObj
     {
