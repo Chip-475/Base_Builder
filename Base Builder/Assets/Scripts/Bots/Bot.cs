@@ -72,6 +72,9 @@ public class Bot : IWorker, IInteractable
     public Vector3 Position => SceneObj.transform.position;
     public Cell[] InteractionCells => Helpers.GetCellsInBounds(InteractionBounds);
 
+    // Runtime
+    protected Vector3Int? destination;
+
     public Bot(BotView view, BotData data, BotConfig config)
     {
         SceneObj = view;
@@ -91,6 +94,7 @@ public class Bot : IWorker, IInteractable
         InteractionManager.Instance.interactables.Add(this);
     }
 
+    #region Movement
     public void SetDestination(Vector3Int coords)
     {
         var myPos = Coords.ToVector3Int();
@@ -107,6 +111,42 @@ public class Bot : IWorker, IInteractable
             Path.RemoveAt(0);
     }
 
+    public bool MoveTo(Vector3Int target)
+    {
+        if (destination != target || Path.Count == 0)
+        {
+            if (!Pathfinder.CanPathfind(Coords.ToVector3Int(), target))
+                return false;
+
+            SetDestination(target);
+            destination = target;
+        }
+
+        MoveTowardsDestination();
+        return true;
+    }
+    public bool MoveToWorkplace(Building workplace)
+    {
+        Vector3 workPoint = workplace.SceneObj.BotWorkPoint != null
+            ? workplace.SceneObj.BotWorkPoint.position
+            : workplace.Coords;
+        Vector3Int target = workPoint.ToVector3Int();
+
+        if (destination != target || Path.Count == 0)
+        {
+            if (!Pathfinder.CanPathfind(Coords.ToVector3Int(), target))
+                return false;
+
+            SetDestination(target);
+            destination = target;
+        }
+
+        MoveTowardsDestination();
+        return true;
+    }
+
+    #endregion
+
     // Work
     public Bot GetBot() { return this; }
 
@@ -121,12 +161,18 @@ public class Bot : IWorker, IInteractable
         SceneObj.StopCoroutine(WorkRoutine);
     }
 
-    public bool IsInWorkRange(Building workplace)
+    public Vector3 GetWorkPoint(Building workplace)
     {
-        return Vector3.Distance(Coords, workplace.SceneObj.BotWorkPoint.position) < 0.05f;
+        return workplace.SceneObj.BotWorkPoint != null
+            ? workplace.SceneObj.BotWorkPoint.position
+            : workplace.Coords;
+    }
+    public bool AtWorkPoint(Building workplace)
+    {
+        return (Coords - GetWorkPoint(workplace)).sqrMagnitude < 0.05f * 0.05f;
     }
 
-    // IInteractable
+    #region Interaction
     public void Interact()
     {
         if (!PickedUp)
@@ -150,4 +196,5 @@ public class Bot : IWorker, IInteractable
     {
         throw new NotImplementedException();
     }
+    #endregion
 }

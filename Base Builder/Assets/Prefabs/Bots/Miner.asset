@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Miner
   m_EditorClassIdentifier: Assembly-CSharp::BotData
   sprite: {fileID: 6799967465745104397, guid: abff66fdd2364bb449a25c9551003523, type: 3}
-  speed: 1
+  speed: 3
   maxWeight: 25
   maxPower: 100
   carryCapacity: 0

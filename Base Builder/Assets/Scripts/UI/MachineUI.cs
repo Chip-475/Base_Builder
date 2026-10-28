@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -67,12 +68,10 @@ public class MachineUI : MonoBehaviour
     {
         WipeBotList();
 
-        List<Bot> workers = new(BotManager.Bots);
+        List<WorkerBot> workers = new(BotManager.Bots.OfType<WorkerBot>());
         workers.Sort((a, b) => a.Occupied.CompareTo(b.Occupied));
-        foreach (Bot bot in workers)
+        foreach (WorkerBot bot in workers)
         {
-            if (bot is not WorkerBot)
-                continue;
             BuildingBotEntry go = Instantiate(botEntryPrefab, botListContent.transform);
             go.Initialize(bot);
         }

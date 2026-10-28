@@ -8,19 +8,27 @@ public class BuildingBotEntry : MonoBehaviour
     [SerializeField] TMP_Text nameText;
     [SerializeField] Button button;
     
-    Bot bot;
+    WorkerBot bot;
 
     private void Update()
     {
-        button.interactable = bot.Occupied == false && MachineUI.Instance.Machine != null && MachineUI.Instance.Machine.Occupied == false && MachineUI.Instance.selectedRecipeEntry != null;
+        button.interactable = bot.Occupied == false
+            && MachineUI.Instance.Machine != null
+            && MachineUI.Instance.Machine.Occupied == false
+            && MachineUI.Instance.selectedRecipeEntry != null;
     }
-    public void Initialize(Bot bot)
+    public void Initialize(WorkerBot bot)
     {
         this.bot = bot;
 
         icon.sprite = bot.Data.sprite;
         nameText.text = bot.Name;
 
-        // to add listener to button
+        button.onClick.AddListener(() => AssignTask());
+    }
+
+    void AssignTask()
+    {
+        bot.CurrentTask = new(bot, MachineUI.Instance.Machine, MachineUI.Instance.selectedRecipeEntry.recipe, 1);
     }
 }
