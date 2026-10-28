@@ -9429,6 +9429,10 @@ PrefabInstance:
       propertyPath: <Data>k__BackingField
       value: 
       objectReference: {fileID: 11400000, guid: 64d6081fffe0144419a3f2edf6385cb4, type: 2}
+    - target: {fileID: 7153129810117478357, guid: e763b3d5351920f42acc546fc68ce11e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8371047783094548678, guid: e763b3d5351920f42acc546fc68ce11e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.01
@@ -9472,6 +9476,10 @@ PrefabInstance:
     - target: {fileID: 8462214193835634459, guid: e763b3d5351920f42acc546fc68ce11e, type: 3}
       propertyPath: m_Name
       value: Coal Generator Mk.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8462214193835634459, guid: e763b3d5351920f42acc546fc68ce11e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14921,7 +14929,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3206123427161022597, guid: ff2da20c3c5538f459c52733b59b36a1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -16636,16 +16645,16 @@ MonoBehaviour:
   botMenuPanel: {fileID: 1312523729}
   botMenu:
     botListContent: {fileID: 1868076566}
-    botSpawnpoint: {fileID: 0}
+    botSpawnpoint: {fileID: 12954970}
     botImage: {fileID: 1531066816}
     botName: {fileID: 165250650}
     previous: {fileID: 546714769}
     next: {fileID: 404712573}
     build: {fileID: 1467000620}
     botPrefabs:
-    - {fileID: 7252859086010938602, guid: 33c057345b9133946809cc912febd9fa, type: 3}
+    - {fileID: 2375721541604936971, guid: 33c057345b9133946809cc912febd9fa, type: 3}
     - {fileID: 2375721541604936971, guid: 408212d5901d69e4b9987faf67335c58, type: 3}
-    - {fileID: 9187895944409864753, guid: 2dd9c6cdbf11bda4395567f6201ec15d, type: 3}
+    - {fileID: 2375721541604936972, guid: 2dd9c6cdbf11bda4395567f6201ec15d, type: 3}
   spaceshipMenuPanel: {fileID: 279253645}
   inventoryMenuPanel: {fileID: 992907742}
   techTreeMenuPanel: {fileID: 1554130732}

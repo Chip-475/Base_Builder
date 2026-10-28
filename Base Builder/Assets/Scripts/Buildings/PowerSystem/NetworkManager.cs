@@ -25,6 +25,10 @@ public class NetworkManager : MonoBehaviour
         id = System.Guid.NewGuid().ToString();
         NetworkColor = PowerManager.networkColors.Pop();
     }
+    private void Update()
+    {
+        foreach (Generator g in ConnectedBuildings.OfType<Generator>()) Debug.Log(g.Running);
+    }
     public bool RequestPower(Machine machine, float amount)
     {
         if (amount <= 0) return false;
