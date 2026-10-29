@@ -29,7 +29,7 @@ public class MinerBot : Bot
         {
             if (Inventory.IsEmpty)
             {
-                await Mine(workOutput);
+                Mine(workOutput);
             }
             else
             {

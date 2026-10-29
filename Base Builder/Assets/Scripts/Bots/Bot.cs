@@ -53,7 +53,14 @@ public class Bot : IWorker, IInteractable
         set => SceneObj.transform.position = value;
     }
     public string Name { get; protected set; }
-    public float Power { get; protected set; }
+    public float localSpeed;
+    float power;
+    public float Power { get => power; protected set { power = value; if(power <= 0) isOn = false; }  }
+    public bool isOn;
+    public float PowerConsumption
+    {
+        get => Data.powerConsumption; // * powerEfficiency
+    }
     public int MaxWeight { get; protected set; }
     // ---
     public List<Vector3Int> Path { get; protected set; } = new();
@@ -75,6 +82,7 @@ public class Bot : IWorker, IInteractable
     // Runtime
     protected Vector3Int? destination;
 
+
     public Bot(BotView view, BotData data, BotConfig config)
     {
         SceneObj = view;
@@ -93,7 +101,15 @@ public class Bot : IWorker, IInteractable
         BotManager.RegisterBot(this);
         InteractionManager.Instance.interactables.Add(this);
     }
-
+    public void ShutDown()
+    {
+        localSpeed=0;
+    }
+    public void turnOn()
+    {
+        localSpeed=Data.speed;
+        //should stop working but remember current workspace
+    }
     #region Movement
     public void SetDestination(Vector3Int coords)
     {
@@ -107,7 +123,7 @@ public class Bot : IWorker, IInteractable
             return;
 
         Vector3 previousCoords = Position;
-        SceneObj.transform.position = Vector3.MoveTowards(Coords, Path[0], Data.speed * Time.deltaTime);
+        SceneObj.transform.position = Vector3.MoveTowards(Coords, Path[0], localSpeed * Time.deltaTime);
         if (Position.x - previousCoords.x != 0)
             SceneObj.spriteRenderer.flipX = Mathf.Sign(Position.x - previousCoords.x) < 0;
 

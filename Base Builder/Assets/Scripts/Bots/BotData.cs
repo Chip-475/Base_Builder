@@ -7,6 +7,7 @@ public class BotData : ScriptableObject
     [Space]
     public float speed;
     public int maxWeight;
+    public float powerConsumption;
     public int maxPower;
     public int carryCapacity;
     public RecipeSO currentRecipe;
