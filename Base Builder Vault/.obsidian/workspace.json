@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Recipes/Second Era recipe/Metal/Metalworking/Advanced Assembler to Advanced Machine Component.md",
+                "file": "Resources/Raw/Bauxite.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Advanced Assembler to Advanced Machine Component"
+              "title": "Bauxite"
             }
           },
           {
@@ -261,8 +261,14 @@
   },
   "active": "2d75123aef14ab63",
   "lastOpenFiles": [
-    "Recipes/First Era recipe/Metal/Metalworking/Assemble to Iron Rod.md",
+    "Progression.md",
+    "General.md",
+    "Build Mode.md",
+    "Inventory.md",
+    "Tech Tree/Tech Tree.md",
+    "Spaceship.md",
     "Recipes/Second Era recipe/Metal/Metalworking/Advanced Assembler to Advanced Machine Component.md",
+    "Recipes/First Era recipe/Metal/Metalworking/Assemble to Iron Rod.md",
     "Recipes/Second Era recipe/Electrical Working/Avanced Electrify to Electronic Module.md",
     "Recipes/Second Era recipe/Electrical Working/Advanced Electrify to Control Unit.md",
     "Recipes/Second Era recipe/Electrical Working/Advanced Electrify to Advanced circuit board.md",
@@ -282,13 +288,7 @@
     "Buildings/Machines/Electric Workbench.md",
     "Buildings/Machines/Advanced Assembler.md",
     "Buildings/Machines/Advanced Press.md",
-    "Recipes/other Eras/Smelt to Iron 3.md",
-    "Progression.md",
-    "Recipes/Second Era recipe/Metal/Metalworking/Assemble to Aluminium Gear.md",
     "Recipes/Second Era recipe/Metal/Industrial Components",
-    "Resources/Crafted Items/other Eras/Titanium Frame.md",
-    "Resources/Crafted Items/Second Era/Aluminum Gear.md",
-    "Recipes/Second Era recipe/Metal/Metalworking/Assemble to Steel Gear.md",
     "Recipes/Second Era recipe/Metal/Metalworking",
     "Recipes/Second Era recipe/Metal/Foundry",
     "Recipes/Second Era recipe/Metal",
