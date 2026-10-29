@@ -8,91 +8,20 @@
         "type": "tabs",
         "children": [
           {
-            "id": "8c8353c35e764004",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Bots/Builder Bot.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Builder Bot"
-            }
-          },
-          {
-            "id": "d6b3d35888b0724d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Buildings/Machines/Furnace mk1.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Furnace mk1"
-            }
-          },
-          {
             "id": "2d75123aef14ab63",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Resources/Raw/Bauxite.md",
+                "file": "Progression.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Bauxite"
-            }
-          },
-          {
-            "id": "ad4203939ac5bf63",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Resources/Crafted Items/First Era/Copper Wire.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Copper Wire"
-            }
-          },
-          {
-            "id": "eb5c31bc83d8ee3e",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Buildings/Machines/Assembler.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Assembler"
-            }
-          },
-          {
-            "id": "81e17aab1c28aac7",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Resources/Ingots/Copper.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Copper"
+              "title": "Progression"
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -261,41 +190,33 @@
   },
   "active": "2d75123aef14ab63",
   "lastOpenFiles": [
+    "Steel Frame.md",
     "Progression.md",
-    "General.md",
-    "Build Mode.md",
-    "Inventory.md",
-    "Tech Tree/Tech Tree.md",
-    "Spaceship.md",
-    "Recipes/Second Era recipe/Metal/Metalworking/Advanced Assembler to Advanced Machine Component.md",
-    "Recipes/First Era recipe/Metal/Metalworking/Assemble to Iron Rod.md",
-    "Recipes/Second Era recipe/Electrical Working/Avanced Electrify to Electronic Module.md",
-    "Recipes/Second Era recipe/Electrical Working/Advanced Electrify to Control Unit.md",
-    "Recipes/Second Era recipe/Electrical Working/Advanced Electrify to Advanced circuit board.md",
-    "Resources/Crafted Items/Second Era/Electromagnet.md",
-    "Resources/Crafted Items/Second Era/Electronic Module.md",
-    "Resources/Crafted Items/Second Era/Control Unit.md",
-    "Resources/Crafted Items/Second Era/Advanced Circuit Board.md",
-    "Resources/Crafted Items/Second Era/Gold Wire.md",
-    "Recipes/Second Era recipe/Electrical Working/Advanced Electrify to Gold Wire.md",
-    "Recipes/Second Era recipe/Electrical Working/Advanced Electrify to Electromagnet.md",
-    "Recipes/Second Era recipe/Electrical Working/Electrify to Copper Coil.md",
-    "Recipes/Second Era recipe/Metal/Foundry/Smelt to Gold.md",
-    "Resources/Crafted Items/Crafted Items.md",
-    "Resources/Crafted Items/Second Era/Copper Coil.md",
-    "Buildings/Machines/Advanced Electric Workbench.md",
-    "Recipes/Second Era recipe/Electrical Working",
+    "Gearbox.md",
+    "Buildings/Machines/Press.md",
     "Buildings/Machines/Electric Workbench.md",
-    "Buildings/Machines/Advanced Assembler.md",
-    "Buildings/Machines/Advanced Press.md",
-    "Recipes/Second Era recipe/Metal/Industrial Components",
-    "Recipes/Second Era recipe/Metal/Metalworking",
-    "Recipes/Second Era recipe/Metal/Foundry",
-    "Recipes/Second Era recipe/Metal",
-    "Resources/Crafted Items/Second Era/Untitled",
-    "Recipes/Second Era recipe",
-    "Resources/Crafted Items/Second Era",
+    "Advanced Press.md",
+    "General.md",
+    "Resources/Crafted Items/First Era/Insulator.md",
+    "Spaceship.md",
+    "Demo Scope.md",
+    "Docs.md",
     "Pasted image 20261023194307.png",
+    "Inventory.md",
+    "Build Mode.md",
+    "World.md",
+    "Art Bible.md",
+    "Buildings/Machines/Machines.md",
+    "Resources/Crafted Items/other Eras/Ship Core Component.md",
+    "Resources/Crafted Items/other Eras/Navigation Component.md",
+    "Tech Tree/Tech Tree.md",
+    "Resources/Crafted Items/First Era/Bot Frame.md",
+    "Resources/Crafted Items/First Era/Iron Casing.md",
+    "Resources/Crafted Items/First Era/Iron Gear.md",
+    "Resources/Crafted Items/First Era/Machine Frame.md",
+    "Resources/Crafted Items/First Era/Reinforced Plate.md",
+    "Resources/Crafted Items/First Era/Electric core.md",
+    "Resources/Crafted Items/First Era/Circuit Board.md",
     "Tech Tree"
   ]
 }
