@@ -1,0 +1,1 @@
+1 [[Control Unit]] + 1 [[Motherboard]] + 2 [[Gold Wire]]
