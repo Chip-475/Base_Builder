@@ -1,5 +1,6 @@
+using Cysharp.Threading.Tasks;
+using System.Threading;
 using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 
 public interface IInteractable
@@ -17,11 +18,11 @@ public interface IInteractable
 public interface IWorker
 {
     public Bot GetBot();
-    public IEnumerator Pipeline();
+    public UniTask Pipeline(CancellationToken cancellationToken);
     public void Fail(string reason);
 
     public bool IsWorking { get; }
-    public Coroutine WorkRoutine { get; }
+    public UniTask WorkRoutine { get; }
 }
 public interface IWorkplace
 {
