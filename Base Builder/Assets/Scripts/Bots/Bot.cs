@@ -53,7 +53,14 @@ public class Bot : IWorker, IInteractable
         set => SceneObj.transform.position = value;
     }
     public string Name { get; protected set; }
-    public float Power { get; protected set; }
+    public float localSpeed;
+    float power;
+    public float Power { get => power; protected set { power = value; if(power <= 0) isOn = false; }  }
+    public bool isOn;
+    public float PowerConsumption
+    {
+        get => Data.powerConsumption; // * powerEfficiency
+    }
     public int MaxWeight { get; protected set; }
     // ---
     public List<Vector3Int> Path { get; protected set; } = new();
@@ -71,6 +78,10 @@ public class Bot : IWorker, IInteractable
     [Header("IInteractable")]
     public Vector3 Position => SceneObj.transform.position;
     public Cell[] InteractionCells => Helpers.GetCellsInBounds(InteractionBounds);
+
+    // Runtime
+    protected Vector3Int? destination;
+
 
     public Bot(BotView view, BotData data, BotConfig config)
     {
@@ -90,7 +101,16 @@ public class Bot : IWorker, IInteractable
         BotManager.RegisterBot(this);
         InteractionManager.Instance.interactables.Add(this);
     }
-
+    public void ShutDown()
+    {
+        localSpeed=0;
+    }
+    public void turnOn()
+    {
+        localSpeed=Data.speed;
+        //should stop working but remember current workspace
+    }
+    #region Movement
     public void SetDestination(Vector3Int coords)
     {
         var myPos = Coords.ToVector3Int();
@@ -102,10 +122,50 @@ public class Bot : IWorker, IInteractable
         if (Path.Count <= 0)
             return;
 
-        SceneObj.transform.position = Vector3.MoveTowards(Coords, Path[0], Data.speed * Time.deltaTime);
+        Vector3 previousCoords = Position;
+        SceneObj.transform.position = Vector3.MoveTowards(Coords, Path[0], localSpeed * Time.deltaTime);
+        if (Position.x - previousCoords.x != 0)
+            SceneObj.spriteRenderer.flipX = Mathf.Sign(Position.x - previousCoords.x) < 0;
+
         if (Vector3.Distance(Coords, Path[0]) < 0.05f)
             Path.RemoveAt(0);
     }
+
+    public bool MoveTo(Vector3Int target)
+    {
+        if (destination != target || Path.Count == 0)
+        {
+            if (!Pathfinder.CanPathfind(Coords.ToVector3Int(), target))
+                return false;
+
+            SetDestination(target);
+            destination = target;
+        }
+
+        MoveTowardsDestination();
+        return true;
+    }
+    public bool MoveToWorkplace(Building workplace)
+    {
+        Vector3 workPoint = workplace.SceneObj.BotWorkPoint != null
+            ? workplace.SceneObj.BotWorkPoint.position
+            : workplace.Coords;
+        Vector3Int target = workPoint.ToVector3Int();
+
+        if (destination != target || Path.Count == 0)
+        {
+            if (!Pathfinder.CanPathfind(Coords.ToVector3Int(), target))
+                return false;
+
+            SetDestination(target);
+            destination = target;
+        }
+
+        MoveTowardsDestination();
+        return true;
+    }
+
+    #endregion
 
     // Work
     public Bot GetBot() { return this; }
@@ -121,12 +181,18 @@ public class Bot : IWorker, IInteractable
         SceneObj.StopCoroutine(WorkRoutine);
     }
 
-    public bool IsInWorkRange(Building workplace)
+    public Vector3 GetWorkPoint(Building workplace)
     {
-        return Vector3.Distance(Coords, workplace.SceneObj.BotWorkPoint.position) < 0.05f;
+        return workplace.SceneObj.BotWorkPoint != null
+            ? workplace.SceneObj.BotWorkPoint.position
+            : workplace.Coords;
+    }
+    public bool AtWorkPoint(Building workplace)
+    {
+        return (Coords - GetWorkPoint(workplace)).sqrMagnitude < 1f * 1f;
     }
 
-    // IInteractable
+    #region Interaction
     public void Interact()
     {
         if (!PickedUp)
@@ -150,4 +216,5 @@ public class Bot : IWorker, IInteractable
     {
         throw new NotImplementedException();
     }
+    #endregion
 }

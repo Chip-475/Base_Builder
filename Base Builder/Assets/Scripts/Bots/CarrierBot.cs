@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class CarrierBot : Bot
 {
-    public LogisticsManager.LogisticsRequest request = null;
-    Building sourceBuilding;
-    Vector3Int? destination;
+    public LogisticsManager.LogisticsRequest request;
+
+    Vector3Int? pickupPoint;
     Vector3Int? deliveryPoint;
 
     bool Working => request != null;
@@ -15,7 +15,6 @@ public class CarrierBot : Bot
         StartWorking();
     }
 
-    // IWorker
     public override IEnumerator Pipeline()
     {
         while (true)
@@ -44,74 +43,87 @@ public class CarrierBot : Bot
         if (LogisticsManager.Requests == null || LogisticsManager.Requests.Count == 0)
             return null;
 
+        LogisticsManager.LogisticsRequest bestRequest = null;
+        Vector3Int bestPickupPoint = default;
+        Vector3Int bestDeliveryPoint = default;
+        int bestPriority = int.MinValue;
+        int bestDistance = int.MaxValue;
+
         foreach (var candidate in LogisticsManager.Requests)
         {
             if (!CanPerformRequest(candidate))
                 continue;
 
-            Building source = candidate.requester as Building;
-            if (!TryFindDeliveryPoint(candidate.position.ToVector3Int(), source, out Vector3Int point))
+            if (!TryGetEndpoint(candidate.sourcePosition, out Vector3Int sourcePoint)
+                || !TryGetEndpoint(candidate.destinationPosition, out Vector3Int targetPoint))
                 continue;
 
-            deliveryPoint = point;
-            sourceBuilding = source;
-            return candidate;
+            if (!Pathfinder.CanPathfind(Coords.ToVector3Int(), sourcePoint)
+                || !Pathfinder.CanPathfind(sourcePoint, targetPoint))
+                continue;
+
+            int distance = (sourcePoint - Coords.ToVector3Int()).sqrMagnitude;
+            if (candidate.Priority < bestPriority
+                || candidate.Priority == bestPriority && distance >= bestDistance)
+                continue;
+
+            bestRequest = candidate;
+            bestPickupPoint = sourcePoint;
+            bestDeliveryPoint = targetPoint;
+            bestPriority = candidate.Priority;
+            bestDistance = distance;
         }
 
-        return null;
+        if (bestRequest == null)
+            return null;
+
+        pickupPoint = bestPickupPoint;
+        deliveryPoint = bestDeliveryPoint;
+        return bestRequest;
     }
+
     bool CanPerformRequest(LogisticsManager.LogisticsRequest request)
     {
         return request != null
             && !request.taken
-            && request.requester is Building source
-            && request.inventory != null
-            && request.inventory.Contains(request.resources)
+            && request.sourceInventory != null
+            && request.destinationInventory != null
+            && request.sourceInventory.Contains(request.resources)
             && Inventory.CanAddItems(request.resources)
-            && Pathfinder.CanPathfind(Coords.ToVector3Int(), GetWorkPoint(source).ToVector3Int());
+            && request.destinationInventory.CanAddItems(request.resources);
     }
 
-    bool TryFindDeliveryPoint(Vector3Int depotCoords, Building source, out Vector3Int deliveryPoint)
+    bool TryGetEndpoint(Vector3 position, out Vector3Int endpoint)
     {
-        deliveryPoint = default;
-        Depot depot = null;
+        endpoint = position.ToVector3Int();
+        Cell cell = WorldManager.World.GetCellAt(endpoint);
+        if (cell != null && cell.canWalkOn)
+            return true;
 
-        foreach (var candidate in BuildingManager.GetBuildingsOfType<Depot>())
-        {
-            if (candidate.Coords == depotCoords)
-            {
-                depot = candidate;
-                break;
-            }
-        }
-
+        Depot depot = FindDepotAt(endpoint);
         if (depot == null)
             return false;
 
         int radius = Mathf.CeilToInt(depot.Data.Range);
         int closestDistance = int.MaxValue;
-        Vector3Int sourcePoint = GetWorkPoint(source).ToVector3Int();
 
         for (int x = -radius; x <= radius; x++)
         {
             for (int y = -radius; y <= radius; y++)
             {
-                Vector3Int point = depot.Coords + new Vector3Int(x, y, 0);
-                Cell cell = WorldManager.World.GetCellAt(point);
-                if (cell == null || !cell.canWalkOn)
+                Vector3Int candidate = depot.Coords + new Vector3Int(x, y, 0);
+                Cell candidateCell = WorldManager.World.GetCellAt(candidate);
+                if (candidateCell == null || !candidateCell.canWalkOn)
                     continue;
 
-                if ((point - depot.Coords).sqrMagnitude > depot.Data.Range * depot.Data.Range)
+                if ((candidate - depot.Coords).sqrMagnitude > depot.Data.Range * depot.Data.Range)
                     continue;
 
-                if (!Pathfinder.CanPathfind(sourcePoint, point))
-                    continue;
-
-                int distance = (point - sourcePoint).sqrMagnitude;
+                int distance = (candidate - depot.Coords).sqrMagnitude;
                 if (distance >= closestDistance)
                     continue;
 
-                deliveryPoint = point;
+                endpoint = candidate;
                 closestDistance = distance;
             }
         }
@@ -119,78 +131,65 @@ public class CarrierBot : Bot
         return closestDistance != int.MaxValue;
     }
 
+    Depot FindDepotAt(Vector3Int coords)
+    {
+        foreach (var depot in BuildingManager.GetBuildingsOfType<Depot>())
+            if (depot.Coords == coords)
+                return depot;
+
+        return null;
+    }
+
     void CollectRequest()
     {
-        if (sourceBuilding == null || !request.inventory.Contains(request.resources))
+        if (!pickupPoint.HasValue || !request.sourceInventory.Contains(request.resources))
         {
             FailRequest("Requested resources are no longer available.");
             return;
         }
 
-        Vector3 sourcePosition = GetWorkPoint(sourceBuilding);
-        if (!IsInRange(sourcePosition, 0.05f))
+        if (!IsInRange(pickupPoint.Value))
         {
-            if (!MoveTo(sourcePosition.ToVector3Int()))
-                FailRequest("Cannot pathfind to source.");
+            if (!MoveTo(pickupPoint.Value))
+                FailRequest("Cannot pathfind to resource source.");
 
             return;
         }
 
-        request.inventory.RemoveItems(request.resources);
+        request.sourceInventory.RemoveItems(request.resources);
         Inventory.AddItems(request.resources);
     }
+
     void DeliverRequest()
     {
         if (!deliveryPoint.HasValue)
         {
-            FailRequest("Cannot find a delivery point at the depot.");
+            FailRequest("Cannot find a logistics destination.");
             return;
         }
 
-        if (!IsInRange(deliveryPoint.Value, 0.05f))
+        if (!IsInRange(deliveryPoint.Value))
         {
             if (!MoveTo(deliveryPoint.Value))
-                FailRequest("Cannot pathfind to target.");
+                FailRequest("Cannot pathfind to logistics destination.");
 
             return;
         }
 
-        if (!Depot.Inventory.CanAddItems(request.resources))
+        if (!request.destinationInventory.CanAddItems(request.resources))
         {
-            FailRequest("Depot cannot accommodate the requested resources.");
+            FailRequest("Logistics destination cannot accommodate the resources.");
             return;
         }
 
-        Depot.Inventory.AddItems(request.resources);
+        request.destinationInventory.AddItems(request.resources);
         Inventory.RemoveItems(request.resources);
         ClearRequest();
     }
 
-    Vector3 GetWorkPoint(Building building)
+    bool IsInRange(Vector3Int target)
     {
-        return building.SceneObj.BotWorkPoint != null
-            ? building.SceneObj.BotWorkPoint.position
-            : building.Coords;
-    }
-
-    bool IsInRange(Vector3 target, float range)
-    {
-        return (Coords - target).sqrMagnitude < range * range;
-    }
-
-    bool MoveTo(Vector3Int target)
-    {
-        if (destination != target || Path.Count == 0)
-        {
-            if (!Pathfinder.CanPathfind(Coords.ToVector3Int(), target))
-                return false;
-
-            SetDestination(target);
-            destination = target;
-        }
-
-        MoveTowardsDestination();
-        return true;
+        return (Coords - target).sqrMagnitude < 1f * 1f;
     }
 
     void OccupyRequest(LogisticsManager.LogisticsRequest request)
@@ -198,17 +197,19 @@ public class CarrierBot : Bot
         request.taken = true;
         this.request = request;
     }
+
     void ClearRequest()
     {
         if (request != null)
             LogisticsManager.Requests?.Remove(request);
 
         request = null;
-        sourceBuilding = null;
-        destination = null;
+        pickupPoint = null;
         deliveryPoint = null;
+        destination = null;
         Path.Clear();
     }
+
     void FailRequest(string reason)
     {
         ClearRequest();

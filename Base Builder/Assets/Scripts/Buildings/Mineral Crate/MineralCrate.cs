@@ -33,6 +33,8 @@ public class MineralCrate : Building
             this,
             new Dictionary<ResourceSO, int>(Inventory.Items),
             Inventory,
+            SceneObj.BotWorkPoint != null ? SceneObj.BotWorkPoint.position : Coords,
+            Depot.Inventory,
             destination.Coords));
     }
 }

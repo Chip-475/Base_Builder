@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cysharp.Threading.Tasks;
+using System.Threading.Tasks;
 
 public class MinerBot : Bot
 {
@@ -38,10 +40,11 @@ public class MinerBot : Bot
         }
     }
 
-    void Mine(Dictionary<ResourceSO, int> workOutput)
+   async UniTask Mine(Dictionary<ResourceSO, int> workOutput)
     {
         if (AtWorkPoint(Node))
         {
+            await UniTask.WaitForSeconds(Node.Data.resource.timeToMine);
             Inventory.AddItems(workOutput);
             return;
         }
@@ -71,37 +74,7 @@ public class MinerBot : Bot
             Fail("Cannot pathfind to crate.");
     }
 
-    bool MoveToWorkplace(Building workplace)
-    {
-        Vector3 workPoint = workplace.SceneObj.BotWorkPoint != null
-            ? workplace.SceneObj.BotWorkPoint.position
-            : workplace.Coords;
-        Vector3Int target = workPoint.ToVector3Int();
+    
 
-        if (destination != target || Path.Count == 0)
-        {
-            if (!Pathfinder.CanPathfind(Coords.ToVector3Int(), target))
-                return false;
-
-            SetDestination(target);
-            destination = target;
-        }
-
-        MoveTowardsDestination();
-        return true;
-    }
-
-    Vector3 GetWorkPoint(Building workplace)
-    {
-        return workplace.SceneObj.BotWorkPoint != null
-            ? workplace.SceneObj.BotWorkPoint.position
-            : workplace.Coords;
-    }
-
-    bool AtWorkPoint(Building workplace)
-    {
-        return (Coords - GetWorkPoint(workplace)).sqrMagnitude < 0.05f * 0.05f;
-    }
-
-    Vector3Int? destination;
+    
 }

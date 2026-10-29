@@ -16,6 +16,7 @@ public class Generator : Building, IInteractable
     public int Quantity { get { return Inventory[fuelInUse]; } private set { } }
     public float Power { get { return fuelInUse.fuelValue; } }
     public bool Running { get; private set; }
+
     Coroutine consumer;
 
     Vector3 IInteractable.Position => Coords;
@@ -27,6 +28,10 @@ public class Generator : Building, IInteractable
         PowerManager.powerGeneratorDB[id] = this;
         PowerManager.instance.RegisterBuilding();
         InteractionManager.Instance.interactables.Add(this);
+        if (data.defFuel==null) return;
+        fuelInUse = data.defFuel;
+        Inventory[fuelInUse] = data.defFuelAmount;
+        if (data.isSpaceshipGen) Running = true;
     }
     public override void Destroy()
     {
