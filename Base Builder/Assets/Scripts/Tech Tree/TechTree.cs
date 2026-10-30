@@ -3,32 +3,42 @@ using UnityEngine;
 
 public class TechTree
 {
-    public Dictionary<string, Tech> TechDB { get; private set; } = new();
+    public static Dictionary<string, TechSO> TechDB { get; private set; } = new();
+    public static HashSet<string> UnlockedTechs { get; private set; } = new();
 
     public void Initialize()
     {
         TechDB.Clear();
-        Tech[] techAssets = Resources.LoadAll<Tech>("Tech");
-        foreach (Tech tech in techAssets)
-        {
-            tech.unlocked=false;
+        TechSO[] techAssets = Resources.LoadAll<TechSO>("Tech");
+        foreach (TechSO tech in techAssets)
             TechDB[tech.id] = tech;
-        }
-            
-    }
-    public void Load(Tech.SaveData[] saveData)
-    {
-        foreach(Tech.SaveData data in saveData)
-        {
-            if(TechDB.TryGetValue(data.id,out Tech tech))TechDB[data.id].unlocked = data.unlocked;
-        }
     }
 
-    public bool IsTechUnlocked(string id)
+    public static void UnlockTech(TechSO tech)
     {
-        if (!TechDB.ContainsKey(id))
+        if (!IsTechUnlockable(tech)) return;
+
+        if (!Depot.Inventory.CanRemoveItems(tech.cost)) return;
+        Depot.Inventory.RemoveItems(tech.cost);
+
+        foreach (RecipeSO re in tech.recipeUnlocks) re.isUnlocked = true;
+        UnlockedTechs.Add(tech.id);
+    }
+    public static bool IsTechUnlockable(TechSO tech)
+    {
+        if (UnlockedTechs.Contains(tech.id))
             return false;
 
-        return TechDB[id].unlocked;
+        foreach (var kvp in tech.cost)
+        {
+            if (!Depot.Inventory.Items.ContainsKey(kvp.Key))
+                return false;
+            if (Depot.Inventory.Items[kvp.Key] < kvp.Value)
+                return false;
+        }
+
+        return true;
     }
+
+    public bool IsTechUnlocked(string id) => UnlockedTechs.Contains(id);
 }

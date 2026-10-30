@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class BuildingBotEntry : MonoBehaviour
 {
+    public MachineUI UI => MachineUI.Instance;
+
     [SerializeField] Image icon;
     [SerializeField] TMP_Text nameText;
     [SerializeField] Button button;
@@ -29,6 +31,6 @@ public class BuildingBotEntry : MonoBehaviour
 
     void AssignTask()
     {
-        bot.CurrentTask = new(bot, MachineUI.Instance.Machine, MachineUI.Instance.selectedRecipeEntry.recipe, 1);
+        bot.CurrentTask = new(bot, UI.Machine, UI.selectedRecipeEntry.recipe, UI.selectedRecipeEntry.amount);
     }
 }

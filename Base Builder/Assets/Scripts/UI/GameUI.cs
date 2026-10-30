@@ -23,11 +23,6 @@ public class GameUI : MonoBehaviour
     }
     private void Update()
     {
-        foreach (var bot in BotManager.Bots)
-        {
-            Debug.Log(bot.Occupied);
-        }
-
         powerCounter.text = $"{PowerManager.Consuption} / {PowerManager.Production}";
         botsCounter.text = $"{BotManager.EmployedBots} / {BotManager.BotCount}";
     }

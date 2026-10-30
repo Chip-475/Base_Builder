@@ -204,7 +204,6 @@ public class Bot : IWorker, IInteractable
         workCancellationSource?.Dispose();
         workCancellationSource = CancellationTokenSource.CreateLinkedTokenSource(
             SceneObj.GetCancellationTokenOnDestroy());
-        Occupied = true;
         WorkRoutine = RunPipeline(workCancellationSource.Token);
         WorkRoutine.Forget();
     }

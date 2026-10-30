@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daa9b0d2bfec3d146aec9f104666aaf4, type: 3}
+  m_Name: Assembler
+  m_EditorClassIdentifier: Assembly-CSharp::MachineData
+  name: Assembler
+  description: 
+  sprite: {fileID: 1703963130801174446, guid: 677c3f4ede2f44042bfdd59c8a223c45, type: 3}
+  type: 1
+  bounds:
+    m_Center: {x: 0.5, y: 0, z: 0}
+    m_Extent: {x: 2, y: 1.5, z: 0}
+  interactionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 2.5, y: 2.5, z: 0}
+  connectionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 1.5, y: 1.5, z: 0}
+  workRange: 0
+  connectsToPower: 1
+  blocksWalking: 1
+  blocksPlacing: 1
+  machineType: 0
+  usableRecipes: []

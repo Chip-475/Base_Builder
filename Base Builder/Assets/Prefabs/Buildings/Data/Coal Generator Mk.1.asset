@@ -14,20 +14,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GeneratorData
   name: Coal Generator Mk.1
   description: 
-  sprite: {fileID: 7482667652216324306, guid: 377bd7fa44b3937418054b9b64892216, type: 3}
+  sprite: {fileID: -4550992031882759542, guid: 86f42b398b0ebd445a8e631dd31611c2, type: 3}
   type: 3
   bounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0.5, y: 0.5, z: 0}
+    m_Center: {x: -0.5, y: 0.5, z: 0}
+    m_Extent: {x: 1, y: 1, z: 0}
   interactionBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 1.5, y: 1.5, z: 0}
   connectionBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0.5, y: 0.5, z: 0}
+  workRange: 0
   connectsToPower: 1
   blocksWalking: 1
   blocksPlacing: 1
   id: 
   allowedFuels:
   - {fileID: 11400000, guid: 8454d85e6a52b5f45a50308c97089684, type: 2}
+  defFuel: {fileID: 0}
+  defFuelAmount: 0
+  isSpaceshipGen: 0
