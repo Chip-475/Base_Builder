@@ -12,7 +12,7 @@ Alumium needs the first bot upgrade.
 Steel is used for making [[Steel Plate]], [[Steel Gear]], [[Steel Rod]] and [[Steel Frame]] this are used in advanced machines.
 The player can now unlock the [[Advanced Press]] needed for making [[Steel Reinforced Plate]] and later plates.
 The next raw resource coming to use is [[Aluminum]] it's used for lightweight components after being refined in [[Aluminum Plate]], [[Aluminum Gear]], [[Aluminum Rod]] and [[Aluminum Frame]].
-From older materials the player can now make [[Precision Gear]], [[Gear Assemblies]] and [[Gearbox]].
+From older materials the player can now make [[Precision Gear]], [[Advanced Assemble to Gear Assemblies]] and [[Gearbox]].
 The next step is [[Nickel]] that is used for specialized components and in the production for [[Invar]] 
 With them the next step is [[Advanced Assembler]] and [[Advanced Electric Workbench]] useful for [[Copper Coil]], [[Electromagnets]] and [[Electric Motors]].
 The most use [[Advanced Circuit Board]] and [[Control Unit]].

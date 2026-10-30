@@ -21,7 +21,7 @@ public interface IWorker
     public UniTask Pipeline(CancellationToken cancellationToken);
     public void Fail(string reason);
 
-    public bool IsWorking { get; }
+    public bool Occupied { get; }
     public UniTask WorkRoutine { get; }
 }
 public interface IWorkplace

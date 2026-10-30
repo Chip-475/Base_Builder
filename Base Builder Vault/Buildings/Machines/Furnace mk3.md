@@ -11,3 +11,6 @@ Recipes:
 [[Smelt to Nickel]]
 [[Smelt to Alumium]]
 [[Smelt to Titanium]]
+
+[[Resources]]:
+2 [[Steel Reinforced Plate]] + 1 [[Control Unit]] + 1 [[Heat Resistant Component]] + 1 [[Advanced Machine Frame]]
