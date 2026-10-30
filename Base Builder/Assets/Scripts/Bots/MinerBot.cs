@@ -1,5 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class MinerBot : Bot
@@ -13,35 +14,38 @@ public class MinerBot : Bot
     }
 
     // IWorker
-    public override IEnumerator Pipeline()
+    public override async UniTask Pipeline(CancellationToken cancellationToken)
     {
         if (Node == null || Crate == null)
         {
             Fail("MinerBot requires both a mineral node and a crate.");
-            yield break;
+            return;
         }
 
         Dictionary<ResourceSO, int> workOutput = Node.GetWorkOutputs();
 
-        while (true)
+        while (!cancellationToken.IsCancellationRequested)
         {
             if (Inventory.IsEmpty)
             {
-                Mine(workOutput);
+                await Mine(workOutput, cancellationToken);
             }
             else
             {
                 Deposit(workOutput);
             }
 
-            yield return null;
+            await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
         }
     }
 
-    void Mine(Dictionary<ResourceSO, int> workOutput)
+    async UniTask Mine(Dictionary<ResourceSO, int> workOutput, CancellationToken cancellationToken)
     {
         if (AtWorkPoint(Node))
         {
+            await UniTask.Delay(
+                System.TimeSpan.FromSeconds(Node.Data.resource.timeToMine),
+                cancellationToken: cancellationToken);
             Inventory.AddItems(workOutput);
             return;
         }
@@ -71,37 +75,7 @@ public class MinerBot : Bot
             Fail("Cannot pathfind to crate.");
     }
 
-    bool MoveToWorkplace(Building workplace)
-    {
-        Vector3 workPoint = workplace.SceneObj.BotWorkPoint != null
-            ? workplace.SceneObj.BotWorkPoint.position
-            : workplace.Coords;
-        Vector3Int target = workPoint.ToVector3Int();
 
-        if (destination != target || Path.Count == 0)
-        {
-            if (!Pathfinder.CanPathfind(Coords.ToVector3Int(), target))
-                return false;
 
-            SetDestination(target);
-            destination = target;
-        }
 
-        MoveTowardsDestination();
-        return true;
-    }
-
-    Vector3 GetWorkPoint(Building workplace)
-    {
-        return workplace.SceneObj.BotWorkPoint != null
-            ? workplace.SceneObj.BotWorkPoint.position
-            : workplace.Coords;
-    }
-
-    bool AtWorkPoint(Building workplace)
-    {
-        return (Coords - GetWorkPoint(workplace)).sqrMagnitude < 0.05f * 0.05f;
-    }
-
-    Vector3Int? destination;
 }

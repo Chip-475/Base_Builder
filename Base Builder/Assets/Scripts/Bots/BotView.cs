@@ -1,7 +1,8 @@
-using UnityEngine;
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using Cysharp.Threading.Tasks;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class BotView : MonoBehaviour
@@ -10,9 +11,11 @@ public class BotView : MonoBehaviour
     public Bot RuntimeObj { get; protected set; }
 
     [Header("Components")]
-    [SerializeField] SpriteRenderer spriteRenderer;
-    [SerializeField] Animator animator;
-    [SerializeField] Image powerBar;
+    public SpriteRenderer spriteRenderer;
+    public Animator animator;
+    public Image powerBar;
+
+    CancellationTokenSource movementCancellationSource;
 
     protected virtual void Start()
     {
@@ -26,31 +29,53 @@ public class BotView : MonoBehaviour
 
     public void StartMoving()
     {
-        if(RuntimeObj.Path.Count > 0)
-            StartCoroutine(FollowPath());
+        StopMoving();
+        if (RuntimeObj == null || RuntimeObj.Path.Count == 0)
+            return;
+
+        CancellationTokenSource source = CancellationTokenSource.CreateLinkedTokenSource(
+            this.GetCancellationTokenOnDestroy());
+        movementCancellationSource = source;
+        FollowPath(source.Token, source).Forget();
     }
     public void StopMoving()
     {
-        StopAllCoroutines();
+        movementCancellationSource?.Cancel();
     }
-    IEnumerator FollowPath()
+
+    async UniTask FollowPath(CancellationToken cancellationToken, CancellationTokenSource source)
     {
-        for (int i = 1; i < RuntimeObj.Path.Count; i++)
+        try
         {
-            Vector3 target = RuntimeObj.Path[i];
-
-            while (Vector3.Distance(transform.position, target) > 0.01f)
+            for (int i = 1; i < RuntimeObj.Path.Count; i++)
             {
-                transform.position = Vector3.MoveTowards(
-                    transform.position,
-                    target,
-                    data.speed * Time.deltaTime
-                );
+                Vector3 target = RuntimeObj.Path[i];
 
-                yield return null;
+                while (Vector3.Distance(transform.position, target) > 0.01f)
+                {
+                    transform.position = Vector3.MoveTowards(
+                        transform.position,
+                        target,
+                        data.speed * Time.deltaTime
+                    );
+
+                    await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
+                }
+
+                transform.position = target;
             }
-
-            transform.position = target;
+        }
+        catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+        {
+            // Cancellation is the normal way to stop visual path following.
+        }
+        finally
+        {
+            if (ReferenceEquals(movementCancellationSource, source))
+            {
+                movementCancellationSource = null;
+                source.Dispose();
+            }
         }
     }
 }

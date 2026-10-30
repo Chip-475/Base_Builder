@@ -1,0 +1,1 @@
+2 [[Circuit Board]] + 4 [[Gold Wire]]

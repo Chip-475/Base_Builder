@@ -74,6 +74,10 @@ public class PowerManager : MonoBehaviour
         machineDB.Clear();
         networkColors = new Stack<Color>(GenerateColors(1000, 1));
     }
+    private void Update()
+    {
+        Debug.Log(Consuption);
+    }
     public void RegisterBuilding()
     {
         RebuildNetworks();

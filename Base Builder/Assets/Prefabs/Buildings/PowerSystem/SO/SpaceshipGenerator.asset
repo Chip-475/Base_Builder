@@ -25,10 +25,13 @@ MonoBehaviour:
   connectionBounds:
     m_Center: {x: 1, y: 0, z: 0}
     m_Extent: {x: 6.5, y: 4.5, z: 0}
-  connectsToPower: 0
+  workRange: 0
+  connectsToPower: 1
   blocksWalking: 0
   blocksPlacing: 0
   id: 
-  allowedFuels: []
-  fuelConsumptionRate: 0
-  productionRate: 5
+  allowedFuels:
+  - {fileID: 11400000, guid: ba14cfc7ce5c6984c9b0415875612af4, type: 2}
+  defFuel: {fileID: 11400000, guid: ba14cfc7ce5c6984c9b0415875612af4, type: 2}
+  defFuelAmount: 1000
+  isSpaceshipGen: 1
