@@ -1,4 +1,5 @@
-using System.Collections;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class CarrierBot : Bot
@@ -15,9 +16,9 @@ public class CarrierBot : Bot
         StartWorking();
     }
 
-    public override IEnumerator Pipeline()
+    public override async UniTask Pipeline(CancellationToken cancellationToken)
     {
-        while (true)
+        while (!cancellationToken.IsCancellationRequested)
         {
             if (!Working)
             {
@@ -34,7 +35,7 @@ public class CarrierBot : Bot
                 CollectRequest();
             }
 
-            yield return null;
+            await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
         }
     }
 

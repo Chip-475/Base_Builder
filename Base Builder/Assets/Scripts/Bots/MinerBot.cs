@@ -1,8 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Threading;
 using Cysharp.Threading.Tasks;
-using System.Threading.Tasks;
+using UnityEngine;
 
 public class MinerBot : Bot
 {
@@ -15,36 +14,38 @@ public class MinerBot : Bot
     }
 
     // IWorker
-    public override IEnumerator Pipeline()
+    public override async UniTask Pipeline(CancellationToken cancellationToken)
     {
         if (Node == null || Crate == null)
         {
             Fail("MinerBot requires both a mineral node and a crate.");
-            yield break;
+            return;
         }
 
         Dictionary<ResourceSO, int> workOutput = Node.GetWorkOutputs();
 
-        while (true)
+        while (!cancellationToken.IsCancellationRequested)
         {
             if (Inventory.IsEmpty)
             {
-                Mine(workOutput);
+                await Mine(workOutput, cancellationToken);
             }
             else
             {
                 Deposit(workOutput);
             }
 
-            yield return null;
+            await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
         }
     }
 
-   async UniTask Mine(Dictionary<ResourceSO, int> workOutput)
+    async UniTask Mine(Dictionary<ResourceSO, int> workOutput, CancellationToken cancellationToken)
     {
         if (AtWorkPoint(Node))
         {
-            await UniTask.WaitForSeconds(Node.Data.resource.timeToMine);
+            await UniTask.Delay(
+                System.TimeSpan.FromSeconds(Node.Data.resource.timeToMine),
+                cancellationToken: cancellationToken);
             Inventory.AddItems(workOutput);
             return;
         }
@@ -74,7 +75,7 @@ public class MinerBot : Bot
             Fail("Cannot pathfind to crate.");
     }
 
-    
 
-    
+
+
 }

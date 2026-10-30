@@ -1,8 +1,7 @@
-//using Mono.Cecil;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 [Serializable]
@@ -73,7 +72,8 @@ public class Bot : IWorker, IInteractable
 
     [Header("IWorker")]
     public bool IsWorking { get; protected set; }
-    public Coroutine WorkRoutine { get; protected set; }
+    public UniTask WorkRoutine { get; protected set; }
+    CancellationTokenSource workCancellationSource;
 
     [Header("IInteractable")]
     public Vector3 Position => SceneObj.transform.position;
@@ -170,15 +170,55 @@ public class Bot : IWorker, IInteractable
     // Work
     public Bot GetBot() { return this; }
 
-    public void StartWorking() => WorkRoutine = SceneObj.StartCoroutine(Pipeline());
-    public virtual IEnumerator Pipeline()
+    public void StartWorking()
     {
-        yield break;
+        if (IsWorking)
+            return;
+
+        workCancellationSource?.Dispose();
+        workCancellationSource = CancellationTokenSource.CreateLinkedTokenSource(
+            SceneObj.GetCancellationTokenOnDestroy());
+        IsWorking = true;
+        WorkRoutine = RunPipeline(workCancellationSource.Token);
+        WorkRoutine.Forget();
     }
-    public void Fail(string reason)
+
+    async UniTask RunPipeline(CancellationToken cancellationToken)
+    {
+        try
+        {
+            await Pipeline(cancellationToken);
+        }
+        catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+        {
+            // Cancellation is the normal way for a bot to stop working.
+        }
+        catch (Exception exception)
+        {
+            Debug.LogException(exception);
+        }
+        finally
+        {
+            IsWorking = false;
+            workCancellationSource?.Dispose();
+            workCancellationSource = null;
+        }
+    }
+
+    public virtual UniTask Pipeline(CancellationToken cancellationToken)
+    {
+        return UniTask.CompletedTask;
+    }
+
+    public void StopWorking()
+    {
+        workCancellationSource?.Cancel();
+    }
+
+    public virtual void Fail(string reason)
     {
         Debug.Log(reason);
-        SceneObj.StopCoroutine(WorkRoutine);
+        StopWorking();
     }
 
     public Vector3 GetWorkPoint(Building workplace)
