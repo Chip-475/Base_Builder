@@ -11,5 +11,7 @@ public class TechSO : ScriptableObject
     public new string name;
     public Sprite icon;
     public List<RecipeSO> recipeUnlocks;
+    public List<ResourceSO> ResourcesUnlocks;
+    
     [SerializeField] public Dictionary<ResourceSO, int> cost = new();
 }
