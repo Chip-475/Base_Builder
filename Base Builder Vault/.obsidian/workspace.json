@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Resources/Crafted Items/other Eras/Advanced Frame.md",
+                "file": "Spaceship.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Advanced Frame"
+              "title": "Spaceship"
             }
           },
           {
@@ -247,6 +247,14 @@
   },
   "active": "ad4203939ac5bf63",
   "lastOpenFiles": [
+    "Tech Tree/Tech Tree.md",
+    "Spaceship.md",
+    "Inventory.md",
+    "Build Mode.md",
+    "Progression.md",
+    "Docs.md",
+    "Pasted image 20261023194307.png",
+    "Resources/Crafted Items/other Eras/Advanced Frame.md",
     "Buildings/Machines/Furnace mk3.md",
     "Buildings/Machines/Furnace mk2.md",
     "Buildings/Machines/Furnace mk1.md",
@@ -266,13 +274,6 @@
     "Resources/Crafted Items/Second Era/Nickel Plate.md",
     "Recipes/Second Era recipe/Metal/Metalworking/Assemble to Precision Gear.md",
     "Resources/Crafted Items/Second Era/Gearbox.md",
-    "Resources/Crafted Items/Second Era/Gear Assemblies.md",
-    "Resources/Crafted Items/Second Era/Precision Gear.md",
-    "Resources/Crafted Items/Second Era/Electronic Module.md",
-    "Resources/Crafted Items/First Era/Copper Wire.md",
-    "Resources/Crafted Items/Second Era/Gold Wire.md",
-    "Resources/Crafted Items/Second Era/Electromagnet.md",
-    "Resources/Crafted Items/Second Era/Copper Coil.md",
     "Recipes/Second Era recipe/Electrical Working",
     "Recipes/Second Era recipe/Metal/Industrial Components",
     "Recipes/Second Era recipe/Metal/Metalworking",
@@ -281,7 +282,6 @@
     "Resources/Crafted Items/Second Era/Untitled",
     "Recipes/Second Era recipe",
     "Resources/Crafted Items/Second Era",
-    "Pasted image 20261023194307.png",
     "Tech Tree"
   ]
 }

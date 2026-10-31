@@ -37,8 +37,7 @@ public class PlayerManager : MonoBehaviour
 
     public void Move(Vector2 vec)
     {
-        Cell nextCell =
-            WorldManager.World.GetCellAt((transform.position + (Vector3)(speed * Time.deltaTime * vec)).ToVector3Int());
+        Cell nextCell =WorldManager.World.GetCellAt((transform.position + (Vector3)(speed * Time.deltaTime * vec)).ToVector3Int());
         if (!nextCell.canWalkOn || nextCell == null)
             return;
 
