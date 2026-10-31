@@ -72,8 +72,11 @@ public class Generator : Building, IInteractable
     // IInteractable
     public void Interact()
     {
-       /* if (!CanInteractWith())
-            return;*/
+        if (!CanInteractWith())
+        {
+            Debug.Log("not interact");
+            return;
+        }
 
         GeneratorUI.Instance.Generator = this;
         GeneratorUI.Instance.Open(this);
