@@ -55,6 +55,7 @@ public class PlayerManager : MonoBehaviour
             InteractionManager.Instance.currentInteractable.Interact(); // null point excpeotion 
     }
 
+//
     public Cell GetPlayerCell()
     {
         return WorldManager.World.GetCellAt(transform.position.ToVector3Int());
