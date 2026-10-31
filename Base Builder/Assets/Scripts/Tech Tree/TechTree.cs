@@ -11,8 +11,37 @@ public class TechTree
         TechDB.Clear();
         TechSO[] techAssets = Resources.LoadAll<TechSO>("Tech");
         foreach (TechSO tech in techAssets)
+        {
+            if(string.IsNullOrEmpty(tech.id))
+            {
+                Debug.Log("tech senza id dio..");
+                return;
+            }
+            if(TechDB.ContainsKey(tech.id))
+            {
+                Debug.Log("duplicato dio cane");
+                return;
+            }
             TechDB[tech.id] = tech;
+            foreach(RecipeSO ricetta in tech.recipeUnlocks)
+            {
+                if(ricetta!=null)ricetta.isUnlocked=false;
+            }
+
+        }
+        foreach(TechSO tech in TechDB.Values)
+        {
+            if(tech.unlock)applSblocco(tech);
+        }   
     }
+
+    private static void applSblocco(TechSO tech)
+    {
+        foreach(RecipeSO ric in tech.recipeUnlocks)
+        {
+            if(ric!=null)ric.isUnlocked=true;
+        }
+    }  
 
     public static void UnlockTech(TechSO tech)
     {
@@ -21,9 +50,26 @@ public class TechTree
         if (!Depot.Inventory.CanRemoveItems(tech.cost)) return;
         Depot.Inventory.RemoveItems(tech.cost);
 
-        foreach (RecipeSO re in tech.recipeUnlocks) re.isUnlocked = true;
-        UnlockedTechs.Add(tech.id);
+        //foreach (RecipeSO re in tech.recipeUnlocks) re.isUnlocked = true;
+        //UnlockedTechs.Add(tech.id);
+        applSblocco(tech);
     }
+    public static bool isLocked(TechSO tech)
+    {
+        return tech.unlock||UnlockedTechs.Contains(tech.id);
+    }
+
+    public static bool canAfford(TechSO tech)
+    {
+        if(Depot.Inventory==null)return false;
+        foreach(KeyValuePair<ResourceSO,int>voce in tech.cost)
+        {
+            Depot.Inventory.Items.TryGetValue(voce.Key,out int posseduta);
+            if(posseduta<voce.Value)return false;
+        }
+        return true;
+    }
+
     public static bool IsTechUnlockable(TechSO tech)
     {
         if (UnlockedTechs.Contains(tech.id))
@@ -38,6 +84,11 @@ public class TechTree
         }
 
         return true;
+    }
+
+    public static bool techVisible(TechSO tech)
+    {
+        return isLocked(tech)||canAfford(tech);
     }
 
     public bool IsTechUnlocked(string id) => UnlockedTechs.Contains(id);

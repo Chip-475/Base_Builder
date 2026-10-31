@@ -13,11 +13,14 @@ MonoBehaviour:
   m_Name: ass2
   m_EditorClassIdentifier: Assembly-CSharp::TechSO
   id: 
+  unlock: 1
   name: ass2
   icon: {fileID: 1824080357421961994, guid: 65b494d34babc75418f86c57b60cdb37, type: 3}
   recipeUnlocks:
   - {fileID: 11400000, guid: 646d552d9de6d544fa42e543f89659fe, type: 2}
   - {fileID: 11400000, guid: 836ecaedf80c6d6439425be2762c435a, type: 2}
-  cost:
-  - key: {fileID: 11400000, guid: 3503701fd8214ab4f8d081c4fd8c782c, type: 2}
-    value: 10
+  ResourcesUnlocks:
+  - {fileID: 0}
+  MachineUnlocks: []
+  cost: []
+  costList: []
