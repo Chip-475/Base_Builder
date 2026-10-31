@@ -27,7 +27,6 @@ public class TechTree
             {
                 if(ricetta!=null)ricetta.isUnlocked=false;
             }
-
         }
         foreach(TechSO tech in TechDB.Values)
         {

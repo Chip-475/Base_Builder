@@ -110,6 +110,7 @@ public class BuildMode : MonoBehaviour
     }
     void Build()
     {
+        Debug.Log("sucaaa");
         if(!Depot.Inventory.CanRemoveItems(SelectedEntry.requiredResources)) return;
         Vector3Int mouseGridPos = Helpers.GetMouseWorldPosition().ToVector3Int();
         if (SelectedEntry == null || Helpers.IsMouseOverUI())
