@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 1989140808977874698}
   - component: {fileID: 8953048486083143457}
   m_Layer: 5
-  m_Name: Requested 2
+  m_Name: Input 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -499,7 +499,7 @@ GameObject:
   - component: {fileID: 5501695708767134802}
   - component: {fileID: 2225972831915724770}
   m_Layer: 5
-  m_Name: Requested 3
+  m_Name: Input 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -705,8 +705,8 @@ MonoBehaviour:
   button: {fileID: 6049846421442147196}
   addButton: {fileID: 4635865824779013420}
   subtractButton: {fileID: 3165414933135000899}
-  craftedItem: {fileID: 3220490867937062387}
-  requestedItems:
+  outputIcon: {fileID: 3220490867937062387}
+  inputsIcons:
   - {fileID: 6406548706846356615}
   - {fileID: 8953048486083143457}
   - {fileID: 2225972831915724770}
@@ -1101,7 +1101,7 @@ GameObject:
   - component: {fileID: 3894683402539572493}
   - component: {fileID: 3220490867937062387}
   m_Layer: 5
-  m_Name: Crafted
+  m_Name: Output
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1177,7 +1177,7 @@ GameObject:
   - component: {fileID: 8357905968600538643}
   - component: {fileID: 6406548706846356615}
   m_Layer: 5
-  m_Name: Requested 1
+  m_Name: Input 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -46,6 +46,10 @@ public class SpaceshipUI : MonoBehaviour
 
         botMenu.Initialize();
     }
+    private void Update()
+    {
+        botMenu.Update();
+    }
 
     public void Open()
     {
@@ -88,7 +92,7 @@ public class SpaceshipUI : MonoBehaviour
         [SerializeField] TMP_Text botName;
         [SerializeField] Button previous;
         [SerializeField] Button next;
-        [SerializeField] Button build;
+        [SerializeField] Button buildButton;
 
         [Header("Config")]
         [SerializeField] List<BotView> botPrefabs;
@@ -98,10 +102,15 @@ public class SpaceshipUI : MonoBehaviour
         public void Initialize()
         {
             SwitchBot(0);
+
             // Actions
             previous.onClick.AddListener(() => SwitchBot(-1));
             next.onClick.AddListener(() => SwitchBot(1));
-            build.onClick.AddListener(() => Build());
+            buildButton.onClick.AddListener(() => BuildBot());
+        }
+        public void Update()
+        {
+            buildButton.interactable = Depot.Inventory.CanRemoveItems(botPrefabs[currentBotIndex].data.cost);
         }
 
         void SwitchBot(int amount)
@@ -110,24 +119,34 @@ public class SpaceshipUI : MonoBehaviour
             if (nextIndex < 0) nextIndex = botPrefabs.Count - 1;
             else if (nextIndex > botPrefabs.Count - 1) nextIndex = 0;
 
-            botImage.sprite = botPrefabs[nextIndex].data.sprite;  //null pure qui
+            botImage.sprite = botPrefabs[nextIndex].data.sprite;
             botName.text = botPrefabs[nextIndex].data.name;
             currentBotIndex = nextIndex;
         }
-
-        void Build()
-        {
-            if(BotManager.Bots.Any(bot => bot.SceneObj.transform.position == botSpawnpoint.position))
-            {
-                botSpawnpoint.position += new Vector3(UnityEngine.Random.Range(-1.2f, +1.2f), UnityEngine.Random.Range(-3f, +3f),0);
-            }
-            Instantiate(botPrefabs[currentBotIndex],botSpawnpoint.position,Quaternion.identity);
-        }
+        void BuildBot() => Instantiate(botPrefabs[currentBotIndex], botSpawnpoint.position, Quaternion.identity);
     }
     [Serializable]
     public class SpaceshipMenu
     {
+        [Header("Setup")]
+        [SerializeField] Button navComponent;
+        [SerializeField] Dictionary<ResourceSO, int> navCost;
+        [Space]
+        [SerializeField] Button coreComponent;
+        [SerializeField] Dictionary<ResourceSO, int> coreCost;
+        
+        public void Initialize()
+        {
+            //navComponent.onClick.AddListener(Unlock);
+            //coreComponent.onClick.AddListener(Unlock);
 
+            // load progress
+        }
+        public void Update()
+        {
+            navComponent.interactable = Depot.Inventory.CanRemoveItems(navCost);
+            coreComponent.interactable = Depot.Inventory.CanRemoveItems(coreCost);
+        }
     }
     [Serializable]
     public class InventoryMenu

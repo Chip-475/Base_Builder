@@ -32,7 +32,31 @@ public class WorkerBot : Bot
         }
     }
 
-    public Task CurrentTask { get; set; }
+    Task currentTask;
+    public Task CurrentTask
+    {
+        get => currentTask;
+        set
+        {
+            if (ReferenceEquals(currentTask, value))
+            {
+                if (value != null && !Occupied)
+                    StartWorking();
+
+                return;
+            }
+
+            if (value != null && Occupied)
+                return;
+
+            currentTask = value;
+
+            if (value == null)
+                StopWorking();
+            else
+                StartWorking();
+        }
+    }
     public bool HasMaterials { get; private set; }
 
     LogisticsManager.LogisticsRequest materialRequest;
@@ -42,26 +66,16 @@ public class WorkerBot : Bot
 
     public WorkerBot(BotView view, BotData data, BotConfig config) : base(view, data, config)
     {
-        StartWorking();
     }
 
     public override async UniTask Pipeline(CancellationToken cancellationToken)
     {
-        while (!cancellationToken.IsCancellationRequested)
+        while (!cancellationToken.IsCancellationRequested && CurrentTask != null)
         {
-            if (CurrentTask == null)
-            {
-                Occupied = false;
-                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
-                continue;
-            }
-
             if (!CurrentTask.IsValid())
             {
-                Occupied = false;
                 Fail("Worker task is invalid.");
-                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
-                continue;
+                return;
             }
 
             if (depositRequest != null)
@@ -73,33 +87,28 @@ public class WorkerBot : Bot
                 }
 
                 CompleteTask();
-                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
-                continue;
+                return;
             }
 
             if (!CanReachWorkplace(CurrentTask.Workplace))
             {
-                Occupied = false;
                 Fail("Cannot pathfind to workplace.");
-                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
-                continue;
+                return;
             }
 
             Dictionary<ResourceSO, int> materials = GetRequiredMaterials(CurrentTask);
             if (!MaterialsAvailableOrRequested(materials))
             {
-                Occupied = false;
                 Fail("Depot does not have the required materials.");
-                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
-                continue;
+                return;
             }
 
             if (!AtWorkPoint(CurrentTask.Workplace))
             {
                 if (!MoveToWorkplace(CurrentTask.Workplace))
                 {
-                    Occupied = false;
                     Fail("Cannot pathfind to workplace.");
+                    return;
                 }
 
                 await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
@@ -125,21 +134,18 @@ public class WorkerBot : Bot
                     cancellationToken: cancellationToken);
 
                 if (!AddOutputs())
-                {
-                    Occupied = false;
+                { 
                     Fail("Worker inventory cannot hold the task outputs.");
-                    await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
-                    continue;
+                    return;
                 }
 
                 HasMaterials = false;
                 IssueDepositRequest();
-                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
                 continue;
             }
 
             CompleteTask();
-            await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
+            return;
         }
     }
 
@@ -216,7 +222,7 @@ public class WorkerBot : Bot
             return;
         }
 
-        Depot destinationDepot = FindDepotForMaterials(Inventory.Items, Coords);
+        Depot destinationDepot = FindDepotForMaterials(Inventory.Items);
         if (destinationDepot == null)
         {
             Fail("No depot can receive the task outputs.");
@@ -255,7 +261,7 @@ public class WorkerBot : Bot
         return closest;
     }
 
-    Depot FindDepotForMaterials(Dictionary<ResourceSO, int> materials, Vector3 position)
+    Depot FindDepotForMaterials(Dictionary<ResourceSO, int> materials)
     {
         foreach (var depot in BuildingManager.GetBuildingsOfType<Depot>())
             if (!depot.Occupied && Depot.Inventory.CanAddItems(materials))

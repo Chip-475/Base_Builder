@@ -13,7 +13,6 @@ public class InventoryMenu : MonoBehaviour
 
     private void Awake()
     {
-        Debug.Log("start");
         Instance = this;
 
         closeButton.onClick.AddListener(Toggle);

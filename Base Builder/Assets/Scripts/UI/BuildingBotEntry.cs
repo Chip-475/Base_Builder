@@ -31,6 +31,6 @@ public class BuildingBotEntry : MonoBehaviour
 
     void AssignTask()
     {
-        bot.CurrentTask = new(bot, UI.Machine, UI.selectedRecipeEntry.recipe, UI.selectedRecipeEntry.amount);
+        bot.CurrentTask = new(bot, UI.Machine, UI.selectedRecipeEntry.recipe, UI.selectedRecipeEntry.Amount);
     }
 }

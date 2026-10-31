@@ -135,7 +135,7 @@ public class Bot : IWorker, IInteractable
         if (Path.Count <= 0)
             return;
 
-        power -= Data.powerConsumption;
+        power -= Data.powerConsumption * Time.deltaTime;
         Vector3 previousCoords = Position;
 
         SceneObj.transform.position = Vector3.MoveTowards(Coords, Path[0], localSpeed * Time.deltaTime);
@@ -204,6 +204,8 @@ public class Bot : IWorker, IInteractable
         workCancellationSource?.Dispose();
         workCancellationSource = CancellationTokenSource.CreateLinkedTokenSource(
             SceneObj.GetCancellationTokenOnDestroy());
+
+        Occupied = true;
         WorkRoutine = RunPipeline(workCancellationSource.Token);
         WorkRoutine.Forget();
     }

@@ -1,9 +1,10 @@
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+using static UnityEditor.Progress;
 
 [RequireComponent(typeof(Button))]
 public class RecipeEntry : MonoBehaviour
@@ -12,12 +13,13 @@ public class RecipeEntry : MonoBehaviour
     [SerializeField] Button button;
     [SerializeField] Button addButton;
     [SerializeField] Button subtractButton;
-    [SerializeField] Image craftedItem;
-    [SerializeField] List<Image> requestedItems;
+    [Space]
+    [SerializeField] Image outputIcon;
+    [SerializeField] List<Image> inputsIcons;
 
     [Header("Runtime Data")]
     public RecipeSO recipe;
-    public int amount;
+    public int Amount { get; set; } = 1;
 
     readonly Dictionary<Image, TMP_Text> quantityText = new();
 
@@ -30,7 +32,8 @@ public class RecipeEntry : MonoBehaviour
         addButton.onClick.AddListener(() => ModifyAmount(1));
         subtractButton.onClick.AddListener(() => ModifyAmount(-1));
 
-        foreach (var item in requestedItems)
+        quantityText[outputIcon] = outputIcon.GetComponentInChildren<TMP_Text>();
+        foreach (var item in inputsIcons)
             quantityText[item] = item.GetComponentInChildren<TMP_Text>();
     }
     private void Update()
@@ -39,11 +42,11 @@ public class RecipeEntry : MonoBehaviour
         subtractButton.interactable = true;
 
         foreach (var item in recipe.inputs)
-            if (!Depot.Inventory.CanRemoveItem(item.Key, item.Value * amount))
+            if (!Depot.Inventory.CanRemoveItem(item.Key, item.Value * Amount))
                 addButton.interactable = false;
 
         foreach (var item in recipe.outputs)
-            if (!Depot.Inventory.CanAddItem(item.Key, item.Value * amount))
+            if (!Depot.Inventory.CanAddItem(item.Key, item.Value * Amount))
                 addButton.interactable = false;
     }
 
@@ -52,32 +55,40 @@ public class RecipeEntry : MonoBehaviour
         if (recipe.inputs.Count > 3 || recipe.outputs.Count > 1)
             throw new Exception($"Recipe {recipe.Name} is invalid.");
 
-        this.recipe = recipe;
-        for (int i = 0; i < recipe.inputs.Count; i++)
-        {
-            Image currentEntry = requestedItems[i];
-            var Keys = recipe.inputs.Keys.ToArray();
-            var Values = recipe.outputs.Keys.ToArray();
+        var outputs = recipe.outputs.ToArray();
+        var inputs = recipe.inputs.ToArray();
 
-            currentEntry.sprite = Keys[i].Sprite;
-            quantityText[currentEntry].text = (recipe.inputs[Keys[i]] * amount).ToString();
+        this.recipe = recipe;
+        outputIcon.sprite = outputs[0].Key.Sprite;
+        quantityText[outputIcon].text = (outputs[0].Value * Amount).ToString();
+        for (int i = 0; i < 3; i++)
+        {
+            if (i >= recipe.inputs.Count)
+            {
+                inputsIcons[i].gameObject.SetActive(false);
+                continue;
+            }
+
+            inputsIcons[i].gameObject.SetActive(true);
+            inputsIcons[i].sprite = inputs[i].Key.Sprite;
+            quantityText[inputsIcons[i]].text = (inputs[i].Value * Amount).ToString();
         }
     }
 
     void ModifyAmount(int amount)
     {
-        if (this.amount + amount <= 0)
+        if (this.Amount + amount <= 0)
             return;
 
         foreach (var item in recipe.inputs)
-            if (!Depot.Inventory.CanRemoveItem(item.Key, item.Value * (this.amount + amount)))
+            if (!Depot.Inventory.CanRemoveItem(item.Key, item.Value * (this.Amount + amount)))
                 return;
 
         foreach (var item in recipe.outputs)
-            if (!Depot.Inventory.CanAddItem(item.Key, item.Value * (this.amount + amount)))
+            if (!Depot.Inventory.CanAddItem(item.Key, item.Value * (this.Amount + amount)))
                 return;
 
-        this.amount += amount;
+        this.Amount += amount;
         Build(recipe);
     }
 }
