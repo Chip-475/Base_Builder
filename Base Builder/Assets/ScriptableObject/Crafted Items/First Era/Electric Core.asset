@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
   Name: WIP
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 4398901235007301379, guid: 8191b8e6d4d951344883d791b3b0020b, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

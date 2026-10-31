@@ -51,12 +51,14 @@ public class WorkerBot : Bot
         {
             if (CurrentTask == null)
             {
+                Occupied = false;
                 await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
                 continue;
             }
 
             if (!CurrentTask.IsValid())
             {
+                Occupied = false;
                 Fail("Worker task is invalid.");
                 await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
                 continue;
@@ -77,6 +79,7 @@ public class WorkerBot : Bot
 
             if (!CanReachWorkplace(CurrentTask.Workplace))
             {
+                Occupied = false;
                 Fail("Cannot pathfind to workplace.");
                 await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
                 continue;
@@ -85,6 +88,7 @@ public class WorkerBot : Bot
             Dictionary<ResourceSO, int> materials = GetRequiredMaterials(CurrentTask);
             if (!MaterialsAvailableOrRequested(materials))
             {
+                Occupied = false;
                 Fail("Depot does not have the required materials.");
                 await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
                 continue;
@@ -93,7 +97,10 @@ public class WorkerBot : Bot
             if (!AtWorkPoint(CurrentTask.Workplace))
             {
                 if (!MoveToWorkplace(CurrentTask.Workplace))
+                {
+                    Occupied = false;
                     Fail("Cannot pathfind to workplace.");
+                }
 
                 await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
                 continue;
@@ -119,6 +126,7 @@ public class WorkerBot : Bot
 
                 if (!AddOutputs())
                 {
+                    Occupied = false;
                     Fail("Worker inventory cannot hold the task outputs.");
                     await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
                     continue;
