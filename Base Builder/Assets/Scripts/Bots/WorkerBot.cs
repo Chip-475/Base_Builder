@@ -1,5 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class WorkerBot : Bot
@@ -41,23 +42,23 @@ public class WorkerBot : Bot
 
     public WorkerBot(BotView view, BotData data, BotConfig config) : base(view, data, config)
     {
-        WorkRoutine = SceneObj.StartCoroutine(Pipeline());
+        StartWorking();
     }
 
-    public override IEnumerator Pipeline()
+    public override async UniTask Pipeline(CancellationToken cancellationToken)
     {
-        while (true)
+        while (!cancellationToken.IsCancellationRequested)
         {
             if (CurrentTask == null)
             {
-                yield return null;
+                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
                 continue;
             }
 
             if (!CurrentTask.IsValid())
             {
                 Fail("Worker task is invalid.");
-                yield return null;
+                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
                 continue;
             }
 
@@ -65,19 +66,19 @@ public class WorkerBot : Bot
             {
                 if (LogisticsManager.Requests.Contains(depositRequest))
                 {
-                    yield return null;
+                    await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
                     continue;
                 }
 
                 CompleteTask();
-                yield return null;
+                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
                 continue;
             }
 
             if (!CanReachWorkplace(CurrentTask.Workplace))
             {
                 Fail("Cannot pathfind to workplace.");
-                yield return null;
+                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
                 continue;
             }
 
@@ -85,7 +86,7 @@ public class WorkerBot : Bot
             if (!MaterialsAvailableOrRequested(materials))
             {
                 Fail("Depot does not have the required materials.");
-                yield return null;
+                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
                 continue;
             }
 
@@ -94,7 +95,7 @@ public class WorkerBot : Bot
                 if (!MoveToWorkplace(CurrentTask.Workplace))
                     Fail("Cannot pathfind to workplace.");
 
-                yield return null;
+                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
                 continue;
             }
 
@@ -103,7 +104,7 @@ public class WorkerBot : Bot
                 if (materialRequest == null)
                     IssueMaterialRequest(materials);
 
-                yield return null;
+                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
                 continue;
             }
 
@@ -112,23 +113,25 @@ public class WorkerBot : Bot
                 Inventory.RemoveItems(materials);
                 HasMaterials = true;
 
-                yield return new WaitForSeconds(CurrentTask.Recipe.completionTime);
+                await UniTask.Delay(
+                    System.TimeSpan.FromSeconds(CurrentTask.Recipe.completionTime),
+                    cancellationToken: cancellationToken);
 
                 if (!AddOutputs())
                 {
                     Fail("Worker inventory cannot hold the task outputs.");
-                    yield return null;
+                    await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
                     continue;
                 }
 
                 HasMaterials = false;
                 IssueDepositRequest();
-                yield return null;
+                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
                 continue;
             }
 
             CompleteTask();
-            yield return null;
+            await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
         }
     }
 
@@ -265,7 +268,7 @@ public class WorkerBot : Bot
         Path.Clear();
     }
 
-    new void Fail(string reason)
+    public override void Fail(string reason)
     {
         if (materialRequest != null)
             LogisticsManager.Requests.Remove(materialRequest);
@@ -281,5 +284,6 @@ public class WorkerBot : Bot
         destination = null;
         Path.Clear();
         Debug.Log(reason);
+        StopWorking();
     }
 }

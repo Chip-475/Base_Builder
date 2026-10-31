@@ -1,8 +1,8 @@
-//using Mono.Cecil;
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
+using System.Threading;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 [Serializable]
@@ -52,11 +52,22 @@ public class Bot : IWorker, IInteractable
         get => SceneObj.transform.position;
         set => SceneObj.transform.position = value;
     }
+    public Cell CurrentCell {get => WorldManager.World.GetCellAt(Coords.ToVector3Int());}
     public string Name { get; protected set; }
     public float localSpeed;
     float power;
-    public float Power { get => power; protected set { power = value; if(power <= 0) isOn = false; }  }
-    public bool isOn;
+    public float Power { get => power; protected set { power = value; if(power <= 0) IsOn = false; else IsOn=true; }  }
+     bool isOn;
+    public bool IsOn
+    {
+        get => isOn;
+        set
+        {
+            isOn = value;
+        if (value) TurnOn();
+            else ShutDown();
+        }
+    }
     public float PowerConsumption
     {
         get => Data.powerConsumption; // * powerEfficiency
@@ -67,13 +78,13 @@ public class Bot : IWorker, IInteractable
     public Inventory Inventory { get; protected set; }
     public Bounds InteractionBounds { get; set; } = new();
     public bool PickedUp { get; protected set; }
-    public bool Occupied { get; set; }
     public Machine WorkingAt { get; set; }
     public int MiningLevel { get; protected set; }
 
     [Header("IWorker")]
-    public bool IsWorking { get; protected set; }
-    public Coroutine WorkRoutine { get; protected set; }
+    public bool Occupied { get; protected set; }
+    public UniTask WorkRoutine { get; protected set; }
+    CancellationTokenSource workCancellationSource;
 
     [Header("IInteractable")]
     public Vector3 Position => SceneObj.transform.position;
@@ -100,12 +111,14 @@ public class Bot : IWorker, IInteractable
         // Initiation
         BotManager.RegisterBot(this);
         InteractionManager.Instance.interactables.Add(this);
+        view.StartCoroutine(Recharge());
     }
     public void ShutDown()
     {
         localSpeed=0;
+        StopWorking();
     }
-    public void turnOn()
+    public void TurnOn()
     {
         localSpeed=Data.speed;
         //should stop working but remember current workspace
@@ -122,13 +135,25 @@ public class Bot : IWorker, IInteractable
         if (Path.Count <= 0)
             return;
 
+        power -= Data.powerConsumption;
         Vector3 previousCoords = Position;
+
         SceneObj.transform.position = Vector3.MoveTowards(Coords, Path[0], localSpeed * Time.deltaTime);
         if (Position.x - previousCoords.x != 0)
             SceneObj.spriteRenderer.flipX = Mathf.Sign(Position.x - previousCoords.x) < 0;
 
         if (Vector3.Distance(Coords, Path[0]) < 0.05f)
             Path.RemoveAt(0);
+    }
+    IEnumerator Recharge()
+    {
+        while (true)
+        {
+            if (CurrentCell.isPowered)
+            Power += 1;
+
+            yield return null;
+        }  
     }
 
     public bool MoveTo(Vector3Int target)
@@ -147,6 +172,7 @@ public class Bot : IWorker, IInteractable
     }
     public bool MoveToWorkplace(Building workplace)
     {
+        
         Vector3 workPoint = workplace.SceneObj.BotWorkPoint != null
             ? workplace.SceneObj.BotWorkPoint.position
             : workplace.Coords;
@@ -170,15 +196,56 @@ public class Bot : IWorker, IInteractable
     // Work
     public Bot GetBot() { return this; }
 
-    public void StartWorking() => WorkRoutine = SceneObj.StartCoroutine(Pipeline());
-    public virtual IEnumerator Pipeline()
+    public void StartWorking()
     {
-        yield break;
+        if (Occupied)
+            return;
+
+        workCancellationSource?.Dispose();
+        workCancellationSource = CancellationTokenSource.CreateLinkedTokenSource(
+            SceneObj.GetCancellationTokenOnDestroy());
+        Occupied = true;
+        WorkRoutine = RunPipeline(workCancellationSource.Token);
+        WorkRoutine.Forget();
     }
-    public void Fail(string reason)
+
+    async UniTask RunPipeline(CancellationToken cancellationToken)
+    {
+        try
+        {
+            await Pipeline(cancellationToken);
+        }
+        catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+        {
+            // Cancellation is the normal way for a bot to stop working.
+        }
+        catch (Exception exception)
+        {
+            Debug.LogException(exception);
+        }
+        finally
+        {
+            Occupied = false;
+            workCancellationSource?.Dispose();
+            workCancellationSource = null;
+        }
+    }
+
+    public virtual UniTask Pipeline(CancellationToken cancellationToken)
+    {
+        return UniTask.CompletedTask;
+    }
+
+    public void StopWorking()
+    {
+        workCancellationSource?.Cancel();
+        Occupied = false;
+    }
+
+    public virtual void Fail(string reason)
     {
         Debug.Log(reason);
-        SceneObj.StopCoroutine(WorkRoutine);
+        StopWorking();
     }
 
     public Vector3 GetWorkPoint(Building workplace)
@@ -200,8 +267,9 @@ public class Bot : IWorker, IInteractable
             SceneObj.transform.parent = PlayerManager.Instance.transform;
             SceneObj.transform.SetPositionAndRotation(PlayerManager.Instance.botCarryPoint.position, Quaternion.Euler(0, 0, 90));
             PickedUp = true;
-            Occupied = false;
+            Occupied = true;
             WorkingAt = null;
+            StopWorking();
             PlayerManager.Instance.IsCarryingBot = true;
         }
         else
@@ -209,6 +277,7 @@ public class Bot : IWorker, IInteractable
             SceneObj.transform.parent = null;
             SceneObj.transform.SetPositionAndRotation(PlayerManager.Instance.botDropPoint.position, Quaternion.Euler(0, 0, 0));
             PickedUp = false;
+            Occupied = false;
             PlayerManager.Instance.IsCarryingBot = false;
         }
     }

@@ -36,31 +36,17 @@
             }
           },
           {
-            "id": "2d75123aef14ab63",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Progression.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Progression"
-            }
-          },
-          {
             "id": "ad4203939ac5bf63",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Resources/Crafted Items/First Era/Copper Wire.md",
+                "file": "Spaceship.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Copper Wire"
+              "title": "Spaceship"
             }
           },
           {
@@ -134,7 +120,7 @@
                 "sortOrder": "alphabetical"
               },
               "icon": "lucide-search",
-              "title": "Search"
+              "title": "Ricerca"
             }
           },
           {
@@ -259,34 +245,35 @@
       "bases:Crea nuova Base": false
     }
   },
-  "active": "2d75123aef14ab63",
+  "active": "ad4203939ac5bf63",
   "lastOpenFiles": [
-    "Resources/Raw/Bauxite.md",
-    "Steel Frame.md",
-    "Gearbox.md",
-    "Progression.md",
-    "General.md",
-    "Build Mode.md",
-    "Inventory.md",
     "Tech Tree/Tech Tree.md",
     "Spaceship.md",
+    "Inventory.md",
+    "Build Mode.md",
+    "Progression.md",
+    "Docs.md",
+    "Pasted image 20261023194307.png",
+    "Resources/Crafted Items/other Eras/Advanced Frame.md",
+    "Buildings/Machines/Furnace mk3.md",
+    "Buildings/Machines/Furnace mk2.md",
+    "Buildings/Machines/Furnace mk1.md",
+    "Recipes/Second Era recipe/Metal/Metalworking/Advanced Assembler to Advanced Machine Frame.md",
+    "Resources/Crafted Items/Second Era/Advanced Machine Frame.md",
     "Recipes/Second Era recipe/Metal/Metalworking/Advanced Assembler to Advanced Machine Component.md",
-    "Recipes/First Era recipe/Metal/Metalworking/Assemble to Iron Rod.md",
-    "Recipes/Second Era recipe/Electrical Working/Avanced Electrify to Electronic Module.md",
-    "Recipes/Second Era recipe/Electrical Working/Advanced Electrify to Control Unit.md",
-    "Recipes/Second Era recipe/Electrical Working/Advanced Electrify to Advanced circuit board.md",
-    "Resources/Crafted Items/Second Era/Electromagnet.md",
-    "Resources/Crafted Items/Second Era/Electronic Module.md",
-    "Resources/Crafted Items/Second Era/Control Unit.md",
-    "Resources/Crafted Items/Second Era/Advanced Circuit Board.md",
-    "Resources/Crafted Items/Second Era/Gold Wire.md",
-    "Recipes/Second Era recipe/Electrical Working/Advanced Electrify to Gold Wire.md",
-    "Recipes/Second Era recipe/Electrical Working/Advanced Electrify to Electromagnet.md",
-    "Recipes/Second Era recipe/Electrical Working/Electrify to Copper Coil.md",
-    "Recipes/Second Era recipe/Metal/Foundry/Smelt to Gold.md",
-    "Resources/Crafted Items/Crafted Items.md",
-    "Resources/Crafted Items/Second Era/Copper Coil.md",
-    "Buildings/Machines/Advanced Electric Workbench.md",
+    "Resources/Crafted Items/Second Era/Advanced Machine Component.md",
+    "Recipes/Second Era recipe/Metal/Metalworking/Advanced Assembler to Heat Resistant Component.md",
+    "Recipes/Second Era recipe/Metal/Metalworking/Advanced Assemble to Gearbox.md",
+    "Recipes/Second Era recipe/Metal/Metalworking/Advanced Assemble to Gear Assemblies.md",
+    "Recipes/Second Era recipe/Metal/Metalworking/Assemble to Nickel Rod.md",
+    "Recipes/Second Era recipe/Metal/Metalworking/Press to Steel Plate.md",
+    "Recipes/Second Era recipe/Metal/Metalworking/Press to Nickel Plate.md",
+    "Recipes/Second Era recipe/Metal/Metalworking/Assemble to Steel Rod.md",
+    "Resources/Crafted Items/Second Era/Heat Resistant Component.md",
+    "Resources/Crafted Items/Second Era/Nickel Rod.md",
+    "Resources/Crafted Items/Second Era/Nickel Plate.md",
+    "Recipes/Second Era recipe/Metal/Metalworking/Assemble to Precision Gear.md",
+    "Resources/Crafted Items/Second Era/Gearbox.md",
     "Recipes/Second Era recipe/Electrical Working",
     "Recipes/Second Era recipe/Metal/Industrial Components",
     "Recipes/Second Era recipe/Metal/Metalworking",
@@ -295,7 +282,6 @@
     "Resources/Crafted Items/Second Era/Untitled",
     "Recipes/Second Era recipe",
     "Resources/Crafted Items/Second Era",
-    "Pasted image 20261023194307.png",
     "Tech Tree"
   ]
 }
