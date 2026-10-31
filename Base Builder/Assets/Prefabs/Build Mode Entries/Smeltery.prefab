@@ -100,6 +100,14 @@ PrefabInstance:
       propertyPath: buildingPrefab
       value: 
       objectReference: {fileID: 7951129881825252327, guid: a584b530c07cc344f8101e8e1bdf542e, type: 3}
+    - target: {fileID: 8727472472509128459, guid: d8db7d50ba7f82b449afeb906330ea6f, type: 3}
+      propertyPath: requiredResources.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8727472472509128459, guid: d8db7d50ba7f82b449afeb906330ea6f, type: 3}
+      propertyPath: requiredResources.Array.data[0].key
+      value: 
+      objectReference: {fileID: 11400000, guid: e76ecbd53161e044fb81a60d2b909173, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

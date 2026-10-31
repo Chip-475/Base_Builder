@@ -60,7 +60,7 @@ public class RecipeEntry : MonoBehaviour
             var Values = recipe.outputs.Keys.ToArray();
 
             currentEntry.sprite = Keys[i].Sprite;
-            quantityText[currentEntry].text = recipe.inputs[Keys[i]].ToString();
+            quantityText[currentEntry].text = (recipe.inputs[Keys[i]] * amount).ToString();
         }
     }
 
@@ -72,10 +72,12 @@ public class RecipeEntry : MonoBehaviour
         foreach (var item in recipe.inputs)
             if (!Depot.Inventory.CanRemoveItem(item.Key, item.Value * (this.amount + amount)))
                 return;
+
         foreach (var item in recipe.outputs)
             if (!Depot.Inventory.CanAddItem(item.Key, item.Value * (this.amount + amount)))
                 return;
 
         this.amount += amount;
+        Build(recipe);
     }
 }

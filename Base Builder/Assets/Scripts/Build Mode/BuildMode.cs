@@ -110,17 +110,16 @@ public class BuildMode : MonoBehaviour
     }
     void Build()
     {
-        Debug.Log("sucaaa");
-        if(!Depot.Inventory.CanRemoveItems(SelectedEntry.requiredResources)) return;
         Vector3Int mouseGridPos = Helpers.GetMouseWorldPosition().ToVector3Int();
         if (SelectedEntry == null || Helpers.IsMouseOverUI())
             return;
+        if (!Depot.Inventory.CanRemoveItems(SelectedEntry.Cost))
+            return;
         if (!SelectedEntry.buildingPrefab.CanBuildOn(mouseGridPos))
             return;
-        Depot.Inventory.RemoveItems(SelectedEntry.requiredResources);
+        Depot.Inventory.RemoveItems(SelectedEntry.Cost);
         Instantiate(SelectedEntry.buildingPrefab, mouseGridPos - SelectedEntry.buildingPrefab.Data.bounds.center, Quaternion.identity);
-        if(!Depot.Inventory.CanRemoveItems(SelectedEntry.requiredResources)) {SetSelectedEntry(null); SelectedBuilding=null;};
-
+        if(!Depot.Inventory.CanRemoveItems(SelectedEntry.Cost)) {SetSelectedEntry(null); SelectedBuilding=null;};
     }
     void Destroy()
     {
@@ -134,10 +133,17 @@ public class BuildMode : MonoBehaviour
     }
     public void SetSelectedEntry(BuildModeEntry obj)
     {
+        if (SelectedEntry != null)
+            SelectedEntry.transform.position -= new Vector3(0, 15, 0);
+
         SelectedEntry = obj;
+        if (obj != null)
+            SelectedEntry.transform.position += new Vector3(0, 15, 0);
     }
     public void SortBy(BuildingType type)
     {
+        SetSelectedEntry(null);
+
         List<BuildModeEntry> entries = new(allEntries);
         List<BuildModeEntry> requestedEntries = new();
         foreach (var entry in entries)
