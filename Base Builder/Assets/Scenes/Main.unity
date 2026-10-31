@@ -14303,6 +14303,8 @@ MonoBehaviour:
     value: 1
   - key: {fileID: 11400000, guid: 221efdb17276688478b286a17e1fa32d, type: 2}
     value: 4
+  - key: {fileID: 11400000, guid: a6c0ca76c9554a9458b5d31064597a47, type: 2}
+    value: 1
   cancelAfterAdd: 0
 --- !u!4 &1177199704
 Transform:
