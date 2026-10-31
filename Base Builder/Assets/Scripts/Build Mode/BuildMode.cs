@@ -95,7 +95,8 @@ public class BuildMode : MonoBehaviour
         }
         else
             buildingPreview.sprite = SelectedEntry.buildingPrefab.Data.sprite;
-        buildingPreview.transform.position = mouseGridPos;
+
+        buildingPreview.transform.position = mouseGridPos - SelectedEntry.buildingPrefab.Data.bounds.center;
 
         if (SelectedEntry.buildingPrefab.CanBuildOn(mouseGridPos))
             buildingPreview.color = Color.green;
@@ -115,7 +116,7 @@ public class BuildMode : MonoBehaviour
         if (!SelectedEntry.buildingPrefab.CanBuildOn(mouseGridPos))
             return;
 
-        Instantiate(SelectedEntry.buildingPrefab, mouseGridPos, Quaternion.identity);
+        Instantiate(SelectedEntry.buildingPrefab, mouseGridPos - SelectedEntry.buildingPrefab.Data.bounds.center, Quaternion.identity);
     }
     void Destroy()
     {
