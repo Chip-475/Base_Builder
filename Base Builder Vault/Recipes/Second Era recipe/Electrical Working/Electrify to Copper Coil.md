@@ -1,4 +1,4 @@
-5 [[Copper Wire]]
+5 [[Copper Wire]] + 3 [[Iron Rod]]
 
 output:
 3 [[Copper Coil]]

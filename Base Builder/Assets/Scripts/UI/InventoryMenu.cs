@@ -13,6 +13,7 @@ public class InventoryMenu : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("start");
         Instance = this;
 
         closeButton.onClick.AddListener(Toggle);
@@ -23,6 +24,7 @@ public class InventoryMenu : MonoBehaviour
     
     public void Toggle()
     {
+        Debug.Log("pressed");
         gameObject.SetActive(!gameObject.activeSelf);
 
         WipeList();

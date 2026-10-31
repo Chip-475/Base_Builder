@@ -110,6 +110,7 @@ public class BuildMode : MonoBehaviour
     }
     void Build()
     {
+        if(!Depot.Inventory.CanRemoveItems(SelectedEntry.requiredResources)) return;
         Vector3Int mouseGridPos = Helpers.GetMouseWorldPosition().ToVector3Int();
         if (SelectedEntry == null || Helpers.IsMouseOverUI())
             return;
@@ -117,6 +118,8 @@ public class BuildMode : MonoBehaviour
             return;
         Depot.Inventory.RemoveItems(SelectedEntry.requiredResources);
         Instantiate(SelectedEntry.buildingPrefab, mouseGridPos - SelectedEntry.buildingPrefab.Data.bounds.center, Quaternion.identity);
+        if(!Depot.Inventory.CanRemoveItems(SelectedEntry.requiredResources)) {SetSelectedEntry(null); SelectedBuilding=null;};
+
     }
     void Destroy()
     {

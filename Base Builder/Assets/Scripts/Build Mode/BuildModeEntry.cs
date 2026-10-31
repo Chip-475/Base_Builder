@@ -27,11 +27,6 @@ private void Awake()
     }
 public void canBuild()
 {
-    Debug.Log("Button: " + (button == null));
-    Debug.Log("Depot: " + (Depot.Inventory == null));
-    Debug.Log("Inventory: " + (Depot.Inventory == null));
-    Debug.Log("RequiredResources: " + (requiredResources == null));
-
     button.interactable = Depot.Inventory.CanRemoveItems(requiredResources);
 }
     public void OnClick()
