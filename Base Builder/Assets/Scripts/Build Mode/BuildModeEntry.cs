@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +9,8 @@ public class BuildModeEntry : MonoBehaviour
     [SerializeField] Button button;
     public Sprite icon;
 
+    [SerializeField] public Dictionary<ResourceSO,int> requiredResources;
+
     public BuildingView buildingPrefab;
 
     private void Awake()
@@ -14,7 +18,10 @@ public class BuildModeEntry : MonoBehaviour
         image.sprite = icon;
         button.onClick.AddListener(() => OnClick());
     }
-
+    public void canBuild()
+    {
+        button.interactable=Depot.Inventory.CanRemoveItems(requiredResources);
+    }
     public void OnClick()
     {
         if (buildingPrefab == null || buildingPrefab.Data == null)

@@ -74,8 +74,4 @@ public class MinerBot : Bot
         if (!MoveToWorkplace(Crate))
             Fail("Cannot pathfind to crate.");
     }
-
-
-
-
 }
