@@ -9,19 +9,31 @@ public class BuildModeEntry : MonoBehaviour
     [SerializeField] Button button;
     public Sprite icon;
 
-    [SerializeField] public Dictionary<ResourceSO,int> requiredResources;
+    [SerializeField] public Dictionary<ResourceSO,int> requiredResources=new();
 
     public BuildingView buildingPrefab;
 
-    private void Awake()
+private void Awake()
+{
+    if (requiredResources == null)
+        requiredResources = new Dictionary<ResourceSO, int>();
+
+    image.sprite = icon;
+    button.onClick.AddListener(() => OnClick());
+}
+    void Update()
     {
-        image.sprite = icon;
-        button.onClick.AddListener(() => OnClick());
+        canBuild();
     }
-    public void canBuild()
-    {
-        button.interactable=Depot.Inventory.CanRemoveItems(requiredResources);
-    }
+public void canBuild()
+{
+    Debug.Log("Button: " + (button == null));
+    Debug.Log("Depot: " + (Depot.Inventory == null));
+    Debug.Log("Inventory: " + (Depot.Inventory == null));
+    Debug.Log("RequiredResources: " + (requiredResources == null));
+
+    button.interactable = Depot.Inventory.CanRemoveItems(requiredResources);
+}
     public void OnClick()
     {
         if (buildingPrefab == null || buildingPrefab.Data == null)

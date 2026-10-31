@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Spaceship.md",
+                "file": "Buildings/Machines/Assembler.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Spaceship"
+              "title": "Assembler"
             }
           },
           {
@@ -247,8 +247,14 @@
   },
   "active": "ad4203939ac5bf63",
   "lastOpenFiles": [
-    "Tech Tree/Tech Tree.md",
+    "Buildings/Logistic/Storage.md",
+    "Buildings/Power System/Generator mk1.md",
+    "Buildings/Power System/Power Pole.md",
+    "Buildings/Power System/Electric Poles.md",
+    "Buildings/Machines/Electric Workbench.md",
+    "Buildings/Machines/Furnace mk1.md",
     "Spaceship.md",
+    "Tech Tree/Tech Tree.md",
     "Inventory.md",
     "Build Mode.md",
     "Progression.md",
@@ -257,7 +263,6 @@
     "Resources/Crafted Items/other Eras/Advanced Frame.md",
     "Buildings/Machines/Furnace mk3.md",
     "Buildings/Machines/Furnace mk2.md",
-    "Buildings/Machines/Furnace mk1.md",
     "Recipes/Second Era recipe/Metal/Metalworking/Advanced Assembler to Advanced Machine Frame.md",
     "Resources/Crafted Items/Second Era/Advanced Machine Frame.md",
     "Recipes/Second Era recipe/Metal/Metalworking/Advanced Assembler to Advanced Machine Component.md",
@@ -269,11 +274,6 @@
     "Recipes/Second Era recipe/Metal/Metalworking/Press to Steel Plate.md",
     "Recipes/Second Era recipe/Metal/Metalworking/Press to Nickel Plate.md",
     "Recipes/Second Era recipe/Metal/Metalworking/Assemble to Steel Rod.md",
-    "Resources/Crafted Items/Second Era/Heat Resistant Component.md",
-    "Resources/Crafted Items/Second Era/Nickel Rod.md",
-    "Resources/Crafted Items/Second Era/Nickel Plate.md",
-    "Recipes/Second Era recipe/Metal/Metalworking/Assemble to Precision Gear.md",
-    "Resources/Crafted Items/Second Era/Gearbox.md",
     "Recipes/Second Era recipe/Electrical Working",
     "Recipes/Second Era recipe/Metal/Industrial Components",
     "Recipes/Second Era recipe/Metal/Metalworking",

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 #pragma warning disable
 public class Tester : MonoBehaviour
@@ -13,6 +14,8 @@ public class Tester : MonoBehaviour
     
     public Vector3 pos;
 
+    [SerializeField]public Dictionary<ResourceSO,int> resourceToAdd;
+    [SerializeField]public bool cancelAfterAdd;
     private void Awake()
     {
         Instance = this;
@@ -26,5 +29,11 @@ public class Tester : MonoBehaviour
         bot.Crate = crate.RuntimeObj as MineralCrate;
 
         bot.StartWorking();
+    }
+
+    [ContextMenu ("Add Resource")]
+    public void AddResource()
+    {
+        Depot.Inventory.AddItems(resourceToAdd);
     }
 }
