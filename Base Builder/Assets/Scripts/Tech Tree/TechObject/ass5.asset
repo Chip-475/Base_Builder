@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9755486e78e7e1d40afe44726ca57847, type: 3}
+  m_Name: ass5
+  m_EditorClassIdentifier: Assembly-CSharp::TechSO
+  id: 
+  unlock: 0
+  name: ass5
+  icon: {fileID: -5479074902323993675, guid: b5a430276efc7ef42a713e2f69689fb2, type: 3}
+  recipeUnlocks:
+  - {fileID: 11400000, guid: 7f10f1b1695046e45a6a1c121431bedb, type: 2}
+  - {fileID: 11400000, guid: 30a635da3297a02478bb2aced52968ad, type: 2}
+  - {fileID: 11400000, guid: fa5b97cf036b4834cbc6e42ddb4edf72, type: 2}
+  ResourcesUnlocks: []
+  MachineUnlocks: []
+  cost: []
+  costList: []
