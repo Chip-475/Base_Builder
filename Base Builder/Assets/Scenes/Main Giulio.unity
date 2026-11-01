@@ -831,12 +831,17 @@ MonoBehaviour:
     botName: {fileID: 1431368407}
     previous: {fileID: 1431368406}
     next: {fileID: 1431368405}
-    build: {fileID: 1431368404}
+    buildButton: {fileID: 0}
     botPrefabs:
     - {fileID: 2375721541604936971, guid: 33c057345b9133946809cc912febd9fa, type: 3}
     - {fileID: 2375721541604936971, guid: 408212d5901d69e4b9987faf67335c58, type: 3}
     - {fileID: 2375721541604936972, guid: 2dd9c6cdbf11bda4395567f6201ec15d, type: 3}
   spaceshipMenuPanel: {fileID: 1431368403}
+  spaceshipMenu:
+    navComponent: {fileID: 0}
+    navCost: []
+    coreComponent: {fileID: 0}
+    coreCost: []
   inventoryMenuPanel: {fileID: 1431368402}
   techTreeMenuPanel: {fileID: 1431368400}
 --- !u!114 &130007003
@@ -3873,6 +3878,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpaceshipView
   <Data>k__BackingField: {fileID: 11400000, guid: bb94aac4519fb7b4a89d927fa183d132, type: 2}
+  <DragPivot>k__BackingField: {fileID: 0}
   <BotWorkPoint>k__BackingField: {fileID: 1054036780}
   botSpawnPoint: {fileID: 1054036780}
   ui: {fileID: 130007002}
@@ -6551,6 +6557,14 @@ MonoBehaviour:
   m_Spacing: {x: 100, y: 25}
   m_Constraint: 1
   m_ConstraintCount: 2
+--- !u!222 &1181845202
+CanvasRenderer:
+  m_ObjectHideFlags: 8
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_CullTransparentMesh: 1
 --- !u!1 &1203762851
 GameObject:
   m_ObjectHideFlags: 0
@@ -7673,17 +7687,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3672312095968366829, guid: ff2da20c3c5538f459c52733b59b36a1, type: 3}
   m_PrefabInstance: {fileID: 1431368399}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1431368404 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1069550258826298740, guid: ff2da20c3c5538f459c52733b59b36a1, type: 3}
-  m_PrefabInstance: {fileID: 1431368399}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
 --- !u!114 &1431368405 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4335872212608111908, guid: ff2da20c3c5538f459c52733b59b36a1, type: 3}
@@ -7712,7 +7715,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 1431368399}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -16618,6 +16621,8 @@ MonoBehaviour:
   node: {fileID: 0}
   crate: {fileID: 0}
   pos: {x: 0, y: 0, z: 0}
+  resourceToAdd: []
+  cancelAfterAdd: 0
 --- !u!4 &1606728236
 Transform:
   m_ObjectHideFlags: 0

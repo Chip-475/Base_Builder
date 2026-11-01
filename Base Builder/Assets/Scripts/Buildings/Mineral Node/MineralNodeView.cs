@@ -17,7 +17,8 @@ public class MineralNodeView : BuildingView
 
     private void OnMouseDown()
     {
-        Debug.Log("Clicked");
+        if (Helpers.IsMouseOverUI())
+            return;
 
         var bot = BotManager.GetClosestAvailableBot<MinerBot>(RuntimeObj);
         bot.Node = RuntimeObj;

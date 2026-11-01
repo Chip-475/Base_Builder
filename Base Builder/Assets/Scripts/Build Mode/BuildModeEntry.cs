@@ -6,29 +6,23 @@ using UnityEngine.UI;
 public class BuildModeEntry : MonoBehaviour
 {
     [SerializeField] Image image;
+    [SerializeField] Image background;
     [SerializeField] Button button;
-    public Sprite icon;
-
-    [SerializeField] public Dictionary<ResourceSO,int> requiredResources=new();
 
     public BuildingView buildingPrefab;
+    public Dictionary<ResourceSO, int> Cost => buildingPrefab.Data.cost;
 
-private void Awake()
-{
-    if (requiredResources == null)
-        requiredResources = new Dictionary<ResourceSO, int>();
-
-    image.sprite = icon;
-    button.onClick.AddListener(() => OnClick());
-}
+    private void Awake()
+    {
+        image.sprite = buildingPrefab.Data.sprite;
+        button.onClick.AddListener(() => OnClick());
+    }
     void Update()
     {
-        canBuild();
+        CanBuild();
     }
-public void canBuild()
-{
-    button.interactable = Depot.Inventory.CanRemoveItems(requiredResources);
-}
+
+    public void CanBuild() => button.interactable = Depot.Inventory.CanRemoveItems(Cost);
     public void OnClick()
     {
         if (buildingPrefab == null || buildingPrefab.Data == null)
@@ -38,6 +32,5 @@ public void canBuild()
         }
 
         BuildMode.Instance.SetSelectedEntry(this);
-        //to add:selected object sprite sparkle effect
     }
 }

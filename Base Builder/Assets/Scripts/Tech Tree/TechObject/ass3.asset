@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9755486e78e7e1d40afe44726ca57847, type: 3}
+  m_Name: ass3
+  m_EditorClassIdentifier: Assembly-CSharp::TechSO
+  id: 
+  name: ass3
+  icon: {fileID: 6305420338887985350, guid: 3b95775cd6c3a1e408044a520667d5ce, type: 3}
+  recipeUnlocks:
+  - {fileID: 11400000, guid: a1cd0c967651829409457e42035ea787, type: 2}
+  - {fileID: 11400000, guid: 56e465b5a64ba9d4299072a24ce1ebab, type: 2}
+  - {fileID: 11400000, guid: 0d9649269bb76f64dbaaf6b33fc8ad07, type: 2}
+  cost:
+  - key: {fileID: 11400000, guid: 8f12447b62af6814b96609d9f8fa2f09, type: 2}
+    value: 10
+  - key: {fileID: 11400000, guid: a6c0ca76c9554a9458b5d31064597a47, type: 2}
+    value: 10

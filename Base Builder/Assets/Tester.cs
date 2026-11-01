@@ -7,7 +7,7 @@ using System;
 public class Tester : MonoBehaviour
 {
     public static Tester Instance { get; private set; }
-
+    
     public MinerBotView bot;
     public MineralNodeView node;
     public MineralCrateView crate;
