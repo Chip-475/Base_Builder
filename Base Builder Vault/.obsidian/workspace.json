@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Buildings/Machines/Assembler.md",
+                "file": "Tech Tree/Tech Tree.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Assembler"
+              "title": "Tech Tree"
             }
           },
           {
@@ -140,7 +140,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 314.5
+    "width": 240.51953125
   },
   "right": {
     "id": "031c94f33698d22d",
@@ -247,11 +247,16 @@
   },
   "active": "ad4203939ac5bf63",
   "lastOpenFiles": [
+    "Recipes/Second Era recipe/Metal/Foundry/Smelt to Aluminium.md",
+    "Tech Tree/Tech Tree.md",
+    "Recipes/Second Era recipe/Metal/Metalworking/Advanced Assemble to Gear Assemblies.md",
+    "Recipes/Second Era recipe/Metal/Metalworking/Advanced Assemble to Gearbox.md",
+    "Recipes/First Era recipe/Metal/Metalworking/Assemble to Advanced Frame.md",
+    "Buildings/Machines/Assembler.md",
     "Buildings/Logistic/Storage.md",
     "Buildings/Power System/Generator mk1.md",
     "Buildings/Power System/Power Pole.md",
     "Buildings/Machines/Furnace mk1.md",
-    "Buildings/Machines/Assembler.md",
     "Recipes/other Eras/Assemble into Ship Core Component.md",
     "Recipes/other Eras/Assemble to Navigation Component.md",
     "Resources/Ingots/Ingots.md",
@@ -261,7 +266,6 @@
     "Buildings/Power System/Electric Poles.md",
     "Buildings/Machines/Electric Workbench.md",
     "Spaceship.md",
-    "Tech Tree/Tech Tree.md",
     "Inventory.md",
     "Build Mode.md",
     "Progression.md",
@@ -270,10 +274,6 @@
     "Resources/Crafted Items/other Eras/Advanced Frame.md",
     "Buildings/Machines/Furnace mk3.md",
     "Buildings/Machines/Furnace mk2.md",
-    "Recipes/Second Era recipe/Metal/Metalworking/Advanced Assembler to Advanced Machine Frame.md",
-    "Resources/Crafted Items/Second Era/Advanced Machine Frame.md",
-    "Recipes/Second Era recipe/Metal/Metalworking/Advanced Assembler to Advanced Machine Component.md",
-    "Resources/Crafted Items/Second Era/Advanced Machine Component.md",
     "Recipes/Second Era recipe/Electrical Working",
     "Recipes/Second Era recipe/Metal/Industrial Components",
     "Recipes/Second Era recipe/Metal/Metalworking",

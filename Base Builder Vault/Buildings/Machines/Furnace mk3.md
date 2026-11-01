@@ -9,7 +9,7 @@ Recipes:
 [[Smelt to Iron 3]]
 [[Smelt to Copper]]
 [[Smelt to Nickel]]
-[[Smelt to Alumium]]
+[[Smelt to Aluminium]]
 [[Smelt to Titanium]]
 
 [[Resources]]:

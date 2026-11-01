@@ -80,5 +80,52 @@ Starter: 1x [[Assembler]], 1x [[Furnace mk1]]
 [[Worker Bot]]
 
 3 [[Circuit Board]] + 5 [[Bronze Casing]]
+
+
 ### Second Era
+
+12:
+[[Furnace mk2]]
+[[Smelt to Iron 2]]
+[[Smelt to Aluminium]]
+
+30 [[Reinforced Plate]] + 20 [[Iron Casing]] + 10 [[Circuit Board]]
+
+13:
+[[Alloy Smelting to Steel]]
+[[Press to Steel Plate]]
+[[Assemble to Steel Rod]]
+[[Assemble to Steel Gear]]
+[[Assemble to Steel Casing]]
+
+50 [[Iron Casing]] + 30 [[Iron Gear]] + 20 [[Bronze Casing]] + 20 [[Reinforced Plate]]
+
+14:
+
+[[Advanced Assembler]]
+[[Advanced Electric Workbench]]
+[[Advanced Press]]
+[[Advanced Electrify to Advanced circuit board]]
+[[Advanced Electrify to Control Unit]]
+[[Avanced Electrify to Electronic Module]]
+[[Advanced Electrify to Gold Wire]]
+[[Avanced Electrify to Electronic Module]]
+[[Electrify to Copper Coil]]
+[[Smelt to Gold]]
+[[Smelt to Nickel]]
+[[Alloy Smelting to Invar]]
+[[Advanced Press to Steel Reinforced Plate]]
+[[Press to  Alumium Plate]]
+[[Assemble to Aluminium Rod]]
+[[Assemble to Aluminium Gear]]
+[[Assemble to Aluminium Casing]]
+[[Assemble to Precision Gear]]
+[[Advanced Assemble to Gearbox]]
+[[Advanced Assemble to Gear Assemblies]]
+[[Advanced Assembler to Advanced Machine Frame]]
+[[Advanced Assembler to Advanced Machine Component]]
+[[Advanced Assembler to Heat Resistant Component]]
+
+
+
 

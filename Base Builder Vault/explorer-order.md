@@ -8,7 +8,7 @@ This note is maintained by the Explorer Order Editor plugin. It stores the manua
   "Recipes": ["First Era recipe","Recipes.md","Second Era recipe","other Eras"],
   "Recipes/First Era recipe/Metal/Foundry": ["Smelt to Iron 1.md","Smelt to Tin.md","Alloy smelting to Bronze.md","Smelt to Copper.md"],
   "Recipes/First Era recipe/Metal/Metalworking": ["Assemble to Bronze casing.md"],
-  "Recipes/Second Era recipe/Metal/Foundry": ["Smelt to Alumium.md","Smelt to Iron 2.md","Smelt to Gold.md","Smelt to Nickel.md","Alloy Smelting to Steel.md","Alloy Smelting to Invar.md"],
+  "Recipes/Second Era recipe/Metal/Foundry": ["Smelt to Aluminium.md","Smelt to Iron 2.md","Smelt to Gold.md","Smelt to Nickel.md","Alloy Smelting to Steel.md","Alloy Smelting to Invar.md"],
   "Recipes/Second Era recipe/Metal/Metalworking": ["Press to Steel Plate.md","Assemble to Steel Rod.md","Assemble to Steel Casing.md","Assemble to Steel Gear.md","Advanced Press to Steel Reinforced Plate.md","Press to  Alumium Plate.md","Assemble to Aluminium Rod.md","Assemble to Aluminium Casing.md","Assemble to Aluminium Gear.md","Assemble to Precision Gear.md","Advanced Assemble to Gear Assemblies.md","Advanced Assemble to Gearbox.md","Advanced Assembler to Advanced Machine Component.md"],
   "Resources": ["Resources.md","Raw","Ingots","Alloys","Crafted Items"],
   "Resources/Crafted Items": ["First Era","Crafted Items.md","Second Era","other Eras"],
