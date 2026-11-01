@@ -8,6 +8,7 @@ The player gathers raw resources, refines them into materials and components, an
 ![Base Builder Build Mode](buildMode.png) Build Mode (Week 3)
 ![Base Builder Power System](powerSystem.png) Power System (Week 4)
 ![Base Builder Power System](furnace.png) (Week 6)
+![Base Builder Bot Working](botWorking.png) Bot Working (Week 7))
 
 ## Project highlights
 
@@ -44,6 +45,12 @@ The player gathers raw resources, refines them into materials and components, an
 - obsidian updates
 - Generator UI
 - Adding new sprite for the game
+- GDD featuring everything about the game
+- Every bot can work with every machine and mineral node
+- Carrier bot system
+- Tech tree for unlocking new machines and recipes
+- Save System still WIP
+- Furnaces works without a bot standing on them
 ## Current status
 The game is still in early development, none of the features are fully implemented yet, and the game is not yet playable.
 ## Installation

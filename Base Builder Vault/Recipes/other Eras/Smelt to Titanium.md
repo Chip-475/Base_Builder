@@ -1,5 +1,5 @@
 ___
 input:
-xx [[Ilmenite]]
+1 [[Ilmenite]]
 output:
-xx [[Titanium]]
+1 [[Titanium]]

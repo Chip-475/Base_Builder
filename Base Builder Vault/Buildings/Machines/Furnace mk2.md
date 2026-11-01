@@ -7,4 +7,4 @@ Recipes:
 [[Smelt to Copper]]
 
 [[Resources]]:
-2 [[Iron Plate]] + 3 [[Copper Wire]] + 1 [[Machine Frame]]
+2 [[Bronze Casing]] + 3 [[Copper Wire]] +2 [[Circuit Board]]+ 1 [[Machine Frame]]
