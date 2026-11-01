@@ -139,11 +139,12 @@ Starter: 1x [[Assembler]], 1x [[Furnace mk1]]
 [[Advanced Press to Steel Reinforced Plate]]
 
 40 [[Steel Frame]] + 30 [[Precision Gear]] + 20 [[Steel Plate]]
-20:
 
+20:
 [[Advanced Assembler]]
 [[Advanced Assemble to Gearbox]]
 [[Advanced Assemble to Gear Assemblies]]
+
 [[Advanced Assembler to Advanced Machine Frame]]
 [[Advanced Assembler to Advanced Machine Component]]
 [[Advanced Assembler to Heat Resistant Component]]
