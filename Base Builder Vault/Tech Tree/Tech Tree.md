@@ -101,25 +101,47 @@ Starter: 1x [[Assembler]], 1x [[Furnace mk1]]
 50 [[Iron Casing]] + 30 [[Iron Gear]] + 20 [[Bronze Casing]] + 20 [[Reinforced Plate]]
 
 14:
-
-[[Advanced Assembler]]
-[[Advanced Electric Workbench]]
-[[Advanced Press]]
-[[Advanced Electrify to Advanced circuit board]]
-[[Advanced Electrify to Control Unit]]
-[[Avanced Electrify to Electronic Module]]
-[[Advanced Electrify to Gold Wire]]
-[[Avanced Electrify to Electronic Module]]
-[[Electrify to Copper Coil]]
-[[Smelt to Gold]]
-[[Smelt to Nickel]]
-[[Alloy Smelting to Invar]]
-[[Advanced Press to Steel Reinforced Plate]]
 [[Press to  Alumium Plate]]
 [[Assemble to Aluminium Rod]]
 [[Assemble to Aluminium Gear]]
 [[Assemble to Aluminium Casing]]
+
+40 [[Aluminum]] + 30 [[Copper Wire]] + 20 [[Iron Gear]]
+
+15:
+[[Smelt to Gold]]
+[[Smelt to Nickel]]
+
+30 [[Steel Plate]] + 20 [[Bronze Casing]] + 30 [[Copper Plate]]
+
+16:
+[[Alloy Smelting to Invar]]
 [[Assemble to Precision Gear]]
+
+30 [[Steel Gear]] + 30 [[Nickel]] + 20 [[Steel Rod]]
+
+17:
+[[Electrify to Copper Coil]]
+[[Advanced Electric Workbench]]
+
+40 [[Copper Wire]] + 20 [[Copper Plate]] + 10 [[Circuit Board]] + 15 [[Machine Frame]]
+
+18:
+[[Advanced Electrify to Gold Wire]]
+[[Advanced Electrify to Advanced circuit board]]
+[[Advanced Electrify to Control Unit]]
+[[Avanced Electrify to Electronic Module]]
+
+20 [[Gold]] + 30 [[Copper Coil]] + 20 [[Motherboard]] + 10 [[Electric core]]
+
+19:
+[[Advanced Press]]
+[[Advanced Press to Steel Reinforced Plate]]
+
+40 [[Steel Frame]] + 30 [[Precision Gear]] + 20 [[Steel Plate]]
+20:
+
+[[Advanced Assembler]]
 [[Advanced Assemble to Gearbox]]
 [[Advanced Assemble to Gear Assemblies]]
 [[Advanced Assembler to Advanced Machine Frame]]

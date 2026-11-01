@@ -245,10 +245,13 @@
       "bases:Crea nuova Base": false
     }
   },
-  "active": "ad4203939ac5bf63",
+  "active": "38e38f1f593b0e56",
   "lastOpenFiles": [
-    "Recipes/Second Era recipe/Metal/Foundry/Smelt to Aluminium.md",
+    "Buildings/Machines/Advanced Electric Workbench.md",
     "Tech Tree/Tech Tree.md",
+    "Resources/Crafted Items/Second Era/Aluminum Gear.md",
+    "Recipes/Second Era recipe/Metal/Metalworking/Advanced Assembler to Advanced Machine Component.md",
+    "Recipes/Second Era recipe/Metal/Foundry/Smelt to Aluminium.md",
     "Recipes/Second Era recipe/Metal/Metalworking/Advanced Assemble to Gear Assemblies.md",
     "Recipes/Second Era recipe/Metal/Metalworking/Advanced Assemble to Gearbox.md",
     "Recipes/First Era recipe/Metal/Metalworking/Assemble to Advanced Frame.md",
@@ -271,9 +274,6 @@
     "Progression.md",
     "Docs.md",
     "Pasted image 20261023194307.png",
-    "Resources/Crafted Items/other Eras/Advanced Frame.md",
-    "Buildings/Machines/Furnace mk3.md",
-    "Buildings/Machines/Furnace mk2.md",
     "Recipes/Second Era recipe/Electrical Working",
     "Recipes/Second Era recipe/Metal/Industrial Components",
     "Recipes/Second Era recipe/Metal/Metalworking",
