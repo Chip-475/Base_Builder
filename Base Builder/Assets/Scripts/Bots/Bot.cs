@@ -56,7 +56,7 @@ public class Bot : IWorker, IInteractable
     public string Name { get; protected set; }
     public float localSpeed;
     float power;
-    public float Power { get => power; protected set { power = value; if(power <= 0) IsOn = false; else IsOn=true; }  }
+    public float Power { get => power; set { power = value; if(power <= 0) IsOn = false; else IsOn=true; }  }
      bool isOn;
     public bool IsOn
     {

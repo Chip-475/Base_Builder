@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8af2d2574121aa14987845d2f1169265, type: 3}
   m_Name: Coal Generator Mk.1
   m_EditorClassIdentifier: Assembly-CSharp::GeneratorData
+  ID: coal_gen_mk1
   name: Coal Generator Mk.1
   description: 
   sprite: {fileID: -4550992031882759542, guid: 86f42b398b0ebd445a8e631dd31611c2, type: 3}
+  cost: []
   type: 3
   bounds:
     m_Center: {x: -0.5, y: 0.5, z: 0}

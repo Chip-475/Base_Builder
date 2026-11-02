@@ -188,6 +188,13 @@
       "dependencies": {},
       "url": "https://packages.unity.com"
     },
+    "com.unity.nuget.newtonsoft-json": {
+      "version": "https://github.com/needle-mirror/com.unity.nuget.newtonsoft-json.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "05e112d27515df4bbacce919313c2e644e2c3611"
+    },
     "com.unity.profiling.core": {
       "version": "1.0.3",
       "depth": 2,
