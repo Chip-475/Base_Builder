@@ -1,20 +1,28 @@
+using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BuildModeEntry : MonoBehaviour
 {
     [SerializeField] Image image;
+    [SerializeField] Image background;
     [SerializeField] Button button;
-    public Sprite icon;
 
     public BuildingView buildingPrefab;
+    public Dictionary<ResourceSO, int> Cost => buildingPrefab.Data.cost;
 
     private void Awake()
     {
-        image.sprite = icon;
+        image.sprite = buildingPrefab.Data.sprite;
         button.onClick.AddListener(() => OnClick());
     }
+    void Update()
+    {
+        CanBuild();
+    }
 
+    public void CanBuild() => button.interactable = Depot.Inventory.CanRemoveItems(Cost);
     public void OnClick()
     {
         if (buildingPrefab == null || buildingPrefab.Data == null)
@@ -24,6 +32,5 @@ public class BuildModeEntry : MonoBehaviour
         }
 
         BuildMode.Instance.SetSelectedEntry(this);
-        //to add:selected object sprite sparkle effect
     }
 }

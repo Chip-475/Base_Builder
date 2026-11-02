@@ -4,27 +4,8 @@ using UnityEngine.InputSystem;
 [DefaultExecutionOrder(-1)]
 public class PlayerManager : MonoBehaviour
 {
-    static PlayerManager _instance;
-    
-    public static PlayerManager Instance 
-    {
-        /*
-        get
-        {
-            if (_instance == null) _instance = new FindFirstObjectByType<PlayerManager>();
-        }
-        return _instance;*/
-        get; private set;   
-    }
-    static PlayerInputs _inputs;
-    public static PlayerInputs Inputs 
-    { 
-        get
-        {
-            if(_inputs==null)_inputs=new PlayerInputs();
-            return _inputs;
-        }
-    }
+    public static PlayerManager Instance { get; private set; }
+    public static PlayerInputs Inputs { get; private set; }
 
     [Header("Settings")]
     [SerializeField][Tooltip("7f standard.")] float speed = 7f;
@@ -40,7 +21,7 @@ public class PlayerManager : MonoBehaviour
     void Awake()
     {
         Instance = this;
-        //Inputs = new();
+        Inputs = new();
         PlayerCameraMovement.Player = this;
         PlayerMode();
         Inputs.Player.Interact.performed += Interact;
@@ -56,8 +37,7 @@ public class PlayerManager : MonoBehaviour
 
     public void Move(Vector2 vec)
     {
-        Cell nextCell =
-            WorldManager.World.GetCellAt((transform.position + (Vector3)(speed * Time.deltaTime * vec)).ToVector3Int());
+        Cell nextCell = WorldManager.World.GetCellAt((transform.position + (Vector3)(speed * Time.deltaTime * vec)).ToVector3Int());
         if (!nextCell.canWalkOn || nextCell == null)
             return;
 
@@ -69,12 +49,10 @@ public class PlayerManager : MonoBehaviour
     }
     public void Interact(InputAction.CallbackContext context)
     {
-        Debug.Log("pressed interact");
-        if (InteractionManager.Instance.currentInteractable == null) Debug.Log("no interactable found");
-        else Debug.Log("Interactable found:" + InteractionManager.Instance.currentInteractable);
-            InteractionManager.Instance.currentInteractable.Interact();
+        InteractionManager.Instance.currentInteractable?.Interact(); 
     }
 
+//
     public Cell GetPlayerCell()
     {
         return WorldManager.World.GetCellAt(transform.position.ToVector3Int());

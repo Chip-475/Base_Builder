@@ -1,6 +1,6 @@
 ___
 input:
-4 [[Iron Plate]] 
-4 [[Iron Rod]]
+4 [[Steel Plate]] 
+4 [[Steel Rod]]
 output:
-1 [[Iron Casing]]
+1 [[Steel Casing]]

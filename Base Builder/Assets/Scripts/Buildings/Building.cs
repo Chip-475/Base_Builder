@@ -9,20 +9,25 @@ public abstract class Building : IWorkplace
     public Vector3Int Coords => SceneObj.transform.position.ToVector3Int();
     public Bounds Bounds { get; set; }
     public Bounds ConnectionBounds { get; set; }
-    public Bounds InteractionBounds {  get; set; }
+    public Bounds InteractionBounds 
+    {  
+        get
+        {
+            return new Bounds(Coords, Data.interactionBounds.size);
+        }
+        //private set; 
+    }
     public NetworkManager Network;
     public bool Occupied { get; set; }
     public bool IsConnected => Network != null;
 
     public Building(BuildingData data, BuildingView sceneObj)
     {
-        if (data == null) Debug.Log("data nullo in building ");
-        if (sceneObj == null) Debug.Log("scene obj in building ");
         Data = data;
         SceneObj = sceneObj;
 
         Bounds = new(Data.bounds.center + Coords, Data.bounds.size);
-        InteractionBounds = new(Data.interactionBounds.center + Coords, Data.interactionBounds.size);
+        //InteractionBounds = new(Data.interactionBounds.center + Coords, Data.interactionBounds.size);
         ConnectionBounds = new(Data.connectionBounds.center + Coords, Data.connectionBounds.size);
         UpdateCells(GetCellsInBounds(GetBounds()));
         BuildingManager.RegisterBuilding(this);

@@ -18,6 +18,9 @@ public class InteractionManager : MonoBehaviour
     }
     private void Update()
     {
+        if (PlayerManager.Instance.IsCarryingBot)
+            return;
+
         currentInteractable = FindClosestInteractable();
 
         if (currentInteractable == null) interactionPrompt.SetActive(false);

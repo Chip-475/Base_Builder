@@ -12,7 +12,7 @@ public class BotManager : MonoBehaviour
 
     // bots info
     public static int BotCount { get {  return Bots.Count; } }
-    public static int EmployedBots { get { return Bots.Where(bot => bot.IsWorking).Count(); } }
+    public static int EmployedBots { get { return Bots.Where(bot => bot.Occupied).Count(); } }
 
     private void Awake()
     {

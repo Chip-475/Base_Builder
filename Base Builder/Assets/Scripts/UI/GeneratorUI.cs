@@ -1,3 +1,4 @@
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -87,7 +88,7 @@ public class GeneratorUI : MonoBehaviour
     {
         WipeBotList();
 
-        foreach (Bot bot in BotManager.Bots)
+        foreach (WorkerBot bot in BotManager.Bots.OfType<WorkerBot>())
         {
             BuildingBotEntry go = Instantiate(botEntryPrefab, botListContent.transform);
             go.Initialize(bot);

@@ -139,7 +139,6 @@ public class Machine : Building, IInteractable, IWorkplace
             Debug.Log("can't interact");
             return;
         }*/
-        Debug.Log("inside");
         MachineUI.Instance.Machine = this;
         MachineUI.Instance.Open(this);
     }

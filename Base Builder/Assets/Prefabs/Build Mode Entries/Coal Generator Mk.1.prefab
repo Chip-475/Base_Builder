@@ -95,7 +95,7 @@ PrefabInstance:
     - target: {fileID: 8727472472509128459, guid: d8db7d50ba7f82b449afeb906330ea6f, type: 3}
       propertyPath: icon
       value: 
-      objectReference: {fileID: 7482667652216324306, guid: 377bd7fa44b3937418054b9b64892216, type: 3}
+      objectReference: {fileID: -4550992031882759542, guid: 86f42b398b0ebd445a8e631dd31611c2, type: 3}
     - target: {fileID: 8727472472509128459, guid: d8db7d50ba7f82b449afeb906330ea6f, type: 3}
       propertyPath: buildingPrefab
       value: 

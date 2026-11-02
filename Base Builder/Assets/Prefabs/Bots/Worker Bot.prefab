@@ -64,8 +64,54 @@ PrefabInstance:
       propertyPath: data
       value: 
       objectReference: {fileID: 11400000, guid: 11014d0e74d16cb4c80dc913f28d4caf, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8556802316170449208, guid: 4eb42316dbbc0f54ab5fa4037bfebb29, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7609508162969628809, guid: 4eb42316dbbc0f54ab5fa4037bfebb29, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2375721541604936972}
   m_SourcePrefab: {fileID: 100100000, guid: 4eb42316dbbc0f54ab5fa4037bfebb29, type: 3}
+--- !u!1 &1268609950635905457 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7609508162969628809, guid: 4eb42316dbbc0f54ab5fa4037bfebb29, type: 3}
+  m_PrefabInstance: {fileID: 666014807955671817}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2375721541604936972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268609950635905457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a9e4d6c3a7f4c2a8e1b5d6f7a8c9b0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WorkerBotView
+  data: {fileID: 11400000, guid: 11014d0e74d16cb4c80dc913f28d4caf, type: 2}
+  spriteRenderer: {fileID: 3586310912217366978}
+  animator: {fileID: 6558497071767654875}
+  powerBar: {fileID: 4546269314569200100}
+--- !u!212 &3586310912217366978 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5315452187688702628, guid: 4eb42316dbbc0f54ab5fa4037bfebb29, type: 3}
+  m_PrefabInstance: {fileID: 666014807955671817}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4546269314569200100 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5122548286191260291, guid: 4eb42316dbbc0f54ab5fa4037bfebb29, type: 3}
+  m_PrefabInstance: {fileID: 666014807955671817}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+--- !u!95 &6558497071767654875 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2524114402095721573, guid: 4eb42316dbbc0f54ab5fa4037bfebb29, type: 3}
+  m_PrefabInstance: {fileID: 666014807955671817}
+  m_PrefabAsset: {fileID: 0}

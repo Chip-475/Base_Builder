@@ -1,25 +1,30 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TechTreeEntry : MonoBehaviour
 {
-    [SerializeField] Tech tech;
+    [SerializeField] TechSO tech;
     [SerializeField] Image icon;
     [SerializeField] Button button;
     
+    public TechSO Tech
+    {
+        get {return tech;}
+    }
+
     private void Start()
     {
         if(tech==null)
         {
-            Debug.Log("tech null problema");
+            Debug.Log("tech non asseganto");
             enabled=false;
             return;
         }
-        if(icon!=null)icon.sprite=tech.icon;
-        button.onClick.AddListener(() => tech.Unlock());
+        if (icon != null)
+            icon.sprite = tech.icon;
+
+        button.onClick.AddListener(() => TechTree.UnlockTech(tech));
     }
-    private void Update()
-    {
-        button.interactable = tech.IsUnlockable();
-    }
+    private void Update() => button.interactable = TechTree.IsTechUnlockable(tech);
 }

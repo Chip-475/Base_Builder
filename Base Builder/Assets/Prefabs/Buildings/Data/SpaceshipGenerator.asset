@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8af2d2574121aa14987845d2f1169265, type: 3}
+  m_Name: SpaceshipGenerator
+  m_EditorClassIdentifier: Assembly-CSharp::GeneratorData
+  ID: spaceship_gen
+  name: Spaceship Generator
+  description: 
+  sprite: {fileID: 0}
+  cost: []
+  type: 0
+  bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  interactionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  connectionBounds:
+    m_Center: {x: 1, y: 0, z: 0}
+    m_Extent: {x: 6.5, y: 4.5, z: 0}
+  workRange: 0
+  connectsToPower: 1
+  blocksWalking: 0
+  blocksPlacing: 0
+  id: 
+  allowedFuels:
+  - {fileID: 11400000, guid: ba14cfc7ce5c6984c9b0415875612af4, type: 2}
+  defFuel: {fileID: 11400000, guid: ba14cfc7ce5c6984c9b0415875612af4, type: 2}
+  defFuelAmount: 1000
+  isSpaceshipGen: 1

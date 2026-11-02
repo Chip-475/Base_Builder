@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4a7ec49a5a677644a78c2f13b9f2143, type: 3}
   m_Name: Small Mineral Crate
   m_EditorClassIdentifier: Assembly-CSharp::MineralCrateData
+  ID: small_crate
   name: Small Mineral Crate
   description: 
   sprite: {fileID: 7482667652216324306, guid: 377bd7fa44b3937418054b9b64892216, type: 3}
+  cost: []
   type: 2
   bounds:
     m_Center: {x: 0, y: 0, z: 0}

@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Base Builder Vault/Tech Tree/Tech Tree.md",
+                "file": "Base Builder Vault/explorer-order.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Tech Tree"
+              "title": "explorer-order"
             }
           }
         ]
@@ -188,8 +188,10 @@
       "bases:Crea nuova Base": false
     }
   },
-  "active": "39362ecabcb27e1a",
+  "active": "40e9ee8dcefcdc58",
   "lastOpenFiles": [
+    "Base Builder Vault/Gearbox.md",
+    "Base Builder Vault/Tech Tree/Tech Tree.md",
     "Base Builder/Temp/UnityTempFile-c1486441c2a79b742a43db4802fa5c49",
     "Base Builder/Temp/UnityTempFile-c30e73946d3756741a0b09528d8107b7",
     "Base Builder/Temp/Burst/burst-aotfmmpp5wo.2i5",
@@ -200,12 +202,10 @@
     "Base Builder/Temp/Burst/burst-aotyip3ayic.ifj",
     "Base Builder/Temp/Burst/burst-aotohnvfil1.zsi",
     "Base Builder/Temp/Burst/burst-aotamgyr2bf.jaa",
-    "Base Builder/Temp/Burst/burst-aotbzrmeg33.yab",
     "Base Builder Vault/Art Bible.md",
     "Base Builder Vault/Docs.md",
     "Base Builder Vault/General.md",
     "Base Builder Vault/Demo Scope.md",
-    "Base Builder Vault/Tech Tree/Tech Tree.md",
     "Base Builder Vault/Progression.md",
     "Base Builder Vault/World.md",
     "Base Builder Vault/TO DO LIST.md",

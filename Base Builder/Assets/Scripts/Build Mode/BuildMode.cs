@@ -95,7 +95,8 @@ public class BuildMode : MonoBehaviour
         }
         else
             buildingPreview.sprite = SelectedEntry.buildingPrefab.Data.sprite;
-        buildingPreview.transform.position = mouseGridPos;
+
+        buildingPreview.transform.position = mouseGridPos - SelectedEntry.buildingPrefab.Data.bounds.center;
 
         if (SelectedEntry.buildingPrefab.CanBuildOn(mouseGridPos))
             buildingPreview.color = Color.green;
@@ -112,10 +113,13 @@ public class BuildMode : MonoBehaviour
         Vector3Int mouseGridPos = Helpers.GetMouseWorldPosition().ToVector3Int();
         if (SelectedEntry == null || Helpers.IsMouseOverUI())
             return;
+        if (!Depot.Inventory.CanRemoveItems(SelectedEntry.Cost))
+            return;
         if (!SelectedEntry.buildingPrefab.CanBuildOn(mouseGridPos))
             return;
-
-        Instantiate(SelectedEntry.buildingPrefab, mouseGridPos, Quaternion.identity);
+        Depot.Inventory.RemoveItems(SelectedEntry.Cost);
+        Instantiate(SelectedEntry.buildingPrefab, mouseGridPos - SelectedEntry.buildingPrefab.Data.bounds.center, Quaternion.identity);
+        if(!Depot.Inventory.CanRemoveItems(SelectedEntry.Cost)) {SetSelectedEntry(null); SelectedBuilding=null;};
     }
     void Destroy()
     {
@@ -129,10 +133,17 @@ public class BuildMode : MonoBehaviour
     }
     public void SetSelectedEntry(BuildModeEntry obj)
     {
+        if (SelectedEntry != null)
+            SelectedEntry.transform.position -= new Vector3(0, 15, 0);
+
         SelectedEntry = obj;
+        if (obj != null)
+            SelectedEntry.transform.position += new Vector3(0, 15, 0);
     }
     public void SortBy(BuildingType type)
     {
+        SetSelectedEntry(null);
+
         List<BuildModeEntry> entries = new(allEntries);
         List<BuildModeEntry> requestedEntries = new();
         foreach (var entry in entries)

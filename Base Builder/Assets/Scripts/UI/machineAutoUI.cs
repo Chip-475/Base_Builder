@@ -3,7 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Text;
-using Cysharp.Threading.Tasks;
+
 public class machineAutoUI : MonoBehaviour
 {
     public RecipeSO recipe;

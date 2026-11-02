@@ -1,0 +1,1 @@
+1 [[Advanced Circuit Board]] + 1 [[Advanced Electrify to Gold Wire]] + 2 [[Electric core]]
