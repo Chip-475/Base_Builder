@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8af2d2574121aa14987845d2f1169265, type: 3}
   m_Name: SpaceshipGenerator
   m_EditorClassIdentifier: Assembly-CSharp::GeneratorData
+  ID: spaceship_gen
   name: Spaceship Generator
   description: 
   sprite: {fileID: 0}
+  cost: []
   type: 0
   bounds:
     m_Center: {x: 0, y: 0, z: 0}

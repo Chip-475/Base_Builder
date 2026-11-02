@@ -4,6 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Generic Building Data", menuName = "Buildings/Generic Building")]
 public abstract class BuildingData : ScriptableObject
 {
+    public string ID;
+    [Space]
     public new string name;
     [TextArea] public string description;
     public Sprite sprite;
