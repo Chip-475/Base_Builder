@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Resources/Resources.md",
+                "file": "Resources/Crafted Items/Second Era/Advanced Machine Component.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Resources"
+              "title": "Advanced Machine Component"
             }
           }
         ]
@@ -99,7 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Resources/Resources.md",
+                "file": "Resources/Crafted Items/Second Era/Advanced Machine Component.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -118,7 +118,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Recipes/other Eras/Assemble into Ship Core Component.md",
+                "file": "Resources/Crafted Items/Second Era/Advanced Machine Component.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -133,7 +133,7 @@
               "type": "tag",
               "state": {
                 "sortOrder": "frequency",
-                "useHierarchy": true,
+                "useHierarchy": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
@@ -161,7 +161,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Recipes/other Eras/Assemble into Ship Core Component.md",
+                "file": "Resources/Crafted Items/Second Era/Advanced Machine Component.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
@@ -170,11 +170,12 @@
               "title": "Struttura"
             }
           }
-        ]
+        ],
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -187,9 +188,14 @@
       "bases:Crea nuova Base": false
     }
   },
-  "active": "ad4203939ac5bf63",
+  "active": "4b963e5eb3bcaa1a",
   "lastOpenFiles": [
+    "Recipes/Second Era recipe/Electrical Working/Advanced Electrify to Advanced circuit board.md",
     "Tech Tree/Tech Tree.md",
+    "Resources/Crafted Items/Second Era/Advanced Circuit Board.md",
+    "Recipes/Second Era recipe/Electrical Working/Advanced Electrify to Control Unit.md",
+    "Resources/Crafted Items/Second Era/Copper Coil.md",
+    "Resources/Crafted Items/Second Era/Aluminum Casing.md",
     "Resources/Resources.md",
     "Art Bible.md",
     "World.md",
@@ -201,7 +207,6 @@
     "Resources/Crafted Items/Third Era/Industrial Machine Frame.md",
     "Resources/Crafted Items/Second Era/Aluminum Rod.md",
     "Resources/Crafted Items/Second Era/Control Unit.md",
-    "Resources/Crafted Items/Second Era/Advanced Circuit Board.md",
     "Resources/Crafted Items/First Era/Stone Brick.md",
     "Inventory.md",
     "Resources/Crafted Items/Second Era/Advanced Machine Component.md",
@@ -211,10 +216,6 @@
     "Resources/Crafted Items/other Eras/Titanium Plate.md",
     "Resources/Crafted Items/other Eras/Ship Core Component.md",
     "Resources/Crafted Items/other Eras/Navigation Component.md",
-    "Bots/Specialist Bot.md",
-    "Bots/Builder Bot.md",
-    "Bots/Worker Bot.md",
-    "Bots/Miner Bot.md",
     "Pasted image 20261023194307.png",
     "Recipes/Second Era recipe/Electrical Working",
     "Recipes/Second Era recipe/Metal/Industrial Components",
