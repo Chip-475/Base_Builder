@@ -17,7 +17,7 @@ public class Machine : Building, IInteractable, IWorkplace
     public float RequestedPower { get; private set; }
     public MachineType Type { get; protected set; } = MachineType.None;
 
-    //per smelter and alloy furnace automatic
+    //for smelter and alloy furnace automatic
     public Dictionary<ResourceSO, int> input{get; private set;}=new Dictionary<ResourceSO, int>();
     public Dictionary<ResourceSO,int> output{get; private set;}=new Dictionary<ResourceSO, int>();
     public bool lavoro{get;private set;}
