@@ -16019,6 +16019,7 @@ MonoBehaviour:
   - {fileID: 2375721541604936971, guid: 33c057345b9133946809cc912febd9fa, type: 3}
   - {fileID: 2375721541604936971, guid: 408212d5901d69e4b9987faf67335c58, type: 3}
   - {fileID: 2375721541604936972, guid: 2dd9c6cdbf11bda4395567f6201ec15d, type: 3}
+  - {fileID: 2375721541604936972, guid: f1c0a6d5b5c64e9ea0b9cb905e85d8f1, type: 3}
   resourceDB:
   - {fileID: 11400000, guid: 4b42c168ea98b314983b3b1ce80fa64e, type: 2}
   - {fileID: 11400000, guid: 2929ddf3742f24e4e9f2b02e54479f7c, type: 2}
@@ -16068,6 +16069,7 @@ MonoBehaviour:
         y: 0
         z: 0
     buildingsData: []
+    constructionSitesData: []
     botsData: []
     depotData:
       items: []

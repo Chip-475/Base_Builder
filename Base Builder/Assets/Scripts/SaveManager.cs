@@ -44,6 +44,7 @@ public class SaveFile
     // To Save
     public PlayerSaveData playerData;
     public List<BuildingSaveData> buildingsData = new();
+    public List<ConstructionSiteSaveData> constructionSitesData = new();
     public List<BotSaveData> botsData = new();
     public DepotSaveData depotData;
     public List<TechSaveData> techsData = new();
@@ -64,6 +65,7 @@ public class SaveFile
         }
 
         buildingsData.Clear();
+        constructionSitesData.Clear();
         botsData.Clear();
         techsData.Clear();
 
@@ -71,6 +73,10 @@ public class SaveFile
 
         foreach (var building in BuildingManager.Buildings.Values.Where(b => b is not MineralNode))
             buildingsData.Add(new(building));
+
+        foreach (var site in ConstructionSite.Sites)
+            if (site != null && site.IsPending)
+                constructionSitesData.Add(new(site));
 
         foreach (var bot in BotManager.Bots)
             botsData.Add(new(bot));
@@ -89,6 +95,9 @@ public class SaveFile
         playerData?.Load();
 
         foreach (var data in buildingsData)
+            data?.Load();
+
+        foreach (var data in constructionSitesData)
             data?.Load();
 
         // Instantiated objects need one frame to run their Start methods and
@@ -138,6 +147,7 @@ public class SaveFile
 
         playerData = loadedFile.playerData;
         buildingsData = loadedFile.buildingsData ?? new();
+        constructionSitesData = loadedFile.constructionSitesData ?? new();
         botsData = loadedFile.botsData ?? new();
         depotData = loadedFile.depotData;
         techsData = loadedFile.techsData ?? new();
@@ -185,6 +195,33 @@ public class BuildingSaveData
 
         if (prefab != null)
             MonoBehaviour.Instantiate(prefab, position.ToVector3(), Quaternion.identity);
+    }
+}
+
+[Serializable]
+public class ConstructionSiteSaveData
+{
+    public string buildingID;
+    public Helpers.SerializableVector3 position;
+
+    // Required by Newtonsoft.Json when loading a construction site.
+    public ConstructionSiteSaveData() { }
+
+    public ConstructionSiteSaveData(ConstructionSite site)
+    {
+        buildingID = site.Prefab.Data.ID;
+        position = new(site.transform.position);
+    }
+
+    public void Load()
+    {
+        BuildingView prefab = SaveManager.Instance.buildingPrefabs
+            .FirstOrDefault(prefab => prefab != null && prefab.Data != null && prefab.Data.ID == buildingID);
+
+        if (prefab != null)
+            ConstructionSite.Create(prefab, position.ToVector3());
+        else
+            Debug.LogWarning($"Building prefab not found for construction site '{buildingID}'.");
     }
 }
 
