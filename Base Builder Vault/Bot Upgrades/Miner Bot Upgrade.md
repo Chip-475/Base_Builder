@@ -18,8 +18,5 @@ lastly at tier 2:
 [[Ilmenite]]
 [[Magnetite]]
 
-Tier 1 cost:
-15 [[Circuit Board]] + 10 [[Reinforced Plate]] + 10 [[Bot Frame]]
-
 Tier 2 cost:
 20 [[Electronic Module]] + 25 [[Control Unit]] +  30 [[Precision Gear]] + 15 [[Advanced Bot Frame]]

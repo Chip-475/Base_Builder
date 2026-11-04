@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Tech Tree/Tech Tree.md",
+                "file": "Bot Upgrades/Carrier Bot Upgrade.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Tech Tree"
+              "title": "Carrier Bot Upgrade"
             }
           },
           {
@@ -127,7 +127,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Tech Tree/Tech Tree.md",
+                "file": "Bot Upgrades/Carrier Bot Upgrade.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -217,9 +217,15 @@
   },
   "active": "ad4203939ac5bf63",
   "lastOpenFiles": [
+    "Bot Upgrades/Builder Bot Upgrade.md",
+    "Bot Upgrades/Worker bot Upgrade.md",
+    "Bot Upgrades/Carrier Bot Upgrade.md",
+    "Bot Upgrades/Miner Bot Upgrade.md",
+    "Recipes/Third Era/Metal/Metalworking/Industrial Assemble to Titanium Casing.md",
+    "Recipes/Third Era/Metal/Metalworking/Industrial Press to Titanium Plate.md",
+    "Tech Tree/Tech Tree.md",
     "Recipes/Second Era recipe/Electrical Working/Advanced Electrify to Advanced Bot Frame.md",
     "Recipes/First Era recipe/Electricity/Electrify to Bot Frame.md",
-    "Tech Tree/Tech Tree.md",
     "Recipes/Second Era recipe/Electrical Working/Advanced Assemble to Advanced Bot Frame.md",
     "Recipes/Second Era recipe/Electrical Working/Advanced Electrify to Advanced circuit board.md",
     "Resources/Crafted Items/First Era/Bot Frame.md",
@@ -234,15 +240,9 @@
     "Recipes/First Era recipe/Metal/Metalworking/Press to Iron Plate.md",
     "Recipes/First Era recipe/Metal/Metalworking/Assemble to Reinforced Plate.md",
     "Resources/Crafted Items/Second Era/Advanced Bot Frame.md",
-    "Bot Upgrades/Miner Bot Upgrades.md",
     "Resources/Crafted Items/Crafted Items.md",
     "Resources/Resources.md",
     "Spaceship.md",
-    "Progression.md",
-    "Resources/Raw/Hematite.md",
-    "Resources/Raw/Pentladite.md",
-    "Resources/Raw/Malachite.md",
-    "Build Mode.md",
     "Bot Upgrades",
     "Bot Upgrades",
     "images/Pasted image 20261023194307.png",

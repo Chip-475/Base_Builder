@@ -83,7 +83,9 @@ Starter: 1x [[Assembler]], 1x [[Furnace mk1]]
 3 [[Circuit Board]] + 5 [[Bronze Casing]]
 
 after 11:
-unlock 
+unlock miner bot upgrade 1
+
+15 [[Circuit Board]] + 10 [[Reinforced Plate]] + 10 [[Bot Frame]]
 ### Second Era
 
 ![[Pasted image 20261101230822.png|352]]

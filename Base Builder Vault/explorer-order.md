@@ -3,6 +3,7 @@ This note is maintained by the Explorer Order Editor plugin. It stores the manua
 ```json
 {
   "/": ["General.md","Demo Scope.md","Art Bible.md","World.md","Progression.md","Build Mode.md","Spaceship.md","Inventory.md","Tech Tree","Resources","Drafts","Buildings","Bots","Recipes","open.url","Bot Upgrades","images","Docs.md"],
+  "Bot Upgrades": ["Info.md","Miner Bot Upgrade.md","Worker bot Upgrade.md","Builder Bot Upgrade.md"],
   "Buildings/Machines": ["Advanced Assembler.md","Alloy Furnace.md","Assembler.md","Furnace mk1.md","Furnace mk2.md","Machines.md","Press.md"],
   "Buildings/Power System": ["Electric Poles.md","Power Pole.md","Generator mk1.md"],
   "Recipes": ["First Era recipe","Recipes.md","Second Era recipe","Third Era","other Eras"],
