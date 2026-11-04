@@ -113,6 +113,19 @@ public class Bot : IWorker, IInteractable
         InteractionManager.Instance.interactables.Add(this);
         view.StartCoroutine(Recharge());
     }
+
+    public void RestoreIdentity(string id, string name)
+    {
+        if (!string.IsNullOrEmpty(id))
+            Id = id;
+
+        if (!string.IsNullOrEmpty(name))
+        {
+            Name = name;
+            SceneObj.name = name;
+        }
+    }
+
     public void ShutDown()
     {
         localSpeed=0;

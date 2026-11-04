@@ -35,7 +35,7 @@ public class BuildModeEntry : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         BuildMode.Instance.SetSelectedEntry(this);
     }
 
-        public void OnPointerEnter(PointerEventData eventData)
+    public void OnPointerEnter(PointerEventData eventData)
     {
         buildModeHoverMenu.instance.switchState();
         buildModeHoverMenu.instance.setup(buildingPrefab.Data,new Vector3(transform.position.x,transform.position.y+100,transform.position.z));
