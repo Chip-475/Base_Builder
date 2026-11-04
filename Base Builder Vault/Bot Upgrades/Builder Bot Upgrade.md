@@ -1,0 +1,1 @@
+Builder bot has 2 upgrade that speed up his building process

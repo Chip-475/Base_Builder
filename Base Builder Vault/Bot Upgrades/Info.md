@@ -1,0 +1,1 @@
+Bot upgrades are unlocked as tech tree entries and are needed for buffing all existing bots on unlocking

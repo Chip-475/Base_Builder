@@ -1,0 +1,1 @@
+Worker bot has 2 upgrade that speed up his time spent on recipes and the energy cost of them.

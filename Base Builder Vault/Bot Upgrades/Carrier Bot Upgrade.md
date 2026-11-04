@@ -1,0 +1,1 @@
+Carrier bot has 4 Upgrades that speed up his walking speed and increase
