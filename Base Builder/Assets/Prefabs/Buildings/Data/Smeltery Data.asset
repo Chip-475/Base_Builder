@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daa9b0d2bfec3d146aec9f104666aaf4, type: 3}
   m_Name: Smeltery Data
   m_EditorClassIdentifier: Assembly-CSharp::MachineData
+  ID: smeltery
   name: Smeltery
   description: cuoce
   sprite: {fileID: 6022206527347476129, guid: 16399254a14af6d46a047b836de32092, type: 3}
+  cost: []
   type: 1
   bounds:
     m_Center: {x: 0, y: 0, z: 0}

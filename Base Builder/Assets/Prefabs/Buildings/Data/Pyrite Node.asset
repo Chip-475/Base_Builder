@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea066afeca49cc47a03e80cbdc5133e, type: 3}
   m_Name: Pyrite Node
   m_EditorClassIdentifier: Assembly-CSharp::MineralNodeData
+  ID: pyrite_node
   name: 
   description: 
   sprite: {fileID: -3805855729511957650, guid: ab5f72b3897cd2448a8cc20183a21666, type: 3}
+  cost: []
   type: 2
   bounds:
     m_Center: {x: 0, y: 0, z: 0}

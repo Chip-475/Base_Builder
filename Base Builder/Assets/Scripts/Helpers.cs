@@ -7,6 +7,23 @@ using UnityEngine.UI;
 
 public static class Helpers
 {
+    [Serializable]
+    public struct SerializableVector3
+    {
+        public SerializableVector3(Vector3 vec)
+        {
+            this.x = vec.x;
+            this.y = vec.y;
+            this.z = vec.z;
+        }
+
+        public float x;
+        public float y;
+        public float z;
+
+        readonly public Vector3 ToVector3() => new(x, y, z);
+    }
+
     #region Float Helpers
     public static int ToMilliseconds(this float value)
     {
