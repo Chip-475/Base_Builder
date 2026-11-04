@@ -82,7 +82,8 @@ Starter: 1x [[Assembler]], 1x [[Furnace mk1]]
 
 3 [[Circuit Board]] + 5 [[Bronze Casing]]
 
-
+after 11:
+unlock 
 ### Second Era
 
 ![[Pasted image 20261101230822.png|352]]
@@ -144,7 +145,7 @@ Starter: 1x [[Assembler]], 1x [[Furnace mk1]]
 [[Advanced Press]]
 [[Advanced Press to Steel Reinforced Plate]]
 
-40 [[Steel Frame]] + 30 [[Precision Gear]] + 20 [[Steel Plate]]
+40 [[Steel Casing]] + 30 [[Precision Gear]] + 20 [[Steel Plate]]
 
 21:
 [[Advanced Assembler]]
@@ -159,6 +160,13 @@ Starter: 1x [[Assembler]], 1x [[Furnace mk1]]
 [[Advanced Assembler to Heat Resistant Component]]
 
 30 [[Gearbox]] + 30 [[Electronic Module]] + 20 [[Aluminum Casing]]
+
+x (under 21 needs 16 and 17):
+[[Advanced Electrify to Advanced Bot Frame]]
+[[Builder Bot]]
+[[Specialist Bot]]
+
+20 [[Electronic Module]] + 15 [[Advanced Circuit Board]] + 15 [[Gearbox]]
 
 ### Third Era
 
@@ -181,7 +189,7 @@ Starter: 1x [[Assembler]], 1x [[Furnace mk1]]
 [[Industrial Press to Titanium Plate]]
 [[Industrial Assemble to Titanium Rod]]
 [[Industrial Assemble to Titanium Gear]]
-[[Industrial Assemble to Titanium Frame]]
+[[Industrial Assemble to Titanium Casing]]
 
 20 [[Aluminum Gear]] + 10 [[Advanced Machine Component]] + 25 [[Advanced Circuit Board]]
 
@@ -199,7 +207,7 @@ Starter: 1x [[Assembler]], 1x [[Furnace mk1]]
 [[Industrial Assemble to Ship Core Assembly]]
 [[Industrial Assemble to Power Distribution Unit]]
 
-20 [[Titanium Frame]] + 20 [[Industrial Circuit Board]] + 15 [[Industrial Control Unit]] + 10 [[Industrial Machine Frame]]
+20 [[Titanium Gear]] + 20 [[Industrial Circuit Board]] + 15 [[Industrial Control Unit]] + 10 [[Industrial Machine Frame]]
 
 28:
 [[Industrial Assemble to Navigation Component]]

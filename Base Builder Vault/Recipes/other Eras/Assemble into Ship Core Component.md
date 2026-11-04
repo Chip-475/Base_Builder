@@ -1,6 +1,6 @@
 ___
 input:
-2 [[Titanium Frame]]
+2 [[Titanium Gear]]
 2 [[Invar]]
 1 [[Gold]]
 output:
