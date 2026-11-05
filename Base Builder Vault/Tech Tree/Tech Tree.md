@@ -61,7 +61,7 @@ Starter: 1x [[Assembler]], 1x [[Furnace mk1]]
 5 [[Tin]] + 10 [[Copper Plate]]
 
 9:
-[[Assemble to Bronze casing]]
+[[Assemble to Bronze Casing]]
 [[Assemble to Bronze Gear]]
 
 10 [[Bronze Rod]] + 5 [[Bronze Plate]]
@@ -107,7 +107,7 @@ unlock miner bot upgrade 1
 50 [[Iron Casing]] + 30 [[Iron Gear]] + 20 [[Bronze Casing]] + 20 [[Reinforced Plate]]
 
 14:
-[[Press to  Alumium Plate]]
+[[Press to  Aluminium Plate]]
 [[Assemble to Aluminium Rod]]
 [[Assemble to Aluminium Gear]]
 [[Assemble to Aluminium Casing]]
@@ -127,8 +127,12 @@ unlock miner bot upgrade 1
 30 [[Steel Gear]] + 30 [[Nickel]] + 20 [[Steel Rod]]
 
 17:
+[[Assembler to Advanced Machine Frame]]
 [[Press to Nickel Plate]]
 [[Assemble to Nickel Rod]]
+
+20 [[Steel Casing]] + 10 [[Gold]] + 15 [[Aluminum Gear]] 
+
 18:
 [[Electrify to Copper Coil]]
 [[Advanced Electric Workbench]]
@@ -139,7 +143,7 @@ unlock miner bot upgrade 1
 [[Advanced Electrify to Gold Wire]]
 [[Advanced Electrify to Advanced circuit board]]
 [[Advanced Electrify to Control Unit]]
-[[Avanced Electrify to Electronic Module]]
+[[Advanced Electrify to Electronic Module]]
 
 20 [[Gold]] + 30 [[Copper Coil]] + 20 [[Motherboard]] + 10 [[Electric core]]
 
@@ -151,13 +155,12 @@ unlock miner bot upgrade 1
 
 21:
 [[Advanced Assembler]]
-[[Advanced Assemble to Gearbox]]
 [[Advanced Assemble to Gear Assemblies]]
+[[Advanced Assemble to Gearbox]]
 
 40 [[Steel Casing]] + 15 [[Control Unit]] + 20 [[Advanced Circuit Board]]
 
 22:
-[[Advanced Assembler to Advanced Machine Frame]]
 [[Advanced Assembler to Advanced Machine Component]]
 [[Advanced Assembler to Heat Resistant Component]]
 
@@ -188,7 +191,6 @@ x (under 21 needs 16 and 17):
 35 [[Titanium]] + 30 [[Gearbox]] + 20 [[Industrial Machine Frame]]
 
 25:
-[[Smelt to Titanium]]
 [[Industrial Press to Titanium Plate]]
 [[Industrial Assemble to Titanium Rod]]
 [[Industrial Assemble to Titanium Gear]]
@@ -218,6 +220,6 @@ x (under 21 needs 16 and 17):
 [[Industrial Assemble to Ship Core Component]]
 [[Industrial Assemble to Power Distribution Component]]
 
-15 [[Navigation Component]] + 15 [[Reactor Housing]] + 15 [[Ship Core Assembly]] + 15 [[Power Distribution Unit]]
+15 [[Navigation Module]] + 15 [[Reactor Housing]] + 15 [[Ship Core Assembly]] + 15 [[Power Distribution Unit]]
 
 
