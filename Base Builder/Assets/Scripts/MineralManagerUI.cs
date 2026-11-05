@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using Cysharp.Threading.Tasks;
 [DefaultExecutionOrder(10)]
 public class MineralManagerUI : MonoBehaviour
 {
@@ -24,11 +25,11 @@ public class MineralManagerUI : MonoBehaviour
     [SerializeField] Transform container;
     [SerializeField] List<mineralZone> zone = new List<mineralZone>();
     [SerializeField] float distGruppo = 12f;
-    [SerializeField] int tent = 200;
+    [SerializeField] int tentClust = 200;
 
     [Header("random")]
     [SerializeField] bool useRandom = true;
-    [SerializeField] int seed = 12345;
+    [SerializeField] int seed = 12345; 
 
     readonly List<Vector3Int> coord = new List<Vector3Int>();
     readonly HashSet<Vector3Int> occupato=new HashSet<Vector3Int>();
@@ -71,7 +72,7 @@ public class MineralManagerUI : MonoBehaviour
                 if(!trovaGruppi(zo, start, out Vector3Int centro)) continue;
                 centriGruppi.Add(centro);
                 zoneCreate++;
-                //depositiCreati+=
+                depositiCreati += fillCluster(zo, centro);
             }
         }
     }
@@ -111,9 +112,65 @@ public class MineralManagerUI : MonoBehaviour
             }
         }
     }
-    
-    private bool trovaGruppi(mineralZone zone,Vector3Int start, out Vector3Int centro)
+
+    private bool trovaGruppi(mineralZone zone, Vector3Int start, out Vector3Int centro)
     {
-        
+        centro = Vector3Int.zero;
+        if (coord.Count == 0) return false;
+        for (int tent = 0; tent < tentClust; tent++)
+        {
+            Vector3Int cand = coord[rng.Next(coord.Count)];
+            if (occupato.Contains(cand)) continue;
+            float distStart = distanza(cand, start);
+            if (distStart < zone.minDist) continue;
+            if(zone.maxDist>0f&&distStart>zone.maxDist) continue;
+            if (!lontantoCentri(cand)) continue;
+            centro = cand;
+            return true;
+        }
+        return false;
+    }
+    private float distanza(Vector3Int a, Vector3Int b)
+    {
+        float dx=a.x - b.x;
+        float dy=a.y - b.y;
+        return Mathf.Sqrt(dx * dx + dy * dy);
+    }
+    private bool lontantoCentri(Vector3Int cand)
+    {
+        foreach(Vector3Int altro in centriGruppi)
+        {
+            if (distanza(cand, altro) < distGruppo) return false;
+        }
+        return true;
+    }
+    
+    private int fillCluster(mineralZone zone,Vector3Int centro)
+    {
+        List<KeyValuePair<float, Vector3Int>> punteggi = new List<KeyValuePair<float, Vector3Int>>();
+        foreach(Vector3Int coords in coord)
+        {
+            if(occupato.Contains(coords))continue;
+            float dista = distanza(coords, centro);
+            if(dista>zone.raggio) continue;
+            float punt=dista+(float)rng.NextDouble()*1.5f;
+            punteggi.Add(new KeyValuePair<float, Vector3Int>(punt, coords));
+        }
+        punteggi.Sort((a, b) => a.Key.CompareTo(b.Key));
+        int min = Mathf.Min(zone.depositDist.x, zone.depositDist.y);
+        int massimo=Mathf.Max(zone.depositDist.x,zone.depositDist.y);
+        int quanti = Mathf.Min(rng.Next(min, massimo + 1), punteggi.Count);
+        for(int i=0;i<quanti;i++)
+        {
+
+        }
+        return quanti;
+    }
+
+    private void piazzaDeposit(mineralZone zone,Vector3Int coord)
+    {
+        occupato.Add(coord);
+        Vector3 pos = new Vector3(coord.x, coord.y, 0f);
+        //GameObject deposito
     }
 }
