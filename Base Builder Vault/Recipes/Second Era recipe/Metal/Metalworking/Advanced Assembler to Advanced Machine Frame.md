@@ -1,1 +1,0 @@
-2 [[Steel Casing]] + 2 [[Steel Reinforced Plate]] + 1 [[Gearbox]]
