@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Tech Tree/Tech Tree.md",
+                "file": "Resources/Ingots/Ingots.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Tech Tree"
+              "title": "Ingots"
             }
           },
           {
@@ -127,7 +127,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Tech Tree/Tech Tree.md",
+                "file": "Resources/Ingots/Ingots.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -202,7 +202,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 252.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -217,12 +217,15 @@
   },
   "active": "ad4203939ac5bf63",
   "lastOpenFiles": [
+    "Resources/Raw/Raw.md",
+    "Recipes/Recipes.md",
+    "Resources/Ingots/Ingots.md",
+    "Tech Tree/Tech Tree.md",
     "Recipes/Second Era recipe/Metal/Metalworking/Press to  Aluminium Plate.md",
     "Recipes/Second Era recipe/Metal/Metalworking/Assembler to Advanced Machine Frame.md",
     "Recipes/Second Era recipe/Electrical Working/Advanced Electrify to Electronic Module.md",
     "Buildings/Machines/Industrial Press.md",
     "Recipes/Third Era/Electrical Working/Industrial Electrify to Power Regulator.md",
-    "Tech Tree/Tech Tree.md",
     "Buildings/Machines/Furnace mk3.md",
     "Recipes/Third Era/Metal/Industrial Working/Advanced Assemble to Industrial Machine Frame.md",
     "Resources/Crafted Items/Second Era/Advanced Machine Frame.md",
@@ -242,9 +245,6 @@
     "Recipes/Third Era/Metal/Foundry",
     "Recipes/Third Era/Electrical Working/Industrial Electrify to Industrial Circuit Board.md",
     "Recipes/Third Era/Electrical Working",
-    "Recipes/Second Era recipe/Electrical Working/Advanced Electrify to Advanced Bot Frame.md",
-    "Resources/Crafted Items/Second Era/Advanced Bot Frame.md",
-    "Resources/Crafted Items/Second Era/Gearbox.md",
     "Bot Upgrades",
     "Bot Upgrades",
     "images/Pasted image 20261023194307.png",
