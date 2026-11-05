@@ -6,7 +6,7 @@ public class TechTree
     public static Dictionary<string, TechSO> TechDB { get; private set; } = new();
     public static HashSet<string> UnlockedTechs { get; private set; } = new();
 
-    public void Initialize()
+    public static void Initialize()
     {
         TechDB.Clear();
         TechSO[] techAssets = Resources.LoadAll<TechSO>("Tech");
@@ -25,6 +25,7 @@ public class TechTree
             re.isUnlocked = true;
         
         UnlockedTechs.Add(tech.id);
+        tech.ApplyEffects();
     }
     public static bool IsTechUnlockable(TechSO tech)
     {

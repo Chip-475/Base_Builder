@@ -25,6 +25,7 @@ public class SaveManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        TechTree.Initialize();
 
         savePath = Path.Combine(Application.persistentDataPath, "save.json");
 
@@ -34,6 +35,10 @@ public class SaveManager : MonoBehaviour
         #if !UNITY_EDITOR
             saveButton.gameObject.SetActive(false);
         #endif
+    }
+    private void Start()
+    {
+        file.LoadFrom(savePath);
     }
 }
 
@@ -459,6 +464,9 @@ public class TechSaveData
     public void Load()
     {
         if (unlocked && !TechTree.UnlockedTechs.Contains(techID))
+        {
             TechTree.UnlockedTechs.Add(techID);
+            TechTree.TechDB[techID].ApplyEffects();
+        }
     }
 }

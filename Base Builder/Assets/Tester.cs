@@ -14,6 +14,8 @@ public class Tester : MonoBehaviour
     
     public Vector3 pos;
 
+    public TechSO testTech;
+
     [SerializeField]public Dictionary<ResourceSO,int> resourceToAdd;
     [SerializeField]public bool cancelAfterAdd;
     private void Awake()
@@ -35,5 +37,13 @@ public class Tester : MonoBehaviour
     public void AddResource()
     {
         Depot.Inventory.AddItems(resourceToAdd);
+    }
+
+    [ContextMenu("Tech Test")]
+    public void TechTest()
+    {
+        TechTree.UnlockTech(testTech);
+        foreach (string id in TechTree.UnlockedTechs)
+            Debug.Log(id);
     }
 }

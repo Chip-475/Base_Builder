@@ -79,7 +79,6 @@ public class Bot : IWorker, IInteractable
     public Bounds InteractionBounds { get; set; } = new();
     public bool PickedUp { get; protected set; }
     public Machine WorkingAt { get; set; }
-    public int MiningLevel { get; protected set; }
 
     [Header("IWorker")]
     public bool Occupied { get; protected set; }
@@ -103,9 +102,9 @@ public class Bot : IWorker, IInteractable
         Id = config.id;
         Name = config.name;
         Power = config.power;
-        MaxWeight = data.carryCapacity;
+        MaxWeight = data.maxWeight;
         // ---
-        Inventory = new Inventory(data.carryCapacity);
+        Inventory = new Inventory(data.maxWeight);
         SceneObj.name = Name;
 
         // Initiation
@@ -151,7 +150,7 @@ public class Bot : IWorker, IInteractable
         power -= Data.powerConsumption * Time.deltaTime;
         Vector3 previousCoords = Position;
 
-        SceneObj.transform.position = Vector3.MoveTowards(Coords, Path[0], localSpeed * Time.deltaTime);
+        SceneObj.transform.position = Vector3.MoveTowards(Coords, Path[0], Data.speed * Time.deltaTime);
         if (Position.x - previousCoords.x != 0)
             SceneObj.spriteRenderer.flipX = Mathf.Sign(Position.x - previousCoords.x) < 0;
 

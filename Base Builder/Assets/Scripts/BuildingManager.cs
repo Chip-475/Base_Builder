@@ -8,6 +8,7 @@ public class BuildingManager : MonoBehaviour
 {
     public static BuildingManager Instance { get; private set; }
     public static Dictionary<Vector3Int, Building> Buildings { get; private set; } = new();
+    public static List<Building> UnlockedBuildings { get; private set; } = new();
 
     private void Awake()
     {
