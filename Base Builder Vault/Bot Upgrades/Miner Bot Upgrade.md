@@ -1,5 +1,5 @@
 Miner Bot has 2 upgrade that adds new minable items.
-The position inside the tech tree is yet to be determinated.
+The position inside the tech tree is yet to be determined.
 The Bot start at tier 0 and can mine:
 [[Stone]]
 [[Polymer]]
