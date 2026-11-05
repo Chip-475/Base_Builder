@@ -7,3 +7,4 @@ The spaceship can burn [[Coal]] to produce energy.
 Needed [[Resources]] to repair spaceship:
 [[Navigation Component]]
 [[Ship Core Component]]
+[[Power Distribution Component]]

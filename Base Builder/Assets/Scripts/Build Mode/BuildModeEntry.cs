@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class BuildModeEntry : MonoBehaviour
+public class BuildModeEntry : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] Image image;
     [SerializeField] Image background;
@@ -32,5 +33,16 @@ public class BuildModeEntry : MonoBehaviour
         }
 
         BuildMode.Instance.SetSelectedEntry(this);
+    }
+
+        public void OnPointerEnter(PointerEventData eventData)
+    {
+        buildModeHoverMenu.instance.switchState();
+        buildModeHoverMenu.instance.setup(buildingPrefab.Data,new Vector3(transform.position.x,transform.position.y+100,transform.position.z));
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        buildModeHoverMenu.instance.switchState();
     }
 }
