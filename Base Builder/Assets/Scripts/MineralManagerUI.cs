@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
-using System.Linq.Expressions;
 [DefaultExecutionOrder(10)]
 public class MineralManagerUI : MonoBehaviour
 {
@@ -40,8 +39,81 @@ public class MineralManagerUI : MonoBehaviour
     
     void Start()
     {
-        
+        genera();
     }
 
+    public void genera()
+    {
+        clear();
+        if(WorldManager.Instance==null||WorldManager.World==null)
+        {
+            Debug.Log("word manager non worka");
+            return;
+        }
+        int seedUsato = seed;
+        if(useRandom)seedUsato=Environment.TickCount;
+        rng = new System.Random(seedUsato);
+        Debug.Log("seed " + seedUsato);
+        celleLibere();
+        Vector3Int start = Vector3Int.zero;
+        if (startPoint != null) start = startPoint.position.ToVector3Int();
+        foreach (mineralZone zo in zone)
+        {
+            if (zo.prefab == null)
+            {
+                Debug.Log("prefab null " + zo.name);
+                continue;
+            }
+            int zoneCreate = 0;
+            int depositiCreati = 0;
+            for (int i = 0; i < zo.count; i++)
+            {
+                if(!trovaGruppi(zo, start, out Vector3Int centro)) continue;
+                centriGruppi.Add(centro);
+                zoneCreate++;
+                //depositiCreati+=
+            }
+        }
+    }
 
+    private void clear()
+    {
+        foreach(Cell cell in celleBloccati)
+        {
+            cell.canWalkOn = true;
+            cell.canBuildOn=true;
+        }
+        foreach(GameObject ogg in spawned)
+        {
+            if (ogg != null) Destroy(ogg);
+        }
+        celleBloccati.Clear();
+        spawned.Clear();
+        occupato.Clear();
+        centriGruppi.Clear();
+    }
+
+    private void celleLibere()
+    {
+        coord.Clear();
+        Bounds bounds = WorldManager.World.WorldBounds;
+        int minX = Mathf.CeilToInt(bounds.min.x);
+        int maxX=Mathf.FloorToInt(bounds.max.x);
+        int minY=Mathf.CeilToInt(bounds.min.y);
+        int maxY = Mathf.FloorToInt(bounds.max.y);
+        for (int x = minX; x <= maxX; x++)
+        {
+            for(int y=minY; y <= maxY; y++)
+            {
+                Vector3Int coords = new Vector3Int(x, y, 0);
+                Cell cell = WorldManager.World.GetCellAt(coords);
+                if (cell != null && cell.canWalkOn && cell.canBuildOn) coord.Add(coords);
+            }
+        }
+    }
+    
+    private bool trovaGruppi(mineralZone zone,Vector3Int start, out Vector3Int centro)
+    {
+        
+    }
 }
