@@ -11,7 +11,7 @@ public class TechTree
         TechDB.Clear();
         TechSO[] techAssets = Resources.LoadAll<TechSO>("Tech");
         foreach (TechSO tech in techAssets)
-            TechDB[tech.id] = tech;
+            TechDB[tech.ID] = tech;
     }
 
     public static void UnlockTech(TechSO tech)
@@ -24,12 +24,12 @@ public class TechTree
         foreach (RecipeSO re in tech.recipeUnlocks)
             re.isUnlocked = true;
         
-        UnlockedTechs.Add(tech.id);
+        UnlockedTechs.Add(tech.ID);
         tech.ApplyEffects();
     }
     public static bool IsTechUnlockable(TechSO tech)
     {
-        if (UnlockedTechs.Contains(tech.id))
+        if (UnlockedTechs.Contains(tech.ID))
             return false;
 
         foreach (var kvp in tech.cost)

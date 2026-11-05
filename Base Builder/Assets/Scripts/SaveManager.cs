@@ -456,9 +456,12 @@ public class TechSaveData
     public string techID;
     public bool unlocked;
 
+    // Required by Unity and Newtonsoft.Json when loading saved tech data.
+    public TechSaveData() { }
+
     public TechSaveData(TechSO tech)
     {
-        techID = tech.id;
+        techID = tech.ID;
         unlocked = TechTree.UnlockedTechs.Contains(techID);
     }
     public void Load()

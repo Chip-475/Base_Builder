@@ -1,14 +1,10 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.XR;
 
 [CreateAssetMenu(fileName = "Tech", menuName = "Tech")]
 public class TechSO : ScriptableObject
 {
-    [Tooltip("Set by hand.")] public string id;
+    [Tooltip("Set by hand.")] public string ID;
     [Space]
     public new string name;
     public Sprite icon;
@@ -32,6 +28,8 @@ public class TechSO : ScriptableObject
         }
 
         // Recipes
+        foreach (RecipeSO recipe in recipeUnlocks)
+            RecipeManager.UnlockedRecipes.Add(recipe.ID);
 
         // Buildings
         foreach (BuildingData data in buildingUnlocks)
