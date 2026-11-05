@@ -188,6 +188,7 @@ x (under 21 needs 16 and 17):
 35 [[Titanium]] + 30 [[Gearbox]] + 20 [[Industrial Machine Frame]]
 
 25:
+[[Smelt to Titanium]]
 [[Industrial Press to Titanium Plate]]
 [[Industrial Assemble to Titanium Rod]]
 [[Industrial Assemble to Titanium Gear]]

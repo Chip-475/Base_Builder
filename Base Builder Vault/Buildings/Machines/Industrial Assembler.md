@@ -1,0 +1,1 @@
+2 [[Advanced Machine Frame]] + 2 [[Gearbox]] + 2 [[Advanced Machine Component]] + 1 [[Control Unit]]
