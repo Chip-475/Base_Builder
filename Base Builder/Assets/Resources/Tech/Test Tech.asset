@@ -15,14 +15,7 @@ MonoBehaviour:
   id: test
   name: 
   icon: {fileID: 0}
-  botUpgrades:
-  - data: {fileID: 11400000, guid: f82dd54ca5187f74db098b69cde40e29, type: 2}
-    deltaSpeed: 5
-    deltaMaxWeight: 0
-    deltaMiningLevel: 0
-    deltaPowerConsumption: 0
-    deltaMaxPower: 0
+  botUpgrades: []
   recipeUnlocks: []
-  resourceUnlocks: []
-  machineUnlocks: []
+  buildingUnlocks: []
   cost: []

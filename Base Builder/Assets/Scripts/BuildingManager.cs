@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using UnityEngine.UIElements;
 
 public class BuildingManager : MonoBehaviour
 {
     public static BuildingManager Instance { get; private set; }
     public static Dictionary<Vector3Int, Building> Buildings { get; private set; } = new();
-    public static List<Building> UnlockedBuildings { get; private set; } = new();
+    public static Dictionary<string, HashSet<Building>> BuildingsByID { get; private set; } = new();
+    public static HashSet<string> UnlockedBuildingIDs { get; private set; } = new();
 
     private void Awake()
     {
@@ -17,6 +17,15 @@ public class BuildingManager : MonoBehaviour
 
     public static void RegisterBuilding(Building building)
     {
+        if (building == null)
+            return;
+
+        if (string.IsNullOrWhiteSpace(building.ID))
+        {
+            Debug.LogError($"Cannot register building '{building.GetType().Name}': its ID is empty.");
+            return;
+        }
+
         if (Buildings.ContainsKey(building.Coords))
         {
             Debug.Log($"Building already registered at {building.Coords}");
@@ -24,16 +33,58 @@ public class BuildingManager : MonoBehaviour
         }
 
         Buildings.Add(building.Coords, building);
+
+        if (!BuildingsByID.TryGetValue(building.ID, out HashSet<Building> buildings))
+        {
+            buildings = new();
+            BuildingsByID.Add(building.ID, buildings);
+        }
+
+        buildings.Add(building);
     }
     public static void UnregisterBuilding(Building building)
     {
-        if (!Buildings.ContainsKey(building.Coords))
+        if (building == null)
+            return;
+
+        if (!Buildings.TryGetValue(building.Coords, out Building registeredBuilding) ||
+            registeredBuilding != building)
         {
             Debug.Log($"No building registered at {building.Coords}");
-            return;
+        }
+        else
+        {
+            Buildings.Remove(building.Coords);
         }
 
-        Buildings.Remove(building.Coords);
+        if (BuildingsByID.TryGetValue(building.ID, out HashSet<Building> buildings))
+        {
+            buildings.Remove(building);
+
+            if (buildings.Count == 0)
+                BuildingsByID.Remove(building.ID);
+        }
+    }
+
+    public static Building[] GetBuildingsByID(string buildingID)
+    {
+        if (string.IsNullOrWhiteSpace(buildingID) ||
+            !BuildingsByID.TryGetValue(buildingID, out HashSet<Building> buildings))
+            return Array.Empty<Building>();
+
+        return buildings.ToArray();
+    }
+
+    public static bool IsBuildingUnlocked(string buildingID)
+    {
+        return !string.IsNullOrWhiteSpace(buildingID) &&
+            UnlockedBuildingIDs.Contains(buildingID);
+    }
+
+    public static void UnlockBuilding(string buildingID)
+    {
+        if (!string.IsNullOrWhiteSpace(buildingID))
+            UnlockedBuildingIDs.Add(buildingID);
     }
     
     public Building GetBuildingAt(Vector3Int position)

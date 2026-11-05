@@ -17,6 +17,6 @@ MonoBehaviour:
   cost: []
   speed: 3
   maxWeight: 100
+  miningLevel: 1
   powerConsumption: 3
   maxPower: 25
-  carryCapacity: 100

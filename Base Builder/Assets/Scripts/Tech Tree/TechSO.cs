@@ -15,8 +15,7 @@ public class TechSO : ScriptableObject
     [Space]
     public List<BotManager.BotUpgrade> botUpgrades = new();
     public List<RecipeSO> recipeUnlocks = new();
-    public List<ResourceSO> resourceUnlocks = new();
-    public List<MachineData> machineUnlocks = new();
+    public List<BuildingData> buildingUnlocks = new();
 
     [SerializeField] public Dictionary<ResourceSO, int> cost = new();
 
@@ -31,5 +30,11 @@ public class TechSO : ScriptableObject
             upgrade.data.powerConsumption += upgrade.deltaPowerConsumption;
             upgrade.data.maxPower -= upgrade.deltaMaxPower;
         }
+
+        // Recipes
+
+        // Buildings
+        foreach (BuildingData data in buildingUnlocks)
+            BuildingManager.UnlockBuilding(data.ID);
     }
 }
