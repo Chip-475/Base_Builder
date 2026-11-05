@@ -1,0 +1,1 @@
+2 [[Titanium Casing]] + 2 [[Advanced Machine Component]] + 1 [[Industrial Machine Frame]]
