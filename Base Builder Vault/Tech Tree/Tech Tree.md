@@ -202,6 +202,7 @@ x (under 21 needs 16 and 17):
 [[Industrial Electrify to High Capacity Coil]]
 [[Industrial Electrify to Power Regulator]]
 
+
 20 [[Gold Wire]] + 20 [[Electronic Module]] + 15 [[Advanced Circuit Board]] + 10 [[Electromagnet]]
 
 27:
