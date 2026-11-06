@@ -1,1 +1,1 @@
-2 [[Titanium Casing]] + 2 [[Advanced Machine Component]] + 1 [[Industrial Machine Frame]]
+2 [[Steel Casing]] + 2 [[Precision Gear]] + 2 [[Heat Resistant Component]] + 1 [[Advanced Machine Frame]]

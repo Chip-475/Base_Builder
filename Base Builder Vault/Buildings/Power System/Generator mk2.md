@@ -1,0 +1,1 @@
+2 [[Advanced Circuit Board]] + 3 [[Gold Wire]]

@@ -160,6 +160,12 @@ unlock miner bot upgrade 1
 
 40 [[Steel Casing]] + 15 [[Control Unit]] + 20 [[Advanced Circuit Board]]
 
+a (19 and 21)
+
+[[Storage mk2]]
+[[Generator mk2]]
+
+15 [[Electronic Module]] + 10 [[Advanced Circuit Board]] + 30 [[Precision Gear]]
 22:
 [[Advanced Assembler to Advanced Machine Component]]
 [[Advanced Assembler to Heat Resistant Component]]
@@ -210,16 +216,16 @@ x (under 21 needs 16 and 17):
 27:
 [[Industrial Assemble to Navigation Module]]
 [[Industrial Assemble to Reactor Housing]]
-[[Industrial Assemble to Ship Core Assembly]]
+[[Industrial Assemble to Ship Core Component]]
 [[Industrial Assemble to Power Distribution Unit]]
 
 20 [[Titanium Gear]] + 20 [[Industrial Circuit Board]] + 15 [[Industrial Control Unit]] + 10 [[Industrial Machine Frame]]
 
 28:
-[[Industrial Assemble to Navigation Component]]
-[[Industrial Assemble to Ship Core Component]]
-[[Industrial Assemble to Power Distribution Component]]
+[[Industrial Assemble to Navigation Device]]
+[[Industrial Assemble to Ship Core]]
+[[Industrial Assemble to Circuit Braker]]
 
-15 [[Navigation Module]] + 15 [[Reactor Housing]] + 15 [[Ship Core Assembly]] + 15 [[Power Distribution Unit]]
+15 [[Navigation Module]] + 15 [[Reactor Housing]] + 15 [[Ship Core Component]] + 15 [[Power Distribution Unit]]
 
 
