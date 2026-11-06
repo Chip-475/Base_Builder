@@ -1,0 +1,1 @@
+2 [[Titanium Casing]] + 1 [[Heat Resistant Component]] + 1 [[]]
