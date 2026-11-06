@@ -13,40 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Resources/Ingots/Ingots.md",
+                "file": "TO DO LIST SOUND EFFECT.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Ingots"
-            }
-          },
-          {
-            "id": "2aead2d5413ccede",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Recipes/First Era recipe/Electricity/Electrify to Bot Frame.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Electrify to Bot Frame"
-            }
-          },
-          {
-            "id": "d931291b6c618e9b",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Recipes/Second Era recipe/Electrical Working/Advanced Electrify to Advanced Bot Frame.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Advanced Electrify to Advanced Bot Frame"
+              "title": "TO DO LIST SOUND EFFECT"
             }
           }
         ]
@@ -127,7 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Resources/Ingots/Ingots.md",
+                "file": "TO DO LIST SOUND EFFECT.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -198,7 +170,8 @@
               "title": "Struttura"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -215,12 +188,22 @@
       "bases:Crea nuova Base": false
     }
   },
-  "active": "ad4203939ac5bf63",
+  "active": "c18c0c47f4dfd04b",
   "lastOpenFiles": [
+    "Tech Tree/Tech Tree.md",
+    "TO DO LIST SOUND EFFECT.md",
+    "General.md",
+    "Progression.md",
+    "World.md",
+    "Art Bible.md",
+    "Demo Scope.md",
+    "Industrial Assemble to Reactor Housing.md",
+    "Industrial Assemble to Navigation Module.md",
+    "Resources/Ingots/Ingots.md",
+    "Recipes/Second Era recipe/Electrical Working/Advanced Electrify to Advanced Bot Frame.md",
+    "Recipes/First Era recipe/Electricity/Electrify to Bot Frame.md",
     "Resources/Raw/Raw.md",
     "Recipes/Recipes.md",
-    "Resources/Ingots/Ingots.md",
-    "Tech Tree/Tech Tree.md",
     "Recipes/Second Era recipe/Metal/Metalworking/Press to  Aluminium Plate.md",
     "Recipes/Second Era recipe/Metal/Metalworking/Assembler to Advanced Machine Frame.md",
     "Recipes/Second Era recipe/Electrical Working/Advanced Electrify to Electronic Module.md",
@@ -233,17 +216,7 @@
     "Buildings/Machines/Industrial Electric Workbench.md",
     "Buildings/Machines/Industrial Assembler.md",
     "Buildings/Machines/Advanced Assembler.md",
-    "Recipes/Third Era/Electrical Working/Industrial Electrify to High Capacity Coil.md",
-    "Recipes/Third Era/Electrical Working/Industrial Electrify to Industrial Control Unit.md",
-    "Industrial Electrify to Industrial Circuit Board.md",
-    "Resources/Crafted Items/Third Era/Power Regulator.md",
-    "Resources/Crafted Items/Third Era/Industrial Control Unit.md",
-    "Resources/Crafted Items/Third Era/Industrial Circuit Board.md",
-    "Resources/Crafted Items/Third Era/High Capacity Coil.md",
-    "Recipes/Third Era/Metal/Foundry/Smelt to Titanium.md",
-    "Recipes/Third Era/Metal/Foundry/Smelt to Iron 3.md",
     "Recipes/Third Era/Metal/Foundry",
-    "Recipes/Third Era/Electrical Working/Industrial Electrify to Industrial Circuit Board.md",
     "Recipes/Third Era/Electrical Working",
     "Bot Upgrades",
     "Bot Upgrades",
