@@ -83,12 +83,14 @@ Starter: 1x [[Assembler]], 1x [[Furnace mk1]]
 3 [[Circuit Board]] + 5 [[Bronze Casing]]
 
 after 11:
-unlock miner bot upgrade 1
+miner   1
+carrier capacity 1
+carrier spd 1
 
 15 [[Circuit Board]] + 10 [[Reinforced Plate]] + 10 [[Bot Frame]]
 ### Second Era
 
-![[Pasted image 20261101230822.png|352]]
+![[Pasted image 20261101230822.png|385]]
 
 12:
 [[Furnace mk2]]
@@ -166,6 +168,7 @@ a (19 and 21)
 [[Generator mk2]]
 
 15 [[Electronic Module]] + 10 [[Advanced Circuit Board]] + 30 [[Precision Gear]]
+
 22:
 [[Advanced Assembler to Advanced Machine Component]]
 [[Advanced Assembler to Heat Resistant Component]]
@@ -179,7 +182,15 @@ x (under 21 needs 16 and 17):
 
 20 [[Electronic Module]] + 15 [[Advanced Circuit Board]] + 15 [[Gearbox]]
 
+x2 (after x):
+miner upgrade 2
+worker upgrade 1
+builder spd 1
+carrier spd 2
+
+15 [[Advanced Circuit Board]] + 10 [[Steel Reinforced Plate]] + 15 [[Advanced Bot Frame]]
 ### Third Era
+![[Pasted image 20261106205628.png]]
 
 23:
 [[Smelt to Titanium]]
@@ -204,14 +215,27 @@ x (under 21 needs 16 and 17):
 
 20 [[Aluminum Gear]] + 10 [[Advanced Machine Component]] + 25 [[Advanced Circuit Board]]
 
+c (after 25):
+[[Storage mk3]]
+[[Generator mk3]]
+
+15 [[Industrial Circuit Board]] + 10 [[Industrial Machine Frame]] + 30 [[Titanium Gear]]
+
 26:
 [[Industrial Electrify to Industrial Circuit Board]]
 [[Industrial Electrify to Industrial Control Unit]]
 [[Industrial Electrify to High Capacity Coil]]
 [[Industrial Electrify to Power Regulator]]
 
-
 20 [[Gold Wire]] + 20 [[Electronic Module]] + 15 [[Advanced Circuit Board]] + 10 [[Electromagnet]]
+
+d (after 26):
+
+carrier inv 2
+worker spd 2
+builder spd2
+
+15 [[Titanium Gear]] + 10 [[Industrial Control Unit]] + 30 [[Advanced Bot Frame]]
 
 27:
 [[Industrial Assemble to Navigation Module]]
