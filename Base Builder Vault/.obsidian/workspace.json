@@ -75,7 +75,7 @@
                 "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
-              "title": "Files"
+              "title": "Esplora file"
             }
           },
           {
@@ -138,7 +138,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks"
+              "title": "Riferimenti"
             }
           },
           {
@@ -207,21 +207,27 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Open quick switcher": false,
-      "graph:Open graph view": false,
-      "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": false,
-      "templates:Insert template": false,
-      "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "switcher:Apri selettore rapido": false,
+      "graph:Apri vista grafo": false,
+      "canvas:Crea nuova lavagna": false,
+      "daily-notes:Apri nota giornaliera": false,
+      "templates:Inserisci modello": false,
+      "command-palette:Apri riquadro comandi": false,
+      "bases:Crea nuova Base": false
     }
   },
-  "active": "38e38f1f593b0e56",
+  "active": "2aead2d5413ccede",
   "lastOpenFiles": [
+    "Recipes/Third Era/Metal/Metalworking/Industrial Assemble to Navigation Device.md",
+    "Tech Tree/Tech Tree.md",
+    "Recipes/Third Era/Metal/Metalworking/Industrial Assemble to Power Distribution Unit.md",
+    "Resources/Crafted Items/Third Era/Power Regulator.md",
+    "Recipes/Third Era/Electrical Working/Industrial Electrify to Power Regulator.md",
+    "Resources/Crafted Items/Third Era/Industrial Control Unit.md",
+    "Recipes/Third Era/Metal/Metalworking/Industrial Assemble to Circuit Braker.md",
     "images/Pasted image 20261106205628.png",
     "Resources/Crafted Items/Third Era/Industrial Machine Frame.md",
     "Recipes/Third Era/Metal/Industrial Working/Advanced Assemble to Industrial Machine Frame.md",
-    "Tech Tree/Tech Tree.md",
     "Resources/Crafted Items/Second Era/Electronic Module.md",
     "Buildings/Logistic/Storage mk3.md",
     "Buildings/Logistic/Storage.md",
@@ -239,11 +245,6 @@
     "Buildings/Power System/Generator mk3.md",
     "Spaceship.md",
     "Buildings/Power System/Generator mk2.md",
-    "Buildings/Power System/Generator mk1.md",
-    "Buildings/Machines/Machines.md",
-    "Recipes/Recipes.md",
-    "Resources/Crafted Items/Ship Core.md",
-    "Resources/Crafted Items/Navigation Device.md",
     "Bot Upgrades",
     "Bot Upgrades",
     "images/Pasted image 20261023194307.png",
