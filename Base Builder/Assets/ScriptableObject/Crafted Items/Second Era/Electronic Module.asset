@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Electronic Module
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  Name: 
+  Name: Electronic Module
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: -4646690157727750963, guid: edd71d770cde0d0418231fedfceeb5b8, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

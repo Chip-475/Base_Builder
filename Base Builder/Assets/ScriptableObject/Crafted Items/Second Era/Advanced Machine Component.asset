@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Advanced Machine Component
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  Name: 
+  Name: Advanced Machine Component
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 8115291923986403218, guid: 407ed19cba669594fbb9f2049f63ae1e, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

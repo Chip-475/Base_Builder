@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Control Unit
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  Name: 
+  Name: Control Unit
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 5362818115477644799, guid: 676d5b453e760984eb39c779a21d2b5f, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Electric Core
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  Name: WIP
+  Name: Electric Core
   Desc: 
   Sprite: {fileID: 4398901235007301379, guid: 8191b8e6d4d951344883d791b3b0020b, type: 3}
   weightPerUnit: 1

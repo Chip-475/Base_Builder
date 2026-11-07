@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Advanced Circuit Board
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  Name: 
+  Name: Advanced Circuit Board
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 4009504021878521126, guid: dfc523eed20468e4b82a650a9c66770a, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

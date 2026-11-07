@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
   Name: Stone
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 5725184139431673129, guid: cf092540546534b429d35c467719c769, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

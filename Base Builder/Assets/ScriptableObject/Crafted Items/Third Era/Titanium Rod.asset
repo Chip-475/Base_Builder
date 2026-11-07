@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Titanium Rod
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  Name: 
+  Name: Titanium Rod
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 2144477595438958938, guid: cedd1dcef3df0354b8c3a16213d4e639, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

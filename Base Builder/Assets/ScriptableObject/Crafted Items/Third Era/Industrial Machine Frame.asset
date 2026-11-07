@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Industrial Machine Frame
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  Name: 
+  Name: Industrial Machine Frame
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 4248774850009009542, guid: 47e72b670a200f34c9b45bf889e3ba36, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

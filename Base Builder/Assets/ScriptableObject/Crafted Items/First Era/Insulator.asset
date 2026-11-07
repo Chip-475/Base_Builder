@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Insulator
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  Name: 
+  Name: Insulator
   Desc: 
-  Sprite: {fileID: 449747168648208617, guid: da4798d5a58b1b346bb05bcb1502bdac, type: 3}
+  Sprite: {fileID: 2765689047312610602, guid: c9d9b6121f76d504f9d6e65cd3303645, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Bronze Gear
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  Name: 
+  Name: Bronze Gear
   Desc: 
   Sprite: {fileID: 6787822646004628086, guid: 575dc94cc6018b44d89df1de0624db69, type: 3}
   weightPerUnit: 1

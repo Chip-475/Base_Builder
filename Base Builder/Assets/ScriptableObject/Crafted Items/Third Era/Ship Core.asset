@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Ship Core
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  Name: 
+  Name: Ship Core
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: -1547066182460113239, guid: 5b565f4db8d50cf448b337d18e91250b, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

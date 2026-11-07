@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Aluminum Rod
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  Name: 
+  Name: Aluminum Rod
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 913347140509727188, guid: 7aa336e383b695441a68537fd0503e76, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

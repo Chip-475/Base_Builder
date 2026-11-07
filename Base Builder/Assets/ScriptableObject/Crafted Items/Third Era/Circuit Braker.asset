@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Circuit Braker
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  Name: 
+  Name: Circuit Braker
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 5890431093006521107, guid: 177d333aee1398f4dbcf6ed81ed2a2e8, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

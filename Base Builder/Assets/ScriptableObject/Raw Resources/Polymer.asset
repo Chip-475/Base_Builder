@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
   Name: Polymer
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: -4382877033195316165, guid: 3913fd2abbb9e9e47a0941752fb73f23, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

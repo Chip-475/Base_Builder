@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Iron Rod
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  Name: 
+  Name: Iron Rod
   Desc: 
   Sprite: {fileID: 1824080357421961994, guid: 65b494d34babc75418f86c57b60cdb37, type: 3}
   weightPerUnit: 1

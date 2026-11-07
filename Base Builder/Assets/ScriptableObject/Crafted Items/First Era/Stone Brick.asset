@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Stone Brick
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  Name: 
+  Name: Stone Brick
   Desc: 
   Sprite: {fileID: 9113122808071268032, guid: 6b6f361c4a360fb46af0a91fdb245e39, type: 3}
   weightPerUnit: 1

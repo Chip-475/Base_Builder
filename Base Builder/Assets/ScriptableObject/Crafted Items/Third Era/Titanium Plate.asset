@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Titanium Plate
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  Name: 
+  Name: Titanium Plate
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: -4888235244048033090, guid: 257d2637a8b62814fb7c5a8ca8e6b878, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

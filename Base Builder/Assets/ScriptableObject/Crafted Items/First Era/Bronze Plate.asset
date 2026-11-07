@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Bronze Plate
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  Name: 
+  Name: Bronze Plate
   Desc: 
   Sprite: {fileID: -1404539846743959055, guid: 55a840d7525960a439e5d6dfa385b959, type: 3}
   weightPerUnit: 1

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Gearbox
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  Name: 
+  Name: Gearbox
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: -4017426600165927620, guid: 9314e386714e6f9489fba27c9eeaab2f, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

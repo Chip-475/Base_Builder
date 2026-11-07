@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Reinforced Plate
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  Name: 
+  Name: Reinforced Plate
   Desc: 
   Sprite: {fileID: 4544479821815945902, guid: 30fce1d59cc16364ba7481b2e32f18cd, type: 3}
   weightPerUnit: 1

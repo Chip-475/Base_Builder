@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Nickel Rod
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  Name: 
+  Name: Nickel Rod
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: -900085062708621144, guid: a2e526c5972c9704e82c4ffd1c9ef90b, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

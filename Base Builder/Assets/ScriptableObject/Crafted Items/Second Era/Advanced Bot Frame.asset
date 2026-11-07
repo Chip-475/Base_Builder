@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Advanced Bot Frame
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  Name: 
+  Name: Advanced Bot Frame
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: -8859842505137034850, guid: 625741de67f4bac42b21a8bc47dcaa9e, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

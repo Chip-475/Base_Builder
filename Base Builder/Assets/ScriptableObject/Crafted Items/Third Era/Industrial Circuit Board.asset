@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Industrial Circuit Board
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  Name: 
+  Name: Industrial Circuit Board
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: -6084884153662861505, guid: f818043df38524349b7b68720f9e5268, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Precision Gear
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  Name: 
+  Name: Precision Gear
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: -8594044122800829108, guid: 531a7889b9a650a4d9559bdf42f84a93, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

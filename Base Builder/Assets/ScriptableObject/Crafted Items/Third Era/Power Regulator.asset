@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Power Regulator
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  Name: 
+  Name: Power Regulator
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: -7574022239418497765, guid: f111fa226b925ca40bf37e9f090d276e, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

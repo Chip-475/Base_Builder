@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Nickel Plate
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  Name: 
+  Name: Nickel Plate
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: -8199838518790148480, guid: 6cb154d223511c2429a23db8a963341a, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

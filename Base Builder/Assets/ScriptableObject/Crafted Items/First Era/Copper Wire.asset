@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Copper Wire
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  Name: 
+  Name: Copper Wire
   Desc: 
   Sprite: {fileID: 521513591395239240, guid: 46128625a3a07b04499ede2b7b96ef86, type: 3}
   weightPerUnit: 1

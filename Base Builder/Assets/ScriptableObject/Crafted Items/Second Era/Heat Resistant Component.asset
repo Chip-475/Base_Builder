@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Heat Resistant Component
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  Name: 
+  Name: Heat Resistant Component
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 2112856307531015514, guid: ad1192fd29b768b4094b579664995518, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Navigation Device
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  Name: 
+  Name: Navigation Device
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 8284204878405963291, guid: 8f9e8be96e45cd142a21c778f0a6619b, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

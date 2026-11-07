@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Aluminum Casing
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  Name: 
+  Name: Aluminum Casing
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 1296416811268715963, guid: 2083f4df0d541d74bb162f908222d15d, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

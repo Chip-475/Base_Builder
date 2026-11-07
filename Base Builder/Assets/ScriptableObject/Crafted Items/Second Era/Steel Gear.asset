@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Steel Gear
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  Name: 
+  Name: Steel Gear
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: -5763934405201014367, guid: f89aee9bf3b758541827bd7af07e54d3, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

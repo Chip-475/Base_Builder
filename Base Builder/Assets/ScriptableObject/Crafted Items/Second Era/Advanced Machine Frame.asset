@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
   Name: Advanced Machine Frame
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: -7948391954025609925, guid: 419b8a4d192d29549a7285f92c7e1949, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

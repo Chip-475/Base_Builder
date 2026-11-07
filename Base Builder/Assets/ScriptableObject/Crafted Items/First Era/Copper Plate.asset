@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Copper Plate
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  Name: 
+  Name: Copper Plate
   Desc: 
   Sprite: {fileID: -5479074902323993675, guid: b5a430276efc7ef42a713e2f69689fb2, type: 3}
   weightPerUnit: 1

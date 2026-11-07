@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Reactor Housing
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  Name: 
+  Name: Reactor Housing
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 6328241615997640306, guid: 0e812208e1a4594408fe6d7a3d33317a, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

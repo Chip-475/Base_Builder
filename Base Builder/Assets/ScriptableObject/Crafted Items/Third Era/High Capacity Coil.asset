@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: High Capacity Coil
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  Name: 
+  Name: High Capacity Coil
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: -4933873795114261299, guid: 7dc5508cf91f8c040884fdcefc544612, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1
