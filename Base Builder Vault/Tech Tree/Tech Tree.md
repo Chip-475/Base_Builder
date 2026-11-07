@@ -61,7 +61,7 @@ Starter: 1x [[Assembler]], 1x [[Furnace mk1]]
 5 [[Tin]] + 10 [[Copper Plate]]
 
 9:
-[[Assemble to Bronze casing]]
+[[Assemble to Bronze Casing]]
 [[Assemble to Bronze Gear]]
 
 10 [[Bronze Rod]] + 5 [[Bronze Plate]]
@@ -83,12 +83,14 @@ Starter: 1x [[Assembler]], 1x [[Furnace mk1]]
 3 [[Circuit Board]] + 5 [[Bronze Casing]]
 
 after 11:
-unlock miner bot upgrade 1
+miner   1
+carrier capacity 1
+carrier spd 1
 
 15 [[Circuit Board]] + 10 [[Reinforced Plate]] + 10 [[Bot Frame]]
 ### Second Era
 
-![[Pasted image 20261101230822.png|352]]
+![[Pasted image 20261101230822.png|385]]
 
 12:
 [[Furnace mk2]]
@@ -107,7 +109,7 @@ unlock miner bot upgrade 1
 50 [[Iron Casing]] + 30 [[Iron Gear]] + 20 [[Bronze Casing]] + 20 [[Reinforced Plate]]
 
 14:
-[[Press to  Alumium Plate]]
+[[Press to  Aluminium Plate]]
 [[Assemble to Aluminium Rod]]
 [[Assemble to Aluminium Gear]]
 [[Assemble to Aluminium Casing]]
@@ -127,8 +129,12 @@ unlock miner bot upgrade 1
 30 [[Steel Gear]] + 30 [[Nickel]] + 20 [[Steel Rod]]
 
 17:
+[[Assembler to Advanced Machine Frame]]
 [[Press to Nickel Plate]]
 [[Assemble to Nickel Rod]]
+
+20 [[Steel Casing]] + 10 [[Gold]] + 15 [[Aluminum Gear]] 
+
 18:
 [[Electrify to Copper Coil]]
 [[Advanced Electric Workbench]]
@@ -139,7 +145,7 @@ unlock miner bot upgrade 1
 [[Advanced Electrify to Gold Wire]]
 [[Advanced Electrify to Advanced circuit board]]
 [[Advanced Electrify to Control Unit]]
-[[Avanced Electrify to Electronic Module]]
+[[Advanced Electrify to Electronic Module]]
 
 20 [[Gold]] + 30 [[Copper Coil]] + 20 [[Motherboard]] + 10 [[Electric core]]
 
@@ -151,13 +157,19 @@ unlock miner bot upgrade 1
 
 21:
 [[Advanced Assembler]]
-[[Advanced Assemble to Gearbox]]
 [[Advanced Assemble to Gear Assemblies]]
+[[Advanced Assemble to Gearbox]]
 
 40 [[Steel Casing]] + 15 [[Control Unit]] + 20 [[Advanced Circuit Board]]
 
+a (19 and 21)
+
+[[Storage mk2]]
+[[Generator mk2]]
+
+15 [[Electronic Module]] + 10 [[Advanced Circuit Board]] + 30 [[Precision Gear]]
+
 22:
-[[Advanced Assembler to Advanced Machine Frame]]
 [[Advanced Assembler to Advanced Machine Component]]
 [[Advanced Assembler to Heat Resistant Component]]
 
@@ -170,7 +182,15 @@ x (under 21 needs 16 and 17):
 
 20 [[Electronic Module]] + 15 [[Advanced Circuit Board]] + 15 [[Gearbox]]
 
+x2 (after x):
+miner upgrade 2
+worker upgrade 1
+builder spd 1
+carrier spd 2
+
+15 [[Advanced Circuit Board]] + 10 [[Steel Reinforced Plate]] + 15 [[Advanced Bot Frame]]
 ### Third Era
+![[Pasted image 20261106205628.png]]
 
 23:
 [[Smelt to Titanium]]
@@ -195,6 +215,12 @@ x (under 21 needs 16 and 17):
 
 20 [[Aluminum Gear]] + 10 [[Advanced Machine Component]] + 25 [[Advanced Circuit Board]]
 
+c (after 25):
+[[Storage mk3]]
+[[Generator mk3]]
+
+15 [[Industrial Circuit Board]] + 10 [[Industrial Machine Frame]] + 30 [[Titanium Gear]]
+
 26:
 [[Industrial Electrify to Industrial Circuit Board]]
 [[Industrial Electrify to Industrial Control Unit]]
@@ -203,19 +229,27 @@ x (under 21 needs 16 and 17):
 
 20 [[Gold Wire]] + 20 [[Electronic Module]] + 15 [[Advanced Circuit Board]] + 10 [[Electromagnet]]
 
+d (after 26):
+
+carrier inv 2
+worker spd 2
+builder spd2
+
+15 [[Titanium Gear]] + 10 [[Industrial Control Unit]] + 30 [[Advanced Bot Frame]]
+
 27:
 [[Industrial Assemble to Navigation Module]]
 [[Industrial Assemble to Reactor Housing]]
-[[Industrial Assemble to Ship Core Assembly]]
+[[Industrial Assemble to Ship Core Component]]
 [[Industrial Assemble to Power Distribution Unit]]
 
 20 [[Titanium Gear]] + 20 [[Industrial Circuit Board]] + 15 [[Industrial Control Unit]] + 10 [[Industrial Machine Frame]]
 
 28:
-[[Industrial Assemble to Navigation Component]]
-[[Industrial Assemble to Ship Core Component]]
-[[Industrial Assemble to Power Distribution Component]]
+[[Industrial Assemble to Navigation Device]]
+[[Industrial Assemble to Ship Core]]
+[[Industrial Assemble to Circuit Braker]]
 
-15 [[Navigation Component]] + 15 [[Reactor Housing]] + 15 [[Ship Core Assembly]] + 15 [[Power Distribution Unit]]
+15 [[Navigation Module]] + 15 [[Reactor Housing]] + 15 [[Ship Core Component]] + 15 [[Power Distribution Unit]]
 
 

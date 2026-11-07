@@ -1,1 +1,4 @@
-1 [[Advanced Circuit Board]] + 1 [[Advanced Electrify to Gold Wire]] + 2 [[Electric core]]
+1 [[Advanced Circuit Board]] + 2 [[Gold Wire]] + 2 [[Electric core]]
+
+output:
+1 [[Control Unit]]
