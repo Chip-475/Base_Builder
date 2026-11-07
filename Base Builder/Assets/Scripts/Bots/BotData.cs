@@ -13,4 +13,5 @@ public class BotData : ScriptableObject
     public float powerConsumption;
     public int maxPower;
     public int carryCapacity;
+    public WorkerBot.Type type;
 }

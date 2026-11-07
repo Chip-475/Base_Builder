@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-[DefaultExecutionOrder(-1)]
+[DefaultExecutionOrder(-10)]
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Instance { get; private set; }

@@ -13,9 +13,20 @@ public class Machine : Building, IInteractable, IWorkplace
     Vector3 IInteractable.Position => Coords;
     Cell[] IInteractable.InteractionCells => GetCellsInBounds(InteractionBounds);
 
+
     public bool Powered { get; private set; }
     public float RequestedPower { get; private set; }
     public MachineType Type { get; protected set; } = MachineType.None;
+
+    public bool needSpecialist;
+    public WorkerBot.Type requestedType
+    {
+        get
+        {
+            if (needSpecialist) return WorkerBot.Type.specialist;
+            else return WorkerBot.Type.worker;
+        }
+    }
 
     //for smelter and alloy furnace automatic
     public Dictionary<ResourceSO, int> input{get; private set;}=new Dictionary<ResourceSO, int>();
