@@ -5,11 +5,7 @@ using UnityEngine;
 
 public class WorkerBot : Bot
 {
-    public enum Type
-    {
-        worker,
-        specialist
-    }
+
     public class Task
     {
         public Task(WorkerBot bot, Machine workplace, RecipeSO recipe, int amount)
@@ -38,8 +34,7 @@ public class WorkerBot : Bot
                 && Workplace.Data.usableRecipes != null
                 && Recipe != null
                 && Workplace.Data.usableRecipes.Contains(Recipe)
-                && Amount > 0
-                && Bot.Data.type == Workplace.requestedType;
+                && Amount > 0;
         }
     }
 

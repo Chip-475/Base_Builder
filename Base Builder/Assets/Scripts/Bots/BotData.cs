@@ -13,6 +13,5 @@ public class BotData : ScriptableObject
     public int miningLevel = 1;
     public float powerConsumption = 3;
     public int maxPower;
-    public int carryCapacity;
-    public WorkerBot.Type type;
+
 }

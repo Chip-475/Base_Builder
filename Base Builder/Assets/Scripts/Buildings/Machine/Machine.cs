@@ -18,15 +18,6 @@ public class Machine : Building, IInteractable, IWorkplace
     public float RequestedPower { get; private set; }
     public MachineType Type { get; protected set; } = MachineType.None;
 
-    public bool needSpecialist;
-    public WorkerBot.Type requestedType
-    {
-        get
-        {
-            if (needSpecialist) return WorkerBot.Type.specialist;
-            else return WorkerBot.Type.worker;
-        }
-    }
 
     //for smelter and alloy furnace automatic
     public Dictionary<ResourceSO, int> input{get; private set;}=new Dictionary<ResourceSO, int>();

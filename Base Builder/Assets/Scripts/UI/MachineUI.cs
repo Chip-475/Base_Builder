@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -68,9 +67,20 @@ public class MachineUI : MonoBehaviour
     {
         WipeBotList();
 
-        List<WorkerBot> workers = new(BotManager.Bots.OfType<WorkerBot>());
-        workers.Sort((a, b) => a.Occupied.CompareTo(b.Occupied));
-        foreach (WorkerBot bot in workers)
+        List<WorkerBot> needed = new(BotManager.Bots.OfType<WorkerBot>());
+        foreach (var bot in needed)
+        {
+            if (machine.Data.needSpecialist)
+            {
+                if (bot.Data.ID == "worker") needed.Remove(bot);
+            }
+            else
+            {
+                if (bot.Data.ID == "specialist") needed.Remove(bot);
+            }
+        }
+        needed.Sort((a, b) => a.Occupied.CompareTo(b.Occupied));
+        foreach (WorkerBot bot in needed)
         {
             BuildingBotEntry go = Instantiate(botEntryPrefab, botListContent.transform);
             go.Initialize(bot);
