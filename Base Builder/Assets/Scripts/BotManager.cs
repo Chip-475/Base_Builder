@@ -1,14 +1,31 @@
 using Cysharp.Threading.Tasks;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
+
 //using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 public class BotManager : MonoBehaviour
 {
+    [Serializable]
+    public class BotUpgrade
+    {
+        public BotData data;
+        [Space]
+        public float deltaSpeed;
+        public int deltaMaxWeight;
+        public int deltaMiningLevel;
+        [Tooltip("Negative value.")] public float deltaPowerConsumption;
+        public int deltaMaxPower;
+    }
+
     public static BotManager Instance { get; private set; }
     public static List<Bot> Bots { get; private set; } = new();
+
+    [SerializeField] List<BotData> botDatas = new();
 
     // bots info
     public static int BotCount { get {  return Bots.Count; } }

@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0eb487bf3ae18746b6079305626b11a, type: 3}
   m_Name: Spaceship Data
   m_EditorClassIdentifier: Assembly-CSharp::SpaceshipData
+  ID: spaceship
   name: 
   description: 
   sprite: {fileID: 0}
+  cost: []
   type: 0
   bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -25,8 +27,10 @@ MonoBehaviour:
   connectionBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 6.5, y: 4.5, z: 0}
+  workRange: 0
   connectsToPower: 1
   blocksWalking: 1
   blocksPlacing: 1
+  constructionTime: 1
   powerGeneration: 50
   botPrefabs: []

@@ -10,7 +10,8 @@ public class BotData : ScriptableObject
     [SerializeField] public Dictionary<ResourceSO, int> cost = new();
     public float speed;
     public int maxWeight;
-    public float powerConsumption;
+    public int miningLevel = 1;
+    public float powerConsumption = 3;
     public int maxPower;
     public int carryCapacity;
     public WorkerBot.Type type;
