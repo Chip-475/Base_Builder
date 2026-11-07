@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "To do.md",
+                "file": "Resources/Crafted Items/Circuit Braker.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "To do"
+              "title": "Circuit Braker"
             }
           },
           {
@@ -89,7 +89,7 @@
                 "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
-              "title": "Files"
+              "title": "Esplora file"
             }
           },
           {
@@ -142,7 +142,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "To do.md",
+                "file": "Resources/Crafted Items/Circuit Braker.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -152,7 +152,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks"
+              "title": "Riferimenti"
             }
           },
           {
@@ -217,47 +217,47 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 212.5
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Open quick switcher": false,
-      "graph:Open graph view": false,
-      "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": false,
-      "templates:Insert template": false,
-      "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "switcher:Apri selettore rapido": false,
+      "graph:Apri vista grafo": false,
+      "canvas:Crea nuova lavagna": false,
+      "daily-notes:Apri nota giornaliera": false,
+      "templates:Inserisci modello": false,
+      "command-palette:Apri riquadro comandi": false,
+      "bases:Crea nuova Base": false
     }
   },
   "active": "38f571affee2eaf5",
   "lastOpenFiles": [
-    "Resources/Crafted Items/First Era/Insulator.md",
-    "To do.md",
-    "Buildings/Power System/Power Pole.md",
-    "Buildings/Power System/Electric Poles.md",
-    "Tech Tree/Tech Tree.md",
-    "Buildings/Power System/Generator mk2.md",
-    "Buildings/Logistic/Storage mk3.md",
-    "Bots/Specialist Bot.md",
-    "Bots/Builder Bot.md",
-    "Bots/Carrier Bot.md",
-    "Bots/Miner Bot.md",
-    "Bot Upgrades/Miner Bot Upgrade.md",
-    "Buildings/Machines/Alloy Furnace.md",
-    "Buildings/Machines/Furnace mk1.md",
-    "Bots/Worker Bot.md",
-    "Bot Upgrades/Info.md",
-    "Buildings/Machines/Press.md",
-    "Recipes/Second Era recipe/Metal/Metalworking/Advanced Press to Steel Reinforced Plate.md",
-    "Resources/Alloys/Bronze.md",
-    "Spaceship.md",
+    "Resources/Crafted Items/Ship Core.md",
     "Resources/Crafted Items/Circuit Braker.md",
     "Resources/Crafted Items/Navigation Device.md",
-    "Recipes/Third Era/Electrical Working/Industrial Electrify to Industrial Circuit Board.md",
-    "Recipes/Third Era/Electrical Working/Industrial Electrify to High Capacity Coil.md",
-    "Recipes/Second Era recipe/Electrical Working/Advanced Electrify to Electronic Module.md",
-    "Recipes/Second Era recipe/Electrical Working/Advanced Electrify to Control Unit.md",
+    "Resources/Crafted Items/Third Era/Power Distribution Unit.md",
+    "Resources/Crafted Items/Third Era/Ship Core Component.md",
+    "Resources/Crafted Items/Third Era/Power Regulator.md",
+    "Resources/Crafted Items/Third Era/Reactor Housing.md",
+    "Resources/Crafted Items/Third Era/Navigation Module.md",
+    "Resources/Crafted Items/Third Era/High Capacity Coil.md",
+    "Resources/Crafted Items/Third Era/Titanium Rod.md",
+    "Resources/Crafted Items/Third Era/Industrial Control Unit.md",
+    "Resources/Crafted Items/Third Era/Industrial Circuit Board.md",
+    "Resources/Crafted Items/Third Era/Titanium Plate.md",
+    "Resources/Crafted Items/Third Era/Titanium Gear.md",
+    "Resources/Crafted Items/Third Era/Titanium Casing.md",
+    "Resources/Crafted Items/Third Era/Industrial Machine Frame.md",
+    "Resources/Crafted Items/Second Era/Advanced Bot Frame.md",
+    "Recipes/Second Era recipe/Electrical Working/Advanced Electrify to Advanced Bot Frame.md",
+    "Resources/Crafted Items/Second Era/Steel Rod.md",
+    "Resources/Crafted Items/Second Era/Steel Reinforced Plate.md",
+    "Resources/Crafted Items/Second Era/Steel Plate.md",
+    "Resources/Crafted Items/Second Era/Steel Gear.md",
+    "Resources/Crafted Items/Second Era/Steel Casing.md",
+    "Resources/Crafted Items/Second Era/Precision Gear.md",
+    "Resources/Crafted Items/Second Era/Gearbox.md",
+    "Resources/Crafted Items/Second Era/Nickel Rod.md",
     "images/Pasted image 20261106205628.png",
     "Bot Upgrades",
     "Bot Upgrades",

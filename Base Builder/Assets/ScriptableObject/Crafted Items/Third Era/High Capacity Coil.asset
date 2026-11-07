@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
-  m_Name: Advanced Frame
+  m_Name: High Capacity Coil
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
   Name: 
   Desc: 
-  Sprite: {fileID: 436003606802357071, guid: d38d3857c1f920f49a356ad170924b3e, type: 3}
+  Sprite: {fileID: 0}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1
