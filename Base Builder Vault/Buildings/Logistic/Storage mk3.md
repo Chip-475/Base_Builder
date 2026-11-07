@@ -1,3 +1,3 @@
 +1000 kg
 
-10 [[Titanium Gear]] + 5 [[Titanium Gear]]
+10 [[Titanium Casing]] + 5 [[Titanium Gear]]

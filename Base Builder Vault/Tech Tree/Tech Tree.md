@@ -1,6 +1,6 @@
 Tech Tree is entered by a menu in the spaceship and is used as the way to unlock new [[Recipes]] with a significant amount of resources. 
 
-Starter: 1x [[Assembler]], 1x [[Furnace mk1]]
+Starter: 1x [[Assembler]], 1x [[Furnace mk1]], 1x [[Builder Bot]], 2 [[Carrier Bot]], 2 [[Worker Bot]], 5 [[Power Pole]]
 ### First Era
 ![[Pasted image 20261023194307.png|432]]
 1:
@@ -39,7 +39,7 @@ Starter: 1x [[Assembler]], 1x [[Furnace mk1]]
 5 [[Iron Gear]]
 
 6:
-[[Electric core]]
+[[Assemble Electric Core]]
 [[Assemble to Insulator]]
 [[Generator mk1]]
 [[Power Pole]]
@@ -138,11 +138,12 @@ carrier spd 1
 18:
 [[Electrify to Copper Coil]]
 [[Advanced Electric Workbench]]
+[[Advanced Electrify to Gold Wire]]
 
 40 [[Copper Wire]] + 20 [[Copper Plate]] + 10 [[Circuit Board]] + 15 [[Machine Frame]]
 
 19:
-[[Advanced Electrify to Gold Wire]]
+[[Advanced Electrify to Electromagnet]]
 [[Advanced Electrify to Advanced circuit board]]
 [[Advanced Electrify to Control Unit]]
 [[Advanced Electrify to Electronic Module]]

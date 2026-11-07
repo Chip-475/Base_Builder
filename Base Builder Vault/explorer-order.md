@@ -2,11 +2,11 @@ This note is maintained by the Explorer Order Editor plugin. It stores the manua
 
 ```json
 {
-  "/": ["General.md","Demo Scope.md","Art Bible.md","World.md","Progression.md","Build Mode.md","Spaceship.md","Inventory.md","TO DO LIST SOUND EFFECT.md","Tech Tree","Resources","Drafts","Buildings","Bots","Recipes","open.url","Bot Upgrades","images","Docs.md"],
+  "/": ["General.md","To do.md","Demo Scope.md","Art Bible.md","World.md","Progression.md","Build Mode.md","Spaceship.md","Inventory.md","TO DO LIST SOUND EFFECT.md","Tech Tree","Resources","Drafts","Buildings","Bots","Recipes","open.url","Bot Upgrades","images","Docs.md"],
   "Bot Upgrades": ["Info.md","Miner Bot Upgrade.md","Worker bot Upgrade.md","Builder Bot Upgrade.md"],
   "Buildings/Logistic": ["Storage.md","Storage mk2.md","Storage mk3.md"],
   "Buildings/Machines": ["Press.md","Assembler.md","Furnace mk1.md","Electric Workbench.md","Alloy Furnace.md","Furnace mk2.md","Advanced Assembler.md","Advanced Press.md","Machines.md","Advanced Electric Workbench.md","Furnace mk3.md","Industrial Assembler.md","Industrial Electric Workbench.md"],
-  "Buildings/Power System": ["Electric Poles.md","Power Pole.md","Generator mk1.md","Generator mk2.md","Generator mk3.md"],
+  "Buildings/Power System": ["Power Pole.md","Generator mk1.md","Generator mk2.md","Generator mk3.md"],
   "Recipes": ["First Era recipe","Recipes.md","Second Era recipe","Third Era"],
   "Recipes/First Era recipe/Metal/Foundry": ["Smelt to Iron 1.md","Smelt to Tin.md","Alloy smelting to Bronze.md","Smelt to Copper.md"],
   "Recipes/First Era recipe/Metal/Metalworking": ["Assemble to Bronze Casing.md"],
