@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
-  m_Name: Advanced Bot Frame
+  m_Name: Aluminium Plate
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-  ID: advanced_bot_frame
-  Name: Advanced Bot Frame
+  Name: Aluminium Plate
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: -7192264704522413528, guid: 58855029fd2f4f24195763f13f5ecc77, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

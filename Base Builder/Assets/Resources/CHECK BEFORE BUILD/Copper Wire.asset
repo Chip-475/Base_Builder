@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Copper Wire
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
+<<<<<<< HEAD:Base Builder/Assets/ScriptableObject/Crafted Items/First Era/Copper Wire.asset
+=======
   ID: copper_wire
+>>>>>>> d48e9b95d7dbc14fe72ebd455f598bd3b61ae449:Base Builder/Assets/Resources/CHECK BEFORE BUILD/Copper Wire.asset
   Name: Copper Wire
   Desc: 
   Sprite: {fileID: 521513591395239240, guid: 36875cfe604252e4dbecc8ebe662dc54, type: 3}

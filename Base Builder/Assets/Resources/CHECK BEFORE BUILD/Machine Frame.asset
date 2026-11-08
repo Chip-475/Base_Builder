@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Machine Frame
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
+<<<<<<< HEAD:Base Builder/Assets/ScriptableObject/Crafted Items/First Era/Machine Frame.asset
+=======
   ID: machine_frame
+>>>>>>> d48e9b95d7dbc14fe72ebd455f598bd3b61ae449:Base Builder/Assets/Resources/CHECK BEFORE BUILD/Machine Frame.asset
   Name: Machine Frame
   Desc: 
   Sprite: {fileID: -4410545568904133956, guid: a129b07bdfd9e4f4083b3c90e2f3a068, type: 3}

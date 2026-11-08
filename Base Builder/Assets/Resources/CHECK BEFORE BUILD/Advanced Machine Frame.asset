@@ -10,12 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
+<<<<<<<< HEAD:Base Builder/Assets/Resources/CHECK BEFORE BUILD/Third Era/Ship Core Component.asset
+  m_Name: Ship Core Component
+  m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
+  Name: Ship Core Component
+========
   m_Name: Advanced Machine Frame
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
   ID: advanced_machine_frame
   Name: Advanced Machine Frame
+>>>>>>>> d48e9b95d7dbc14fe72ebd455f598bd3b61ae449:Base Builder/Assets/Resources/CHECK BEFORE BUILD/Advanced Machine Frame.asset
   Desc: 
-  Sprite: {fileID: 436003606802357071, guid: d38d3857c1f920f49a356ad170924b3e, type: 3}
+  Sprite: {fileID: 0}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

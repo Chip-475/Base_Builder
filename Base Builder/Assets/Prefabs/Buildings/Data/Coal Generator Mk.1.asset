@@ -16,7 +16,15 @@ MonoBehaviour:
   name: Coal Generator Mk.1
   description: 
   sprite: {fileID: -4550992031882759542, guid: 86f42b398b0ebd445a8e631dd31611c2, type: 3}
-  cost: []
+  cost:
+  - key: {fileID: 11400000, guid: 221efdb17276688478b286a17e1fa32d, type: 2}
+    value: 6
+  - key: {fileID: 11400000, guid: 7e9a04e493d517648926644a9917a171, type: 2}
+    value: 4
+  - key: {fileID: 11400000, guid: 652a829dc57db17479316cb88e6476e3, type: 2}
+    value: 2
+  - key: {fileID: 11400000, guid: e1ab27292505c9d43b017c49f40443f8, type: 2}
+    value: 4
   type: 3
   bounds:
     m_Center: {x: -0.5, y: 0.5, z: 0}
@@ -31,6 +39,7 @@ MonoBehaviour:
   connectsToPower: 1
   blocksWalking: 1
   blocksPlacing: 1
+  constructionTime: 1
   id: 
   allowedFuels:
   - {fileID: 11400000, guid: 8454d85e6a52b5f45a50308c97089684, type: 2}

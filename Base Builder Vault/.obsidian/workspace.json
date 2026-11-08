@@ -8,34 +8,63 @@
         "type": "tabs",
         "children": [
           {
+            "id": "ad4203939ac5bf63",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Recipes/Third Era/Metal/Metalworking/Industrial Press to Titanium Plate.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Industrial Press to Titanium Plate"
+            }
+          },
+          {
+            "id": "2aead2d5413ccede",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Buildings/Power System/Power Pole.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Power Pole"
+            }
+          },
+          {
+            "id": "38f571affee2eaf5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Resources/Crafted Items/Circuit Braker.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Circuit Braker"
+            }
+          },
+          {
             "id": "d931291b6c618e9b",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CHECK BEFORE BUILD Folder.md",
+                "file": "Recipes/Third Era/Metal/Metalworking/Industrial Assemble to Ship Core.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "CHECK BEFORE BUILD Folder"
-            }
-          },
-          {
-            "id": "81519bf418d9481c",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Resources/Raw/Stone.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Stone"
+              "title": "Industrial Assemble to Ship Core"
             }
           }
-        ]
+        ],
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -60,7 +89,7 @@
                 "searchQuery": ""
               },
               "icon": "lucide-folder-closed",
-              "title": "Files"
+              "title": "Esplora file"
             }
           },
           {
@@ -97,7 +126,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 291.5
+    "width": 527.5
   },
   "right": {
     "id": "031c94f33698d22d",
@@ -113,7 +142,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CHECK BEFORE BUILD Folder.md",
+                "file": "Resources/Crafted Items/Circuit Braker.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -123,7 +152,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks"
+              "title": "Riferimenti"
             }
           },
           {
@@ -188,53 +217,48 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 212.5
   },
   "left-ribbon": {
     "hiddenItems": {
-      "switcher:Open quick switcher": false,
-      "graph:Open graph view": false,
-      "canvas:Create new canvas": false,
-      "daily-notes:Open today's daily note": false,
-      "templates:Insert template": false,
-      "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "switcher:Apri selettore rapido": false,
+      "graph:Apri vista grafo": false,
+      "canvas:Crea nuova lavagna": false,
+      "daily-notes:Apri nota giornaliera": false,
+      "templates:Inserisci modello": false,
+      "command-palette:Apri riquadro comandi": false,
+      "bases:Crea nuova Base": false
     }
   },
-  "active": "d931291b6c618e9b",
+  "active": "38f571affee2eaf5",
   "lastOpenFiles": [
-    "Resources/Crafted Items/Circuit Breaker.md",
-    "CHECK BEFORE BUILD Folder.md",
-    "Resources/Crafted Items/Third Era/Power Distribution Unit.md",
-    "Resources/Crafted Items/Navigation Device.md",
     "Resources/Crafted Items/Ship Core.md",
-    "Resources/Raw/Stone.md",
-    "Resources/Ingots/Titanium.md",
-    "Resources/Raw/Polymer.md",
-    "Resources/Raw/Pyrite.md",
-    "Resources/Raw/Malachite.md",
-    "Resources/Raw/Magnetite.md",
-    "Resources/Raw/Ilmenite.md",
-    "Resources/Raw/Gold Ore.md",
-    "Resources/Raw/Coal.md",
-    "Resources/Raw/Cassiterite.md",
-    "Resources/Raw/Bauxite.md",
-    "Resources/Raw/Pentladite.md",
-    "Resources/Raw/Raw.md",
-    "Resources/Ingots/Nickel.md",
-    "Resources/Ingots/Tin.md",
-    "Resources/Ingots/Iron.md",
-    "Resources/Ingots/Gold.md",
-    "Resources/Ingots/Copper.md",
-    "Resources/Ingots/Aluminum.md",
-    "Resources/Raw/Hematite.md",
-    "Recipes/First Era recipe/Metal/Foundry/Smelt to Iron 1.md",
+    "Resources/Crafted Items/Circuit Braker.md",
+    "Resources/Crafted Items/Navigation Device.md",
+    "Resources/Crafted Items/Third Era/Power Distribution Unit.md",
+    "Resources/Crafted Items/Third Era/Ship Core Component.md",
+    "Resources/Crafted Items/Third Era/Power Regulator.md",
+    "Resources/Crafted Items/Third Era/Reactor Housing.md",
+    "Resources/Crafted Items/Third Era/Navigation Module.md",
+    "Resources/Crafted Items/Third Era/High Capacity Coil.md",
+    "Resources/Crafted Items/Third Era/Titanium Rod.md",
+    "Resources/Crafted Items/Third Era/Industrial Control Unit.md",
+    "Resources/Crafted Items/Third Era/Industrial Circuit Board.md",
+    "Resources/Crafted Items/Third Era/Titanium Plate.md",
+    "Resources/Crafted Items/Third Era/Titanium Gear.md",
+    "Resources/Crafted Items/Third Era/Titanium Casing.md",
+    "Resources/Crafted Items/Third Era/Industrial Machine Frame.md",
+    "Resources/Crafted Items/Second Era/Advanced Bot Frame.md",
+    "Recipes/Second Era recipe/Electrical Working/Advanced Electrify to Advanced Bot Frame.md",
+    "Resources/Crafted Items/Second Era/Steel Rod.md",
+    "Resources/Crafted Items/Second Era/Steel Reinforced Plate.md",
+    "Resources/Crafted Items/Second Era/Steel Plate.md",
+    "Resources/Crafted Items/Second Era/Steel Gear.md",
+    "Resources/Crafted Items/Second Era/Steel Casing.md",
+    "Resources/Crafted Items/Second Era/Precision Gear.md",
+    "Resources/Crafted Items/Second Era/Gearbox.md",
+    "Resources/Crafted Items/Second Era/Nickel Rod.md",
     "images/Pasted image 20261106205628.png",
-    "Recipes/Third Era/Metal/Foundry",
-    "Recipes/Third Era/Electrical Working",
-    "Resources/Crafted Items/other Eras",
-    "Recipes/other Eras",
     "Bot Upgrades",
     "Bot Upgrades",
     "images/Pasted image 20261023194307.png",
@@ -242,6 +266,10 @@
     "Untitled.canvas",
     "Recipes/Second Era recipe/Electrical Working",
     "Recipes/Second Era recipe/Metal/Industrial Components",
-    "Recipes/Second Era recipe/Metal/Metalworking"
+    "Recipes/Second Era recipe/Metal/Metalworking",
+    "Recipes/Second Era recipe/Metal/Foundry",
+    "Recipes/Second Era recipe/Metal",
+    "Resources/Crafted Items/Second Era/Untitled",
+    "Recipes/Second Era recipe"
   ]
 }

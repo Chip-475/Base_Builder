@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Iron Casing
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
+<<<<<<< HEAD:Base Builder/Assets/ScriptableObject/Crafted Items/First Era/Iron Casing.asset
+=======
   ID: iron_casing
+>>>>>>> d48e9b95d7dbc14fe72ebd455f598bd3b61ae449:Base Builder/Assets/Resources/CHECK BEFORE BUILD/Iron Casing.asset
   Name: Iron Casing
   Desc: 
   Sprite: {fileID: 6305420338887985350, guid: a4b42c6bbe4ddfd418626a57f283c5b9, type: 3}

@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Electric Core
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
+<<<<<<< HEAD:Base Builder/Assets/ScriptableObject/Crafted Items/First Era/Electric Core.asset
+=======
   ID: electric_core
+>>>>>>> d48e9b95d7dbc14fe72ebd455f598bd3b61ae449:Base Builder/Assets/Resources/CHECK BEFORE BUILD/Electric Core.asset
   Name: Electric Core
   Desc: 
   Sprite: {fileID: 4398901235007301379, guid: 8191b8e6d4d951344883d791b3b0020b, type: 3}

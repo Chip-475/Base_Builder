@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Iron Rod
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
+<<<<<<< HEAD:Base Builder/Assets/ScriptableObject/Crafted Items/First Era/Iron Rod.asset
+=======
   ID: iron_rod
+>>>>>>> d48e9b95d7dbc14fe72ebd455f598bd3b61ae449:Base Builder/Assets/Resources/CHECK BEFORE BUILD/Iron Rod.asset
   Name: Iron Rod
   Desc: 
   Sprite: {fileID: 1824080357421961994, guid: a719d5f3a97eb2f47be43d880f3eb4fe, type: 3}

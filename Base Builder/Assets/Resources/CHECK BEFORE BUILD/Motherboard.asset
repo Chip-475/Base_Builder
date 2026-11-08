@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Motherboard
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
+<<<<<<< HEAD:Base Builder/Assets/ScriptableObject/Crafted Items/First Era/Motherboard.asset
+=======
   ID: motherboard
+>>>>>>> d48e9b95d7dbc14fe72ebd455f598bd3b61ae449:Base Builder/Assets/Resources/CHECK BEFORE BUILD/Motherboard.asset
   Name: Motherboard
   Desc: 
   Sprite: {fileID: 7072178864025126732, guid: 8e630ff7991c2cb45a49210dc1f4e68a, type: 3}

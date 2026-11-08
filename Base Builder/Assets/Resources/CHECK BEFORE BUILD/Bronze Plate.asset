@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Bronze Plate
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
+<<<<<<< HEAD:Base Builder/Assets/ScriptableObject/Crafted Items/First Era/Bronze Plate.asset
+=======
   ID: bronze_plate
+>>>>>>> d48e9b95d7dbc14fe72ebd455f598bd3b61ae449:Base Builder/Assets/Resources/CHECK BEFORE BUILD/Bronze Plate.asset
   Name: Bronze Plate
   Desc: 
   Sprite: {fileID: -1404539846743959055, guid: 55a840d7525960a439e5d6dfa385b959, type: 3}
