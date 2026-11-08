@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Resources/Crafted Items/Circuit Braker.md",
+                "file": "Resources/Raw/Ilmenite.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Circuit Braker"
+              "title": "Ilmenite"
             }
           },
           {
@@ -126,7 +126,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 527.5
+    "width": 240.5
   },
   "right": {
     "id": "031c94f33698d22d",
@@ -142,7 +142,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Resources/Crafted Items/Circuit Braker.md",
+                "file": "Resources/Raw/Ilmenite.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -217,7 +217,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 212.5
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -232,6 +232,17 @@
   },
   "active": "38f571affee2eaf5",
   "lastOpenFiles": [
+    "Resources/Raw/Hematite.md",
+    "Resources/Raw/Gold Ore.md",
+    "Resources/Raw/Coal.md",
+    "Resources/Raw/Ilmenite.md",
+    "Resources/Raw/Bauxite.md",
+    "Resources/Raw/Raw.md",
+    "General.md",
+    "Inventory.md",
+    "Tech Tree/Tech Tree.md",
+    "Resources/Ingots/Titanium.md",
+    "TO DO LIST SOUND EFFECT.md",
     "Resources/Crafted Items/Ship Core.md",
     "Resources/Crafted Items/Circuit Braker.md",
     "Resources/Crafted Items/Navigation Device.md",
@@ -247,17 +258,6 @@
     "Resources/Crafted Items/Third Era/Titanium Plate.md",
     "Resources/Crafted Items/Third Era/Titanium Gear.md",
     "Resources/Crafted Items/Third Era/Titanium Casing.md",
-    "Resources/Crafted Items/Third Era/Industrial Machine Frame.md",
-    "Resources/Crafted Items/Second Era/Advanced Bot Frame.md",
-    "Recipes/Second Era recipe/Electrical Working/Advanced Electrify to Advanced Bot Frame.md",
-    "Resources/Crafted Items/Second Era/Steel Rod.md",
-    "Resources/Crafted Items/Second Era/Steel Reinforced Plate.md",
-    "Resources/Crafted Items/Second Era/Steel Plate.md",
-    "Resources/Crafted Items/Second Era/Steel Gear.md",
-    "Resources/Crafted Items/Second Era/Steel Casing.md",
-    "Resources/Crafted Items/Second Era/Precision Gear.md",
-    "Resources/Crafted Items/Second Era/Gearbox.md",
-    "Resources/Crafted Items/Second Era/Nickel Rod.md",
     "images/Pasted image 20261106205628.png",
     "Bot Upgrades",
     "Bot Upgrades",
