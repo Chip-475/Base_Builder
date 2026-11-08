@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: power_distribution_unit
   Name: Power Distribution Unit
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 3996751462184385591, guid: fb55cef778730f84db43f592f596187b, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1
