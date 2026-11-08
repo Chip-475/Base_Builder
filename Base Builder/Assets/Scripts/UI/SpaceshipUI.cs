@@ -110,6 +110,10 @@ public class SpaceshipUI : MonoBehaviour
         }
         public void Update()
         {
+            foreach(var keys in botPrefabs[currentBotIndex].data.cost.Keys)
+            {
+                Debug.Log($"Cost: {botPrefabs[currentBotIndex].data.cost[keys]} {keys.name}");
+            }
             buildButton.interactable = Depot.Inventory.CanRemoveItems(botPrefabs[currentBotIndex].data.cost);
         }
 

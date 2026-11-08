@@ -69,6 +69,7 @@ public class WorkerBot : Bot
     LogisticsManager.LogisticsRequest depositRequest;
     Task materialsTask;
     Dictionary<ResourceSO, int> requiredMaterials;
+    int completedAmount;
 
 
     public WorkerBot(BotView view, BotData data, BotConfig config) : base(view, data, config)
@@ -131,9 +132,17 @@ public class WorkerBot : Bot
                 continue;
             }
 
+            if (completedAmount >= CurrentTask.Amount)
+            {
+                IssueDepositRequest();
+                continue;
+            }
+
             if (!HasMaterials)
             {
-                Inventory.RemoveItems(materials);
+                // A task amount represents repeated recipe executions, not one
+                // larger execution.  Consume, wait for, and produce one batch at a time.
+                Inventory.RemoveItems(CurrentTask.Recipe.inputs);
                 HasMaterials = true;
                 await UniTask.Delay(
                     System.TimeSpan.FromSeconds(CurrentTask.Recipe.completionTime),
@@ -145,12 +154,9 @@ public class WorkerBot : Bot
                 }
 
                 HasMaterials = false;
-                IssueDepositRequest();
+                completedAmount++;
                 continue;
             }
-
-            CompleteTask();
-            return;
         }
     }
 
@@ -210,7 +216,7 @@ public class WorkerBot : Bot
     {
         Dictionary<ResourceSO, int> outputs = new();
         foreach (var output in CurrentTask.Recipe.outputs)
-            outputs[output.Key] = output.Value * CurrentTask.Amount;
+            outputs[output.Key] = output.Value;
 
         if (!Inventory.CanAddItems(outputs))
             return false;
@@ -283,6 +289,7 @@ public class WorkerBot : Bot
         materialRequest = null;
         depositRequest = null;
         HasMaterials = false;
+        completedAmount = 0;
         destination = null;
         Path.Clear();
     }
@@ -300,6 +307,7 @@ public class WorkerBot : Bot
         materialsTask = null;
         requiredMaterials = null;
         HasMaterials = false;
+        completedAmount = 0;
         destination = null;
         Path.Clear();
         Debug.Log(reason);
