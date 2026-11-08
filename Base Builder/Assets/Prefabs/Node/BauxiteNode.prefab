@@ -59,7 +59,7 @@ Transform:
   m_GameObject: {fileID: 7513619014077952368}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 5.46312, y: -0.06651, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -78,9 +78,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f7475e56de280d41bf8432e192aecee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MineralNodeView
-  <Data>k__BackingField: {fileID: 0}
+  <Data>k__BackingField: {fileID: 11400000, guid: 3d3792ffe8e0a334bbbcf5220be6f635, type: 2}
   <DragPivot>k__BackingField: {fileID: 0}
-  <BotWorkPoint>k__BackingField: {fileID: 0}
+  <BotWorkPoint>k__BackingField: {fileID: 3754747320222660281}
 --- !u!212 &7318026746831472455
 SpriteRenderer:
   serializedVersion: 3
