@@ -135,11 +135,9 @@ public class WorkerBot : Bot
             {
                 Inventory.RemoveItems(materials);
                 HasMaterials = true;
-
                 await UniTask.Delay(
                     System.TimeSpan.FromSeconds(CurrentTask.Recipe.completionTime),
                     cancellationToken: cancellationToken);
-
                 if (!AddOutputs())
                 { 
                     Fail("Worker inventory cannot hold the task outputs.");
