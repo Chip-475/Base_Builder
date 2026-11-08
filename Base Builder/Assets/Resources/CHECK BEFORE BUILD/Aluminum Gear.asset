@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: aluminum_gear
   Name: Aluminum Gear
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: -7453602626089043926, guid: 8f1ed57ab6de725499c621aaa753b624, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

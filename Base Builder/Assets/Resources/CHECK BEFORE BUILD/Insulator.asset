@@ -12,16 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Insulator
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-<<<<<<< HEAD:Base Builder/Assets/ScriptableObject/Crafted Items/First Era/Insulator.asset
-  Name: Insulator
-  Desc: 
-  Sprite: {fileID: 2765689047312610602, guid: c9d9b6121f76d504f9d6e65cd3303645, type: 3}
-=======
   ID: insulator
   Name: Insulator
   Desc: 
   Sprite: {fileID: 449747168648208617, guid: 0af94bc8a589f2d4aafa4b1c01e12c5d, type: 3}
->>>>>>> d48e9b95d7dbc14fe72ebd455f598bd3b61ae449:Base Builder/Assets/Resources/CHECK BEFORE BUILD/Insulator.asset
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1
