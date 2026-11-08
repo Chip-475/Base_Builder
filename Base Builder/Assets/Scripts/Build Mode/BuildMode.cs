@@ -113,15 +113,13 @@ public class BuildMode : MonoBehaviour
         Vector3Int mouseGridPos = Helpers.GetMouseWorldPosition().ToVector3Int();
         if (SelectedEntry == null || Helpers.IsMouseOverUI())
             return;
-        if (!Depot.Inventory.CanRemoveItems(SelectedEntry.Cost))
-            return;
         if (!SelectedEntry.buildingPrefab.CanBuildOn(mouseGridPos))
             return;
         Depot.Inventory.RemoveItems(SelectedEntry.Cost);
         ConstructionSite.Create(
             SelectedEntry.buildingPrefab,
             mouseGridPos - SelectedEntry.buildingPrefab.Data.bounds.center);
-        if(!Depot.Inventory.CanRemoveItems(SelectedEntry.Cost)) {SetSelectedEntry(null); SelectedBuilding=null;};
+        if (!Depot.Inventory.CanRemoveItems(SelectedEntry.Cost)) {SetSelectedEntry(null); SelectedBuilding=null;};
     }
     void Destroy()
     {

@@ -146,7 +146,7 @@ public class SaveFile
 
         if (loadedFile == null)
         {
-            Debug.LogError($"Could not deserialize save file: {path}");
+            SaveAll(path);
             return;
         }
 

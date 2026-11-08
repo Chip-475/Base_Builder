@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -23,7 +24,22 @@ public class BuildModeEntry : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         CanBuild();
     }
 
-    public void CanBuild() => button.interactable = Depot.Inventory.CanRemoveItems(Cost);
+    public void CanBuild()
+    {
+        var buildingsOfOwnType = BuildingManager.Buildings.Values.Where(b => b.Data.ID == buildingPrefab.Data.ID);
+
+        if (buildingPrefab.Data.ID == "power_pole_mk1")
+            if (button.interactable = buildingsOfOwnType.Count() < 5)
+                button.interactable = true;
+            else
+                button.interactable = Depot.Inventory.CanRemoveItems(Cost);
+        else
+            if (button.interactable = buildingsOfOwnType.Count() < 1)
+                button.interactable = true;
+            else
+                button.interactable = Depot.Inventory.CanRemoveItems(Cost);
+    }
+
     public void OnClick()
     {
         if (buildingPrefab == null || buildingPrefab.Data == null)
