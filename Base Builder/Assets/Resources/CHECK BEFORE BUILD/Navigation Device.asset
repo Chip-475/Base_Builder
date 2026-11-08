@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: navigation_device
   Name: Navigation Device
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 8284204878405963291, guid: dd3a23d0424706b4c9b490d800386526, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

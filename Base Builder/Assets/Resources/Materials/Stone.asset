@@ -16,11 +16,7 @@ MonoBehaviour:
   Name: Stone
   Desc: 
   Sprite: {fileID: 5725184139431673129, guid: cf092540546534b429d35c467719c769, type: 3}
-<<<<<<< HEAD:Base Builder/Assets/ScriptableObject/Raw Resources/Stone.asset
-  weightPerUnit: 1
-=======
   weightPerUnit: 2
->>>>>>> d48e9b95d7dbc14fe72ebd455f598bd3b61ae449:Base Builder/Assets/Resources/Materials/Stone.asset
   toughness: 1
   timeToMine: 1
   fuelValue: 0

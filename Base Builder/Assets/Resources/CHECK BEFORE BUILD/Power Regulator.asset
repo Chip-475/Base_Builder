@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: power_regulator
   Name: Power Regulator
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: -7574022239418497765, guid: 5b3583060e8f59444906c46f4489f332, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

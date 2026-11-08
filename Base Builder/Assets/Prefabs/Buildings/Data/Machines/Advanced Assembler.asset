@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daa9b0d2bfec3d146aec9f104666aaf4, type: 3}
+  m_Name: Advanced Assembler
+  m_EditorClassIdentifier: Assembly-CSharp::MachineData
+  ID: advanced_assembler
+  name: Advanced Assembler
+  description: 
+  sprite: {fileID: -3712167258451776319, guid: 7ccb9e28918a4904b8c69c25b9f6feed, type: 3}
+  cost:
+  - key: {fileID: 11400000, guid: b534511c457bb754996761df39202c51, type: 2}
+    value: 2
+  - key: {fileID: 11400000, guid: 6cb7b6e828cd5944a8670020cfcc65cb, type: 2}
+    value: 3
+  - key: {fileID: 11400000, guid: 4b42c168ea98b314983b3b1ce80fa64e, type: 2}
+    value: 1
+  type: 1
+  bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  interactionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  connectionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
+  workRange: 0
+  connectsToPower: 0
+  blocksWalking: 0
+  blocksPlacing: 0
+  constructionTime: 1
+  machineType: 0
+  usableRecipes: []
+  needSpecialist: 0

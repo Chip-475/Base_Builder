@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: advanced_machine_component
   Name: Advanced Machine Component
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 8115291923986403218, guid: 536e2c78adb208b4e985faf0f299275a, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

@@ -12,10 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Reinforced Plate
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-<<<<<<< HEAD:Base Builder/Assets/ScriptableObject/Crafted Items/First Era/Reinforced Plate.asset
-=======
   ID: reinforced_plate
->>>>>>> d48e9b95d7dbc14fe72ebd455f598bd3b61ae449:Base Builder/Assets/Resources/CHECK BEFORE BUILD/Reinforced Plate.asset
   Name: Reinforced Plate
   Desc: 
   Sprite: {fileID: 4544479821815945902, guid: d5c0c0d9258425644b2685705ebdf56a, type: 3}

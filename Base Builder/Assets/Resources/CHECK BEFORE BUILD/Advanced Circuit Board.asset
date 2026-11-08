@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: advanced_circuit_board
   Name: Advanced Circuit Board
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 4009504021878521126, guid: 8647c91b6b1300c40bb5efd96aa07c97, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1
