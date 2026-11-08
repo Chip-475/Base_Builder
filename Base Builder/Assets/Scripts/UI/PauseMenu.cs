@@ -20,7 +20,7 @@ public class PauseMenu : MonoBehaviour
         saveButton.onClick.AddListener(() => SaveManager.Instance.file.SaveAll(SaveManager.Instance.savePath));
         backToMenuButton.onClick.AddListener(() => SceneManager.LoadSceneAsync("MainMenu", LoadSceneMode.Single));
 
-        masterSlider.onValueChanged.AddListener();
+        //masterSlider.onValueChanged.AddListener();
 
         PlayerManager.Inputs.Player.Pause.performed += (_) =>
         {
