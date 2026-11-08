@@ -4,6 +4,7 @@ using UnityEngine;
 public abstract class Building : IWorkplace
 { 
     public BuildingData Data { get; private set; }
+    public string ID => Data != null ? Data.ID : string.Empty;
     public BuildingView SceneObj { get; private set; }
 
     public Vector3Int Coords => SceneObj.transform.position.ToVector3Int();

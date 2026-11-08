@@ -706,12 +706,11 @@ MonoBehaviour:
   addButton: {fileID: 4635865824779013420}
   subtractButton: {fileID: 3165414933135000899}
   outputIcon: {fileID: 3220490867937062387}
-  inputsIcons:
+  inputIcons:
   - {fileID: 6406548706846356615}
   - {fileID: 8953048486083143457}
   - {fileID: 2225972831915724770}
   recipe: {fileID: 0}
-  amount: 0
 --- !u!1 &5940129230771181168
 GameObject:
   m_ObjectHideFlags: 0

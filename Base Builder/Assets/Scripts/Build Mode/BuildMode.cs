@@ -118,7 +118,9 @@ public class BuildMode : MonoBehaviour
         if (!SelectedEntry.buildingPrefab.CanBuildOn(mouseGridPos))
             return;
         Depot.Inventory.RemoveItems(SelectedEntry.Cost);
-        Instantiate(SelectedEntry.buildingPrefab, mouseGridPos - SelectedEntry.buildingPrefab.Data.bounds.center, Quaternion.identity);
+        ConstructionSite.Create(
+            SelectedEntry.buildingPrefab,
+            mouseGridPos - SelectedEntry.buildingPrefab.Data.bounds.center);
         if(!Depot.Inventory.CanRemoveItems(SelectedEntry.Cost)) {SetSelectedEntry(null); SelectedBuilding=null;};
     }
     void Destroy()

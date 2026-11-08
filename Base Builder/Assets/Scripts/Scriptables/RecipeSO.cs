@@ -6,10 +6,11 @@ using System.Collections.Generic;
 public class RecipeSO : ScriptableObject
 {
     [Header("Identity")]
-    [field: SerializeField] public string ID { get; protected set; }
+    public string ID;
     public string Name;
     [TextArea] public string Desc;
     public Sprite Sprite;
+    public bool unlockedByDefault;
 
     [Header("Characteristics")]
     [SerializeField] public Dictionary<ResourceSO, int> inputs = new();

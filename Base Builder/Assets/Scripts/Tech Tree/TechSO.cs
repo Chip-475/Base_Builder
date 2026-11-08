@@ -1,53 +1,38 @@
-using UnityEngine;
 using System.Collections.Generic;
-using System;
-using System.Linq;
-using Unity.VisualScripting;
+using UnityEngine;
 
 [CreateAssetMenu(fileName = "Tech", menuName = "Tech")]
-public class TechSO : ScriptableObject, ISerializationCallbackReceiver
+public class TechSO : ScriptableObject
 {
-    [Serializable]
-    public struct costEntry
-    {
-        public ResourceSO resource;
-        public int quant;
-
-    }
-    [Tooltip("Set by hand.")] public string id;
-    [Tooltip("attiva se sbloccata subito")] public bool unlock;
+    [Tooltip("Set by hand.")] public string ID;
     [Space]
     public new string name;
     public Sprite icon;
-    public List<RecipeSO> recipeUnlocks;
-    public List<ResourceSO> ResourcesUnlocks;
-    [SerializeField]
-    public List<MachineData> MachineUnlocks;
+    [Space]
+    public List<BotManager.BotUpgrade> botUpgrades = new();
+    public List<RecipeSO> recipeUnlocks = new();
+    public List<BuildingData> buildingUnlocks = new();
 
     [SerializeField] public Dictionary<ResourceSO, int> cost = new();
-    [SerializeField] public List<costEntry> costList=new List<costEntry>(); // testare prima con il dizionario
 
-    private void rebuildCost()
+    public void ApplyEffects()
     {
-        cost=new Dictionary<ResourceSO, int>();
-        foreach(costEntry voce in costList)
+        // Bot Upgrades
+        foreach (BotManager.BotUpgrade upgrade in botUpgrades)
         {
-            if(voce.resource!=null)cost[voce.resource]=voce.quant;
+            upgrade.data.speed += upgrade.deltaSpeed;
+            upgrade.data.maxWeight += upgrade.deltaMaxWeight;
+            upgrade.data.miningLevel += upgrade.deltaMiningLevel;
+            upgrade.data.powerConsumption += upgrade.deltaPowerConsumption;
+            upgrade.data.maxPower -= upgrade.deltaMaxPower;
         }
-    }
 
-    public void OnBeforeSerialize()
-    {
-        
-    }
-    public void OnAfterDeserialize()
-    {
-        rebuildCost();
-    }
+        // Recipes
+        foreach (RecipeSO recipe in recipeUnlocks)
+            RecipeManager.UnlockedRecipes.Add(recipe.ID);
 
-    public void OnValidate()
-    {
-        rebuildCost();
+        // Buildings
+        foreach (BuildingData data in buildingUnlocks)
+            BuildingManager.UnlockBuilding(data.ID);
     }
-
 }

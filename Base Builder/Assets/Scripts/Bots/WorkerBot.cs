@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class WorkerBot : Bot
 {
+
     public class Task
     {
         public Task(WorkerBot bot, Machine workplace, RecipeSO recipe, int amount)
@@ -15,10 +16,15 @@ public class WorkerBot : Bot
             Amount = amount;
         }
 
+
+
         public WorkerBot Bot { get; private set; }
         public Machine Workplace { get; private set; }
         public RecipeSO Recipe { get; private set; }
         public int Amount { get; private set; }
+
+
+
 
         public bool IsValid()
         {
@@ -63,6 +69,7 @@ public class WorkerBot : Bot
     LogisticsManager.LogisticsRequest depositRequest;
     Task materialsTask;
     Dictionary<ResourceSO, int> requiredMaterials;
+
 
     public WorkerBot(BotView view, BotData data, BotConfig config) : base(view, data, config)
     {

@@ -7,4 +7,5 @@ public class MachineData :BuildingData
 {
     public MachineType machineType;
     public List<RecipeSO> usableRecipes = new();
+    public bool needSpecialist;
 }

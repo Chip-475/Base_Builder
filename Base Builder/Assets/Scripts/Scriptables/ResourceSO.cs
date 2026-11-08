@@ -5,7 +5,7 @@ using UnityEngine;
 public class ResourceSO : ScriptableObject
 {
     [Header("Identity")]
-    public string ID { get; private set;}
+    public string ID;
     [Space]
     public string Name;
     [TextArea] public string Desc;
@@ -19,15 +19,4 @@ public class ResourceSO : ScriptableObject
     [Space]
     public int fuelValue = 0;
     public float timeToConsume = 1f;
-
-    #if UNITY_EDITOR
-    void OnValidate()
-    {
-        if (string.IsNullOrEmpty(ID))
-        {
-            ID = Guid.NewGuid().ToString();
-            UnityEditor.EditorUtility.SetDirty(this);
-        }
-    }
-    #endif
 }

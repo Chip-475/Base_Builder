@@ -18,6 +18,7 @@ public abstract class BuildingData : ScriptableObject
     public bool connectsToPower;
     public bool blocksWalking;
     public bool blocksPlacing;
+    [Min(0.1f)] public float constructionTime = 1f;
 }
 public enum BuildingType
 {

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 227f37cea1bf99546875500a29c16bf2, type: 3}
+  m_Name: Builder
+  m_EditorClassIdentifier: Assembly-CSharp::BotData
+  ID: builder
+  sprite: {fileID: 6799967465745104397, guid: abff66fdd2364bb449a25c9551003523, type: 3}
+  cost:
+  - key: {fileID: 11400000, guid: 864a44a8713f3f24f98a5fb089e6d7b3, type: 2}
+    value: 1
+  - key: {fileID: 11400000, guid: f47dd9394c2ee364a902c9387990453f, type: 2}
+    value: 10
+  speed: 2
+  maxWeight: 25
+  miningLevel: 1
+  powerConsumption: 3
+  maxPower: 50
