@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: aluminum_casing
   Name: Aluminum Casing
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 1296416811268715963, guid: 94dc7ee5831f4564cb099bf224ed0d10, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1

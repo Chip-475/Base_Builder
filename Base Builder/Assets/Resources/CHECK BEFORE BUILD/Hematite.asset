@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: hematite
   Name: Hematite
   Desc: hematite
-  Sprite: {fileID: 2672998837818880226, guid: 0c9a213f119676f46a8010112b0080b8, type: 3}
+  Sprite: {fileID: 2672998837818880226, guid: 16640cb12516a5044b8ee7c2f39633f1, type: 3}
   weightPerUnit: 2
   toughness: 1
   timeToMine: 1
