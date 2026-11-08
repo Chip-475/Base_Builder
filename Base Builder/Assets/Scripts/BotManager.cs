@@ -1,11 +1,6 @@
-using Cysharp.Threading.Tasks;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
-
-//using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 public class BotManager : MonoBehaviour
@@ -29,7 +24,7 @@ public class BotManager : MonoBehaviour
 
     // bots info
     public static int BotCount { get {  return Bots.Count; } }
-    public static int EmployedBots { get { return Bots.Where(bot => bot.Occupied).Count(); } }
+    public static int EmployedBots { get { return Bots.Count(bot => bot != null && bot.Occupied); } }
 
     private void Awake()
     {
@@ -38,6 +33,9 @@ public class BotManager : MonoBehaviour
 
     public static void RegisterBot(Bot bot)
     {
+        if (bot == null)
+            return;
+
         if (Bots.Contains(bot))
         {
             Debug.Log($"{bot.Name} already registered.");
@@ -48,18 +46,25 @@ public class BotManager : MonoBehaviour
     }
     public static void UnregisterBot(Bot bot)
     {
-        if (!Bots.Contains(bot))
-        {
-            Debug.Log($"{bot.Name} not registered.");
-            return;
-        }
-
         Bots.Remove(bot);
+    }
+
+    public static void ApplyUpgrade(BotData data)
+    {
+        if (data == null)
+            return;
+
+        foreach (Bot bot in Bots)
+            if (bot != null && bot.Data == data)
+                bot.RefreshDataUpgrades();
     }
 
     public static Bot GetClosestAvailableBot(Building building)
     {
-        List<Bot> bots = new(Bots.Where((bot) => bot.Occupied == false));
+        if (building == null || building.SceneObj == null)
+            return null;
+
+        List<Bot> bots = new(Bots.Where(bot => bot != null && bot.SceneObj != null && !bot.Occupied && !bot.PickedUp));
         if(bots.Count == 0)
         {
             Debug.Log("No available bots.");
@@ -81,7 +86,10 @@ public class BotManager : MonoBehaviour
     public static T GetClosestAvailableBot<T>(Building building)
         where T : Bot
     {
-        List<T> bots = new(Bots.OfType<T>().Where((bot) => bot.Occupied == false));
+        if (building == null || building.SceneObj == null)
+            return null;
+
+        List<T> bots = new(Bots.OfType<T>().Where(bot => bot != null && bot.SceneObj != null && !bot.Occupied && !bot.PickedUp));
         if (bots.Count == 0)
         {
             Debug.Log("No available bots.");

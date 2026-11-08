@@ -13,12 +13,21 @@ MonoBehaviour:
   m_Name: Advanced Machine Component
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
   ID: advanced_machine_component
-  Name: Advanced Machine Component
+  Name: Advanced Assembler to Advanced Machine Component
   Desc: 
-  Sprite: {fileID: 0}
-  unlockedByDefault: 0
-  inputs: []
-  outputs: []
-  completionTime: 0
-  energyCost: 0
-  isUnlocked: 0
+  Sprite: {fileID: 8115291923986403218, guid: 536e2c78adb208b4e985faf0f299275a, type: 3}
+  unlockedByDefault: 1
+  inputs:
+  - key: {fileID: 11400000, guid: 86d20d2e826bec340b393a2a1edd93f2, type: 2}
+    value: 1
+  - key: {fileID: 11400000, guid: d7b2a0c30542253448051db453965b4e, type: 2}
+    value: 1
+  - key: {fileID: 11400000, guid: e35d416999fa69c49a9ae0adcc31afb5, type: 2}
+    value: 1
+  outputs:
+  - key: {fileID: 11400000, guid: 8fe224ffa5f467b4c867fcccf54c4204, type: 2}
+    value: 1
+  baseOutputAmount: 1
+  completionTime: 8
+  energyCost: 2
+  isUnlocked: 1

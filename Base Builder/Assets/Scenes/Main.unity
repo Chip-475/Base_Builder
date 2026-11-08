@@ -678,6 +678,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BuildModeManager
   panel: {fileID: 95755340}
   content: {fileID: 379187026}
+  machineEntryTemplate: {fileID: 8727472472509128459, guid: d8db7d50ba7f82b449afeb906330ea6f, type: 3}
   toggleButton: {fileID: 1654156067}
   machineSort: {fileID: 903371430}
   miningSort: {fileID: 294325670}
@@ -18585,10 +18586,22 @@ MonoBehaviour:
   - {fileID: -4237497308006141831, guid: 16c8f73c618fd9d42bd25db1af7a1043, type: 3}
   - {fileID: 3212978797779898742, guid: 5ef202c0095a01e48807ae5d8ba373ff, type: 3}
   - {fileID: 7951129881825252327, guid: a584b530c07cc344f8101e8e1bdf542e, type: 3}
+  - {fileID: 7951129881825252327, guid: 1a3858e60cdb4e8793ae76d9a301bd33, type: 3}
+  - {fileID: 7951129881825252327, guid: 7fdbdb174ea94acda555d4abea7802fb, type: 3}
+  - {fileID: 7951129881825252327, guid: a0c6507327ed49d783c2c4e0f1585a84, type: 3}
+  - {fileID: 7951129881825252327, guid: 0c83f31b42d04b878a3c0be7306688af, type: 3}
+  - {fileID: 7951129881825252327, guid: a76926ef96574ea2a14b4f27e6047518, type: 3}
+  - {fileID: 7951129881825252327, guid: e3e6d8c76e514cba87a0348bb6f24cf2, type: 3}
+  - {fileID: 7951129881825252327, guid: 1adab486d471422eb7cdca01ef9121d1, type: 3}
+  - {fileID: 7951129881825252327, guid: 5e65304c384743dd8b2dec206717d3a0, type: 3}
+  - {fileID: 7951129881825252327, guid: 7f4586be7a7241389cbb5bd998279e68, type: 3}
+  - {fileID: 7951129881825252327, guid: 42ff55cbe2ad40588c6bb7f2ac322457, type: 3}
+  - {fileID: 7951129881825252327, guid: f64775591ddb4f3283acf5423f9bd9ed, type: 3}
   botPrefabs:
   - {fileID: 2375721541604936971, guid: 33c057345b9133946809cc912febd9fa, type: 3}
   - {fileID: 2375721541604936971, guid: 408212d5901d69e4b9987faf67335c58, type: 3}
   - {fileID: 2375721541604936972, guid: 2dd9c6cdbf11bda4395567f6201ec15d, type: 3}
+  - {fileID: 2375721541604936972, guid: 8bc92d9e7625f3740b9074bead6a34b6, type: 3}
   - {fileID: 2375721541604936972, guid: f1c0a6d5b5c64e9ea0b9cb905e85d8f1, type: 3}
   resourceDB:
   - {fileID: 11400000, guid: 4b42c168ea98b314983b3b1ce80fa64e, type: 2}
@@ -19719,8 +19732,6 @@ MonoBehaviour:
     botPrefabs:
     - {fileID: 2375721541604936971, guid: 33c057345b9133946809cc912febd9fa, type: 3}
     - {fileID: 2375721541604936971, guid: 408212d5901d69e4b9987faf67335c58, type: 3}
-    - {fileID: 2375721541604936972, guid: 2dd9c6cdbf11bda4395567f6201ec15d, type: 3}
-    - {fileID: 2375721541604936972, guid: 2dd9c6cdbf11bda4395567f6201ec15d, type: 3}
     - {fileID: 2375721541604936972, guid: 2dd9c6cdbf11bda4395567f6201ec15d, type: 3}
     - {fileID: 2375721541604936972, guid: 8bc92d9e7625f3740b9074bead6a34b6, type: 3}
     - {fileID: 2375721541604936972, guid: f1c0a6d5b5c64e9ea0b9cb905e85d8f1, type: 3}

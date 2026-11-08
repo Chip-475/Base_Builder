@@ -13,18 +13,19 @@ MonoBehaviour:
   m_Name: Machine Frame
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
   ID: machine_frame
-  Name: Machine Frame
+  Name: Assemble to Machine Frame
   Desc: 
-  Sprite: {fileID: 0}
-  unlockedByDefault: 0
+  Sprite: {fileID: -4410545568904133956, guid: a129b07bdfd9e4f4083b3c90e2f3a068, type: 3}
+  unlockedByDefault: 1
   inputs:
-  - key: {fileID: 11400000, guid: 3253d5026f77f624e8123392986645b4, type: 2}
-    value: 4
   - key: {fileID: 11400000, guid: 221efdb17276688478b286a17e1fa32d, type: 2}
     value: 3
+  - key: {fileID: 11400000, guid: 3253d5026f77f624e8123392986645b4, type: 2}
+    value: 4
   outputs:
   - key: {fileID: 11400000, guid: d0b73083ea6e4ef4d8b65c4586b33d4c, type: 2}
     value: 1
+  baseOutputAmount: 1
   completionTime: 8
   energyCost: 3
-  isUnlocked: 0
+  isUnlocked: 1

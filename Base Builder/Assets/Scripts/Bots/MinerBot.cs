@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -10,7 +11,7 @@ public class MinerBot : Bot
 
     public MinerBot(BotView view, BotData data, BotConfig config) : base(view, data, config)
     {
-        Inventory = new(999);
+        Inventory = new(data.maxWeight);
     }
 
     // IWorker
@@ -23,6 +24,12 @@ public class MinerBot : Bot
         }
 
         Dictionary<ResourceSO, int> workOutput = Node.GetWorkOutputs();
+        if (workOutput == null || workOutput.Count == 0 ||
+            workOutput.Any(item => item.Key == null || item.Value <= 0))
+        {
+            Fail("MinerBot has no valid resource output at its assigned node.");
+            return;
+        }
 
         while (!cancellationToken.IsCancellationRequested)
         {
@@ -41,6 +48,12 @@ public class MinerBot : Bot
 
     async UniTask Mine(Dictionary<ResourceSO, int> workOutput, CancellationToken cancellationToken)
     {
+        if (Node == null || Node.Data == null || !Inventory.CanAddItems(workOutput))
+        {
+            Fail("MinerBot cannot carry one mining batch.");
+            return;
+        }
+
         if (AtWorkPoint(Node))
         {
             await UniTask.Delay(
@@ -56,9 +69,18 @@ public class MinerBot : Bot
 
     void Deposit(Dictionary<ResourceSO, int> workOutput)
     {
-        if (!Crate.Inventory.CanAddItems(workOutput))
+        if (Crate == null || Crate.Inventory == null)
         {
-            Fail("Crate cannot accommodate items.");
+            Fail("MinerBot has no valid mineral crate.");
+            return;
+        }
+
+        if (!Crate.Inventory.CanAddItems(Inventory.Items))
+        {
+            if (Crate.Inventory.IsEmpty)
+                Fail("Mineral crate cannot accommodate one mining batch.");
+            else
+                Crate.IssueLogisticsRequest();
             return;
         }
 

@@ -10,6 +10,12 @@ public class MinerBotView : BotView
 
     protected override void Start()
     {
-        RuntimeObj = new MinerBot(this, data, new() { baseSpawnCoords = Vector3.zero });
+        InitializeRuntime();
+    }
+
+    public override void InitializeRuntime()
+    {
+        if (RuntimeObj == null)
+            RuntimeObj = new MinerBot(this, data, new() { baseSpawnCoords = Vector3.zero });
     }
 }

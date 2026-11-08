@@ -13,16 +13,17 @@ MonoBehaviour:
   m_Name: Bronze Rod
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
   ID: bronze_rod
-  Name: Bronze Rod
+  Name: Assemble to Bronze Rod
   Desc: 
-  Sprite: {fileID: 0}
-  unlockedByDefault: 0
+  Sprite: {fileID: -8680079460858886149, guid: 4f0d207c65a368f4cbcdcf1c372c3b81, type: 3}
+  unlockedByDefault: 1
   inputs:
   - key: {fileID: 11400000, guid: 02126ec745c8dee41b0072d5a038ffda, type: 2}
     value: 1
   outputs:
   - key: {fileID: 11400000, guid: cb83a0928ac067e4e9f7fe4b1934573e, type: 2}
     value: 3
+  baseOutputAmount: 3
   completionTime: 3
   energyCost: 1
-  isUnlocked: 0
+  isUnlocked: 1

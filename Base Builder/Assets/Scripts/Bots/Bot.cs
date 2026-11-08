@@ -56,7 +56,16 @@ public class Bot : IWorker, IInteractable
     public string Name { get; protected set; }
     public float localSpeed;
     float power;
-    public float Power { get => power; set { power = value; if(power <= 0) IsOn = false; else IsOn=true; }  }
+    public float MaxPower => Data != null && Data.maxPower > 0 ? Data.maxPower : BotConfig.maxPower;
+    public float Power
+    {
+        get => power;
+        set
+        {
+            power = Mathf.Clamp(value, 0, MaxPower);
+            IsOn = power > 0;
+        }
+    }
      bool isOn;
     public bool IsOn
     {
@@ -95,6 +104,11 @@ public class Bot : IWorker, IInteractable
 
     public Bot(BotView view, BotData data, BotConfig config)
     {
+        if (view == null)
+            throw new ArgumentNullException(nameof(view));
+        if (data == null)
+            throw new ArgumentNullException(nameof(data));
+
         SceneObj = view;
         Data = data;
 
@@ -109,8 +123,10 @@ public class Bot : IWorker, IInteractable
 
         // Initiation
         BotManager.RegisterBot(this);
-        InteractionManager.Instance.interactables.Add(this);
-        view.StartCoroutine(Recharge());
+        if (InteractionManager.Instance != null && !InteractionManager.Instance.interactables.Contains(this))
+            InteractionManager.Instance.interactables.Add(this);
+        if (view.isActiveAndEnabled)
+            view.StartCoroutine(Recharge());
     }
 
     public void RestoreIdentity(string id, string name)
@@ -127,13 +143,11 @@ public class Bot : IWorker, IInteractable
 
     public void ShutDown()
     {
-        localSpeed=0;
-        StopWorking();
+        localSpeed = 0;
     }
     public void TurnOn()
     {
-        localSpeed=Data.speed;
-        //should stop working but remember current workspace
+        localSpeed = Data.speed;
     }
     #region Movement
     public void SetDestination(Vector3Int coords)
@@ -144,13 +158,13 @@ public class Bot : IWorker, IInteractable
     }
     public void MoveTowardsDestination()
     {
-        if (Path.Count <= 0)
+        if (!IsOn || localSpeed <= 0 || Path.Count <= 0)
             return;
 
-        power -= Data.powerConsumption * Time.deltaTime;
+        Power -= Mathf.Max(0, Data.powerConsumption) * Time.deltaTime;
         Vector3 previousCoords = Position;
 
-        SceneObj.transform.position = Vector3.MoveTowards(Coords, Path[0], Data.speed * Time.deltaTime);
+        SceneObj.transform.position = Vector3.MoveTowards(Coords, Path[0], localSpeed * Time.deltaTime);
         if (Position.x - previousCoords.x != 0)
             SceneObj.spriteRenderer.flipX = Mathf.Sign(Position.x - previousCoords.x) < 0;
 
@@ -161,8 +175,9 @@ public class Bot : IWorker, IInteractable
     {
         while (true)
         {
-            if (CurrentCell.isPowered)
-            Power += 1;
+            Cell cell = CurrentCell;
+            if (cell != null && cell.isPowered)
+                Power += MaxPower * Time.deltaTime * 0.6f;
 
             yield return null;
         }  
@@ -185,10 +200,8 @@ public class Bot : IWorker, IInteractable
     public bool MoveToWorkplace(Building workplace)
     {
         
-        Vector3 workPoint = workplace.SceneObj.BotWorkPoint != null
-            ? workplace.SceneObj.BotWorkPoint.position
-            : workplace.Coords;
-        Vector3Int target = workPoint.ToVector3Int();
+        if (!LogisticsManager.TryGetAccessPoint(workplace, Coords, out Vector3Int target))
+            return false;
 
         if (destination != target || Path.Count == 0)
         {
@@ -213,17 +226,18 @@ public class Bot : IWorker, IInteractable
         if (Occupied)
             return;
 
-        workCancellationSource?.Dispose();
-        workCancellationSource = CancellationTokenSource.CreateLinkedTokenSource(
+        CancellationTokenSource source = CancellationTokenSource.CreateLinkedTokenSource(
             SceneObj.GetCancellationTokenOnDestroy());
+        workCancellationSource = source;
 
         Occupied = true;
-        WorkRoutine = RunPipeline(workCancellationSource.Token);
+        WorkRoutine = RunPipeline(source);
         WorkRoutine.Forget();
     }
 
-    async UniTask RunPipeline(CancellationToken cancellationToken)
+    async UniTask RunPipeline(CancellationTokenSource source)
     {
+        CancellationToken cancellationToken = source.Token;
         try
         {
             await Pipeline(cancellationToken);
@@ -238,9 +252,13 @@ public class Bot : IWorker, IInteractable
         }
         finally
         {
-            Occupied = false;
-            workCancellationSource?.Dispose();
-            workCancellationSource = null;
+            if (ReferenceEquals(workCancellationSource, source))
+            {
+                Occupied = false;
+                workCancellationSource = null;
+            }
+
+            source.Dispose();
         }
     }
 
@@ -263,6 +281,12 @@ public class Bot : IWorker, IInteractable
 
     public Vector3 GetWorkPoint(Building workplace)
     {
+        if (workplace == null)
+            return Coords;
+
+        if (LogisticsManager.TryGetAccessPoint(workplace, Coords, out Vector3Int target))
+            return target;
+
         return workplace.SceneObj.BotWorkPoint != null
             ? workplace.SceneObj.BotWorkPoint.position
             : workplace.Coords;
@@ -277,12 +301,13 @@ public class Bot : IWorker, IInteractable
     {
         if (!PickedUp)
         {
+            resumeWorkAfterDrop = Occupied;
             SceneObj.transform.parent = PlayerManager.Instance.transform;
             SceneObj.transform.SetPositionAndRotation(PlayerManager.Instance.botCarryPoint.position, Quaternion.Euler(0, 0, 90));
             PickedUp = true;
-            Occupied = true;
             WorkingAt = null;
             StopWorking();
+            Occupied = true;
             PlayerManager.Instance.IsCarryingBot = true;
         }
         else
@@ -292,11 +317,44 @@ public class Bot : IWorker, IInteractable
             PickedUp = false;
             Occupied = false;
             PlayerManager.Instance.IsCarryingBot = false;
+
+            if (resumeWorkAfterDrop)
+                StartWorking();
+
+            resumeWorkAfterDrop = false;
         }
     }
     public bool CanInteractWith()
     {
-        throw new NotImplementedException();
+        if (PickedUp || PlayerManager.Instance == null)
+            return false;
+
+        Cell playerCell = PlayerManager.Instance.GetPlayerCell();
+        foreach (Cell cell in InteractionCells)
+            if (cell == playerCell)
+                return true;
+
+        return false;
     }
     #endregion
+
+    bool resumeWorkAfterDrop;
+
+    public virtual void Dispose()
+    {
+        StopWorking();
+        BotManager.UnregisterBot(this);
+        if (InteractionManager.Instance != null)
+            InteractionManager.Instance.interactables.Remove(this);
+    }
+
+    public void RefreshDataUpgrades()
+    {
+        if (Data == null)
+            return;
+
+        MaxWeight = Mathf.Max(0, Data.maxWeight);
+        Inventory?.SetMaxWeight(MaxWeight);
+        Power = power;
+    }
 }

@@ -17,6 +17,11 @@ public class MachineView : BuildingView
         InitializeMachine();
     }
 
+    private void Update()
+    {
+        RuntimeObj?.Tick();
+    }
+
     void OnMouseDown()
     {
         // A machine instantiated from BuildMode can receive its first mouse
@@ -36,6 +41,11 @@ public class MachineView : BuildingView
         }
 
         RuntimeObj = new Machine(Data, this);
+    }
+
+    private void OnDestroy()
+    {
+        RuntimeObj?.Dispose();
     }
 
     //test 

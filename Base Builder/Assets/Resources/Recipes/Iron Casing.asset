@@ -12,17 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1930e33686e0fe343a20ec312785cbc4, type: 3}
   m_Name: Iron Casing
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
-  <ID>k__BackingField: 
-  Name: Iron Casing
+  ID: assemble_to_iron_casing
+  Name: Assemble to Iron Casing
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 6305420338887985350, guid: a4b42c6bbe4ddfd418626a57f283c5b9, type: 3}
+  unlockedByDefault: 1
   inputs:
-  - key: {fileID: 11400000, guid: a6c0ca76c9554a9458b5d31064597a47, type: 2}
-    value: 4
   - key: {fileID: 11400000, guid: 8f12447b62af6814b96609d9f8fa2f09, type: 2}
+    value: 4
+  - key: {fileID: 11400000, guid: a6c0ca76c9554a9458b5d31064597a47, type: 2}
     value: 4
   outputs:
   - key: {fileID: 11400000, guid: 3253d5026f77f624e8123392986645b4, type: 2}
     value: 1
+  baseOutputAmount: 1
   completionTime: 5
   energyCost: 1
+  isUnlocked: 1

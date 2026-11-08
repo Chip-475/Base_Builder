@@ -25,13 +25,19 @@ public class Spaceship : Building
 
     public Bot BuildBot(BotView botPrefab)
     {
-        if (!Data.botPrefabs.Contains(botPrefab))
+        if (botPrefab == null || botPrefab.data == null || BotSpawnPoint == null)
         {
-            Debug.Log($"No bot of type {botPrefab.name} found.");
+            Debug.LogWarning("Cannot build a bot: its prefab or spawn point is missing.");
             return null;
         }
 
-        return MonoBehaviour.Instantiate(botPrefab, BotSpawnPoint.position, Quaternion.identity).RuntimeObj;
+        if (Depot.Inventory == null || !Depot.Inventory.CanRemoveItems(botPrefab.data.cost))
+            return null;
+
+        Depot.Inventory.RemoveItems(botPrefab.data.cost);
+        BotView view = MonoBehaviour.Instantiate(botPrefab, BotSpawnPoint.position, Quaternion.identity);
+        view.InitializeRuntime();
+        return view.RuntimeObj;
     }
 
     // Work

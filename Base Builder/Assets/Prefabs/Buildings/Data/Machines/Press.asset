@@ -24,18 +24,24 @@ MonoBehaviour:
   type: 1
   bounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 1.5, y: 1.5, z: 0}
   interactionBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 2.5, y: 2.5, z: 0}
   connectionBounds:
     m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 1.5, y: 1.5, z: 0}
   workRange: 0
-  connectsToPower: 0
-  blocksWalking: 0
-  blocksPlacing: 0
+  connectsToPower: 1
+  blocksWalking: 1
+  blocksPlacing: 1
   constructionTime: 1
-  machineType: 0
-  usableRecipes: []
+  machineType: 4
+  usableRecipes:
+  - {fileID: 11400000, guid: 4b0656228111ae949afa174fcc8fd3da, type: 2}
+  - {fileID: 11400000, guid: fa5b97cf036b4834cbc6e42ddb4edf72, type: 2}
+  - {fileID: 11400000, guid: 836ecaedf80c6d6439425be2762c435a, type: 2}
+  - {fileID: 11400000, guid: ef5131437f7b44749b7c90769fc1636f, type: 2}
+  - {fileID: 11400000, guid: 20911a0762c04061b2ef3887ab7f3782, type: 2}
+  - {fileID: 11400000, guid: 6136c181a7ff4157b1f3ba0f77760518, type: 2}
   needSpecialist: 0

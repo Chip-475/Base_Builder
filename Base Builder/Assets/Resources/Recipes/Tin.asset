@@ -13,16 +13,17 @@ MonoBehaviour:
   m_Name: Tin
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
   ID: tin
-  Name: Tin
+  Name: Smelt to Tin
   Desc: 
-  Sprite: {fileID: 0}
-  unlockedByDefault: 0
+  Sprite: {fileID: -6487633152846227020, guid: c31d197d330af7a458334fbdaa52c16b, type: 3}
+  unlockedByDefault: 1
   inputs:
   - key: {fileID: 11400000, guid: 6ade9ebeec44c7445b36addbe8f7846f, type: 2}
     value: 1
   outputs:
   - key: {fileID: 11400000, guid: c54d5c2bccbf9344aa6a92fe8f51bfde, type: 2}
     value: 1
+  baseOutputAmount: 1
   completionTime: 7
   energyCost: 1
-  isUnlocked: 0
+  isUnlocked: 1

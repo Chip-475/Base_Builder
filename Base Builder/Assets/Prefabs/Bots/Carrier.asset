@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BotData
   ID: carrier
   sprite: {fileID: 4133867454757407509, guid: 06395ebd33dd5724ea986f810a8df525, type: 3}
-  cost: []
+  cost:
+  - key: {fileID: 11400000, guid: 4eae64731fd5fca4b8bd4ca939e3c462, type: 2}
+    value: 1
+  - key: {fileID: 11400000, guid: d0b73083ea6e4ef4d8b65c4586b33d4c, type: 2}
+    value: 1
   speed: 3
   maxWeight: 100
   miningLevel: 1

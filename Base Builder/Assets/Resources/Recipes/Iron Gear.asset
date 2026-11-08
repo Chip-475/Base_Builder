@@ -13,18 +13,19 @@ MonoBehaviour:
   m_Name: Iron Gear
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
   ID: iron_gear
-  Name: Iron Gear
+  Name: Assemble to Iron Gear
   Desc: 
-  Sprite: {fileID: 0}
-  unlockedByDefault: 0
+  Sprite: {fileID: 8073110772990177215, guid: e457c34186dfa844e9ed8e4a8ac36672, type: 3}
+  unlockedByDefault: 1
   inputs:
-  - key: {fileID: 11400000, guid: a6c0ca76c9554a9458b5d31064597a47, type: 2}
-    value: 2
   - key: {fileID: 11400000, guid: 8f12447b62af6814b96609d9f8fa2f09, type: 2}
     value: 1
+  - key: {fileID: 11400000, guid: a6c0ca76c9554a9458b5d31064597a47, type: 2}
+    value: 2
   outputs:
   - key: {fileID: 11400000, guid: 221efdb17276688478b286a17e1fa32d, type: 2}
     value: 1
+  baseOutputAmount: 1
   completionTime: 5
   energyCost: 2
-  isUnlocked: 0
+  isUnlocked: 1

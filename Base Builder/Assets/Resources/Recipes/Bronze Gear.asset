@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Bronze Gear
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
   ID: bronze_gear
-  Name: Bronze Gear
+  Name: Assemble to Bronze Gear
   Desc: 
-  Sprite: {fileID: 0}
-  unlockedByDefault: 0
+  Sprite: {fileID: 6787822646004628086, guid: 575dc94cc6018b44d89df1de0624db69, type: 3}
+  unlockedByDefault: 1
   inputs:
   - key: {fileID: 11400000, guid: 02126ec745c8dee41b0072d5a038ffda, type: 2}
     value: 2
@@ -25,6 +25,7 @@ MonoBehaviour:
   outputs:
   - key: {fileID: 11400000, guid: ab63fccbfd785314c801c6020fc1fdcf, type: 2}
     value: 1
+  baseOutputAmount: 1
   completionTime: 5
   energyCost: 2
-  isUnlocked: 0
+  isUnlocked: 1

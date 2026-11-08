@@ -14,7 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BotData
   ID: worker
   sprite: {fileID: -7969523285802053910, guid: d197726cb7c63c645a7e45c110cfb1c3, type: 3}
-  cost: []
+  cost:
+  - key: {fileID: 11400000, guid: 4eae64731fd5fca4b8bd4ca939e3c462, type: 2}
+    value: 1
+  - key: {fileID: 11400000, guid: 221efdb17276688478b286a17e1fa32d, type: 2}
+    value: 3
   speed: 2
   maxWeight: 25
   miningLevel: 1

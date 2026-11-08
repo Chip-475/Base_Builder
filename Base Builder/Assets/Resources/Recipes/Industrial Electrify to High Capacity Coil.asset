@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1930e33686e0fe343a20ec312785cbc4, type: 3}
+  m_Name: Industrial Electrify to High Capacity Coil
+  m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
+  ID: industrial_electrify_to_high_capacity_coil
+  Name: Industrial Electrify to High Capacity Coil
+  Desc: 
+  Sprite: {fileID: -4958148295378709420, guid: c23fd7fbf0409e8468761aa0023fb79e, type: 3}
+  unlockedByDefault: 1
+  inputs:
+  - key: {fileID: 11400000, guid: 0e771afc513c05b41b791bc1ad20571a, type: 2}
+    value: 2
+  - key: {fileID: 11400000, guid: 50f1cae9aa528ed4bbe327c540648983, type: 2}
+    value: 2
+  - key: {fileID: 11400000, guid: 7211ac24f63019e4ca1c67fbe3ee889c, type: 2}
+    value: 3
+  outputs:
+  - key: {fileID: 11400000, guid: 5fb129508c2e82943b90035f57b325eb, type: 2}
+    value: 1
+  baseOutputAmount: 1
+  completionTime: 12
+  energyCost: 3
+  isUnlocked: 1

@@ -15,15 +15,29 @@ public class BuildModeEntry : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     private void Awake()
     {
-        image.sprite = buildingPrefab.Data.sprite;
-        button.onClick.AddListener(() => OnClick());
+        if (buildingPrefab != null && buildingPrefab.Data != null && image != null)
+            image.sprite = buildingPrefab.Data.sprite;
+        if (button != null)
+            button.onClick.AddListener(() => OnClick());
+    }
+
+    public void Configure(BuildingView prefab)
+    {
+        buildingPrefab = prefab;
+        if (image != null && buildingPrefab != null && buildingPrefab.Data != null)
+            image.sprite = buildingPrefab.Data.sprite;
     }
     void Update()
     {
         CanBuild();
     }
 
-    public void CanBuild() => button.interactable = Depot.Inventory.CanRemoveItems(Cost);
+    public void CanBuild()
+    {
+        if (button != null)
+            button.interactable = Depot.Inventory != null && buildingPrefab != null
+                && Depot.Inventory.CanRemoveItems(Cost);
+    }
     public void OnClick()
     {
         if (buildingPrefab == null || buildingPrefab.Data == null)

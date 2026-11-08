@@ -12,15 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1930e33686e0fe343a20ec312785cbc4, type: 3}
   m_Name: Copper Wire
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
-  <ID>k__BackingField: 
-  Name: Copper Wire
+  ID: assemble_to_copper_wire
+  Name: Assemble to Copper Wire
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 521513591395239240, guid: 36875cfe604252e4dbecc8ebe662dc54, type: 3}
+  unlockedByDefault: 1
   inputs:
   - key: {fileID: 11400000, guid: d8291ed90a9a40d488355edab31852fc, type: 2}
     value: 1
   outputs:
   - key: {fileID: 11400000, guid: 7e9a04e493d517648926644a9917a171, type: 2}
     value: 2
+  baseOutputAmount: 2
   completionTime: 2
   energyCost: 1
+  isUnlocked: 1

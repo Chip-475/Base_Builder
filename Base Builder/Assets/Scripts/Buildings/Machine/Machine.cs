@@ -1,9 +1,9 @@
 using Cysharp.Threading.Tasks;
 using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Machine : Building, IInteractable, IWorkplace
 {
@@ -13,49 +13,92 @@ public class Machine : Building, IInteractable, IWorkplace
     Vector3 IInteractable.Position => Coords;
     Cell[] IInteractable.InteractionCells => GetCellsInBounds(InteractionBounds);
 
+    readonly Inventory inputInventory = new(int.MaxValue);
+    readonly Inventory outputInventory = new(int.MaxValue);
+    readonly Queue<Dictionary<ResourceSO, int>> pendingInputLoads = new();
+    LogisticsManager.LogisticsRequest currentInputRequest;
+    LogisticsManager.LogisticsRequest currentOutputRequest;
+    CancellationTokenSource craftCancellationSource;
+    bool disposed;
 
+    public Inventory InputInventory => inputInventory;
+    public Inventory OutputInventory => outputInventory;
+    public Dictionary<ResourceSO, int> input => inputInventory.Items;
+    public Dictionary<ResourceSO, int> output => outputInventory.Items;
     public bool Powered { get; private set; }
     public float RequestedPower { get; private set; }
     public MachineType Type { get; protected set; } = MachineType.None;
+    public bool lavoro { get; private set; }
+    public bool aspeEne { get; private set; }
+    public RecipeSO ricOra { get; private set; }
+    public RecipeSO SelectedRecipe { get; private set; }
+    public float progresso { get; private set; }
+    public int CompletedBatches { get; private set; }
+    public WorkerBot AssignedWorker { get; private set; }
+    public bool HasPendingInputDelivery => currentInputRequest != null || pendingInputLoads.Count > 0;
+    public bool HasCarrierBots => BotManager.Bots.OfType<CarrierBot>().Any(bot => bot != null);
 
-
-    //for smelter and alloy furnace automatic
-    public Dictionary<ResourceSO, int> input{get; private set;}=new Dictionary<ResourceSO, int>();
-    public Dictionary<ResourceSO,int> output{get; private set;}=new Dictionary<ResourceSO, int>();
-    public bool lavoro{get;private set;}
-    public bool aspeEne{get;private set;}
-    public RecipeSO ricOra{get; private set;}
-    public float progresso{get; private set;}
-
-    public bool cuociAuto
-    {
-        get
-        {
-            return Type == MachineType.Alloy_Furnace || Type == MachineType.Smelter;
-        }
-    }
-
+    public bool cuociAuto => Type == MachineType.Alloy_Furnace
+        || Type == MachineType.Smelter
+        || Type == MachineType.Furnace_Mk3;
 
     public Machine(MachineData data, MachineView sceneObj) : base(data, sceneObj)
     {
         Type = data.machineType;
-        PowerManager.machineDB.Add(this);
+        if (!PowerManager.machineDB.Contains(this))
+            PowerManager.machineDB.Add(this);
         PowerManager.instance.RegisterBuilding();
-        InteractionManager.Instance.interactables.Add(this);
+        if (InteractionManager.Instance != null && !InteractionManager.Instance.interactables.Contains(this))
+            InteractionManager.Instance.interactables.Add(this);
     }
+
     public override void Destroy()
     {
+        Dispose();
+        MonoBehaviour.Destroy(SceneObj.gameObject);
+    }
+
+    public void Dispose()
+    {
+        if (disposed)
+            return;
+
+        disposed = true;
+        craftCancellationSource?.Cancel();
+        StopPowerRequest();
+        pendingInputLoads.Clear();
+
+        if (AssignedWorker != null)
+            AssignedWorker.CurrentTask = null;
+
         FreeUpCells(GetCellsInBounds(GetBounds()));
         BuildingManager.UnregisterBuilding(this);
-        MonoBehaviour.Destroy(SceneObj.gameObject);
+
+        LogisticsManager.CancelRequest(currentInputRequest);
+        LogisticsManager.CancelRequest(currentOutputRequest);
+
+        currentInputRequest = null;
+        currentOutputRequest = null;
+        PowerManager.machineDB.Remove(this);
+        if (InteractionManager.Instance != null)
+            InteractionManager.Instance.interactables.Remove(this);
+        if (PowerManager.instance != null)
+            PowerManager.instance.UnregisterBuilding();
     }
 
     public bool RequestPower(float amount)
     {
+        if (amount <= 0)
+        {
+            StopPowerRequest();
+            return true;
+        }
+
         NetworkManager currentNetwork = Network;
         if (currentNetwork == null || !currentNetwork.RequestPower(this, amount))
         {
-            if (currentNetwork != null) currentNetwork.StopPowerRequest(this);
+            if (currentNetwork != null)
+                currentNetwork.StopPowerRequest(this);
             RequestedPower = 0;
             Powered = false;
             return false;
@@ -65,231 +108,486 @@ public class Machine : Building, IInteractable, IWorkplace
         Powered = true;
         return true;
     }
+
     public bool RequestPower(RecipeSO recipe)
     {
-        if (recipe == null) return false;
-        return RequestPower(recipe.energyCost);
+        return recipe != null && RequestPower(recipe.energyCost);
     }
+
     public void StopPowerRequest()
     {
-        if (Network != null) Network.StopPowerRequest(this);
+        if (Network != null)
+            Network.StopPowerRequest(this);
         RequestedPower = 0;
         Powered = false;
     }
+
     public void RefreshPowerRequest()
     {
-        RequestPower(RequestedPower);
+        if (RequestedPower > 0)
+            RequestPower(RequestedPower);
     }
-    /*
-    public bool start(RecipeSO ric)
-    {
-        if(ric==null||lavoro||Data.usableRecipes==null||!Data.usableRecipes.Contains(ric))return false;
-        foreach(KeyValuePair<ResourceSO,int> richiesta in ric.inputs)
-        {
-            Depot.Inventory.Items.TryGetValue(richiesta.Key,out int posseduta);
-            if(posseduta<richiesta.Value)return false;
-        }
-        return true;
-    }*/
-    /*
-    public void avvioAuto()
-    {
-        if(lavoro||Data.usableRecipes==null)return;
-        foreach(RecipeSO recipe in Data.usableRecipes)
-        {
-            if(!start(recipe))continue;
-            if(recipe.energyCost>0)//)
-            {
-                aspeEne=true;
-                return;
-            }
-        }
-        aspeEne=false;
-        //funzione craft
-        return;
-    }*/
-
-    /*async UniTaskVoid prova()
-    {
-        var token=SceneObj.GetCancellationTokenOnDestroy();
-        while(true)
-        {
-            bool annulato=await UniTask.Delay(500,cancellationToken token).SuppressCancellationThrow();
-            
-        }
-    }*/
-    
 
     public bool CanInteractWith()
     {
-        Bounds area = new Bounds(Coords,Data.interactionBounds.size);
-        /*var cells = GetCellsInBounds(Data.interactionBounds);
-        foreach (var item in cells)
-            if (item == PlayerManager.Instance.GetPlayerCell()) return true;
-        */
-        Cell cell = PlayerManager.Instance.GetPlayerCell();
-        foreach (Cell cella in GetCellsInBounds(area))
-        {
-            if(cella==cell)return true;
-        }
+        if (PlayerManager.Instance == null)
+            return false;
+
+        Cell playerCell = PlayerManager.Instance.GetPlayerCell();
+        foreach (Cell cell in GetCellsInBounds(InteractionBounds))
+            if (cell == playerCell)
+                return true;
+
         return false;
     }
+
     public void Interact()
     {
-       /* if (!CanInteractWith())
-        {
-            Debug.Log("can't interact");
+        if (!CanInteractWith() || MachineUI.Instance == null)
             return;
-        }*/
-        MachineUI.Instance.Machine = this;
+
         MachineUI.Instance.Open(this);
     }
 
-    //cuoci automatico
-    // ingressi e uscite
-    public bool accettaIn(ResourceSO res)
+    public bool CanAcceptInput(ResourceSO resource)
     {
-        if(Data.usableRecipes==null)
-        {
-            Debug.Log("ricette non ci sono");
+        if (resource == null || Data == null || Data.usableRecipes == null)
             return false;
-        }
-        foreach(RecipeSO r in Data.usableRecipes)
-        {
-            if (r!=null && r.inputs.ContainsKey(res)) return true;
-        }
-        return false;
+
+        return Data.usableRecipes.Any(recipe =>
+            recipe != null && recipe.inputs != null && recipe.inputs.ContainsKey(resource));
     }
-    
-    public bool aggIn(ResourceSO res,int quant)
+
+    public bool AddInputs(Dictionary<ResourceSO, int> resources)
     {
-        if(!cuociAuto)
-        {
-            Debug.Log(Type + " non cuoce da sola stronzo");
+        if (resources == null || resources.Count == 0 ||
+            resources.Any(item => !CanAcceptInput(item.Key) || item.Value <= 0) ||
+            !inputInventory.CanAddItems(resources))
             return false;
-        }
-        if (res == null || quant <= 0||!accettaIn(res)) return false;
-        input.TryGetValue(res, out int attuale);
-        input[res]= attuale+quant;
-        tryAutoStart();
+
+        inputInventory.AddItems(resources);
+        Tick();
         return true;
     }
 
-    // Work
-    public override Dictionary<ResourceSO, int> GetWorkOutputs()
+    public bool aggIn(ResourceSO resource, int amount)
     {
-        throw new NotImplementedException();
-    }
+        if (!CanAcceptInput(resource) || amount <= 0)
+            return false;
 
-    public bool depositDaBot(Bot bot)
-    {
-        if (!cuociAuto || bot is not WorkerBot) return false;
-        bool depo = false;
-        List<ResourceSO> ris = new List<ResourceSO>(bot.Inventory.Items.Keys);
-        foreach(ResourceSO r in ris)
-        {
-            if (!accettaIn(r)) continue;
-            int quant = bot.Inventory.Items[r];
-            if(aggIn(r,quant))
-            {
-                bot.Inventory.Items.Remove(r);
-                depo = true;
-            }
-        }
-        return depo;
-    }
-
-    public bool prendiOut(ResourceSO res,int quant)
-    {
-        output.TryGetValue(res,out int dispo);
-        if (quant <= 0 || dispo < quant) return false;
-        output[res] = dispo - quant;
-        if (output[res] == 0) output.Remove(res);
+        inputInventory.AddItem(resource, amount);
+        Tick();
         return true;
     }
 
-    //avvio lavorazione
+    public bool RequestInputsFromDepot(Dictionary<ResourceSO, int> resources)
+    {
+        if (resources == null || resources.Count == 0 || currentInputRequest != null ||
+            pendingInputLoads.Count > 0 || Depot.Inventory == null || !Depot.Inventory.Contains(resources))
+            return false;
+
+        foreach (var item in resources)
+            if (!CanAcceptInput(item.Key) || item.Value <= 0)
+                return false;
+
+        float capacity = GetLargestCarrierCapacity();
+        List<Dictionary<ResourceSO, int>> loads = BuildLoads(resources, capacity);
+        if (loads == null || loads.Count == 0)
+            return false;
+
+        foreach (Dictionary<ResourceSO, int> load in loads)
+            pendingInputLoads.Enqueue(load);
+
+        ScheduleNextInputLoad();
+        return HasPendingInputDelivery;
+    }
+
+    public bool CanCarrierTransport(Dictionary<ResourceSO, int> resources)
+    {
+        return BuildLoads(resources, GetLargestCarrierCapacity()) != null;
+    }
+
+    public void RequestOutputDelivery()
+    {
+        ScheduleOutputDelivery();
+    }
+
+    public void SelectRecipe(RecipeSO recipe)
+    {
+        if (recipe == null || Data.usableRecipes == null || !Data.usableRecipes.Contains(recipe))
+            return;
+
+        SelectedRecipe = recipe;
+        Tick();
+    }
+
+    public bool TryAssignWorker(WorkerBot worker, RecipeSO recipe)
+    {
+        if (worker == null || recipe == null || !CanUseWorker(worker) ||
+            Data.usableRecipes == null || !Data.usableRecipes.Contains(recipe) ||
+            (AssignedWorker != null && AssignedWorker != worker))
+            return false;
+
+        AssignedWorker = worker;
+        Occupied = true;
+        SelectedRecipe = recipe;
+        return true;
+    }
+
+    public void ReleaseWorker(WorkerBot worker)
+    {
+        if (AssignedWorker != worker)
+            return;
+
+        AssignedWorker = null;
+        Occupied = false;
+        if (!lavoro)
+            SelectedRecipe = null;
+    }
+
+    public bool CanUseWorker(WorkerBot worker)
+    {
+        bool specialist = worker != null && worker.Data != null && worker.Data.ID == "specialist";
+        return worker != null && Data != null && (Data.needSpecialist == specialist);
+    }
+
+    public void RestoreState(
+        Dictionary<ResourceSO, int> savedInputs,
+        Dictionary<ResourceSO, int> savedOutputs,
+        string selectedRecipeID,
+        string inProgressRecipeID,
+        float savedProgress,
+        int completedBatches)
+    {
+        inputInventory.Items.Clear();
+        outputInventory.Items.Clear();
+
+        if (savedInputs != null)
+            inputInventory.AddItems(savedInputs);
+        if (savedOutputs != null)
+            outputInventory.AddItems(savedOutputs);
+
+        CompletedBatches = Mathf.Max(0, completedBatches);
+        SelectedRecipe = Data.usableRecipes?.FirstOrDefault(recipe =>
+            recipe != null && recipe.ID == selectedRecipeID);
+
+        RecipeSO runningRecipe = Data.usableRecipes?.FirstOrDefault(recipe =>
+            recipe != null && recipe.ID == inProgressRecipeID);
+        if (runningRecipe == null || runningRecipe.inputs == null || runningRecipe.outputs == null)
+        {
+            Tick();
+            return;
+        }
+
+        lavoro = true;
+        ricOra = runningRecipe;
+        SelectedRecipe = runningRecipe;
+        progresso = Mathf.Clamp01(savedProgress);
+        if (runningRecipe.energyCost > 0)
+            RequestPower(runningRecipe);
+
+        craftCancellationSource?.Dispose();
+        craftCancellationSource = CancellationTokenSource.CreateLinkedTokenSource(
+            SceneObj.GetCancellationTokenOnDestroy());
+        Craft(runningRecipe, craftCancellationSource, progresso).Forget();
+    }
+
+    public void ClearSelectedRecipe(RecipeSO recipe)
+    {
+        if (SelectedRecipe == recipe && !lavoro)
+            SelectedRecipe = null;
+    }
+
+    public bool start(RecipeSO recipe)
+    {
+        return CanStart(recipe);
+    }
+
     public bool inputAll(RecipeSO recipe)
     {
-        if (recipe.inputs.Count == 0) return false;
-        foreach(KeyValuePair<ResourceSO,int> ric in recipe.inputs)
-        {
-            input.TryGetValue(ric.Key, out int poss);
-            if (poss < ric.Value) return false;
-        }
-        return true;
+        return recipe != null && recipe.inputs != null && recipe.inputs.Count > 0
+            && inputInventory.Contains(recipe.inputs);
     }
 
-    public bool start(RecipeSO rec)
+    public bool TryStartRecipe(RecipeSO recipe)
     {
-        if (rec == null || lavoro||Data.usableRecipes==null||!Data.usableRecipes.Contains(rec))return false;
-        return inputAll(rec);
+        if (!CanStart(recipe))
+            return false;
 
+        if (recipe.energyCost > 0 && !RequestPower(recipe))
+        {
+            aspeEne = true;
+            return false;
+        }
+
+        inputInventory.RemoveItems(recipe.inputs);
+        aspeEne = false;
+        lavoro = true;
+        ricOra = recipe;
+        progresso = 0;
+        craftCancellationSource?.Dispose();
+        craftCancellationSource = CancellationTokenSource.CreateLinkedTokenSource(
+            SceneObj.GetCancellationTokenOnDestroy());
+        Craft(recipe, craftCancellationSource, 0).Forget();
+        return true;
     }
 
     public void tryAutoStart()
     {
-        if (!cuociAuto||lavoro||Data.usableRecipes==null)return;
-        foreach(RecipeSO rec in Data.usableRecipes)
+        if (disposed || lavoro || Data == null || Data.usableRecipes == null)
+            return;
+
+        RecipeSO recipe = SelectedRecipe;
+        if (recipe != null)
         {
-            if (!start(rec)) continue;
-            if(rec.energyCost>0&&!RequestPower(rec))
-            {
-                aspeEne = true;
-                return;
-            }
-            aspeEne = false;
-            startCraft(rec).Forget();
+            TryStartRecipe(recipe);
             return;
         }
+
+        if (!cuociAuto)
+            return;
+
+        foreach (RecipeSO candidate in Data.usableRecipes)
+            if (CanStart(candidate))
+            {
+                TryStartRecipe(candidate);
+                return;
+            }
+
         aspeEne = false;
     }
 
-    async UniTask startCraft(RecipeSO rec)
+    public void Tick()
     {
-        lavoro = true;
-        ricOra = rec;
-        progresso = 0f;
-        foreach(KeyValuePair<ResourceSO,int> richiesta in rec.inputs)
+        if (disposed)
+            return;
+
+        if (lavoro && ricOra != null && ricOra.energyCost > 0 && !Powered)
+            RequestPower(ricOra);
+        else if (!lavoro)
+            tryAutoStart();
+
+        UpdateInputRequests();
+        ScheduleOutputDelivery();
+
+        if (cuociAuto && AssignedWorker == null && !lavoro &&
+            currentInputRequest == null && pendingInputLoads.Count == 0)
+            TryRequestAutomaticInputs();
+    }
+
+    bool CanStart(RecipeSO recipe)
+    {
+        return !disposed && !lavoro && recipe != null && recipe.inputs != null
+            && recipe.outputs != null && Data != null && Data.usableRecipes != null
+            && Data.usableRecipes.Contains(recipe) && inputAll(recipe);
+    }
+
+    async UniTask Craft(RecipeSO recipe, CancellationTokenSource source, float startingProgress)
+    {
+        CancellationToken token = source.Token;
+        try
         {
-            input[richiesta.Key] = input[richiesta.Key] - richiesta.Value;
-            if(input[richiesta.Key] == 0) input.Remove(richiesta.Key);
-        }
-        var token = SceneObj.GetCancellationTokenOnDestroy();
-        float trascorso = 0f;
-        while(trascorso<rec.completionTime)
-        {
-            bool annullato = await UniTask.Yield(PlayerLoopTiming.Update, token).SuppressCancellationThrow();
-            if(annullato)
+            float duration = Mathf.Max(0, recipe.completionTime);
+            float elapsed = duration * Mathf.Clamp01(startingProgress);
+            progresso = duration <= 0 ? 1 : Mathf.Clamp01(elapsed / duration);
+            while (elapsed < duration)
             {
+                await UniTask.Yield(PlayerLoopTiming.Update, token);
+                if (recipe.energyCost <= 0 || Powered)
+                {
+                    elapsed += Time.deltaTime;
+                    progresso = Mathf.Clamp01(elapsed / duration);
+                }
+            }
+
+            if (recipe.energyCost > 0)
+                StopPowerRequest();
+
+            outputInventory.AddItems(recipe.outputs);
+            CompletedBatches++;
+        }
+        catch (OperationCanceledException) when (token.IsCancellationRequested)
+        {
+            // Destroying the machine cancels an in-progress batch.
+        }
+        catch (Exception exception)
+        {
+            Debug.LogException(exception, SceneObj);
+        }
+        finally
+        {
+            if (ReferenceEquals(craftCancellationSource, source))
+            {
+                craftCancellationSource = null;
                 lavoro = false;
                 ricOra = null;
+                progresso = 0;
+                if (AssignedWorker == null)
+                    SelectedRecipe = null;
+                source.Dispose();
+            }
+        }
+
+        if (!disposed)
+            Tick();
+    }
+
+    void TryRequestAutomaticInputs()
+    {
+        if (Data == null || Data.usableRecipes == null)
+            return;
+
+        foreach (RecipeSO recipe in Data.usableRecipes)
+        {
+            if (recipe == null || recipe.inputs == null || recipe.inputs.Count == 0 || Depot.Inventory == null)
+                continue;
+
+            Dictionary<ResourceSO, int> missing = new();
+            foreach (var item in recipe.inputs)
+            {
+                int available = input.GetValueOrDefault(item.Key);
+                int amount = item.Value - available;
+                if (amount > 0)
+                    missing[item.Key] = amount;
+            }
+
+            if (missing.Count == 0 || !Depot.Inventory.Contains(missing)
+                || !HasCarrierBots || !CanCarrierTransport(missing))
+                continue;
+
+            RequestInputsFromDepot(missing);
+            return;
+        }
+    }
+
+    void UpdateInputRequests()
+    {
+        if (currentInputRequest != null && !LogisticsManager.Requests.Contains(currentInputRequest))
+            currentInputRequest = null;
+
+        if (currentInputRequest == null)
+            ScheduleNextInputLoad();
+    }
+
+    void ScheduleNextInputLoad()
+    {
+        while (currentInputRequest == null && pendingInputLoads.Count > 0)
+        {
+            if (Depot.Inventory == null)
+            {
+                pendingInputLoads.Clear();
                 return;
             }
-            if(rec.energyCost<=0||Powered)
+
+            Dictionary<ResourceSO, int> load = pendingInputLoads.Dequeue();
+            if (!Depot.Inventory.Contains(load))
             {
-                trascorso = trascorso + Time.deltaTime;
-                progresso = Mathf.Clamp01(trascorso / rec.completionTime);
+                pendingInputLoads.Clear();
+                return;
             }
+
+            Depot source = FindDepotForTransfer(load, Coords, requireSpace: false);
+            if (source == null)
+            {
+                pendingInputLoads.Clear();
+                return;
+            }
+
+            currentInputRequest = new LogisticsManager.LogisticsRequest(
+                this, load, Depot.Inventory,
+                source.SceneObj.BotWorkPoint != null ? source.SceneObj.BotWorkPoint.position : source.Coords,
+                inputInventory, GetWorkPoint(), priority: 1);
+            LogisticsManager.Requests.Add(currentInputRequest);
         }
-        if (rec.energyCost > 0) StopPowerRequest();
-        foreach(KeyValuePair<ResourceSO,int>prodotto in rec.outputs)
+    }
+
+    void ScheduleOutputDelivery()
+    {
+        if (currentOutputRequest != null && !LogisticsManager.Requests.Contains(currentOutputRequest))
+            currentOutputRequest = null;
+
+        if (currentOutputRequest != null || outputInventory.IsEmpty || Depot.Inventory == null)
+            return;
+
+        float capacity = GetLargestCarrierCapacity();
+        List<Dictionary<ResourceSO, int>> loads = BuildLoads(output, capacity);
+        if (loads == null || loads.Count == 0)
+            return;
+
+        Dictionary<ResourceSO, int> load = loads[0];
+        Depot destination = FindDepotForTransfer(load, Coords, requireSpace: true);
+        if (destination == null)
+            return;
+
+        currentOutputRequest = new LogisticsManager.LogisticsRequest(
+            this, load, outputInventory, GetWorkPoint(),
+            Depot.Inventory,
+            destination.SceneObj.BotWorkPoint != null ? destination.SceneObj.BotWorkPoint.position : destination.Coords,
+            priority: 1);
+        LogisticsManager.Requests.Add(currentOutputRequest);
+    }
+
+    Depot FindDepotForTransfer(Dictionary<ResourceSO, int> resources, Vector3 from, bool requireSpace)
+    {
+        Depot closest = null;
+        float closestDistance = float.PositiveInfinity;
+
+        foreach (Depot depot in BuildingManager.GetBuildingsOfType<Depot>())
         {
-            output.TryGetValue(prodotto.Key, out int attuale);
-            output[prodotto.Key] = attuale+prodotto.Value;
+            if (requireSpace && !Depot.Inventory.CanAddItems(resources))
+                continue;
+            if (!LogisticsManager.TryGetAccessPoint(depot, from, out _))
+                continue;
+
+            float distance = (depot.Coords - from.ToVector3Int()).sqrMagnitude;
+            if (distance >= closestDistance)
+                continue;
+
+            closest = depot;
+            closestDistance = distance;
         }
-        lavoro = false;
-        ricOra = null;
-        progresso = 0f;
-        tryAutoStart();
+
+        return closest;
+    }
+
+    float GetLargestCarrierCapacity()
+    {
+        return LogisticsManager.LargestCarrierCapacity;
+    }
+
+    static List<Dictionary<ResourceSO, int>> BuildLoads(
+        Dictionary<ResourceSO, int> resources,
+        float capacity)
+    {
+        return LogisticsManager.BuildLoads(resources, capacity);
+    }
+
+    Vector3 GetWorkPoint()
+    {
+        return SceneObj.BotWorkPoint != null
+            ? SceneObj.BotWorkPoint.position
+            : Coords;
+    }
+
+    public override Dictionary<ResourceSO, int> GetWorkOutputs()
+    {
+        return new Dictionary<ResourceSO, int>(output);
     }
 }
+
 public enum MachineType
 {
-    None,
-    Advanced_Assembler,
-    Alloy_Furnace,
-    Assembler,
-    Press,
-    Smelter,
+    None = 0,
+    Advanced_Assembler = 1,
+    Alloy_Furnace = 2,
+    Assembler = 3,
+    Press = 4,
+    Smelter = 5,
+    Electric_Workbench = 6,
+    Advanced_Press = 7,
+    Advanced_Electric_Workbench = 8,
+    Industrial_Assembler = 9,
+    Industrial_Press = 10,
+    Industrial_Electric_Workbench = 11,
+    Furnace_Mk3 = 12,
 }

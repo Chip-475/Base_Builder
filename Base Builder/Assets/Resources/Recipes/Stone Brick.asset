@@ -13,16 +13,17 @@ MonoBehaviour:
   m_Name: Stone Brick
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
   ID: stone_brick
-  Name: Stone brick
+  Name: Assemble to Stone brick
   Desc: 
-  Sprite: {fileID: 0}
-  unlockedByDefault: 0
+  Sprite: {fileID: 9113122808071268032, guid: 6defc71d4c7dab34b93cb074e8d751db, type: 3}
+  unlockedByDefault: 1
   inputs:
   - key: {fileID: 11400000, guid: 2eab6c8d20549184ebd71e99b295c001, type: 2}
     value: 2
   outputs:
   - key: {fileID: 11400000, guid: 3503701fd8214ab4f8d081c4fd8c782c, type: 2}
-    value: 4
+    value: 1
+  baseOutputAmount: 1
   completionTime: 3
   energyCost: 1
-  isUnlocked: 0
+  isUnlocked: 1

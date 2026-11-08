@@ -13,16 +13,17 @@ MonoBehaviour:
   m_Name: Copper Plate
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
   ID: copper_plate
-  Name: Copper Plate
+  Name: Press to Copper Plate
   Desc: 
-  Sprite: {fileID: 0}
-  unlockedByDefault: 0
+  Sprite: {fileID: -5479074902323993675, guid: 8d260a7f31911f549ab2870f454a2986, type: 3}
+  unlockedByDefault: 1
   inputs:
   - key: {fileID: 11400000, guid: d8291ed90a9a40d488355edab31852fc, type: 2}
     value: 2
   outputs:
   - key: {fileID: 11400000, guid: 9e9bcb12ade7ba1419d5f5166e4c6b92, type: 2}
     value: 1
+  baseOutputAmount: 1
   completionTime: 4
   energyCost: 1
-  isUnlocked: 0
+  isUnlocked: 1
