@@ -17862,8 +17862,6 @@ MonoBehaviour:
     - {fileID: 2375721541604936971, guid: 33c057345b9133946809cc912febd9fa, type: 3}
     - {fileID: 2375721541604936971, guid: 408212d5901d69e4b9987faf67335c58, type: 3}
     - {fileID: 2375721541604936972, guid: 2dd9c6cdbf11bda4395567f6201ec15d, type: 3}
-    - {fileID: 2375721541604936972, guid: 2dd9c6cdbf11bda4395567f6201ec15d, type: 3}
-    - {fileID: 2375721541604936972, guid: 2dd9c6cdbf11bda4395567f6201ec15d, type: 3}
     - {fileID: 2375721541604936972, guid: 8bc92d9e7625f3740b9074bead6a34b6, type: 3}
     - {fileID: 2375721541604936972, guid: f1c0a6d5b5c64e9ea0b9cb905e85d8f1, type: 3}
   spaceshipMenuPanel: {fileID: 3672312097299437611}
