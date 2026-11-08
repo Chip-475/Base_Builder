@@ -15,8 +15,12 @@ MonoBehaviour:
   ID: small_depot
   name: Small Depot
   description: 
-  sprite: {fileID: -3805855729511957650, guid: ab5f72b3897cd2448a8cc20183a21666, type: 3}
-  cost: []
+  sprite: {fileID: -4653105354952314045, guid: 0d5d1d58086895542b0588133fc8ae94, type: 3}
+  cost:
+  - key: {fileID: 11400000, guid: 3253d5026f77f624e8123392986645b4, type: 2}
+    value: 10
+  - key: {fileID: 11400000, guid: 221efdb17276688478b286a17e1fa32d, type: 2}
+    value: 2
   type: 4
   bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -31,5 +35,6 @@ MonoBehaviour:
   connectsToPower: 0
   blocksWalking: 0
   blocksPlacing: 1
-  MaxCapacity: 25
+  constructionTime: 3
+  MaxCapacity: 200
   Range: 3

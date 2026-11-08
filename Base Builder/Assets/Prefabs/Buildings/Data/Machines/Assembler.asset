@@ -16,7 +16,11 @@ MonoBehaviour:
   name: Assembler
   description: 
   sprite: {fileID: 1703963130801174446, guid: 677c3f4ede2f44042bfdd59c8a223c45, type: 3}
-  cost: []
+  cost:
+  - key: {fileID: 11400000, guid: d0b73083ea6e4ef4d8b65c4586b33d4c, type: 2}
+    value: 1
+  - key: {fileID: 11400000, guid: 221efdb17276688478b286a17e1fa32d, type: 2}
+    value: 4
   type: 1
   bounds:
     m_Center: {x: 0.5, y: 0, z: 0}
@@ -31,5 +35,7 @@ MonoBehaviour:
   connectsToPower: 1
   blocksWalking: 1
   blocksPlacing: 1
+  constructionTime: 1
   machineType: 0
   usableRecipes: []
+  needSpecialist: 0

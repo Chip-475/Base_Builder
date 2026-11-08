@@ -15,7 +15,7 @@ public class SaveManager : MonoBehaviour
     [SerializeField] Button saveButton; // Only for testing
     [SerializeField] Button loadButton; // Only for testing
 
-    string savePath;
+    public string savePath;
     public List<BuildingView> buildingPrefabs = new();
     public List<BotView> botPrefabs = new();
     public List<ResourceSO> resourceDB = new();
