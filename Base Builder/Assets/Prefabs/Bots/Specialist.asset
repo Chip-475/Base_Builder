@@ -14,13 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BotData
   ID: specialist
   sprite: {fileID: 6799967465745104397, guid: abff66fdd2364bb449a25c9551003523, type: 3}
-  cost:
-  - key: {fileID: 11400000, guid: 864a44a8713f3f24f98a5fb089e6d7b3, type: 2}
-    value: 1
-  - key: {fileID: 11400000, guid: e35d416999fa69c49a9ae0adcc31afb5, type: 2}
-    value: 1
+  cost: []
   speed: 2
   maxWeight: 25
-  miningLevel: 1
   powerConsumption: 3
   maxPower: 50
+  carryCapacity: 25
+  type: 1

@@ -16,13 +16,7 @@ MonoBehaviour:
   name: Poer Pole Mk.1
   description: 
   sprite: {fileID: 6224104018784944575, guid: 0e537c673156a5e4094eadc3fa1f7641, type: 3}
-  cost:
-  - key: {fileID: 11400000, guid: 8f12447b62af6814b96609d9f8fa2f09, type: 2}
-    value: 3
-  - key: {fileID: 11400000, guid: e1ab27292505c9d43b017c49f40443f8, type: 2}
-    value: 2
-  - key: {fileID: 11400000, guid: 7e9a04e493d517648926644a9917a171, type: 2}
-    value: 2
+  cost: []
   type: 3
   bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -37,4 +31,3 @@ MonoBehaviour:
   connectsToPower: 1
   blocksWalking: 0
   blocksPlacing: 1
-  constructionTime: 1
