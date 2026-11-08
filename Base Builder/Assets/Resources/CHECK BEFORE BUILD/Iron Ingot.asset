@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: iron_ingot
   Name: Iron_ingot
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: -4773232605451315250, guid: 5e9bb1fbc3689474cb8afa315aa43ad5, type: 3}
   weightPerUnit: 2
   toughness: 1
   timeToMine: 1

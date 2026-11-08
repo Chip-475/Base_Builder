@@ -12,10 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3cda432e09bc154fa81d3e6b7922f8c, type: 3}
   m_Name: Iron Gear
   m_EditorClassIdentifier: Assembly-CSharp::ResourceSO
-<<<<<<< HEAD:Base Builder/Assets/ScriptableObject/Crafted Items/First Era/Iron Gear.asset
-=======
   ID: iron_gear
->>>>>>> d48e9b95d7dbc14fe72ebd455f598bd3b61ae449:Base Builder/Assets/Resources/CHECK BEFORE BUILD/Iron Gear.asset
   Name: Iron Gear
   Desc: 
   Sprite: {fileID: 8073110772990177215, guid: e457c34186dfa844e9ed8e4a8ac36672, type: 3}

@@ -5,19 +5,27 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
 
+    public const float MaxVolume = 100f;
+
     [Header("Setup")]
     [SerializeField] List<AudioClip> sfxClips = new();
     [SerializeField] List<AudioClip> bgmClips = new();
 
     [Header("Runtime")]
     AudioClip currentBgmPlaying;
-    [Tooltip("0 - 100")] float masterVolume;
+    float masterVolume;
     float sfxVolume;
     float bgmVolume;
+
+    public float MasterVolume => masterVolume;
+    public float SfxVolume => sfxVolume;
+    public float BgmVolume => bgmVolume;
 
     private void Awake()
     {
         Instance = this;
+
+        PlayBGM(bgmClips[0]);
     }
     
     public void PlaySFX(AudioClip clip)
@@ -30,7 +38,7 @@ public class AudioManager : MonoBehaviour
 
         AudioSource source = new GameObject().AddComponent<AudioSource>();
         source.clip = clip;
-        source.volume = sfxVolume * masterVolume / 100;
+        source.volume = sfxVolume * masterVolume / MaxVolume;
         Destroy(source.gameObject, clip.length + 0.5f);
     }
     public void PlayBGM(AudioClip clip)
@@ -44,11 +52,16 @@ public class AudioManager : MonoBehaviour
 
         AudioSource source = new GameObject().AddComponent<AudioSource>();
         source.clip = clip;
-        source.volume = bgmVolume * masterVolume / 100;
+        source.volume = bgmVolume * masterVolume / MaxVolume;
     }
 
     public static float VolumeToDb(float volume)
     {
-        return volume <= 0f ? -80f : 20f * Mathf.Log10(volume / 100f);
+        return volume <= 0f ? -80f : 20f * Mathf.Log10(volume / MaxVolume);
+    }
+
+    public static void SetVolume(string volumeName, float volume)
+    {
+
     }
 }

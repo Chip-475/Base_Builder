@@ -15,7 +15,7 @@ MonoBehaviour:
   ID: circuit_breaker
   Name: Circuit Breaker
   Desc: 
-  Sprite: {fileID: 0}
+  Sprite: {fileID: 5890431093006521107, guid: 97d1d1c3f49a7164c9ca3b386f082cd3, type: 3}
   weightPerUnit: 1
   toughness: 1
   timeToMine: 1
