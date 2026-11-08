@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Resources/Raw/Pentladite.md",
+                "file": "Resources/Raw/Ilmenite.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Pentladite"
+              "title": "Ilmenite"
             }
           },
           {
@@ -142,7 +142,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Resources/Raw/Pentladite.md",
+                "file": "Resources/Raw/Ilmenite.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -232,19 +232,24 @@
   },
   "active": "38f571affee2eaf5",
   "lastOpenFiles": [
-    "Resources/Raw/Ilmenite.md",
     "Resources/Raw/Hematite.md",
+    "Resources/Raw/Pentladite.md",
+    "Resources/Raw/Magnetite.md",
+    "Resources/Raw/Malachite.md",
+    "Resources/Raw/Pyrite.md",
+    "Resources/Raw/Cassiterite.md",
+    "Resources/Ingots/Titanium.md",
+    "General.md",
+    "Resources/Raw/Ilmenite.md",
     "Resources/Raw/Gold Ore.md",
     "Resources/Raw/Coal.md",
     "Resources/Raw/Bauxite.md",
-    "Resources/Raw/Pentladite.md",
-    "Resources/Raw/Stone.md",
-    "General.md",
+    "Resources/Ingots/Nickel.md",
     "Resources/Raw/Polymer.md",
-    "Resources/Raw/Cassiterite.md",
-    "Resources/Raw/Pyrite.md",
-    "Resources/Raw/Malachite.md",
-    "Resources/Raw/Magnetite.md",
+    "Resources/Raw/Stone.md",
+    "Resources/Ingots/Aluminum.md",
+    "Resources/Ingots/Copper.md",
+    "Resources/Ingots/Iron.md",
     "Recipes/Third Era/Metal/Metalworking/Industrial Assemble to Ship Core Component.md",
     "Resources/Crafted Items/Third Era/Ship Core Component.md",
     "Tech Tree/Tech Tree.md",
@@ -253,11 +258,6 @@
     "Resources/Crafted Items/Ship Core.md",
     "Spaceship.md",
     "Resources/Crafted Items/Third Era/Power Distribution Unit.md",
-    "Resources/Crafted Items/Third Era/High Capacity Coil.md",
-    "Resources/Crafted Items/Third Era/Navigation Module.md",
-    "Resources/Crafted Items/Third Era/Reactor Housing.md",
-    "Resources/Crafted Items/Third Era/Power Regulator.md",
-    "Resources/Crafted Items/Navigation Device.md",
     "images/Pasted image 20261106205628.png",
     "Bot Upgrades",
     "Bot Upgrades",
