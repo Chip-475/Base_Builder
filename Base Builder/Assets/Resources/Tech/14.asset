@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9755486e78e7e1d40afe44726ca57847, type: 3}
+  m_Name: 14
+  m_EditorClassIdentifier: Assembly-CSharp::TechSO
+  ID: 1
+  name: 1
+  icon: {fileID: 0}
+  botUpgrades: []
+  recipeUnlocks:
+  - {fileID: 11400000, guid: ef5131437f7b44749b7c90769fc1636f, type: 2}
+  - {fileID: 11400000, guid: c1662f3206e548fbb732279d470ab4c0, type: 2}
+  - {fileID: 11400000, guid: ebbf94a67604409b848788ff746ebaea, type: 2}
+  - {fileID: 11400000, guid: cdb683ad1b5a4c289ce859d163f3aa24, type: 2}
+  buildingUnlocks: []
+  cost:
+  - key: {fileID: 11400000, guid: 5181aad3c7596974b8e7c7f98188e6c5, type: 2}
+    value: 40
+  - key: {fileID: 11400000, guid: 221efdb17276688478b286a17e1fa32d, type: 2}
+    value: 20
+  - key: {fileID: 11400000, guid: 7e9a04e493d517648926644a9917a171, type: 2}
+    value: 30

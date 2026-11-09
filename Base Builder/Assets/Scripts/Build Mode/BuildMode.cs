@@ -11,7 +11,6 @@ public class BuildMode : MonoBehaviour
     [Header("Setup")]
     [SerializeField] GameObject panel;
     [SerializeField] GameObject content;
-    [SerializeField] BuildModeEntry machineEntryTemplate;
     [SerializeField] Button toggleButton;
     [Space]
     [SerializeField] Button machineSort;
@@ -46,7 +45,6 @@ public class BuildMode : MonoBehaviour
     {
         panel.SetActive(false);
         allEntries = content.GetComponentsInChildren<BuildModeEntry>().ToList();
-        AddMachineEntries();
 
         // Inputs
         PlayerManager.Inputs.BuildMode.MouseMoved.performed += (_) =>
@@ -64,28 +62,6 @@ public class BuildMode : MonoBehaviour
             SetSelectedEntry(null);
             buildingPreview.sprite = null;
         };
-    }
-
-    void AddMachineEntries()
-    {
-        if (machineEntryTemplate == null || SaveManager.Instance == null || content == null)
-            return;
-
-        HashSet<string> listedMachineIDs = new(allEntries
-            .Where(entry => entry != null && entry.buildingPrefab != null && entry.buildingPrefab.Data != null)
-            .Select(entry => entry.buildingPrefab.Data.ID));
-
-        foreach (MachineView machinePrefab in SaveManager.Instance.buildingPrefabs.OfType<MachineView>())
-        {
-            if (machinePrefab == null || machinePrefab.Data == null || listedMachineIDs.Contains(machinePrefab.Data.ID))
-                continue;
-
-            BuildModeEntry entry = Instantiate(machineEntryTemplate, content.transform, false);
-            entry.gameObject.name = $"{machinePrefab.Data.name} Entry";
-            entry.Configure(machinePrefab);
-            allEntries.Add(entry);
-            listedMachineIDs.Add(machinePrefab.Data.ID);
-        }
     }
 
     public void Toggle()
@@ -137,15 +113,21 @@ public class BuildMode : MonoBehaviour
         Vector3Int mouseGridPos = Helpers.GetMouseWorldPosition().ToVector3Int();
         if (SelectedEntry == null || Helpers.IsMouseOverUI())
             return;
-        if (Depot.Inventory == null || !Depot.Inventory.CanRemoveItems(SelectedEntry.Cost))
-            return;
         if (!SelectedEntry.buildingPrefab.CanBuildOn(mouseGridPos))
             return;
+
+        //if (Depot.Inventory == null || !Depot.Inventory.CanRemoveItems(SelectedEntry.Cost))
+        //{
+        //    SetSelectedEntry(null);
+        //    SelectedBuilding = null;
+        //    return;
+        //}
+
         Depot.Inventory.RemoveItems(SelectedEntry.Cost);
         ConstructionSite.Create(
             SelectedEntry.buildingPrefab,
             mouseGridPos - SelectedEntry.buildingPrefab.Data.bounds.center);
-        if(!Depot.Inventory.CanRemoveItems(SelectedEntry.Cost)) {SetSelectedEntry(null); SelectedBuilding=null;};
+        AudioManager.PlaySFX("Place Object", transform);
     }
     void Destroy()
     {

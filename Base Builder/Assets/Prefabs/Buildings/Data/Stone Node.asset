@@ -32,7 +32,7 @@ MonoBehaviour:
   blocksWalking: 0
   blocksPlacing: 1
   constructionTime: 1
-  resource: {fileID: 0}
-  baseAmountGiven: 0
-  purity: 0
-  timeToMine: 0
+  resource: {fileID: 11400000, guid: 2eab6c8d20549184ebd71e99b295c001, type: 2}
+  baseAmountGiven: 1
+  purity: 1
+  timeToMine: 2

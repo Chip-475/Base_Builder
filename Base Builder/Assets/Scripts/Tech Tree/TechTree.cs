@@ -17,20 +17,22 @@ public class TechTree
 
     public static void UnlockTech(TechSO tech)
     {
-        if (!IsTechUnlockable(tech)) return;
+        if (!IsTechUnlockable(tech))
+            return;
 
-        if (!Depot.Inventory.CanRemoveItems(tech.cost)) return;
-            Depot.Inventory.RemoveItems(tech.cost);
+        Depot.Inventory.RemoveItems(tech.cost);
 
         foreach (RecipeSO re in tech.recipeUnlocks)
             re.isUnlocked = true;
         
         UnlockedTechs.Add(tech.ID);
         tech.ApplyEffects();
+        AudioManager.PlaySFX("New Node", PlayerManager.Instance.transform);
     }
     public static bool IsTechUnlockable(TechSO tech)
     {
-        if (UnlockedTechs.Contains(tech.ID))
+        if (tech == null || string.IsNullOrWhiteSpace(tech.ID)
+            || Depot.Inventory == null || UnlockedTechs.Contains(tech.ID))
             return false;
 
         foreach (var kvp in tech.cost)

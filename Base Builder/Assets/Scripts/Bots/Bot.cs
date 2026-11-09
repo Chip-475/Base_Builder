@@ -23,7 +23,7 @@ public class Bot : IWorker, IInteractable
         public void Standardize()
         {
             if (string.IsNullOrEmpty(id))
-                id = new GUID().ToString();
+                id = Guid.NewGuid().ToString();
 
             // coords
 
@@ -52,7 +52,9 @@ public class Bot : IWorker, IInteractable
         get => SceneObj.transform.position;
         set => SceneObj.transform.position = value;
     }
-    public Cell CurrentCell {get => WorldManager.World.GetCellAt(Coords.ToVector3Int());}
+    public Cell CurrentCell => WorldManager.World == null
+        ? null
+        : WorldManager.World.GetCellAt(Coords.ToVector3Int());
     public string Name { get; protected set; }
     public float localSpeed;
     float power;
@@ -165,7 +167,7 @@ public class Bot : IWorker, IInteractable
         Vector3 previousCoords = Position;
 
         SceneObj.transform.position = Vector3.MoveTowards(Coords, Path[0], localSpeed * Time.deltaTime);
-        if (Position.x - previousCoords.x != 0)
+        if (Position.x - previousCoords.x != 0 && SceneObj.spriteRenderer != null)
             SceneObj.spriteRenderer.flipX = Mathf.Sign(Position.x - previousCoords.x) < 0;
 
         if (Vector3.Distance(Coords, Path[0]) < 0.05f)
@@ -307,6 +309,8 @@ public class Bot : IWorker, IInteractable
             PickedUp = true;
             WorkingAt = null;
             StopWorking();
+            destination = null;
+            Path.Clear();
             Occupied = true;
             PlayerManager.Instance.IsCarryingBot = true;
         }
