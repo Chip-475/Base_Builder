@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: Industrial Assemble to Ship Core
   Desc: 
   Sprite: {fileID: 0}
-  unlockedByDefault: 1
+  unlockedByDefault: 0
   inputs:
   - key: {fileID: 11400000, guid: 3fe7e37b301f97f4c8418e73f6daa0ec, type: 2}
     value: 2
@@ -30,4 +30,4 @@ MonoBehaviour:
   baseOutputAmount: 1
   completionTime: 12
   energyCost: 3
-  isUnlocked: 1
+  isUnlocked: 0

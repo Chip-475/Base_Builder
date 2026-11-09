@@ -1,7 +1,5 @@
-using NUnit;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,9 +14,19 @@ public class TechTreeEntry : MonoBehaviour
 
     private void Start()
     {
-        //icon.sprite = icon.sprite != null ? icon.sprite : tech.icon;
-        //techName.text = tech.name;
-        //button.onClick.AddListener(() => TechTree.UnlockTech(tech));
+        icon ??= GetComponent<Image>();
+        button ??= GetComponent<Button>();
+        techName ??= GetComponentInChildren<TMP_Text>(true);
+
+        if (tech != null)
+        {
+            if (icon != null && tech.icon != null)
+                icon.sprite = tech.icon;
+            if (techName != null)
+                techName.text = tech.name;
+            if (button != null)
+                button.onClick.AddListener(() => TechTree.UnlockTech(tech));
+        }
 
         foreach (var entry in nextEntries)
         {
@@ -37,5 +45,10 @@ public class TechTreeEntry : MonoBehaviour
             lineObject.transform.SetSiblingIndex(0);
         }
     }
-    //private void Update() => button.interactable = TechTree.IsTechUnlockable(tech) || !TechTree.UnlockedTechs.Contains(tech.ID);
+
+    private void Update()
+    {
+        if (button != null && tech != null)
+            button.interactable = TechTree.IsTechUnlockable(tech);
+    }
 }

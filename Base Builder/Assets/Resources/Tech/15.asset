@@ -16,6 +16,14 @@ MonoBehaviour:
   name: 1
   icon: {fileID: 0}
   botUpgrades: []
-  recipeUnlocks: []
+  recipeUnlocks:
+  - {fileID: 11400000, guid: 89232eba36994919b4a5d230e3fe74a6, type: 2}
+  - {fileID: 11400000, guid: 3bd5df1dc8ad47f6bb043b71b0883b57, type: 2}
   buildingUnlocks: []
-  cost: []
+  cost:
+  - key: {fileID: 11400000, guid: 10c49eee39cd7ed4f94f429c2dcdfcfb, type: 2}
+    value: 30
+  - key: {fileID: 11400000, guid: 9e9bcb12ade7ba1419d5f5166e4c6b92, type: 2}
+    value: 30
+  - key: {fileID: 11400000, guid: 2929ddf3742f24e4e9f2b02e54479f7c, type: 2}
+    value: 20

@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: Industrial Assemble to Circuit Braker
   Desc: 
   Sprite: {fileID: 5890431093006521107, guid: 97d1d1c3f49a7164c9ca3b386f082cd3, type: 3}
-  unlockedByDefault: 1
+  unlockedByDefault: 0
   inputs:
   - key: {fileID: 11400000, guid: 1bd02e7810328d1489598e60c4a622e0, type: 2}
     value: 2
@@ -30,4 +30,4 @@ MonoBehaviour:
   baseOutputAmount: 1
   completionTime: 12
   energyCost: 3
-  isUnlocked: 1
+  isUnlocked: 0

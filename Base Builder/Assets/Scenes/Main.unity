@@ -10376,6 +10376,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5947429676073866706, guid: 3a319de07410f344f9d3c358e4019b17, type: 3}
+      propertyPath: tech
+      value:
+      objectReference: {fileID: 11400000, guid: 4cc08184205996048a2a997bdf1dc769, type: 2}
     - target: {fileID: 8569344855904822365, guid: 3a319de07410f344f9d3c358e4019b17, type: 3}
       propertyPath: m_Name
       value: Tech Entry (28)

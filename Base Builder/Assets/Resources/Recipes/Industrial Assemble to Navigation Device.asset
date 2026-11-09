@@ -16,7 +16,7 @@ MonoBehaviour:
   Name: Industrial Assemble to Navigation Device
   Desc: 
   Sprite: {fileID: 8284204878405963291, guid: dd3a23d0424706b4c9b490d800386526, type: 3}
-  unlockedByDefault: 1
+  unlockedByDefault: 0
   inputs:
   - key: {fileID: 11400000, guid: 2430fb9842b8aaa46bc18aff880020e7, type: 2}
     value: 1
@@ -30,4 +30,4 @@ MonoBehaviour:
   baseOutputAmount: 1
   completionTime: 12
   energyCost: 3
-  isUnlocked: 1
+  isUnlocked: 0

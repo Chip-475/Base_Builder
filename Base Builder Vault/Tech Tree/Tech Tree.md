@@ -4,6 +4,7 @@ Starter: 1x [[Assembler]], 1x [[Furnace mk1]], 1x [[Builder Bot]], 2 [[Carrier B
 ### First Era
 ![[Pasted image 20261023194307.png|432]]
 1:
+[[Mineral Crate]]
 [[Assemble to Stone brick]]
 [[Smelt to Iron 1]]
 
