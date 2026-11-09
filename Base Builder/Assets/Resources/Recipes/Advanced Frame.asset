@@ -13,18 +13,21 @@ MonoBehaviour:
   m_Name: Advanced Frame
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
   ID: adv_frame
-  Name: Advanced Frame
+  Name: Assembler to Advanced Machine Frame
   Desc: 
-  Sprite: {fileID: 0}
-  unlockedByDefault: 0
+  Sprite: {fileID: 436003606802357071, guid: d38d3857c1f920f49a356ad170924b3e, type: 3}
+  unlockedByDefault: 1
   inputs:
-  - key: {fileID: 11400000, guid: 3253d5026f77f624e8123392986645b4, type: 2}
-    value: 1
-  - key: {fileID: 11400000, guid: 221efdb17276688478b286a17e1fa32d, type: 2}
+  - key: {fileID: 11400000, guid: 10c49eee39cd7ed4f94f429c2dcdfcfb, type: 2}
+    value: 2
+  - key: {fileID: 11400000, guid: 6cb7b6e828cd5944a8670020cfcc65cb, type: 2}
+    value: 3
+  - key: {fileID: 11400000, guid: b534511c457bb754996761df39202c51, type: 2}
     value: 2
   outputs:
   - key: {fileID: 11400000, guid: 4b42c168ea98b314983b3b1ce80fa64e, type: 2}
     value: 1
+  baseOutputAmount: 1
   completionTime: 10
   energyCost: 2
-  isUnlocked: 0
+  isUnlocked: 1

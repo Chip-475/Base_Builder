@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1930e33686e0fe343a20ec312785cbc4, type: 3}
+  m_Name: Industrial Assemble to Titanium Casing
+  m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
+  ID: industrial_assemble_to_titanium_casing
+  Name: Industrial Assemble to Titanium Casing
+  Desc: 
+  Sprite: {fileID: 2114772732968951050, guid: 6537f6d90ae1a314fa6ef3e80b85cc1a, type: 3}
+  unlockedByDefault: 1
+  inputs:
+  - key: {fileID: 11400000, guid: 22df12a4db39558449f62023cc2a84c0, type: 2}
+    value: 4
+  - key: {fileID: 11400000, guid: d17b3b0249fc40a4685059764bd3a482, type: 2}
+    value: 4
+  outputs:
+  - key: {fileID: 11400000, guid: 3fe7e37b301f97f4c8418e73f6daa0ec, type: 2}
+    value: 1
+  baseOutputAmount: 1
+  completionTime: 12
+  energyCost: 3
+  isUnlocked: 1

@@ -25,6 +25,7 @@ public class SaveManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        RecipeManager.Initialize();
         TechTree.Initialize();
 
         savePath = Path.Combine(Application.persistentDataPath, "save.json");
@@ -49,6 +50,7 @@ public class SaveFile
     // To Save
     public PlayerSaveData playerData;
     public List<BuildingSaveData> buildingsData = new();
+    public List<MachineSaveData> machinesData = new();
     public List<ConstructionSiteSaveData> constructionSitesData = new();
     public List<BotSaveData> botsData = new();
     public DepotSaveData depotData;
@@ -70,6 +72,7 @@ public class SaveFile
         }
 
         buildingsData.Clear();
+        machinesData.Clear();
         constructionSitesData.Clear();
         botsData.Clear();
         techsData.Clear();
@@ -78,6 +81,9 @@ public class SaveFile
 
         foreach (var building in BuildingManager.Buildings.Values.Where(b => b is not MineralNode))
             buildingsData.Add(new(building));
+
+        foreach (Machine machine in BuildingManager.Buildings.Values.OfType<Machine>())
+            machinesData.Add(new(machine));
 
         foreach (var site in ConstructionSite.Sites)
             if (site != null && site.IsPending)
@@ -117,6 +123,9 @@ public class SaveFile
 
         depotData?.Load();
 
+        foreach (MachineSaveData data in machinesData)
+            data?.Load();
+
         foreach (var data in techsData)
             data?.Load();
 
@@ -152,12 +161,103 @@ public class SaveFile
 
         playerData = loadedFile.playerData;
         buildingsData = loadedFile.buildingsData ?? new();
+        machinesData = loadedFile.machinesData ?? new();
         constructionSitesData = loadedFile.constructionSitesData ?? new();
         botsData = loadedFile.botsData ?? new();
         depotData = loadedFile.depotData;
         techsData = loadedFile.techsData ?? new();
 
         LoadAll();
+    }
+}
+
+[Serializable]
+public class MachineSaveData
+{
+    public string machineID;
+    public Helpers.SerializableVector3 position;
+    public List<InventoryItemSaveData> inputs = new();
+    public List<InventoryItemSaveData> outputs = new();
+    public string selectedRecipeID;
+    public string inProgressRecipeID;
+    public float progress;
+    public int completedBatches;
+
+    public MachineSaveData() { }
+
+    public MachineSaveData(Machine machine)
+    {
+        machineID = machine.ID;
+        position = new(machine.Coords);
+        inputs = SaveInventory(machine.InputInventory);
+        outputs = SaveInventory(machine.OutputInventory);
+        selectedRecipeID = machine.SelectedRecipe != null ? machine.SelectedRecipe.ID : string.Empty;
+        inProgressRecipeID = machine.ricOra != null ? machine.ricOra.ID : string.Empty;
+        progress = machine.progresso;
+        completedBatches = machine.CompletedBatches;
+    }
+
+    public void Load()
+    {
+        Vector3Int coords = position.ToVector3().ToVector3Int();
+        Machine machine = BuildingManager.Buildings.Values
+            .OfType<Machine>()
+            .FirstOrDefault(candidate => candidate.ID == machineID && candidate.Coords == coords);
+
+        if (machine == null)
+        {
+            Debug.LogWarning($"Could not restore machine state for '{machineID}' at {coords}.");
+            return;
+        }
+
+        machine.RestoreState(
+            LoadInventory(inputs),
+            LoadInventory(outputs),
+            selectedRecipeID,
+            inProgressRecipeID,
+            progress,
+            completedBatches);
+    }
+
+    static List<InventoryItemSaveData> SaveInventory(Inventory inventory)
+    {
+        List<InventoryItemSaveData> result = new();
+        if (inventory == null)
+            return result;
+
+        foreach (var item in inventory.Items)
+        {
+            if (item.Key == null || item.Value <= 0)
+                continue;
+
+            result.Add(new InventoryItemSaveData { resourceID = item.Key.ID, amount = item.Value });
+        }
+
+        return result;
+    }
+
+    static Dictionary<ResourceSO, int> LoadInventory(List<InventoryItemSaveData> savedItems)
+    {
+        Dictionary<ResourceSO, int> result = new();
+        if (savedItems == null)
+            return result;
+
+        foreach (InventoryItemSaveData item in savedItems)
+        {
+            if (item == null || item.amount <= 0)
+                continue;
+
+            ResourceSO resource = InventoryItemSaveData.ResolveResource(item.resourceID);
+            if (resource == null)
+            {
+                Debug.LogWarning($"Resource not found for saved machine inventory item '{item.resourceID}'.");
+                continue;
+            }
+
+            result[resource] = result.GetValueOrDefault(resource) + item.amount;
+        }
+
+        return result;
     }
 }
 
@@ -310,9 +410,7 @@ public class BotSaveData
         }
 
         BotView view = MonoBehaviour.Instantiate(prefab, position.ToVector3(), Quaternion.identity);
-
-        // BotView creates its runtime Bot in Start().
-        yield return null;
+        view.InitializeRuntime();
 
         runtimeBot = view.RuntimeObj;
         if (runtimeBot == null)
@@ -321,14 +419,24 @@ public class BotSaveData
             yield break;
         }
 
+        // Keep autonomous bots from acting on partially restored state.
+        if (runtimeBot is CarrierBot carrier)
+            carrier.PauseForRestore();
+        else if (runtimeBot is BuilderBot builder)
+            builder.PauseForRestore();
+        else
+            runtimeBot.StopWorking();
+
         runtimeBot.RestoreIdentity(runtimeID, botName);
         runtimeBot.Power = power;
         runtimeBot.Inventory.Items.Clear();
 
-        foreach (var item in inventory)
+        foreach (var item in inventory ?? new List<InventoryItemSaveData>())
         {
-            ResourceSO resource = SaveManager.Instance.resourceDB
-                .FirstOrDefault(resource => resource != null && resource.ID == item.resourceID);
+            if (item == null || item.amount <= 0)
+                continue;
+
+            ResourceSO resource = InventoryItemSaveData.ResolveResource(item.resourceID);
 
             if (resource == null)
             {
@@ -343,7 +451,10 @@ public class BotSaveData
     public void RestoreTask()
     {
         if (runtimeBot == null || task == null)
+        {
+            ResumeAutonomousBot();
             return;
+        }
 
         if (task.type == "Worker" && runtimeBot is WorkerBot worker)
         {
@@ -389,6 +500,18 @@ public class BotSaveData
 
             miner.StartWorking();
         }
+        else
+        {
+            ResumeAutonomousBot();
+        }
+    }
+
+    void ResumeAutonomousBot()
+    {
+        if (runtimeBot is CarrierBot carrier)
+            carrier.ResumeAfterLoad();
+        else if (runtimeBot is BuilderBot)
+            runtimeBot.StartWorking();
     }
 }
 
@@ -408,6 +531,20 @@ public class InventoryItemSaveData
 {
     public string resourceID;
     public int amount;
+
+    public static ResourceSO ResolveResource(string id)
+    {
+        if (string.IsNullOrWhiteSpace(id) || SaveManager.Instance == null)
+            return null;
+
+        ResourceSO resource = SaveManager.Instance.resourceDB
+            .FirstOrDefault(candidate => candidate != null && candidate.ID == id);
+        if (resource != null)
+            return resource;
+
+        return Resources.LoadAll<ResourceSO>(string.Empty)
+            .FirstOrDefault(candidate => candidate != null && candidate.ID == id);
+    }
 }
 
 [Serializable]
@@ -436,8 +573,7 @@ public class DepotSaveData
 
         foreach (var item in items)
         {
-            ResourceSO resource = SaveManager.Instance.resourceDB
-                .FirstOrDefault(res => res != null && res.ID == item.Key);
+            ResourceSO resource = InventoryItemSaveData.ResolveResource(item.Key);
 
             if (resource == null)
             {

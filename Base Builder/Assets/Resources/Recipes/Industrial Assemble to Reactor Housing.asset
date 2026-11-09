@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1930e33686e0fe343a20ec312785cbc4, type: 3}
+  m_Name: Industrial Assemble to Reactor Housing
+  m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
+  ID: industrial_assemble_to_reactor_housing
+  Name: Industrial Assemble to Reactor Housing
+  Desc: 
+  Sprite: {fileID: 4117990489954992199, guid: ca95c966e942eec42a674d2b36f25a9a, type: 3}
+  unlockedByDefault: 1
+  inputs:
+  - key: {fileID: 11400000, guid: 3fe7e37b301f97f4c8418e73f6daa0ec, type: 2}
+    value: 2
+  - key: {fileID: 11400000, guid: 6374f1ba148f4044b932122455101abe, type: 2}
+    value: 1
+  - key: {fileID: 11400000, guid: ac10690bff6df2b468b6f116e0da84e6, type: 2}
+    value: 3
+  outputs:
+  - key: {fileID: 11400000, guid: 6703b9316f6437843ab87ca1540038e1, type: 2}
+    value: 1
+  baseOutputAmount: 1
+  completionTime: 12
+  energyCost: 3
+  isUnlocked: 1

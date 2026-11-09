@@ -13,18 +13,19 @@ MonoBehaviour:
   m_Name: Reinforced Plate
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
   ID: reinforced_plate
-  Name: Reinforced Plate
+  Name: Assemble to Reinforced Plate
   Desc: 
-  Sprite: {fileID: 0}
-  unlockedByDefault: 0
+  Sprite: {fileID: 4544479821815945902, guid: d5c0c0d9258425644b2685705ebdf56a, type: 3}
+  unlockedByDefault: 1
   inputs:
-  - key: {fileID: 11400000, guid: a6c0ca76c9554a9458b5d31064597a47, type: 2}
-    value: 3
   - key: {fileID: 11400000, guid: 8f12447b62af6814b96609d9f8fa2f09, type: 2}
     value: 2
+  - key: {fileID: 11400000, guid: a6c0ca76c9554a9458b5d31064597a47, type: 2}
+    value: 3
   outputs:
   - key: {fileID: 11400000, guid: 47b86a3708dd07345b92ce1c819bc99b, type: 2}
     value: 1
+  baseOutputAmount: 1
   completionTime: 7
   energyCost: 2
-  isUnlocked: 0
+  isUnlocked: 1

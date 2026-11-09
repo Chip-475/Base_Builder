@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1930e33686e0fe343a20ec312785cbc4, type: 3}
+  m_Name: Industrial Assemble to Ship Core
+  m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
+  ID: industrial_assemble_to_ship_core
+  Name: Industrial Assemble to Ship Core
+  Desc: 
+  Sprite: {fileID: 0}
+  unlockedByDefault: 1
+  inputs:
+  - key: {fileID: 11400000, guid: 3fe7e37b301f97f4c8418e73f6daa0ec, type: 2}
+    value: 2
+  - key: {fileID: 11400000, guid: 5eaf38faa7c22914ba9a98330d2f87de, type: 2}
+    value: 2
+  - key: {fileID: 11400000, guid: 6703b9316f6437843ab87ca1540038e1, type: 2}
+    value: 1
+  outputs:
+  - key: {fileID: 11400000, guid: 0e6689c5eda70f34e900910b552d41c2, type: 2}
+    value: 1
+  baseOutputAmount: 1
+  completionTime: 12
+  energyCost: 3
+  isUnlocked: 1

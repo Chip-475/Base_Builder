@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1930e33686e0fe343a20ec312785cbc4, type: 3}
+  m_Name: Industrial Assemble to Navigation Device
+  m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
+  ID: industrial_assemble_to_navigation_device
+  Name: Industrial Assemble to Navigation Device
+  Desc: 
+  Sprite: {fileID: 8284204878405963291, guid: dd3a23d0424706b4c9b490d800386526, type: 3}
+  unlockedByDefault: 1
+  inputs:
+  - key: {fileID: 11400000, guid: 2430fb9842b8aaa46bc18aff880020e7, type: 2}
+    value: 1
+  - key: {fileID: 11400000, guid: 3fe7e37b301f97f4c8418e73f6daa0ec, type: 2}
+    value: 1
+  - key: {fileID: 11400000, guid: b08da25af8e09064ebaa54845fdee5d3, type: 2}
+    value: 2
+  outputs:
+  - key: {fileID: 11400000, guid: 89ad5505e049f584e865b5964b55c042, type: 2}
+    value: 1
+  baseOutputAmount: 1
+  completionTime: 12
+  energyCost: 3
+  isUnlocked: 1

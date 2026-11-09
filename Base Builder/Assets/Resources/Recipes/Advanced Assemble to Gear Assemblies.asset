@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1930e33686e0fe343a20ec312785cbc4, type: 3}
+  m_Name: Advanced Assemble to Gear Assemblies
+  m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
+  ID: advanced_assemble_to_gear_assemblies
+  Name: Advanced Assemble to Gear Assemblies
+  Desc: 
+  Sprite: {fileID: -8305678775943064546, guid: 54648cc79f9318141aa05011e4d67af4, type: 3}
+  unlockedByDefault: 1
+  inputs:
+  - key: {fileID: 11400000, guid: b534511c457bb754996761df39202c51, type: 2}
+    value: 1
+  - key: {fileID: 11400000, guid: d7b2a0c30542253448051db453965b4e, type: 2}
+    value: 3
+  outputs:
+  - key: {fileID: 11400000, guid: 4bda5624d16dcbe4895a8f3a4478d866, type: 2}
+    value: 1
+  baseOutputAmount: 1
+  completionTime: 8
+  energyCost: 2
+  isUnlocked: 1

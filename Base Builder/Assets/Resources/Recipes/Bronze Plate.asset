@@ -13,16 +13,17 @@ MonoBehaviour:
   m_Name: Bronze Plate
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
   ID: bronze_plate
-  Name: Bronze Plate
+  Name: Press to Bronze Plate
   Desc: 
-  Sprite: {fileID: 0}
-  unlockedByDefault: 0
+  Sprite: {fileID: -1404539846743959055, guid: 55a840d7525960a439e5d6dfa385b959, type: 3}
+  unlockedByDefault: 1
   inputs:
   - key: {fileID: 11400000, guid: 1ef3269b54e249c43956104dffe2c724, type: 2}
     value: 2
   outputs:
   - key: {fileID: 11400000, guid: 02126ec745c8dee41b0072d5a038ffda, type: 2}
     value: 1
+  baseOutputAmount: 1
   completionTime: 4
   energyCost: 1
-  isUnlocked: 0
+  isUnlocked: 1

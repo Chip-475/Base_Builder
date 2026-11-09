@@ -1,11 +1,11 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class WorkerBot : Bot
 {
-
     public class Task
     {
         public Task(WorkerBot bot, Machine workplace, RecipeSO recipe, int amount)
@@ -16,29 +16,28 @@ public class WorkerBot : Bot
             Amount = amount;
         }
 
-
-
-        public WorkerBot Bot { get; private set; }
-        public Machine Workplace { get; private set; }
-        public RecipeSO Recipe { get; private set; }
-        public int Amount { get; private set; }
-
-
-
+        public WorkerBot Bot { get; }
+        public Machine Workplace { get; }
+        public RecipeSO Recipe { get; }
+        public int Amount { get; }
 
         public bool IsValid()
         {
-            return Bot != null
-                && Workplace != null
-                && Workplace.Data != null
-                && Workplace.Data.usableRecipes != null
-                && Recipe != null
+            return Bot != null && Workplace != null && Workplace.Data != null
+                && Workplace.Data.usableRecipes != null && Recipe != null
+                && Recipe.inputs != null && Recipe.outputs != null
                 && Workplace.Data.usableRecipes.Contains(Recipe)
-                && Amount > 0;
+                && Workplace.CanUseWorker(Bot) && Amount > 0
+                && Recipe.inputs.Count > 0 && Recipe.outputs.Count > 0
+                && Recipe.inputs.All(item => item.Key != null && item.Value > 0)
+                && Recipe.outputs.All(item => item.Key != null && item.Value > 0);
         }
     }
 
     Task currentTask;
+    int completedAmount;
+    bool waitingForMachineBatch;
+    int expectedCompletedBatches;
     public Task CurrentTask
     {
         get => currentTask;
@@ -48,28 +47,36 @@ public class WorkerBot : Bot
             {
                 if (value != null && !Occupied)
                     StartWorking();
-
                 return;
             }
 
             if (value != null && Occupied)
                 return;
 
+            currentTask?.Workplace?.ReleaseWorker(this);
             currentTask = value;
+            completedAmount = 0;
+            waitingForMachineBatch = false;
+            expectedCompletedBatches = 0;
 
             if (value == null)
+            {
                 StopWorking();
-            else
-                StartWorking();
+                destination = null;
+                Path.Clear();
+                return;
+            }
+
+            if (!value.Workplace.TryAssignWorker(this, value.Recipe))
+            {
+                currentTask = null;
+                Debug.LogWarning("Could not assign the worker to that machine.");
+                return;
+            }
+
+            StartWorking();
         }
     }
-    public bool HasMaterials { get; private set; }
-
-    LogisticsManager.LogisticsRequest materialRequest;
-    LogisticsManager.LogisticsRequest depositRequest;
-    Task materialsTask;
-    Dictionary<ResourceSO, int> requiredMaterials;
-
 
     public WorkerBot(BotView view, BotData data, BotConfig config) : base(view, data, config)
     {
@@ -79,42 +86,147 @@ public class WorkerBot : Bot
     {
         while (!cancellationToken.IsCancellationRequested && CurrentTask != null)
         {
-            if (!CurrentTask.IsValid())
+            Task task = CurrentTask;
+            if (!task.IsValid())
             {
                 Fail("Worker task is invalid.");
                 return;
             }
 
-            if (depositRequest != null)
+            if (completedAmount >= task.Amount)
             {
-                if (LogisticsManager.Requests.Contains(depositRequest))
-                {
-                    await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
-                    continue;
-                }
-
                 CompleteTask();
                 return;
             }
 
-            if (!CanReachWorkplace(CurrentTask.Workplace))
+            Machine machine = task.Workplace;
+            if (!waitingForMachineBatch && machine.lavoro && machine.ricOra == task.Recipe)
             {
-                Fail("Cannot pathfind to workplace.");
-                return;
+                expectedCompletedBatches = machine.CompletedBatches + 1;
+                waitingForMachineBatch = true;
             }
 
-            Dictionary<ResourceSO, int> materials = GetRequiredMaterials(CurrentTask);
-            if (!MaterialsAvailableOrRequested(materials))
+            if (machine.lavoro && machine.ricOra != task.Recipe)
             {
-                Fail("Depot does not have the required materials.");
-                return;
+                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
+                continue;
             }
 
-            if (!AtWorkPoint(CurrentTask.Workplace))
+            if (waitingForMachineBatch)
             {
-                if (!MoveToWorkplace(CurrentTask.Workplace))
+                if (machine.CompletedBatches >= expectedCompletedBatches)
                 {
-                    Fail("Cannot pathfind to workplace.");
+                    completedAmount++;
+                    waitingForMachineBatch = false;
+                    continue;
+                }
+
+                machine.TryStartRecipe(task.Recipe);
+                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
+                continue;
+            }
+
+            Dictionary<ResourceSO, int> missing = GetMissingMaterials(task.Recipe, machine);
+            if (missing.Count > 0)
+            {
+                Dictionary<ResourceSO, int> carried = GetAvailableFromInventory(missing);
+                if (carried.Count > 0)
+                {
+                    if (!AtWorkPoint(machine))
+                    {
+                        if (!MoveToWorkplace(machine))
+                        {
+                            Fail("Cannot pathfind to the machine.");
+                            return;
+                        }
+
+                        await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
+                        continue;
+                    }
+
+                    bool completesInputs = missing.All(item => carried.GetValueOrDefault(item.Key) >= item.Value);
+                    if (completesInputs)
+                        BeginMachineBatch(machine, task.Recipe);
+
+                    if (!machine.AddInputs(carried))
+                    {
+                        if (completesInputs)
+                            waitingForMachineBatch = false;
+                        Fail("The machine refused its recipe inputs.");
+                        return;
+                    }
+
+                    Inventory.RemoveItems(carried);
+                    continue;
+                }
+
+                if (Inventory.CanAddItems(missing))
+                {
+                    if (Depot.Inventory == null || !Depot.Inventory.Contains(missing))
+                    {
+                        Fail("The depot does not have the required recipe inputs.");
+                        return;
+                    }
+
+                    Depot source = FindDepotWithMaterials(missing);
+                    if (source == null)
+                    {
+                        Fail("No depot is reachable for the required recipe inputs.");
+                        return;
+                    }
+
+                    if (!AtWorkPoint(source))
+                    {
+                        if (!MoveToWorkplace(source))
+                        {
+                            Fail("Cannot pathfind to the depot.");
+                            return;
+                        }
+
+                        await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
+                        continue;
+                    }
+
+                    if (!Depot.Inventory.Contains(missing) || !Inventory.CanAddItems(missing))
+                    {
+                        await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
+                        continue;
+                    }
+
+                    Depot.Inventory.RemoveItems(missing);
+                    Inventory.AddItems(missing);
+                    continue;
+                }
+
+                if (!machine.InputInventory.Contains(missing))
+                {
+                    if (Depot.Inventory == null || !Depot.Inventory.Contains(missing))
+                    {
+                        Fail("The depot does not have the required recipe inputs.");
+                        return;
+                    }
+
+                    if (!machine.HasPendingInputDelivery && !machine.RequestInputsFromDepot(missing))
+                    {
+                        string reason = !machine.HasCarrierBots
+                            ? "The worker cannot carry this recipe batch and no carrier is available."
+                            : !machine.CanCarrierTransport(missing)
+                                ? "No carrier can carry this recipe batch."
+                                : "No reachable depot could schedule the required carrier delivery.";
+                        Fail(reason);
+                        return;
+                    }
+
+                    await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
+                    continue;
+                }
+            }
+
+            if (!AtWorkPoint(machine))
+            {
+                if (!MoveToWorkplace(machine))
+                {
+                    Fail("Cannot pathfind to the machine.");
                     return;
                 }
 
@@ -122,142 +234,50 @@ public class WorkerBot : Bot
                 continue;
             }
 
-            if (!Inventory.Contains(materials))
-            {
-                if (materialRequest == null)
-                    IssueMaterialRequest(materials);
-
-                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
-                continue;
-            }
-
-            if (!HasMaterials)
-            {
-                Inventory.RemoveItems(materials);
-                HasMaterials = true;
-
-                await UniTask.Delay(
-                    System.TimeSpan.FromSeconds(CurrentTask.Recipe.completionTime),
-                    cancellationToken: cancellationToken);
-
-                if (!AddOutputs())
-                { 
-                    Fail("Worker inventory cannot hold the task outputs.");
-                    return;
-                }
-
-                HasMaterials = false;
-                IssueDepositRequest();
-                continue;
-            }
-
-            CompleteTask();
-            return;
+            BeginMachineBatch(machine, task.Recipe);
+            await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
         }
     }
 
-    bool CanReachWorkplace(Machine workplace)
+    Dictionary<ResourceSO, int> GetMissingMaterials(RecipeSO recipe, Machine machine)
     {
-        return Pathfinder.CanPathfind(
-            Coords.ToVector3Int(),
-            GetWorkPoint(workplace).ToVector3Int());
-    }
-
-    Dictionary<ResourceSO, int> GetRequiredMaterials(Task task)
-    {
-        if (materialsTask == task)
-            return requiredMaterials;
-
-        requiredMaterials = new();
-        foreach (var material in task.Recipe.inputs)
-            requiredMaterials[material.Key] = material.Value * task.Amount;
-
-        materialsTask = task;
-        return requiredMaterials;
-    }
-
-    bool MaterialsAvailableOrRequested(Dictionary<ResourceSO, int> materials)
-    {
-        if (Inventory.Contains(materials) || Depot.Inventory.Contains(materials))
-            return true;
-
-        if (materialRequest != null && LogisticsManager.Requests.Contains(materialRequest))
-            return true;
-
-        materialRequest = null;
-        return false;
-    }
-
-    void IssueMaterialRequest(Dictionary<ResourceSO, int> materials)
-    {
-        Depot source = FindDepotWithMaterials(materials, GetWorkPoint(CurrentTask.Workplace));
-        if (source == null)
+        Dictionary<ResourceSO, int> missing = new();
+        foreach (var item in recipe.inputs)
         {
-            Fail("No depot can supply the required materials.");
-            return;
+            int inMachine = machine.InputInventory.Items.GetValueOrDefault(item.Key);
+            int amount = item.Value - inMachine;
+            if (amount > 0)
+                missing[item.Key] = amount;
         }
 
-        materialRequest = new LogisticsManager.LogisticsRequest(
-            this,
-            new Dictionary<ResourceSO, int>(materials),
-            Depot.Inventory,
-            source.Coords,
-            Inventory,
-            GetWorkPoint(CurrentTask.Workplace),
-            priority: 1);
-        LogisticsManager.Requests.Add(materialRequest);
+        return missing;
     }
 
-    bool AddOutputs()
+    Dictionary<ResourceSO, int> GetAvailableFromInventory(Dictionary<ResourceSO, int> requested)
     {
-        Dictionary<ResourceSO, int> outputs = new();
-        foreach (var output in CurrentTask.Recipe.outputs)
-            outputs[output.Key] = output.Value * CurrentTask.Amount;
-
-        if (!Inventory.CanAddItems(outputs))
-            return false;
-
-        Inventory.AddItems(outputs);
-        return true;
-    }
-
-    void IssueDepositRequest()
-    {
-        if (Inventory.IsEmpty)
+        Dictionary<ResourceSO, int> available = new();
+        foreach (var item in requested)
         {
-            CompleteTask();
-            return;
+            int amount = Mathf.Min(item.Value, Inventory.Items.GetValueOrDefault(item.Key));
+            if (amount > 0)
+                available[item.Key] = amount;
         }
 
-        Depot destinationDepot = FindDepotForMaterials(Inventory.Items);
-        if (destinationDepot == null)
-        {
-            Fail("No depot can receive the task outputs.");
-            return;
-        }
-
-        depositRequest = new LogisticsManager.LogisticsRequest(
-            this,
-            new Dictionary<ResourceSO, int>(Inventory.Items),
-            Inventory,
-            Coords,
-            Depot.Inventory,
-            destinationDepot.Coords,
-            priority: 1);
-        LogisticsManager.Requests.Add(depositRequest);
+        return available;
     }
 
-    Depot FindDepotWithMaterials(Dictionary<ResourceSO, int> materials, Vector3 position)
+    Depot FindDepotWithMaterials(Dictionary<ResourceSO, int> materials)
     {
         Depot closest = null;
-        int closestDistance = int.MaxValue;
+        float closestDistance = float.PositiveInfinity;
 
-        foreach (var depot in BuildingManager.GetBuildingsOfType<Depot>())
+        foreach (Depot depot in BuildingManager.GetBuildingsOfType<Depot>())
         {
-            if (depot.Occupied || !Depot.Inventory.Contains(materials))
+            if (Depot.Inventory == null || !Depot.Inventory.Contains(materials) ||
+                !LogisticsManager.TryGetAccessPoint(depot, Coords, out _))
                 continue;
 
-            int distance = (depot.Coords - position.ToVector3Int()).sqrMagnitude;
+            float distance = (depot.Coords - Coords).sqrMagnitude;
             if (distance >= closestDistance)
                 continue;
 
@@ -268,43 +288,44 @@ public class WorkerBot : Bot
         return closest;
     }
 
-    Depot FindDepotForMaterials(Dictionary<ResourceSO, int> materials)
+    void BeginMachineBatch(Machine machine, RecipeSO recipe)
     {
-        foreach (var depot in BuildingManager.GetBuildingsOfType<Depot>())
-            if (!depot.Occupied && Depot.Inventory.CanAddItems(materials))
-                return depot;
+        if (waitingForMachineBatch)
+            return;
 
-        return null;
+        expectedCompletedBatches = machine.CompletedBatches + 1;
+        waitingForMachineBatch = true;
+        machine.SelectRecipe(recipe);
+        machine.TryStartRecipe(recipe);
     }
 
     void CompleteTask()
     {
-        CurrentTask = null;
-        materialsTask = null;
-        requiredMaterials = null;
-        materialRequest = null;
-        depositRequest = null;
-        HasMaterials = false;
+        Machine machine = currentTask?.Workplace;
+        currentTask = null;
+        machine?.ReleaseWorker(this);
+        completedAmount = 0;
+        waitingForMachineBatch = false;
+        expectedCompletedBatches = 0;
         destination = null;
         Path.Clear();
+        StopWorking();
     }
 
     public override void Fail(string reason)
     {
-        if (materialRequest != null)
-            LogisticsManager.Requests.Remove(materialRequest);
-        if (depositRequest != null)
-            LogisticsManager.Requests.Remove(depositRequest);
+        Debug.LogWarning(reason);
+        CompleteTask();
+    }
 
-        materialRequest = null;
-        depositRequest = null;
-        CurrentTask = null;
-        materialsTask = null;
-        requiredMaterials = null;
-        HasMaterials = false;
-        destination = null;
-        Path.Clear();
-        Debug.Log(reason);
-        StopWorking();
+    public override void Dispose()
+    {
+        Machine machine = currentTask?.Workplace;
+        currentTask = null;
+        machine?.ReleaseWorker(this);
+        completedAmount = 0;
+        waitingForMachineBatch = false;
+        expectedCompletedBatches = 0;
+        base.Dispose();
     }
 }

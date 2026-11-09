@@ -9,6 +9,7 @@ public class TechTree
     public static void Initialize()
     {
         TechDB.Clear();
+        UnlockedTechs.Clear();
         TechSO[] techAssets = Resources.LoadAll<TechSO>("Tech");
         foreach (TechSO tech in techAssets)
             TechDB[tech.ID] = tech;

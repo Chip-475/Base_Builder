@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 
 [CreateAssetMenu(fileName = "Recipe", menuName = "Scriptable Objects/Recipe")]
 public class RecipeSO : ScriptableObject
@@ -15,6 +16,7 @@ public class RecipeSO : ScriptableObject
     [Header("Characteristics")]
     [SerializeField] public Dictionary<ResourceSO, int> inputs = new();
     [SerializeField] public Dictionary<ResourceSO, int> outputs = new();
+    public int baseOutputAmount;
     public float completionTime;
     public int energyCost;
 

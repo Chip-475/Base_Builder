@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: Motherboard
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
   ID: motherboard
-  Name: Motherboard
+  Name: Electrify to Motherboard
   Desc: 
-  Sprite: {fileID: 0}
-  unlockedByDefault: 0
+  Sprite: {fileID: 7072178864025126732, guid: 8e630ff7991c2cb45a49210dc1f4e68a, type: 3}
+  unlockedByDefault: 1
   inputs:
   - key: {fileID: 11400000, guid: 16ccc057914febc4e9582c7f387b04cf, type: 2}
     value: 2
@@ -27,6 +27,7 @@ MonoBehaviour:
   outputs:
   - key: {fileID: 11400000, guid: a1e269ab140cedf4a8e4fb62937b3548, type: 2}
     value: 1
+  baseOutputAmount: 1
   completionTime: 8
   energyCost: 2
-  isUnlocked: 0
+  isUnlocked: 1

@@ -33,6 +33,7 @@ public class RecipeEntry : MonoBehaviour
 
         button.onClick.AddListener(() => MachineUI.Instance.selectedRecipeEntry = this);
         button.onClick.AddListener(() => MachineUI.Instance.BuildInfoPanel(this));
+        button.onClick.AddListener(() => MachineUI.Instance.BuildBotList());
 
         addButton.onClick.AddListener(() => ModifyAmount(1));
         subtractButton.onClick.AddListener(() => ModifyAmount(-1));
@@ -44,20 +45,24 @@ public class RecipeEntry : MonoBehaviour
 
     private void Update()
     {
-        subtractButton.interactable = true;
-        
-        foreach (var item in recipe.inputs)
-            if (!Depot.Inventory.CanRemoveItem(item.Key, item.Value * Amount))
-                addButton.interactable = false;
+        if (recipe == null || Depot.Inventory == null || addButton == null || subtractButton == null)
+            return;
 
-        foreach (var item in recipe.outputs)
-            if (!Depot.Inventory.CanAddItem(item.Key, item.Value * Amount))
-                addButton.interactable = false;
+        subtractButton.interactable = Amount > 1;
+        int nextAmount = Amount + 1;
+        Dictionary<ResourceSO, int> nextInputs = new();
+        foreach (var item in recipe.inputs)
+            nextInputs[item.Key] = item.Value * nextAmount;
+
+        addButton.interactable = Depot.Inventory.CanRemoveItems(nextInputs);
     }
 
     public void Build(RecipeSO recipe)
     {
-        if (recipe.inputs.Count > 3 || recipe.outputs.Count > 1)
+        if (recipe == null)
+            throw new Exception("Cannot display a null recipe.");
+        if (recipe.inputs == null || recipe.outputs == null ||
+            recipe.outputs.Count != 1)
             throw new Exception($"Recipe {recipe.Name} is invalid.");
 
         var outputs = recipe.outputs.ToArray();
@@ -65,8 +70,9 @@ public class RecipeEntry : MonoBehaviour
 
         this.recipe = recipe;
 
+        outputIcon.sprite = outputs[0].Key.Sprite;
         quantityText[outputIcon].text = (outputs[0].Value * Amount).ToString();
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < inputIcons.Count; i++)
         {
             if (i >= recipe.inputs.Count)
             {
@@ -82,16 +88,15 @@ public class RecipeEntry : MonoBehaviour
 
     void ModifyAmount(int amount)
     {
-        if (this.Amount + amount <= 0)
+        if (recipe == null || this.Amount + amount <= 0 || Depot.Inventory == null)
             return;
 
+        Dictionary<ResourceSO, int> required = new();
         foreach (var item in recipe.inputs)
-            if (!Depot.Inventory.CanRemoveItem(item.Key, item.Value * (this.Amount + amount)))
-                return;
+            required[item.Key] = item.Value * (this.Amount + amount);
 
-        foreach (var item in recipe.outputs)
-            if (!Depot.Inventory.CanAddItem(item.Key, item.Value * (this.Amount + amount)))
-                return;
+        if (!Depot.Inventory.CanRemoveItems(required))
+            return;
 
         this.Amount += amount;
         Build(recipe);

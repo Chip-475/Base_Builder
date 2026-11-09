@@ -11,6 +11,13 @@ public class BuilderBot : Bot
         StartWorking();
     }
 
+    public void PauseForRestore()
+    {
+        StopWorking();
+        CurrentSite?.Release(this);
+        CurrentSite = null;
+    }
+
     public override async UniTask Pipeline(CancellationToken cancellationToken)
     {
         while (!cancellationToken.IsCancellationRequested)

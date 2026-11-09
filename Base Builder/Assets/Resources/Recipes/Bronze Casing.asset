@@ -13,18 +13,19 @@ MonoBehaviour:
   m_Name: Bronze Casing
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
   ID: bronze_casing
-  Name: Bronze Casing
+  Name: Assemble to Bronze Casing
   Desc: 
-  Sprite: {fileID: 0}
-  unlockedByDefault: 0
+  Sprite: {fileID: -5836338777559431411, guid: de4486d600e6b4049a3174f34382b4d4, type: 3}
+  unlockedByDefault: 1
   inputs:
-  - key: {fileID: 11400000, guid: cb83a0928ac067e4e9f7fe4b1934573e, type: 2}
-    value: 2
   - key: {fileID: 11400000, guid: 02126ec745c8dee41b0072d5a038ffda, type: 2}
+    value: 4
+  - key: {fileID: 11400000, guid: cb83a0928ac067e4e9f7fe4b1934573e, type: 2}
     value: 4
   outputs:
   - key: {fileID: 11400000, guid: 2929ddf3742f24e4e9f2b02e54479f7c, type: 2}
     value: 1
+  baseOutputAmount: 1
   completionTime: 7
   energyCost: 1
-  isUnlocked: 0
+  isUnlocked: 1

@@ -13,16 +13,17 @@ MonoBehaviour:
   m_Name: Iron - Pyrite
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
   ID: pyrite_iron
-  Name: Iron
+  Name: Smelt to Iron 1
   Desc: 
-  Sprite: {fileID: 0}
-  unlockedByDefault: 0
+  Sprite: {fileID: -4773232605451315250, guid: 5e9bb1fbc3689474cb8afa315aa43ad5, type: 3}
+  unlockedByDefault: 1
   inputs:
   - key: {fileID: 11400000, guid: 26ceadd0129b8474789f0131ab6a6737, type: 2}
     value: 1
   outputs:
   - key: {fileID: 11400000, guid: f44b38d183a6d48409ecf1890b1f4cd8, type: 2}
     value: 1
+  baseOutputAmount: 1
   completionTime: 7
   energyCost: 1
-  isUnlocked: 0
+  isUnlocked: 1

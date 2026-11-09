@@ -10,6 +10,12 @@ public class WorkerBotView : BotView
 
     protected override void Start()
     {
-        RuntimeObj = new WorkerBot(this, data, new() { baseSpawnCoords = Vector3.zero });
+        InitializeRuntime();
+    }
+
+    public override void InitializeRuntime()
+    {
+        if (RuntimeObj == null)
+            RuntimeObj = new WorkerBot(this, data, new() { baseSpawnCoords = Vector3.zero });
     }
 }

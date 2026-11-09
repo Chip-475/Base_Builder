@@ -14,10 +14,13 @@ public class BuildingBotEntry : MonoBehaviour
 
     private void Update()
     {
-        button.interactable = bot.Occupied == false
-            && MachineUI.Instance.Machine != null
-            && MachineUI.Instance.Machine.Occupied == false
-            && MachineUI.Instance.selectedRecipeEntry != null;
+        MachineUI ui = MachineUI.Instance;
+        button.interactable = bot != null && !bot.Occupied
+            && ui != null && ui.Machine != null && !ui.Machine.Occupied
+            && ui.selectedRecipeEntry != null
+            && ui.Machine.CanUseWorker(bot)
+            && ui.Machine.Data.usableRecipes != null
+            && ui.Machine.Data.usableRecipes.Contains(ui.selectedRecipeEntry.recipe);
     }
     public void Initialize(WorkerBot bot)
     {
@@ -31,6 +34,14 @@ public class BuildingBotEntry : MonoBehaviour
 
     void AssignTask()
     {
-        bot.CurrentTask = new(bot, UI.Machine, UI.selectedRecipeEntry.recipe, UI.selectedRecipeEntry.Amount);
+        if (bot == null || UI == null || UI.Machine == null || UI.selectedRecipeEntry == null)
+            return;
+
+        RecipeSO recipe = UI.selectedRecipeEntry.recipe;
+        if (!UI.Machine.TryAssignWorker(bot, recipe))
+            return;
+
+        bot.CurrentTask = new(bot, UI.Machine, recipe, UI.selectedRecipeEntry.Amount);
+        UI.BuildBotList();
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9755486e78e7e1d40afe44726ca57847, type: 3}
   m_Name: Test Tech
   m_EditorClassIdentifier: Assembly-CSharp::Tech
-  id: test
+  ID: EDIOCANE
   name: 
   icon: {fileID: 0}
   botUpgrades: []

@@ -115,7 +115,8 @@ public class PowerManager : MonoBehaviour
                     machine.RefreshPowerRequest(); //refresh the powerRequest sent from machines to the network
         }
         SetCellStatus(); // set the connection status of the cell
-        PowerSystemUI.instance.Draw(); //if electric view is enabled show cells inside the network
+        if (PowerSystemUI.instance != null)
+            PowerSystemUI.instance.Draw(); //if electric view is enabled show cells inside the network
 
         RefreshDebugInfo();
     }

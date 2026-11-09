@@ -104,26 +104,64 @@ public class SpaceshipUI : MonoBehaviour
             SwitchBot(0);
 
             // Actions
-            previous.onClick.AddListener(() => SwitchBot(-1));
-            next.onClick.AddListener(() => SwitchBot(1));
-            buildButton.onClick.AddListener(() => BuildBot());
+            if (previous != null)
+                previous.onClick.AddListener(() => SwitchBot(-1));
+            if (next != null)
+                next.onClick.AddListener(() => SwitchBot(1));
+            if (buildButton != null)
+                buildButton.onClick.AddListener(BuildBot);
         }
         public void Update()
         {
-            buildButton.interactable = Depot.Inventory.CanRemoveItems(botPrefabs[currentBotIndex].data.cost);
+            if (buildButton == null)
+                return;
+
+            BotView selected = GetSelectedBot();
+            buildButton.interactable = selected != null && selected.data != null
+                && Depot.Inventory != null
+                && Depot.Inventory.CanRemoveItems(selected.data.cost)
+                && spaceship != null;
         }
 
         void SwitchBot(int amount)
         {
-            int nextIndex = currentBotIndex + amount;
-            if (nextIndex < 0) nextIndex = botPrefabs.Count - 1;
-            else if (nextIndex > botPrefabs.Count - 1) nextIndex = 0;
+            if (botPrefabs == null || botPrefabs.Count == 0)
+            {
+                currentBotIndex = 0;
+                if (buildButton != null) buildButton.interactable = false;
+                if (botName != null) botName.text = "No bots available";
+                if (botImage != null) botImage.sprite = null;
+                return;
+            }
 
-            botImage.sprite = botPrefabs[nextIndex].data.sprite;
-            botName.text = botPrefabs[nextIndex].data.name;
+            int nextIndex = (currentBotIndex + amount) % botPrefabs.Count;
+            if (nextIndex < 0)
+                nextIndex += botPrefabs.Count;
+
+            BotView selected = botPrefabs[nextIndex];
+            if (selected == null || selected.data == null)
+                return;
+
+            if (botImage != null) botImage.sprite = selected.data.sprite;
+            if (botName != null) botName.text = selected.data.name;
             currentBotIndex = nextIndex;
         }
-        void BuildBot() => Instantiate(botPrefabs[currentBotIndex], botSpawnpoint.position, Quaternion.identity);
+
+        BotView GetSelectedBot()
+        {
+            return botPrefabs != null && currentBotIndex >= 0 && currentBotIndex < botPrefabs.Count
+                ? botPrefabs[currentBotIndex]
+                : null;
+        }
+
+        void BuildBot()
+        {
+            BotView selected = GetSelectedBot();
+            if (selected == null || spaceship == null)
+                return;
+
+            spaceship.BuildBot(selected);
+        }
     }
     [Serializable]
     public class SpaceshipMenu

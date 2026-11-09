@@ -41,6 +41,9 @@ public class Inventory
     }
     public bool CanAddItem(ResourceSO resource, int amount)
     {
+        if (resource == null || amount <= 0 || resource.weightPerUnit < 0)
+            return false;
+
         float requestWeight = resource.weightPerUnit * amount;
         float newWeight = requestWeight + GetWeight();
         if (newWeight > MaxWeight)
@@ -50,11 +53,19 @@ public class Inventory
     }
     public bool CanAddItems(Dictionary<ResourceSO, int> mats)
     {
+        if (mats == null)
+            return false;
+
+        double addedWeight = 0;
         foreach (var mat in mats)
-            if (!CanAddItem(mat.Key, mat.Value))
+        {
+            if (mat.Key == null || mat.Value <= 0 || mat.Key.weightPerUnit < 0)
                 return false;
 
-        return true;
+            addedWeight += (double)mat.Key.weightPerUnit * mat.Value;
+        }
+
+        return GetWeight() + addedWeight <= MaxWeight;
     }
     
     public KeyValuePair<ResourceSO, int> RemoveItem(ResourceSO resource, int amount)
@@ -84,6 +95,9 @@ public class Inventory
     }
     public bool CanRemoveItem(ResourceSO resource, int amount)
     {
+        if (resource == null || amount <= 0)
+            return false;
+
         if (!Items.ContainsKey(resource))
             return false;
         if (Items[resource] - amount < 0)
@@ -93,6 +107,9 @@ public class Inventory
     }
     public bool CanRemoveItems(Dictionary<ResourceSO, int> mats)
     {
+        if (mats == null)
+            return false;
+
         foreach (var mat in mats)
             if (!CanRemoveItem(mat.Key, mat.Value))
                 return false;
@@ -102,7 +119,7 @@ public class Inventory
 
     public void SetMaxWeight(int amount)
     {
-        MaxWeight = amount;
+        MaxWeight = Mathf.Max(0, amount);
     }
 
     public float GetWeight()
@@ -124,8 +141,14 @@ public class Inventory
     }
     public bool Contains(Dictionary<ResourceSO, int> mats)
     {
+        if (mats == null)
+            return false;
+
         foreach (var mat in mats)
         {
+            if (mat.Key == null || mat.Value <= 0)
+                return false;
+
             if (!Items.ContainsKey(mat.Key))
                 return false;
             if (Items[mat.Key] < mat.Value)

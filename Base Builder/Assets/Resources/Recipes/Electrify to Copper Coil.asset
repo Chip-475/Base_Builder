@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1930e33686e0fe343a20ec312785cbc4, type: 3}
+  m_Name: Electrify to Copper Coil
+  m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
+  ID: electrify_to_copper_coil
+  Name: Electrify to Copper Coil
+  Desc: 
+  Sprite: {fileID: 6571618460441632399, guid: 1f0551a92bc08ba45ad6d9586350fb4e, type: 3}
+  unlockedByDefault: 1
+  inputs:
+  - key: {fileID: 11400000, guid: 7e9a04e493d517648926644a9917a171, type: 2}
+    value: 5
+  - key: {fileID: 11400000, guid: 8f12447b62af6814b96609d9f8fa2f09, type: 2}
+    value: 3
+  outputs:
+  - key: {fileID: 11400000, guid: 0e771afc513c05b41b791bc1ad20571a, type: 2}
+    value: 3
+  baseOutputAmount: 3
+  completionTime: 8
+  energyCost: 2
+  isUnlocked: 1

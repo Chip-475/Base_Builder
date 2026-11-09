@@ -13,18 +13,19 @@ MonoBehaviour:
   m_Name: Electric Core
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
   ID: elec_core
-  Name: Electric Core
+  Name: Assemble Electric Core
   Desc: 
-  Sprite: {fileID: 0}
-  unlockedByDefault: 0
+  Sprite: {fileID: 4398901235007301379, guid: 8191b8e6d4d951344883d791b3b0020b, type: 3}
+  unlockedByDefault: 1
   inputs:
-  - key: {fileID: 11400000, guid: a6c0ca76c9554a9458b5d31064597a47, type: 2}
-    value: 1
   - key: {fileID: 11400000, guid: 7e9a04e493d517648926644a9917a171, type: 2}
     value: 2
+  - key: {fileID: 11400000, guid: a6c0ca76c9554a9458b5d31064597a47, type: 2}
+    value: 1
   outputs:
   - key: {fileID: 11400000, guid: 652a829dc57db17479316cb88e6476e3, type: 2}
     value: 1
+  baseOutputAmount: 1
   completionTime: 12
   energyCost: 3
-  isUnlocked: 0
+  isUnlocked: 1

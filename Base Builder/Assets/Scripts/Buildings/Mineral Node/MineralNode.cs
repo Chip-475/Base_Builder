@@ -10,6 +10,7 @@ public class MineralNode : Building, IInteractable
 
     Vector3 IInteractable.Position => Coords;
     Cell[] IInteractable.InteractionCells => GetCellsInBounds(InteractionBounds);
+    bool disposed;
 
     public MineralNode(MineralNodeData data, MineralNodeView sceneObj) : base(data, sceneObj)
     {
@@ -17,8 +18,20 @@ public class MineralNode : Building, IInteractable
     }
     public override void Destroy()
     {
-        BuildingManager.RegisterBuilding(this);
-        MonoBehaviour.Destroy(SceneObj);
+        Dispose();
+        MonoBehaviour.Destroy(SceneObj.gameObject);
+    }
+
+    public void Dispose()
+    {
+        if (disposed)
+            return;
+
+        disposed = true;
+        FreeUpCells(GetCellsInBounds(GetBounds()));
+        BuildingManager.UnregisterBuilding(this);
+        if (PowerManager.instance != null)
+            PowerManager.instance.UnregisterBuilding();
     }
 
     // IWorkplace

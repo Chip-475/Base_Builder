@@ -36,7 +36,7 @@ MonoBehaviour:
   blocksWalking: 1
   blocksPlacing: 1
   constructionTime: 1
-  machineType: 2
+  machineType: 5
   usableRecipes:
   - {fileID: 11400000, guid: af48c80fe8995b54883e2ea22182389f, type: 2}
   - {fileID: 11400000, guid: 6e5420020047dd14e8134d17a87f8f53, type: 2}
