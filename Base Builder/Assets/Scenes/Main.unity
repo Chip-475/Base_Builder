@@ -746,7 +746,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BuildModeManager
   panel: {fileID: 95755340}
   content: {fileID: 379187026}
-  machineEntryTemplate: {fileID: 8727472472509128459, guid: d8db7d50ba7f82b449afeb906330ea6f, type: 3}
   toggleButton: {fileID: 1654156067}
   machineSort: {fileID: 903371430}
   miningSort: {fileID: 294325670}
@@ -9965,21 +9964,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5188b8f662ac83f419743f6d3aae885c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
-  clips:
+  audioClipEntries:
   - key: Bot Carry
-    value: {fileID: 8300000, guid: 3c81f7536d5f57f45ae533eaf9d9113c, type: 3}
+    clip: {fileID: 8300000, guid: 3c81f7536d5f57f45ae533eaf9d9113c, type: 3}
   - key: Construction
-    value: {fileID: 8300000, guid: 9f5ebff12f14fed4caff45743467814a, type: 3}
+    clip: {fileID: 8300000, guid: 9f5ebff12f14fed4caff45743467814a, type: 3}
   - key: Delete Item
-    value: {fileID: 8300000, guid: f09ae5c50c9a1474ea44b0f1e5ffdbdc, type: 3}
-  - key: Spaceship
-    value: {fileID: 8300000, guid: 773067909f2448d42a3229aa6ae6f01e, type: 3}
+    clip: {fileID: 8300000, guid: f09ae5c50c9a1474ea44b0f1e5ffdbdc, type: 3}
   - key: New Node
-    value: {fileID: 8300000, guid: e3f4e465cfda0c64cb9227eec7968474, type: 3}
+    clip: {fileID: 8300000, guid: e3f4e465cfda0c64cb9227eec7968474, type: 3}
   - key: Place Object
-    value: {fileID: 8300000, guid: b12de5b02c42a8e4f95f508fea7e9891, type: 3}
+    clip: {fileID: 8300000, guid: b12de5b02c42a8e4f95f508fea7e9891, type: 3}
+  - key: Spaceship
+    clip: {fileID: 8300000, guid: 773067909f2448d42a3229aa6ae6f01e, type: 3}
   - key: Walking
-    value: {fileID: 8300000, guid: 31afcea7786a4c241b60490d1881edc1, type: 3}
+    clip: {fileID: 8300000, guid: 31afcea7786a4c241b60490d1881edc1, type: 3}
   source: {fileID: 3357119885138530812, guid: 5a42c6721f164c245b4b1168a5863b01, type: 3}
   mixer: {fileID: 24100000, guid: cab53dfa06346a84aa87b4965c11efc2, type: 2}
   sfxMixerGroup: {fileID: 1001887446885028054, guid: cab53dfa06346a84aa87b4965c11efc2, type: 2}
@@ -21691,6 +21690,7 @@ MonoBehaviour:
         y: 0
         z: 0
     buildingsData: []
+    machinesData: []
     constructionSitesData: []
     botsData: []
     depotData:

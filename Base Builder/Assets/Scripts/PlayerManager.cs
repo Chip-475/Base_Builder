@@ -35,7 +35,7 @@ public class PlayerManager : MonoBehaviour
             Move(vec);
             if (source != null)
                 return;
-            source = AudioManager.PlaySFX(AudioManager.Instance.clips["Walking"], transform);
+            source = AudioManager.PlaySFX("Walking", transform);
         }
     }
 

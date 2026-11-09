@@ -115,12 +115,19 @@ public class BuildMode : MonoBehaviour
             return;
         if (!SelectedEntry.buildingPrefab.CanBuildOn(mouseGridPos))
             return;
+
+        //if (Depot.Inventory == null || !Depot.Inventory.CanRemoveItems(SelectedEntry.Cost))
+        //{
+        //    SetSelectedEntry(null);
+        //    SelectedBuilding = null;
+        //    return;
+        //}
+
         Depot.Inventory.RemoveItems(SelectedEntry.Cost);
         ConstructionSite.Create(
             SelectedEntry.buildingPrefab,
             mouseGridPos - SelectedEntry.buildingPrefab.Data.bounds.center);
-        if (!Depot.Inventory.CanRemoveItems(SelectedEntry.Cost)) {SetSelectedEntry(null); SelectedBuilding=null;};
-        AudioManager.PlaySFX(AudioManager.Instance.clips["Place Object"], transform);
+        AudioManager.PlaySFX("Place Object", transform);
     }
     void Destroy()
     {
