@@ -1,1 +1,3 @@
+15 kw
+
 6 [[Iron Gear]] +4 [[Copper Wire]] +2 [[Electric core]] + 4 [[Insulator]]

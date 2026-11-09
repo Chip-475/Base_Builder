@@ -5,5 +5,6 @@ The spaceship gives power to [[Machines]] through [[Power Pole]].
 The spaceship can burn [[Coal]] to produce energy.
 
 Needed [[Resources]] to repair spaceship:
-[[Navigation Component]]
-[[Ship Core Component]]
+[[Navigation Device]]
+[[Ship Core]]
+[[Circuit Breaker]]

@@ -9,7 +9,7 @@ Era 1 ends with the player able to to build power Networks and bots as well as p
 Era 2 starts with the focus to bring industralization as mats requiested by [[Tech Tree]] grows.
 With Era 1 materials the player can unlock [[Furnace mk2]] giving more resources per ore and unlocking [[Aluminum]] as well as a new recipe for the [[Alloy Furnace]] ([[Steel]]).
 Alumium needs the first bot upgrade.
-Steel is used for making [[Steel Plate]], [[Steel Gear]], [[Steel Rod]] and [[Steel Frame]] this are used in advanced machines.
+Steel is used for making [[Steel Plate]], [[Steel Gear]], [[Steel Rod]] and [[Steel Casing]] this are used in advanced machines.
 The player can now unlock the [[Advanced Press]] needed for making [[Steel Reinforced Plate]] and later plates.
 The next raw resource coming to use is [[Aluminum]] it's used for lightweight components after being refined in [[Aluminum Plate]], [[Aluminum Gear]], [[Aluminum Rod]] and [[Aluminum Casing]].
 From older materials the player can now make [[Precision Gear]], [[Advanced Assemble to Gear Assemblies]] and [[Gearbox]].

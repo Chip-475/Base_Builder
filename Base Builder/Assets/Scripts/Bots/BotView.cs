@@ -19,12 +19,22 @@ public class BotView : MonoBehaviour
 
     protected virtual void Start()
     {
-        RuntimeObj = new Bot(this, data, new() { baseSpawnCoords = Vector3.zero });
+        InitializeRuntime();
+    }
+
+    public virtual void InitializeRuntime()
+    {
+        if (RuntimeObj == null)
+            RuntimeObj = new Bot(this, data, new() { baseSpawnCoords = Vector3.zero });
     }
     private void Update()
     {
+        if (RuntimeObj == null)
+            return;
+
         RuntimeObj.InteractionBounds = new(transform.position, new Vector3(2f, 2f, 0));
-        powerBar.fillAmount = RuntimeObj.Power / 100;
+        if (powerBar != null)
+            powerBar.fillAmount = RuntimeObj.MaxPower <= 0 ? 0 : RuntimeObj.Power / RuntimeObj.MaxPower;
     }
 
     public void StartMoving()
@@ -43,26 +53,20 @@ public class BotView : MonoBehaviour
         movementCancellationSource?.Cancel();
     }
 
+    private void OnDestroy()
+    {
+        StopMoving();
+        RuntimeObj?.Dispose();
+    }
+
     async UniTask FollowPath(CancellationToken cancellationToken, CancellationTokenSource source)
     {
         try
         {
-            for (int i = 1; i < RuntimeObj.Path.Count; i++)
+            while (RuntimeObj != null && RuntimeObj.Path.Count > 0)
             {
-                Vector3 target = RuntimeObj.Path[i];
-
-                while (Vector3.Distance(transform.position, target) > 0.01f)
-                {
-                    transform.position = Vector3.MoveTowards(
-                        transform.position,
-                        target,
-                        data.speed * Time.deltaTime
-                    );
-
-                    await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
-                }
-
-                transform.position = target;
+                RuntimeObj.MoveTowardsDestination();
+                await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
             }
         }
         catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)

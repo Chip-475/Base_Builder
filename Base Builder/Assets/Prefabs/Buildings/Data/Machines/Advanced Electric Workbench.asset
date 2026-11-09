@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daa9b0d2bfec3d146aec9f104666aaf4, type: 3}
+  m_Name: Advanced Electric Workbench
+  m_EditorClassIdentifier: Assembly-CSharp::MachineData
+  ID: advanced_electric_workbench
+  name: Advanced Electric Workbench
+  description: 
+  sprite: {fileID: -7584633873224538746, guid: 5d4ef2156be0aa84587ab61fec102f94, type: 3}
+  cost:
+  - key: {fileID: 11400000, guid: f6e89742bc46f03479b3cfce878adfb3, type: 2}
+    value: 2
+  - key: {fileID: 11400000, guid: 4b42c168ea98b314983b3b1ce80fa64e, type: 2}
+    value: 0
+  - key: {fileID: 11400000, guid: 16ccc057914febc4e9582c7f387b04cf, type: 2}
+    value: 2
+  - key: {fileID: 11400000, guid: 0e771afc513c05b41b791bc1ad20571a, type: 2}
+    value: 5
+  type: 1
+  bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 1.5, y: 1.5, z: 0}
+  interactionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 2.5, y: 2.5, z: 0}
+  connectionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 1.5, y: 1.5, z: 0}
+  workRange: 0
+  connectsToPower: 1
+  blocksWalking: 1
+  blocksPlacing: 1
+  constructionTime: 1
+  machineType: 8
+  usableRecipes:
+  - {fileID: 11400000, guid: 21240db754e84086aa7629d78d48d695, type: 2}
+  - {fileID: 11400000, guid: bd9fc66a59ca4cb4a93e0fb8a0610cbd, type: 2}
+  - {fileID: 11400000, guid: d4b20dde922b4f0aae5f5223fa52cc10, type: 2}
+  - {fileID: 11400000, guid: b48e69056bef40d48fce215f956a1c33, type: 2}
+  - {fileID: 11400000, guid: e9b208735415492998a3df52c9613525, type: 2}
+  - {fileID: 11400000, guid: 2b5423f29f8541f5b6e81175c981ac00, type: 2}
+  needSpecialist: 0

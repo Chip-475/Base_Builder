@@ -14,14 +14,13 @@ public class RecipeEntry : MonoBehaviour
     [SerializeField] Button subtractButton;
     [Space]
     [SerializeField] Image outputIcon;
-    [SerializeField] List<Image> inputsIcons;
+    [SerializeField] List<Image> inputIcons;
 
     [Header("Runtime Data")]
     public RecipeSO recipe;
     public int Amount { get; set; } = 1;
 
-    readonly Dictionary<Image, TMP_Text> quantityText = new Dictionary<Image, TMP_Text>();
-    bool inizializzato;
+    readonly Dictionary<Image, TMP_Text> quantityText = new();
 
     private void Awake()
     {
@@ -30,131 +29,74 @@ public class RecipeEntry : MonoBehaviour
 
     private void Init()
     {
-        if (inizializzato) return;
         button = GetComponent<Button>();
-        if (addButton == null || subtractButton == null || outputIcon == null)
-        {
-            Debug.Log("dio monty python");
-            return;
-        }
+
         button.onClick.AddListener(() => MachineUI.Instance.selectedRecipeEntry = this);
         button.onClick.AddListener(() => MachineUI.Instance.BuildInfoPanel(this));
+        button.onClick.AddListener(() => MachineUI.Instance.BuildBotList());
 
         addButton.onClick.AddListener(() => ModifyAmount(1));
         subtractButton.onClick.AddListener(() => ModifyAmount(-1));
 
         quantityText[outputIcon] = outputIcon.GetComponentInChildren<TMP_Text>();
-        /*foreach (var item in inputsIcons)
-            quantityText[item] = item.GetComponentInChildren<TMP_Text>();*/
-        inizializzato = true;
-    }
-
-    TMP_Text textDi(Image icon)
-    {
-        if (icon == null) return null;
-        if(!quantityText.TryGetValue(icon, out var testo))
-        {
-            testo=icon.GetComponentInChildren<TMP_Text>(true);
-            quantityText[icon]=testo;
-        }
-        return testo;
-    }
-
-    void impostaQuant(Image icona,int val)
-    {
-        TMP_Text text=textDi(icona);
-        if(text!=null)text.text=val.ToString();
+        foreach (var item in inputIcons)
+            quantityText[item] = item.GetComponentInChildren<TMP_Text>();
     }
 
     private void Update()
     {
-        if (!inizializzato || recipe == null || Depot.Inventory == null) return;
-        int amount = Amount + 1;
-        bool plus = true;
-        foreach(KeyValuePair<ResourceSO,int>item in recipe.inputs)
-        {
-            if (!Depot.Inventory.CanRemoveItem(item.Key, item.Value * amount))plus=false;
-        }
-        foreach(KeyValuePair<ResourceSO,int>item in recipe.outputs)
-        {
-            if (!Depot.Inventory.CanAddItem(item.Key, item.Value / amount)) plus = false;
-        }
-        addButton.interactable = plus;
-        subtractButton.interactable = true;
-        /*
-        foreach (var item in recipe.inputs)
-            if (!Depot.Inventory.CanRemoveItem(item.Key, item.Value * Amount))
-                addButton.interactable = false;
+        if (recipe == null || Depot.Inventory == null || addButton == null || subtractButton == null)
+            return;
 
-        foreach (var item in recipe.outputs)
-            if (!Depot.Inventory.CanAddItem(item.Key, item.Value * Amount))
-                addButton.interactable = false;
-        */
+        subtractButton.interactable = Amount > 1;
+        int nextAmount = Amount + 1;
+        Dictionary<ResourceSO, int> nextInputs = new();
+        foreach (var item in recipe.inputs)
+            nextInputs[item.Key] = item.Value * nextAmount;
+
+        addButton.interactable = Depot.Inventory.CanRemoveItems(nextInputs);
     }
 
     public void Build(RecipeSO recipe)
     {
-        Init();
-        if (!inizializzato) return;
-        if(recipe==null)
-        {
-            Debug.Log("ric nulla");
-            return;
-        }
-        if (recipe.inputs.Count > inputsIcons.Count || recipe.outputs.Count > 1)
-        {
-            Debug.Log("ric invalida");
-            return;
-        }
+        if (recipe == null)
+            throw new Exception("Cannot display a null recipe.");
+        if (recipe.inputs == null || recipe.outputs == null ||
+            recipe.outputs.Count != 1)
+            throw new Exception($"Recipe {recipe.Name} is invalid.");
+
+        var outputs = recipe.outputs.ToArray();
+        var inputs = recipe.inputs.ToArray();
+
         this.recipe = recipe;
-        foreach(KeyValuePair<ResourceSO,int> prodotto in recipe.outputs)
-        {
-            outputIcon.sprite = prodotto.Key.Sprite;
-            impostaQuant(outputIcon, prodotto.Value * Amount);
-            break;
-        }
-        int indice = 0;
-        //var outputs = recipe.outputs.ToArray();
-        //var inputs = recipe.inputs.ToArray();
-        //quantityText[outputIcon].text = (outputs[0].Value * Amount).ToString();
-        /*for (int i = 0; i < 3; i++)
+
+        outputIcon.sprite = outputs[0].Key.Sprite;
+        quantityText[outputIcon].text = (outputs[0].Value * Amount).ToString();
+        for (int i = 0; i < inputIcons.Count; i++)
         {
             if (i >= recipe.inputs.Count)
             {
-                inputsIcons[i].gameObject.SetActive(false);
+                inputIcons[i].gameObject.SetActive(false);
                 continue;
             }
 
-            inputsIcons[i].gameObject.SetActive(true);
-            inputsIcons[i].sprite = inputs[i].Key.Sprite;
-            quantityText[inputsIcons[i]].text = (inputs[i].Value * Amount).ToString();
-        }*/
-        foreach (KeyValuePair<ResourceSO, int> ingrediente in recipe.inputs)
-        {
-            Image icona = inputsIcons[indice];
-            icona.gameObject.SetActive(true);
-            icona.sprite = ingrediente.Key.Sprite;
-            impostaQuant(icona, ingrediente.Value * Amount);
-            indice++;
-        }
-        for (int i = indice; i < inputsIcons.Count; i++)
-        {
-            inputsIcons[i].gameObject.SetActive(false);
+            inputIcons[i].gameObject.SetActive(true);
+            inputIcons[i].sprite = inputs[i].Key.Sprite;
+            quantityText[inputIcons[i]].text = (inputs[i].Value * Amount).ToString();
         }
     }
 
     void ModifyAmount(int amount)
     {
-        if (this.Amount + amount <= 0)
+        if (recipe == null || this.Amount + amount <= 0 || Depot.Inventory == null)
             return;
 
+        Dictionary<ResourceSO, int> required = new();
         foreach (var item in recipe.inputs)
-            if (!Depot.Inventory.CanRemoveItem(item.Key, item.Value * (this.Amount + amount)))
-                return;
+            required[item.Key] = item.Value * (this.Amount + amount);
 
-        foreach (var item in recipe.outputs)
-            if (!Depot.Inventory.CanAddItem(item.Key, item.Value * (this.Amount + amount)))
-                return;
+        if (!Depot.Inventory.CanRemoveItems(required))
+            return;
 
         this.Amount += amount;
         Build(recipe);

@@ -17,14 +17,21 @@ public class machineAutoUI : MonoBehaviour
     void Awake()
     {
         view=GetComponent<MachineView>();
-        if(canvas!=null&&canvas.worldCamera==null)canvas.worldCamera=Camera.main;
-        btnInput.onClick.AddListener(aggI);
-        btnOutput.onClick.AddListener(prenOut);
+        if (canvas != null && canvas.worldCamera == null)
+            canvas.worldCamera = Camera.main;
+        if (btnInput != null)
+            btnInput.onClick.AddListener(aggI);
+        if (btnOutput != null)
+            btnOutput.onClick.AddListener(prenOut);
     }
 
     void LateUpdate()
     {
-        if (Camera.main != null) canvas.transform.rotation = Camera.main.transform.rotation;
+        if (view == null || view.RuntimeObj == null)
+            return;
+
+        if (Camera.main != null && canvas != null)
+            canvas.transform.rotation = Camera.main.transform.rotation;
         var m = view.RuntimeObj;
         StringBuilder sb = new StringBuilder();
         sb.AppendLine($"{m.Type} - {(m.lavoro?"lavora":"fermo")}");
@@ -34,23 +41,24 @@ public class machineAutoUI : MonoBehaviour
         sb.AppendLine();
         sb.AppendLine("out ");
         foreach (var kv in m.output) sb.Append($"{kv.Key.name} x{kv.Value}");
-        info.text=sb.ToString();
-        bar.text = ""+m.progresso;
+        if (info != null)
+            info.text = sb.ToString();
+        if (bar != null)
+            bar.text = m.progresso.ToString("P0");
     }
 
     private void aggI()
     {
         var m=view.RuntimeObj;
-        if (m == null || recipe == null) return;
-        foreach (var kv in recipe.inputs) m.aggIn(kv.Key, kv.Value);
+        if (m == null || recipe == null || m.Data == null || m.Data.usableRecipes == null ||
+            !m.Data.usableRecipes.Contains(recipe)) return;
+        m.SelectRecipe(recipe);
+        m.RequestInputsFromDepot(recipe.inputs);
     }
     private void prenOut()
     {
         var m = view.RuntimeObj;
         if (m == null) return;
-        foreach(var k in new List<ResourceSO>(m.output.Keys))
-        {
-            m.prendiOut(k,m.output[k]);
-        }
+        m.RequestOutputDelivery();
     }    
 }

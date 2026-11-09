@@ -1,7 +1,7 @@
 using System.Threading;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-
+using System.Collections.Generic;
 public class CarrierBot : Bot
 {
     public LogisticsManager.LogisticsRequest request;
@@ -20,11 +20,19 @@ public class CarrierBot : Bot
     {
         while (!cancellationToken.IsCancellationRequested)
         {
+            if (request != null && request.cancelled)
+                ReturnCargoAndClearRequest();
+
             if (!Working)
             {
-                var availableRequest = FindAvailableRequest();
-                if (availableRequest != null)
-                    OccupyRequest(availableRequest);
+                if (!Inventory.IsEmpty)
+                    TryScheduleRecoveryDelivery();
+                else
+                {
+                    var availableRequest = FindAvailableRequest();
+                    if (availableRequest != null)
+                        OccupyRequest(availableRequest);
+                }
             }
             else if (Inventory.Contains(request.resources))
             {
@@ -37,6 +45,45 @@ public class CarrierBot : Bot
 
             await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
         }
+    }
+
+    void TryScheduleRecoveryDelivery()
+    {
+        if (Inventory.IsEmpty || Depot.Inventory == null || !Depot.Inventory.CanAddItems(Inventory.Items))
+            return;
+
+        Depot closest = null;
+        Vector3Int closestAccessPoint = default;
+        float closestDistance = float.PositiveInfinity;
+
+        foreach (Depot candidate in BuildingManager.GetBuildingsOfType<Depot>())
+        {
+            if (!LogisticsManager.TryGetAccessPoint(candidate, Coords, out Vector3Int accessPoint))
+                continue;
+
+            float distance = (candidate.Coords - Coords.ToVector3Int()).sqrMagnitude;
+            if (distance >= closestDistance)
+                continue;
+
+            closest = candidate;
+            closestAccessPoint = accessPoint;
+            closestDistance = distance;
+        }
+
+        if (closest == null)
+            return;
+
+        request = new LogisticsManager.LogisticsRequest(
+            this,
+            new System.Collections.Generic.Dictionary<ResourceSO, int>(Inventory.Items),
+            Inventory,
+            Coords,
+            Depot.Inventory,
+            closestAccessPoint,
+            priority: 1)
+        { taken = true };
+        pickupPoint = Coords.ToVector3Int();
+        deliveryPoint = closestAccessPoint;
     }
 
     LogisticsManager.LogisticsRequest FindAvailableRequest()
@@ -86,59 +133,37 @@ public class CarrierBot : Bot
     bool CanPerformRequest(LogisticsManager.LogisticsRequest request)
     {
         return request != null
+            && !request.cancelled
             && !request.taken
             && request.sourceInventory != null
             && request.destinationInventory != null
             && request.sourceInventory.Contains(request.resources)
-            && Inventory.CanAddItems(request.resources)
+            && (request.sourceInventory == Inventory || Inventory.CanAddItems(request.resources))
             && request.destinationInventory.CanAddItems(request.resources);
     }
 
     bool TryGetEndpoint(Vector3 position, out Vector3Int endpoint)
     {
         endpoint = position.ToVector3Int();
+        if (WorldManager.World == null)
+            return false;
+
         Cell cell = WorldManager.World.GetCellAt(endpoint);
         if (cell != null && cell.canWalkOn)
             return true;
 
-        Depot depot = FindDepotAt(endpoint);
-        if (depot == null)
-            return false;
-
-        int radius = Mathf.CeilToInt(depot.Data.Range);
-        int closestDistance = int.MaxValue;
-
-        for (int x = -radius; x <= radius; x++)
+        foreach (Building building in BuildingManager.Buildings.Values)
         {
-            for (int y = -radius; y <= radius; y++)
-            {
-                Vector3Int candidate = depot.Coords + new Vector3Int(x, y, 0);
-                Cell candidateCell = WorldManager.World.GetCellAt(candidate);
-                if (candidateCell == null || !candidateCell.canWalkOn)
-                    continue;
+            bool isEndpoint = building.Coords == endpoint
+                || building.SceneObj.BotWorkPoint != null
+                    && building.SceneObj.BotWorkPoint.position.ToVector3Int() == endpoint;
+            if (!isEndpoint)
+                continue;
 
-                if ((candidate - depot.Coords).sqrMagnitude > depot.Data.Range * depot.Data.Range)
-                    continue;
-
-                int distance = (candidate - depot.Coords).sqrMagnitude;
-                if (distance >= closestDistance)
-                    continue;
-
-                endpoint = candidate;
-                closestDistance = distance;
-            }
+            return LogisticsManager.TryGetAccessPoint(building, Coords, out endpoint);
         }
 
-        return closestDistance != int.MaxValue;
-    }
-
-    Depot FindDepotAt(Vector3Int coords)
-    {
-        foreach (var depot in BuildingManager.GetBuildingsOfType<Depot>())
-            if (depot.Coords == coords)
-                return depot;
-
-        return null;
+        return false;
     }
 
     void CollectRequest()
@@ -157,8 +182,16 @@ public class CarrierBot : Bot
             return;
         }
 
+        if (!request.sourceInventory.Contains(request.resources)
+            || !Inventory.CanAddItems(request.resources))
+        {
+            FailRequest("The carrier can no longer collect this request.");
+            return;
+        }
+
         request.sourceInventory.RemoveItems(request.resources);
         Inventory.AddItems(request.resources);
+        AudioManager.PlaySFX("Bot Carry", SceneObj.transform);
     }
 
     void DeliverRequest()
@@ -185,6 +218,7 @@ public class CarrierBot : Bot
 
         request.destinationInventory.AddItems(request.resources);
         Inventory.RemoveItems(request.resources);
+        AudioManager.PlaySFX("Bot Carry", SceneObj.transform);
         ClearRequest();
     }
 
@@ -204,6 +238,25 @@ public class CarrierBot : Bot
         if (request != null)
             LogisticsManager.Requests?.Remove(request);
 
+        ResetRequestState();
+    }
+
+    void ClearRequest(bool requeue)
+    {
+        if (request != null)
+        {
+            if (requeue && !request.cancelled)
+                request.taken = false;
+            else
+                LogisticsManager.Requests?.Remove(request);
+        }
+
+        ResetRequestState();
+    }
+
+    void ResetRequestState()
+    {
+
         request = null;
         pickupPoint = null;
         deliveryPoint = null;
@@ -213,7 +266,121 @@ public class CarrierBot : Bot
 
     void FailRequest(string reason)
     {
+        ReturnCargoToRequestInventory();
+
+        bool canRetry = request != null
+            && request.sourceInventory != Inventory
+            && !request.cancelled
+            && request.sourceInventory != null
+            && request.sourceInventory.Contains(request.resources);
+
+        ClearRequest(canRetry);
+        Debug.LogWarning(reason);
+    }
+
+    void ReturnCargoAndClearRequest()
+    {
+        ReturnCargoToRequestInventory();
         ClearRequest();
-        Fail(reason);
+    }
+
+    void ReturnCargoToRequestInventory()
+    {
+        if (request == null || request.sourceInventory == Inventory ||
+            !Inventory.Contains(request.resources))
+            return;
+
+        if (request.sourceInventory != null && request.sourceInventory.CanAddItems(request.resources))
+        {
+            request.sourceInventory.AddItems(request.resources);
+            Inventory.RemoveItems(request.resources);
+        }
+        else if (request.destinationInventory != null &&
+                 request.destinationInventory.CanAddItems(request.resources))
+        {
+            request.destinationInventory.AddItems(request.resources);
+            Inventory.RemoveItems(request.resources);
+        }
+    }
+
+    public void PauseForRestore()
+    {
+        StopWorking();
+        if (request == null)
+            return;
+
+        ReturnCargoToRequestInventory();
+        ClearRequest(requeue: !Inventory.Contains(request.resources));
+    }
+
+    public void ResumeAfterLoad()
+    {
+        if (request == null && !Inventory.IsEmpty && Depot.Inventory != null)
+        {
+            Depot destination = null;
+            Vector3Int accessPoint = default;
+            float closestDistance = float.PositiveInfinity;
+
+            foreach (Depot candidate in BuildingManager.GetBuildingsOfType<Depot>())
+            {
+                if (!Depot.Inventory.CanAddItems(Inventory.Items) ||
+                    !LogisticsManager.TryGetAccessPoint(candidate, Coords, out Vector3Int point))
+                    continue;
+
+                float distance = (candidate.Coords - Coords.ToVector3Int()).sqrMagnitude;
+                if (distance >= closestDistance)
+                    continue;
+
+                destination = candidate;
+                accessPoint = point;
+                closestDistance = distance;
+            }
+
+            if (destination != null)
+            {
+                request = new LogisticsManager.LogisticsRequest(
+                    this,
+                    new Dictionary<ResourceSO, int>(Inventory.Items),
+                    Inventory,
+                    Coords,
+                    Depot.Inventory,
+                    accessPoint,
+                    priority: 1)
+                { taken = true };
+                pickupPoint = Coords.ToVector3Int();
+                deliveryPoint = accessPoint;
+            }
+        }
+
+        if (!Occupied)
+            StartWorking();
+    }
+
+    public override void Dispose()
+    {
+        if (request != null)
+        {
+            if (request.sourceInventory == Inventory && Inventory.Contains(request.resources))
+            {
+                if (request.destinationInventory != null && request.destinationInventory.CanAddItems(request.resources))
+                {
+                    request.destinationInventory.AddItems(request.resources);
+                    Inventory.RemoveItems(request.resources);
+                }
+            }
+            else
+            {
+                ReturnCargoToRequestInventory();
+            }
+
+            bool requestCanRetry = !request.cancelled && request.sourceInventory != null &&
+                request.sourceInventory.Contains(request.resources);
+            if (requestCanRetry)
+                ClearRequest(requeue: true);
+            else
+                ClearRequest();
+        }
+
+        base.Dispose();
     }
 }

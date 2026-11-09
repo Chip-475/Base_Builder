@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daa9b0d2bfec3d146aec9f104666aaf4, type: 3}
+  m_Name: Assembler
+  m_EditorClassIdentifier: Assembly-CSharp::MachineData
+  ID: assembler
+  name: Assembler
+  description: 
+  sprite: {fileID: 1703963130801174446, guid: 677c3f4ede2f44042bfdd59c8a223c45, type: 3}
+  cost:
+  - key: {fileID: 11400000, guid: d0b73083ea6e4ef4d8b65c4586b33d4c, type: 2}
+    value: 1
+  - key: {fileID: 11400000, guid: 221efdb17276688478b286a17e1fa32d, type: 2}
+    value: 4
+  type: 1
+  bounds:
+    m_Center: {x: 0.5, y: 0, z: 0}
+    m_Extent: {x: 2, y: 1.5, z: 0}
+  interactionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 2.5, y: 2.5, z: 0}
+  connectionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 1.5, y: 1.5, z: 0}
+  workRange: 0
+  connectsToPower: 1
+  blocksWalking: 1
+  blocksPlacing: 1
+  constructionTime: 1
+  machineType: 3
+  usableRecipes:
+  - {fileID: 11400000, guid: 5eacb97dfca7de6458b69eb827b1d251, type: 2}
+  - {fileID: 11400000, guid: 1503813443e897a4eb163ea11f9c1b91, type: 2}
+  - {fileID: 11400000, guid: dafc4900ea79dd64f98b34c23816d8d7, type: 2}
+  - {fileID: 11400000, guid: a1cd0c967651829409457e42035ea787, type: 2}
+  - {fileID: 11400000, guid: 56e465b5a64ba9d4299072a24ce1ebab, type: 2}
+  - {fileID: 11400000, guid: 646d552d9de6d544fa42e543f89659fe, type: 2}
+  - {fileID: 11400000, guid: b215261f609cbb9488088c0446390f70, type: 2}
+  - {fileID: 11400000, guid: 0d9649269bb76f64dbaaf6b33fc8ad07, type: 2}
+  - {fileID: 11400000, guid: bc3eeb32e91f8ea4bb74862d9a663b52, type: 2}
+  - {fileID: 11400000, guid: cdb683ad1b5a4c289ce859d163f3aa24, type: 2}
+  - {fileID: 11400000, guid: ebbf94a67604409b848788ff746ebaea, type: 2}
+  - {fileID: 11400000, guid: c1662f3206e548fbb732279d470ab4c0, type: 2}
+  - {fileID: 11400000, guid: 06c13ed49c01478a800f9ae40958155a, type: 2}
+  - {fileID: 11400000, guid: 5859e0be9897428ca57a70b506a8b99f, type: 2}
+  - {fileID: 11400000, guid: 06d9faafde644b36b3e857bbdc462c92, type: 2}
+  - {fileID: 11400000, guid: 3823d3c1f5e64e22b28f8ae90cd348de, type: 2}
+  - {fileID: 11400000, guid: ad0a8b8d114d4d37b9a28b727cf1717d, type: 2}
+  - {fileID: 11400000, guid: 922a5ec8897ffdb40938662bf4cf86b5, type: 2}
+  needSpecialist: 0

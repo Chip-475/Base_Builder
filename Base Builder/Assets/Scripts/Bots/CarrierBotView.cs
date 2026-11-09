@@ -10,6 +10,12 @@ public class CarrierBotView : BotView
 
     protected override void Start()
     {
-        RuntimeObj = new CarrierBot(this, data, new() { baseSpawnCoords = Vector3.zero });
+        InitializeRuntime();
+    }
+
+    public override void InitializeRuntime()
+    {
+        if (RuntimeObj == null)
+            RuntimeObj = new CarrierBot(this, data, new() { baseSpawnCoords = Vector3.zero });
     }
 }

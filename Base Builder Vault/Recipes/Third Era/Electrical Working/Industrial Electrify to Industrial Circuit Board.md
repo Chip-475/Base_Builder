@@ -1,0 +1,4 @@
+2 [[Advanced Circuit Board]] + 2 [[Gold Wire]] + 1 [[Electromagnet]]
+
+output:
+1 [[Industrial Circuit Board]]

@@ -1,9 +1,10 @@
 Tech Tree is entered by a menu in the spaceship and is used as the way to unlock new [[Recipes]] with a significant amount of resources. 
 
-Starter: 1x [[Assembler]], 1x [[Furnace mk1]]
+Starter: 1x [[Assembler]], 1x [[Furnace mk1]], 1x [[Builder Bot]], 2 [[Carrier Bot]], 2 [[Worker Bot]], 5 [[Power Pole]]
 ### First Era
 ![[Pasted image 20261023194307.png|432]]
 1:
+[[Mineral Crate]]
 [[Assemble to Stone brick]]
 [[Smelt to Iron 1]]
 
@@ -39,7 +40,7 @@ Starter: 1x [[Assembler]], 1x [[Furnace mk1]]
 5 [[Iron Gear]]
 
 6:
-[[Electric core]]
+[[Assemble Electric Core]]
 [[Assemble to Insulator]]
 [[Generator mk1]]
 [[Power Pole]]
@@ -61,7 +62,7 @@ Starter: 1x [[Assembler]], 1x [[Furnace mk1]]
 5 [[Tin]] + 10 [[Copper Plate]]
 
 9:
-[[Assemble to Bronze casing]]
+[[Assemble to Bronze Casing]]
 [[Assemble to Bronze Gear]]
 
 10 [[Bronze Rod]] + 5 [[Bronze Plate]]
@@ -82,10 +83,15 @@ Starter: 1x [[Assembler]], 1x [[Furnace mk1]]
 
 3 [[Circuit Board]] + 5 [[Bronze Casing]]
 
+B - after 11:
+miner   1
+carrier capacity 1
+carrier spd 1
 
+15 [[Circuit Board]] + 10 [[Reinforced Plate]] + 10 [[Bot Frame]]
 ### Second Era
 
-![[Pasted image 20261101230822.png|352]]
+![[Pasted image 20261101230822.png|385]]
 
 12:
 [[Furnace mk2]]
@@ -104,7 +110,7 @@ Starter: 1x [[Assembler]], 1x [[Furnace mk1]]
 50 [[Iron Casing]] + 30 [[Iron Gear]] + 20 [[Bronze Casing]] + 20 [[Reinforced Plate]]
 
 14:
-[[Press to  Alumium Plate]]
+[[Press to  Aluminium Plate]]
 [[Assemble to Aluminium Rod]]
 [[Assemble to Aluminium Gear]]
 [[Assemble to Aluminium Casing]]
@@ -124,19 +130,24 @@ Starter: 1x [[Assembler]], 1x [[Furnace mk1]]
 30 [[Steel Gear]] + 30 [[Nickel]] + 20 [[Steel Rod]]
 
 17:
+[[Assembler to Advanced Machine Frame]]
 [[Press to Nickel Plate]]
 [[Assemble to Nickel Rod]]
+
+20 [[Steel Casing]] + 10 [[Gold]] + 15 [[Aluminum Gear]] 
+
 18:
 [[Electrify to Copper Coil]]
 [[Advanced Electric Workbench]]
+[[Advanced Electrify to Gold Wire]]
 
 40 [[Copper Wire]] + 20 [[Copper Plate]] + 10 [[Circuit Board]] + 15 [[Machine Frame]]
 
 19:
-[[Advanced Electrify to Gold Wire]]
+[[Advanced Electrify to Electromagnet]]
 [[Advanced Electrify to Advanced circuit board]]
 [[Advanced Electrify to Control Unit]]
-[[Avanced Electrify to Electronic Module]]
+[[Advanced Electrify to Electronic Module]]
 
 20 [[Gold]] + 30 [[Copper Coil]] + 20 [[Motherboard]] + 10 [[Electric core]]
 
@@ -144,23 +155,44 @@ Starter: 1x [[Assembler]], 1x [[Furnace mk1]]
 [[Advanced Press]]
 [[Advanced Press to Steel Reinforced Plate]]
 
-40 [[Steel Frame]] + 30 [[Precision Gear]] + 20 [[Steel Plate]]
+40 [[Steel Casing]] + 30 [[Precision Gear]] + 20 [[Steel Plate]]
 
 21:
 [[Advanced Assembler]]
-[[Advanced Assemble to Gearbox]]
 [[Advanced Assemble to Gear Assemblies]]
+[[Advanced Assemble to Gearbox]]
 
 40 [[Steel Casing]] + 15 [[Control Unit]] + 20 [[Advanced Circuit Board]]
 
+a (19 and 21)
+
+[[Storage mk2]]
+[[Generator mk2]]
+
+15 [[Electronic Module]] + 10 [[Advanced Circuit Board]] + 30 [[Precision Gear]]
+
 22:
-[[Advanced Assembler to Advanced Machine Frame]]
 [[Advanced Assembler to Advanced Machine Component]]
 [[Advanced Assembler to Heat Resistant Component]]
 
 30 [[Gearbox]] + 30 [[Electronic Module]] + 20 [[Aluminum Casing]]
 
+x (under 21 needs 16 and 17):
+[[Advanced Electrify to Advanced Bot Frame]]
+[[Builder Bot]]
+[[Specialist Bot]]
+
+20 [[Electronic Module]] + 15 [[Advanced Circuit Board]] + 15 [[Gearbox]]
+
+x2 (after x):
+miner upgrade 2
+worker upgrade 1
+builder spd 1
+carrier spd 2
+
+15 [[Advanced Circuit Board]] + 10 [[Steel Reinforced Plate]] + 15 [[Advanced Bot Frame]]
 ### Third Era
+![[Pasted image 20261106205628.png]]
 
 23:
 [[Smelt to Titanium]]
@@ -181,9 +213,15 @@ Starter: 1x [[Assembler]], 1x [[Furnace mk1]]
 [[Industrial Press to Titanium Plate]]
 [[Industrial Assemble to Titanium Rod]]
 [[Industrial Assemble to Titanium Gear]]
-[[Industrial Assemble to Titanium Frame]]
+[[Industrial Assemble to Titanium Casing]]
 
 20 [[Aluminum Gear]] + 10 [[Advanced Machine Component]] + 25 [[Advanced Circuit Board]]
+
+c (after 25):
+[[Storage mk3]]
+[[Generator mk3]]
+
+15 [[Industrial Circuit Board]] + 10 [[Industrial Machine Frame]] + 30 [[Titanium Gear]]
 
 26:
 [[Industrial Electrify to Industrial Circuit Board]]
@@ -193,19 +231,27 @@ Starter: 1x [[Assembler]], 1x [[Furnace mk1]]
 
 20 [[Gold Wire]] + 20 [[Electronic Module]] + 15 [[Advanced Circuit Board]] + 10 [[Electromagnet]]
 
+d (after 26):
+
+carrier inv 2
+worker spd 2
+builder spd2
+
+15 [[Titanium Gear]] + 10 [[Industrial Control Unit]] + 30 [[Advanced Bot Frame]]
+
 27:
 [[Industrial Assemble to Navigation Module]]
 [[Industrial Assemble to Reactor Housing]]
-[[Industrial Assemble to Ship Core Assembly]]
+[[Industrial Assemble to Ship Core Component]]
 [[Industrial Assemble to Power Distribution Unit]]
 
-20 [[Titanium Frame]] + 20 [[Industrial Circuit Board]] + 15 [[Industrial Control Unit]] + 10 [[Industrial Machine Frame]]
+20 [[Titanium Gear]] + 20 [[Industrial Circuit Board]] + 15 [[Industrial Control Unit]] + 10 [[Industrial Machine Frame]]
 
 28:
-[[Industrial Assemble to Navigation Component]]
-[[Industrial Assemble to Ship Core Component]]
-[[Industrial Assemble to Power Distribution Component]]
+[[Industrial Assemble to Navigation Device]]
+[[Industrial Assemble to Ship Core]]
+[[Industrial Assemble to Circuit Braker]]
 
-15 [[Navigation Component]] + 15 [[Reactor Housing]] + 15 [[Ship Core Assembly]] + 15 [[Power Distribution Unit]]
+15 [[Navigation Module]] + 15 [[Reactor Housing]] + 15 [[Ship Core Component]] + 15 [[Power Distribution Unit]]
 
 

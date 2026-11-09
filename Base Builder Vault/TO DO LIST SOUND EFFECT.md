@@ -1,0 +1,11 @@
+* carica bot(fatto)
+* macchine in funzione(fatta)
+* eliminare oggetto(fatto)
+* sblocco nuovi crafting(fatto)
+* decollo spaceship(fatto)
+* camminata(fatto)
+* camminata bot(fatto)
+* piazza oggetto(fatto)
+* costruzione di qualcosa mentre costruisci(fatto)
+* oggetto finito di smeltare/craftare
+* avviso di fermo macchina o altro(da fare alla fine)

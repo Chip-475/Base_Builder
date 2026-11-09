@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-[DefaultExecutionOrder(-1)]
+[DefaultExecutionOrder(-10)]
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Instance { get; private set; }
@@ -17,6 +17,7 @@ public class PlayerManager : MonoBehaviour
 
     [Header("Runtime")]
     public bool IsCarryingBot { get; set; }
+    public AudioSource source;
 
     void Awake()
     {
@@ -32,6 +33,9 @@ public class PlayerManager : MonoBehaviour
         {
             Vector2 vec = Inputs.Player.Movement.ReadValue<Vector2>();
             Move(vec);
+            if (source != null)
+                return;
+            source = AudioManager.PlaySFX("Walking", transform);
         }
     }
 

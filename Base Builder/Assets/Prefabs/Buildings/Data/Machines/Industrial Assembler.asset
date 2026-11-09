@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daa9b0d2bfec3d146aec9f104666aaf4, type: 3}
+  m_Name: Industrial Assembler
+  m_EditorClassIdentifier: Assembly-CSharp::MachineData
+  ID: industrial_assembler
+  name: Industrial Assembler
+  description: 
+  sprite: {fileID: 1483849797462943664, guid: fd5415d7a3a380e4282e258067847bc5, type: 3}
+  cost:
+  - key: {fileID: 11400000, guid: e5c1eb1b500ec3d479c98cfd5e28ab55, type: 2}
+    value: 1
+  - key: {fileID: 11400000, guid: 607e4f2e1d6c71d40a7c84b92ce37dc7, type: 2}
+    value: 1
+  - key: {fileID: 11400000, guid: 8fe224ffa5f467b4c867fcccf54c4204, type: 2}
+    value: 2
+  - key: {fileID: 11400000, guid: d717f15083c7526429e26c0f9853530d, type: 2}
+    value: 2
+  type: 1
+  bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 1.5, y: 1.5, z: 0}
+  interactionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 2.5, y: 2.5, z: 0}
+  connectionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 1.5, y: 1.5, z: 0}
+  workRange: 0
+  connectsToPower: 1
+  blocksWalking: 1
+  blocksPlacing: 1
+  constructionTime: 1
+  machineType: 9
+  usableRecipes:
+  - {fileID: 11400000, guid: 3959ce5344754a2783d8f800e26b6de1, type: 2}
+  - {fileID: 11400000, guid: ec46b0cfa76549d0921bd6d8ba5e740c, type: 2}
+  - {fileID: 11400000, guid: 82071b820f444723adb85b2e4aadc1c3, type: 2}
+  - {fileID: 11400000, guid: ee3e3c396b9349de80f831d49ce5f6ed, type: 2}
+  - {fileID: 11400000, guid: ff517c2226e1447e92a4b2cecc218c61, type: 2}
+  - {fileID: 11400000, guid: 664e1ed8b527488fb4892f8ab5b4662d, type: 2}
+  - {fileID: 11400000, guid: 4782a9a9230042a79bf32d7265f75748, type: 2}
+  - {fileID: 11400000, guid: 07f6a6ee5b58498992fb97781111b2ec, type: 2}
+  - {fileID: 11400000, guid: 6d7f1e6c6b6e48a8b0b4290b968d0ca7, type: 2}
+  - {fileID: 11400000, guid: c79ec1abd40940cc9c28a27c1988d769, type: 2}
+  needSpecialist: 1

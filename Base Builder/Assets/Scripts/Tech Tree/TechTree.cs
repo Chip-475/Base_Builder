@@ -6,29 +6,33 @@ public class TechTree
     public static Dictionary<string, TechSO> TechDB { get; private set; } = new();
     public static HashSet<string> UnlockedTechs { get; private set; } = new();
 
-    public void Initialize()
+    public static void Initialize()
     {
         TechDB.Clear();
+        UnlockedTechs.Clear();
         TechSO[] techAssets = Resources.LoadAll<TechSO>("Tech");
         foreach (TechSO tech in techAssets)
-            TechDB[tech.id] = tech;
+            TechDB[tech.ID] = tech;
     }
 
     public static void UnlockTech(TechSO tech)
     {
-        if (!IsTechUnlockable(tech)) return;
+        if (!IsTechUnlockable(tech))
+            return;
 
-        if (!Depot.Inventory.CanRemoveItems(tech.cost)) return;
-            Depot.Inventory.RemoveItems(tech.cost);
+        Depot.Inventory.RemoveItems(tech.cost);
 
         foreach (RecipeSO re in tech.recipeUnlocks)
             re.isUnlocked = true;
         
-        UnlockedTechs.Add(tech.id);
+        UnlockedTechs.Add(tech.ID);
+        tech.ApplyEffects();
+        AudioManager.PlaySFX("New Node", PlayerManager.Instance.transform);
     }
     public static bool IsTechUnlockable(TechSO tech)
     {
-        if (UnlockedTechs.Contains(tech.id))
+        if (tech == null || string.IsNullOrWhiteSpace(tech.ID)
+            || Depot.Inventory == null || UnlockedTechs.Contains(tech.ID))
             return false;
 
         foreach (var kvp in tech.cost)

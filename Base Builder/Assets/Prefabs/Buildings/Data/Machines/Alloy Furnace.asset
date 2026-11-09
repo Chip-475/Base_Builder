@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daa9b0d2bfec3d146aec9f104666aaf4, type: 3}
+  m_Name: Alloy Furnace
+  m_EditorClassIdentifier: Assembly-CSharp::MachineData
+  ID: alloy_furnace
+  name: Alloy Furnace
+  description: 
+  sprite: {fileID: -3191457856486611741, guid: 38dea35f694922e44b6061c8782b56ab, type: 3}
+  cost:
+  - key: {fileID: 11400000, guid: d0b73083ea6e4ef4d8b65c4586b33d4c, type: 2}
+    value: 1
+  - key: {fileID: 11400000, guid: 3253d5026f77f624e8123392986645b4, type: 2}
+    value: 4
+  - key: {fileID: 11400000, guid: f6e89742bc46f03479b3cfce878adfb3, type: 2}
+    value: 5
+  type: 1
+  bounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 1.5, y: 1.5, z: 0}
+  interactionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 2.5, y: 2.5, z: 0}
+  connectionBounds:
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 1.5, y: 1.5, z: 0}
+  workRange: 0
+  connectsToPower: 1
+  blocksWalking: 1
+  blocksPlacing: 1
+  constructionTime: 1
+  machineType: 2
+  usableRecipes:
+  - {fileID: 11400000, guid: bfc05ccad7326e24c9870e39eb548247, type: 2}
+  - {fileID: 11400000, guid: 386b03701d5c4f5db4f3486fb2ad345e, type: 2}
+  - {fileID: 11400000, guid: b756800b93ee4c21a75df3389c43ea34, type: 2}
+  needSpecialist: 0

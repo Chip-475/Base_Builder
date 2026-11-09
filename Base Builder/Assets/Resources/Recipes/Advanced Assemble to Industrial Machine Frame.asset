@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1930e33686e0fe343a20ec312785cbc4, type: 3}
+  m_Name: Advanced Assemble to Industrial Machine Frame
+  m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
+  ID: advanced_assemble_to_industrial_machine_frame
+  Name: Advanced Assemble to Industrial Machine Frame
+  Desc: 
+  Sprite: {fileID: -3404141917743729327, guid: 03b33a681b138eb48902938f9da60618, type: 3}
+  unlockedByDefault: 1
+  inputs:
+  - key: {fileID: 11400000, guid: 4b42c168ea98b314983b3b1ce80fa64e, type: 2}
+    value: 1
+  - key: {fileID: 11400000, guid: 6374f1ba148f4044b932122455101abe, type: 2}
+    value: 2
+  - key: {fileID: 11400000, guid: d717f15083c7526429e26c0f9853530d, type: 2}
+    value: 2
+  outputs:
+  - key: {fileID: 11400000, guid: e5c1eb1b500ec3d479c98cfd5e28ab55, type: 2}
+    value: 1
+  baseOutputAmount: 1
+  completionTime: 12
+  energyCost: 3
+  isUnlocked: 1

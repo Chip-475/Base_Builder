@@ -1,5 +1,5 @@
 ___
 input:
-1 [[Magnetite]]
+1 [[Hematite]]
 output:
 2 [[Iron]]

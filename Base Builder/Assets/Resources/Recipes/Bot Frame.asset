@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1930e33686e0fe343a20ec312785cbc4, type: 3}
+  m_Name: Bot Frame
+  m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
+  ID: bot_frame
+  Name: Bot Frame
+  Desc: 
+  Sprite: {fileID: 0}
+  unlockedByDefault: 0
+  inputs:
+  - key: {fileID: 11400000, guid: a1e269ab140cedf4a8e4fb62937b3548, type: 2}
+    value: 1
+  - key: {fileID: 11400000, guid: 47b86a3708dd07345b92ce1c819bc99b, type: 2}
+    value: 2
+  - key: {fileID: 11400000, guid: d0b73083ea6e4ef4d8b65c4586b33d4c, type: 2}
+    value: 1
+  outputs:
+  - key: {fileID: 11400000, guid: 4eae64731fd5fca4b8bd4ca939e3c462, type: 2}
+    value: 1
+  completionTime: 3
+  energyCost: 3
+  isUnlocked: 0

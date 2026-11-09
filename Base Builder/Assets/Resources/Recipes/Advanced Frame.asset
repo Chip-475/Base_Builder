@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1930e33686e0fe343a20ec312785cbc4, type: 3}
+  m_Name: Advanced Frame
+  m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
+  ID: adv_frame
+  Name: Assembler to Advanced Machine Frame
+  Desc: 
+  Sprite: {fileID: 436003606802357071, guid: d38d3857c1f920f49a356ad170924b3e, type: 3}
+  unlockedByDefault: 1
+  inputs:
+  - key: {fileID: 11400000, guid: 10c49eee39cd7ed4f94f429c2dcdfcfb, type: 2}
+    value: 2
+  - key: {fileID: 11400000, guid: 6cb7b6e828cd5944a8670020cfcc65cb, type: 2}
+    value: 3
+  - key: {fileID: 11400000, guid: b534511c457bb754996761df39202c51, type: 2}
+    value: 2
+  outputs:
+  - key: {fileID: 11400000, guid: 4b42c168ea98b314983b3b1ce80fa64e, type: 2}
+    value: 1
+  baseOutputAmount: 1
+  completionTime: 10
+  energyCost: 2
+  isUnlocked: 1
