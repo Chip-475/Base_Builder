@@ -1,67 +1,179 @@
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
+using DG.Tweening;
 
 public class AudioManager : MonoBehaviour
 {
-    public static AudioManager Instance { get; private set; }
+    #region Declarations
+    public static AudioManager instance;
+    public static AudioManager Instance => instance;
 
-    public const float MaxVolume = 100f;
+    public const string MasterVolumeKey = "Master Volume";
+    public const string SFXVolumeKey = "SFX Volume";
+    public const string BGMVolumeKey = "BGM Volume";
+    public const float DefaultVolume = 1f;
 
-    [Header("Setup")]
-    [SerializeField] List<AudioClip> sfxClips = new();
-    [SerializeField] List<AudioClip> bgmClips = new();
+    public AudioSource source;
+    public AudioMixer mixer;
+    public AudioMixerGroup sfxMixerGroup;
+    public AudioMixerGroup bgmMixerGroup;
 
-    [Header("Runtime")]
-    AudioClip currentBgmPlaying;
-    float masterVolume;
-    float sfxVolume;
-    float bgmVolume;
+    public AudioSource bgmPlayer;
+    #endregion
 
-    public float MasterVolume => masterVolume;
-    public float SfxVolume => sfxVolume;
-    public float BgmVolume => bgmVolume;
-
+    #region Unity Methods
     private void Awake()
     {
-        Instance = this;
-
-        PlayBGM(bgmClips[0]);
-    }
-    
-    public void PlaySFX(AudioClip clip)
-    {
-        if (!sfxClips.Contains(clip))
+        if (instance != null && instance != this)
         {
-            Debug.Log("Clip is not in SFX.");
+            Destroy(gameObject);
             return;
         }
 
-        AudioSource source = new GameObject().AddComponent<AudioSource>();
-        source.clip = clip;
-        source.volume = sfxVolume * masterVolume / MaxVolume;
-        Destroy(source.gameObject, clip.length + 0.5f);
-    }
-    public void PlayBGM(AudioClip clip)
-    {
-        if (!bgmClips.Contains(clip))
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        if (sfxMixerGroup == null && mixer != null)
         {
-            Debug.Log("Clip is not in BGM.");
+            AudioMixerGroup[] groups = mixer.FindMatchingGroups("SFX");
+            if (groups.Length > 0)
+                sfxMixerGroup = groups[0];
+        }
+
+        if (bgmMixerGroup == null && mixer != null)
+        {
+            AudioMixerGroup[] groups = mixer.FindMatchingGroups("BGM");
+            if (groups.Length > 0)
+                bgmMixerGroup = groups[0];
+        }
+
+        ApplySavedVolumes();
+    }
+
+    private void Start()
+    {
+        if (bgmPlayer == null)
+            bgmPlayer = source;
+
+        if (bgmPlayer == null)
+        {
+            Debug.LogWarning("AudioManager has no main theme audio source assigned.");
+        }
+        else
+        {
+            bgmPlayer = Instantiate(bgmPlayer, transform);
+            bgmPlayer.outputAudioMixerGroup = bgmMixerGroup;
+            bgmPlayer.loop = true;
+            bgmPlayer.volume = 0f;
+            bgmPlayer.Play();
+            FadeVolume(bgmPlayer, 1f);
+        }
+    }
+    #endregion
+
+    #region SFX
+    public static void PlaySFX(AudioClip clip, Transform spawn, float volume = 1f)
+    {
+        if (instance == null || instance.source == null || clip == null || spawn == null)
+            return;
+
+        AudioSource audioSource = Instantiate(instance.source, spawn.position, Quaternion.identity);
+        audioSource.outputAudioMixerGroup = instance.sfxMixerGroup;
+        audioSource.clip = clip;
+        audioSource.loop = false;
+        audioSource.volume = Mathf.Clamp01(volume);
+        audioSource.Play();
+        Destroy(audioSource.gameObject, audioSource.clip.length);
+    }
+
+    public static void PlaySFX(AudioClip clip, Vector3 position, float volume = 1f)
+    {
+        if (instance == null || instance.source == null || clip == null)
+            return;
+
+        AudioSource audioSource = Instantiate(instance.source, position, Quaternion.identity);
+        audioSource.outputAudioMixerGroup = instance.sfxMixerGroup;
+        audioSource.clip = clip;
+        audioSource.loop = false;
+        audioSource.volume = Mathf.Clamp01(volume);
+        audioSource.Play();
+        Destroy(audioSource.gameObject, audioSource.clip.length);
+    }
+    #endregion
+
+    #region Volume
+    public static float GetSavedVolume(string key)
+    {
+        return Mathf.Clamp01(PlayerPrefs.GetFloat(key, DefaultVolume));
+    }
+
+    public static void ApplySavedVolumes()
+    {
+        SetMixerVolume("Master", GetSavedVolume(MasterVolumeKey));
+        SetMixerVolume("SFX", GetSavedVolume(SFXVolumeKey));
+        SetMixerVolume("BGM", GetSavedVolume(BGMVolumeKey));
+    }
+
+    public static void SetMasterVolume(float volume)
+    {
+        SetSavedVolume(MasterVolumeKey, "Master", volume);
+    }
+
+    public static void SetSfxVolume(float volume)
+    {
+        SetSavedVolume(SFXVolumeKey, "SFX", volume);
+    }
+
+    public static void SetBgmVolume(float volume)
+    {
+        SetSavedVolume(BGMVolumeKey, "BGM", volume);
+    }
+
+    public static void SetMixerVolume(string parameter, float volume)
+    {
+        if (instance == null)
+        {
+            Debug.LogWarning("AudioManager is not initialized.");
             return;
         }
-        if(clip == currentBgmPlaying) return;
 
-        AudioSource source = new GameObject().AddComponent<AudioSource>();
-        source.clip = clip;
-        source.volume = bgmVolume * masterVolume / MaxVolume;
+        if (instance.mixer == null)
+        {
+            Debug.LogWarning("AudioManager has no AudioMixer assigned.");
+            return;
+        }
+
+        volume = Mathf.Clamp01(volume);
+        if (!instance.mixer.SetFloat(parameter, VolumeToDb(volume)))
+            Debug.LogWarning($"AudioMixer parameter '{parameter}' is not exposed.");
     }
 
     public static float VolumeToDb(float volume)
     {
-        return volume <= 0f ? -80f : 20f * Mathf.Log10(volume / MaxVolume);
+        volume = Mathf.Clamp01(volume);
+        return volume <= 0f ? -80f : Mathf.Log10(volume) * 20f;
     }
 
-    public static void SetVolume(string volumeName, float volume)
+    private static void SetSavedVolume(string key, string parameter, float volume)
     {
-
+        volume = Mathf.Clamp01(volume);
+        PlayerPrefs.SetFloat(key, volume);
+        PlayerPrefs.Save();
+        SetMixerVolume(parameter, volume);
     }
+    #endregion
+
+    #region Music
+    public static void FadeVolume(AudioSource audioSource, float endVolume)
+    {
+        if (audioSource == null)
+            return;
+
+        audioSource.DOKill();
+        DOTween.To(() => audioSource.volume,
+            volume => audioSource.volume = volume,
+            Mathf.Clamp01(endVolume),
+            0.2f);
+    }
+    #endregion
 }

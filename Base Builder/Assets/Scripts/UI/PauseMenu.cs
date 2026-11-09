@@ -1,4 +1,3 @@
-using Unity.VectorGraphics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -17,10 +16,17 @@ public class PauseMenu : MonoBehaviour
     {
         Instance = this;
 
-        saveButton.onClick.AddListener(() => SaveManager.Instance.file.SaveAll(SaveManager.Instance.savePath));
-        backToMenuButton.onClick.AddListener(() => SceneManager.LoadSceneAsync("MainMenu", LoadSceneMode.Single));
+        if (saveButton != null)
+            saveButton.onClick.AddListener(() => SaveManager.Instance.file.SaveAll(SaveManager.Instance.savePath));
+        if (backToMenuButton != null)
+            backToMenuButton.onClick.AddListener(() => SceneManager.LoadSceneAsync("MainMenu", LoadSceneMode.Single));
 
-        //masterSlider.onValueChanged.AddListener();
+        if (masterSlider != null)
+            masterSlider.onValueChanged.AddListener(AudioManager.SetMasterVolume);
+        if (sfxSlider != null)
+            sfxSlider.onValueChanged.AddListener(AudioManager.SetSfxVolume);
+        if (bgmSlider != null)
+            bgmSlider.onValueChanged.AddListener(AudioManager.SetBgmVolume);
 
         PlayerManager.Inputs.Player.Pause.performed += (_) =>
         {
@@ -37,12 +43,9 @@ public class PauseMenu : MonoBehaviour
 
     void SyncVolumeSliders()
     {
-        if (AudioManager.Instance == null)
-            return;
-
-        SetSliderValue(masterSlider, AudioManager.Instance.MasterVolume);
-        SetSliderValue(sfxSlider, AudioManager.Instance.SfxVolume);
-        SetSliderValue(bgmSlider, AudioManager.Instance.BgmVolume);
+        SetSliderValue(masterSlider, AudioManager.GetSavedVolume(AudioManager.MasterVolumeKey));
+        SetSliderValue(sfxSlider, AudioManager.GetSavedVolume(AudioManager.SFXVolumeKey));
+        SetSliderValue(bgmSlider, AudioManager.GetSavedVolume(AudioManager.BGMVolumeKey));
     }
 
     public static void SetSliderValue(Slider slider, float volume)
@@ -50,6 +53,6 @@ public class PauseMenu : MonoBehaviour
         if (slider == null)
             return;
 
-        slider.SetValueWithoutNotify(Mathf.Clamp01(volume / AudioManager.MaxVolume));
+        slider.SetValueWithoutNotify(Mathf.Clamp01(volume));
     }
 }

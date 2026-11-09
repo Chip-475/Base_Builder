@@ -82,7 +82,7 @@ Starter: 1x [[Assembler]], 1x [[Furnace mk1]], 1x [[Builder Bot]], 2 [[Carrier B
 
 3 [[Circuit Board]] + 5 [[Bronze Casing]]
 
-after 11:
+B - after 11:
 miner   1
 carrier capacity 1
 carrier spd 1
