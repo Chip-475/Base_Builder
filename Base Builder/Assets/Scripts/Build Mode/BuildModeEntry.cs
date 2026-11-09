@@ -16,17 +16,8 @@ public class BuildModeEntry : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     private void Awake()
     {
-        if (buildingPrefab != null && buildingPrefab.Data != null && image != null)
-            image.sprite = buildingPrefab.Data.sprite;
-        if (button != null)
-            button.onClick.AddListener(() => OnClick());
-    }
-
-    public void Configure(BuildingView prefab)
-    {
-        buildingPrefab = prefab;
-        if (image != null && buildingPrefab != null && buildingPrefab.Data != null)
-            image.sprite = buildingPrefab.Data.sprite;
+        image.sprite = buildingPrefab.Data.sprite;
+        button.onClick.AddListener(() => OnClick());
     }
     void Update()
     {
@@ -35,10 +26,20 @@ public class BuildModeEntry : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void CanBuild()
     {
-        if (button != null)
-            button.interactable = Depot.Inventory != null && buildingPrefab != null
-                && Depot.Inventory.CanRemoveItems(Cost);
+        var buildingsOfOwnType = BuildingManager.Buildings.Values.Where(b => b.Data.ID == buildingPrefab.Data.ID);
+
+        if (buildingPrefab.Data.ID == "power_pole_mk1")
+            if (button.interactable = buildingsOfOwnType.Count() < 5)
+                button.interactable = true;
+            else
+                button.interactable = Depot.Inventory.CanRemoveItems(Cost);
+        else
+            if (button.interactable = buildingsOfOwnType.Count() < 1)
+                button.interactable = true;
+            else
+                button.interactable = Depot.Inventory.CanRemoveItems(Cost);
     }
+
     public void OnClick()
     {
         if (buildingPrefab == null || buildingPrefab.Data == null)

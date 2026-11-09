@@ -296,10 +296,27 @@ public class BuildingSaveData
     }
     public void Load()
     {
-        BuildingView prefab = SaveManager.Instance.buildingPrefabs.FirstOrDefault(prefab => prefab.Data.ID == buildingID);
+        if (SaveManager.Instance == null)
+        {
+            Debug.LogError($"Cannot load building '{buildingID}': SaveManager has not been initialized.");
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(buildingID))
+        {
+            Debug.LogWarning("Skipping saved building with an empty ID.");
+            return;
+        }
+
+        BuildingView prefab = SaveManager.Instance.buildingPrefabs?
+            .FirstOrDefault(candidate => candidate != null &&
+                candidate.Data != null &&
+                candidate.Data.ID == buildingID);
 
         if (prefab != null)
             MonoBehaviour.Instantiate(prefab, position.ToVector3(), Quaternion.identity);
+        else
+            Debug.LogWarning($"Building prefab not found for saved building '{buildingID}'.");
     }
 }
 

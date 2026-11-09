@@ -27,6 +27,7 @@ public class TechTree
         
         UnlockedTechs.Add(tech.ID);
         tech.ApplyEffects();
+        AudioManager.PlaySFX("New Node", PlayerManager.Instance.transform);
     }
     public static bool IsTechUnlockable(TechSO tech)
     {

@@ -29,6 +29,13 @@ public class BotManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        Bots.RemoveAll(bot => bot == null || bot.SceneObj == null);
+    }
+
+    private void OnDestroy()
+    {
+        if (Instance == this)
+            Instance = null;
     }
 
     public static void RegisterBot(Bot bot)
@@ -64,7 +71,9 @@ public class BotManager : MonoBehaviour
         if (building == null || building.SceneObj == null)
             return null;
 
-        List<Bot> bots = new(Bots.Where(bot => bot != null && bot.SceneObj != null && !bot.Occupied && !bot.PickedUp));
+        List<Bot> bots = new(Bots.Where(bot => bot != null && bot.SceneObj != null && bot.IsOn &&
+            !bot.Occupied && !bot.PickedUp &&
+            LogisticsManager.TryGetAccessPoint(building, bot.Coords, out _)));
         if(bots.Count == 0)
         {
             Debug.Log("No available bots.");
@@ -89,7 +98,9 @@ public class BotManager : MonoBehaviour
         if (building == null || building.SceneObj == null)
             return null;
 
-        List<T> bots = new(Bots.OfType<T>().Where(bot => bot != null && bot.SceneObj != null && !bot.Occupied && !bot.PickedUp));
+        List<T> bots = new(Bots.OfType<T>().Where(bot => bot != null && bot.SceneObj != null && bot.IsOn &&
+            !bot.Occupied && !bot.PickedUp &&
+            LogisticsManager.TryGetAccessPoint(building, bot.Coords, out _)));
         if (bots.Count == 0)
         {
             Debug.Log("No available bots.");

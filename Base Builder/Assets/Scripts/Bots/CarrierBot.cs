@@ -145,6 +145,9 @@ public class CarrierBot : Bot
     bool TryGetEndpoint(Vector3 position, out Vector3Int endpoint)
     {
         endpoint = position.ToVector3Int();
+        if (WorldManager.World == null)
+            return false;
+
         Cell cell = WorldManager.World.GetCellAt(endpoint);
         if (cell != null && cell.canWalkOn)
             return true;
@@ -188,6 +191,7 @@ public class CarrierBot : Bot
 
         request.sourceInventory.RemoveItems(request.resources);
         Inventory.AddItems(request.resources);
+        AudioManager.PlaySFX("Bot Carry", SceneObj.transform);
     }
 
     void DeliverRequest()
@@ -214,6 +218,7 @@ public class CarrierBot : Bot
 
         request.destinationInventory.AddItems(request.resources);
         Inventory.RemoveItems(request.resources);
+        AudioManager.PlaySFX("Bot Carry", SceneObj.transform);
         ClearRequest();
     }
 
@@ -262,7 +267,14 @@ public class CarrierBot : Bot
     void FailRequest(string reason)
     {
         ReturnCargoToRequestInventory();
-        ClearRequest();
+
+        bool canRetry = request != null
+            && request.sourceInventory != Inventory
+            && !request.cancelled
+            && request.sourceInventory != null
+            && request.sourceInventory.Contains(request.resources);
+
+        ClearRequest(canRetry);
         Debug.LogWarning(reason);
     }
 

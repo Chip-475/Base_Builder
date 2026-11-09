@@ -16,6 +16,8 @@ public class BuilderBot : Bot
         StopWorking();
         CurrentSite?.Release(this);
         CurrentSite = null;
+        destination = null;
+        Path.Clear();
     }
 
     public override async UniTask Pipeline(CancellationToken cancellationToken)
@@ -47,6 +49,7 @@ public class BuilderBot : Bot
                 continue;
             }
 
+            AudioManager.PlaySFX("Construction", SceneObj.transform);
             float constructionTime = Mathf.Max(0.1f, CurrentSite.Data.constructionTime);
             await UniTask.Delay(
                 constructionTime.ToMilliseconds(),

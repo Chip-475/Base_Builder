@@ -121,7 +121,12 @@ public class WorkerBot : Bot
                     continue;
                 }
 
-                machine.TryStartRecipe(task.Recipe);
+                if (!machine.lavoro && !machine.TryStartRecipe(task.Recipe) && !machine.aspeEne)
+                {
+                    Fail("The machine could not start the assigned recipe.");
+                    return;
+                }
+
                 await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
                 continue;
             }
@@ -144,19 +149,21 @@ public class WorkerBot : Bot
                         continue;
                     }
 
-                    bool completesInputs = missing.All(item => carried.GetValueOrDefault(item.Key) >= item.Value);
-                    if (completesInputs)
-                        BeginMachineBatch(machine, task.Recipe);
-
                     if (!machine.AddInputs(carried))
                     {
-                        if (completesInputs)
-                            waitingForMachineBatch = false;
                         Fail("The machine refused its recipe inputs.");
                         return;
                     }
 
                     Inventory.RemoveItems(carried);
+
+                    if (missing.All(item => carried.GetValueOrDefault(item.Key) >= item.Value) &&
+                        !BeginMachineBatch(machine, task.Recipe))
+                    {
+                        Fail("The machine could not start the assigned recipe.");
+                        return;
+                    }
+
                     continue;
                 }
 
@@ -234,7 +241,12 @@ public class WorkerBot : Bot
                 continue;
             }
 
-            BeginMachineBatch(machine, task.Recipe);
+            if (!BeginMachineBatch(machine, task.Recipe))
+            {
+                Fail("The machine could not start the assigned recipe.");
+                return;
+            }
+
             await UniTask.Yield(PlayerLoopTiming.Update, cancellationToken);
         }
     }
@@ -288,15 +300,26 @@ public class WorkerBot : Bot
         return closest;
     }
 
-    void BeginMachineBatch(Machine machine, RecipeSO recipe)
+    bool BeginMachineBatch(Machine machine, RecipeSO recipe)
     {
         if (waitingForMachineBatch)
-            return;
+            return true;
+
+        if (machine.lavoro)
+        {
+            if (machine.ricOra != recipe)
+                return false;
+        }
+        else
+        {
+            machine.SelectRecipe(recipe);
+            if (!machine.TryStartRecipe(recipe) && !machine.aspeEne)
+                return false;
+        }
 
         expectedCompletedBatches = machine.CompletedBatches + 1;
         waitingForMachineBatch = true;
-        machine.SelectRecipe(recipe);
-        machine.TryStartRecipe(recipe);
+        return true;
     }
 
     void CompleteTask()
