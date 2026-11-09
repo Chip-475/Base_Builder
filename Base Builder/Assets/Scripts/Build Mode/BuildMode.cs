@@ -120,6 +120,7 @@ public class BuildMode : MonoBehaviour
             SelectedEntry.buildingPrefab,
             mouseGridPos - SelectedEntry.buildingPrefab.Data.bounds.center);
         if (!Depot.Inventory.CanRemoveItems(SelectedEntry.Cost)) {SetSelectedEntry(null); SelectedBuilding=null;};
+        AudioManager.PlaySFX(AudioManager.Instance.clips["Place Object"], transform);
     }
     void Destroy()
     {

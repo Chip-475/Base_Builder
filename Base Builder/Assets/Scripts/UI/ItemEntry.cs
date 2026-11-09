@@ -16,6 +16,7 @@ public class ItemEntry : MonoBehaviour
             {
                 Depot.Inventory.Items.Remove(resource);
                 Destroy(gameObject);
+                AudioManager.PlaySFX(AudioManager.Instance.clips["Delete Item"], transform);
             }
         });
 

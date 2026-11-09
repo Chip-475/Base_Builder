@@ -28,10 +28,12 @@ public class CarrierBot : Bot
             }
             else if (Inventory.Contains(request.resources))
             {
+                AudioManager.PlaySFX(AudioManager.Instance.clips["Bot Carry"], SceneObj.transform);
                 DeliverRequest();
             }
             else
             {
+                AudioManager.PlaySFX(AudioManager.Instance.clips["Bot Carry"], SceneObj.transform);
                 CollectRequest();
             }
 

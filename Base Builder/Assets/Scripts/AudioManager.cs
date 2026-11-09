@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Audio;
 using DG.Tweening;
+using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class AudioManager : MonoBehaviour
     public const string BGMVolumeKey = "BGM Volume";
     public const float DefaultVolume = 1f;
 
+    [SerializeField] public Dictionary<string, AudioClip> clips = new();
     public AudioSource source;
     public AudioMixer mixer;
     public AudioMixerGroup sfxMixerGroup;
@@ -31,7 +33,6 @@ public class AudioManager : MonoBehaviour
         }
 
         instance = this;
-        DontDestroyOnLoad(gameObject);
 
         if (sfxMixerGroup == null && mixer != null)
         {
@@ -72,10 +73,10 @@ public class AudioManager : MonoBehaviour
     #endregion
 
     #region SFX
-    public static void PlaySFX(AudioClip clip, Transform spawn, float volume = 1f)
+    public static AudioSource PlaySFX(AudioClip clip, Transform spawn, float volume = 1f)
     {
         if (instance == null || instance.source == null || clip == null || spawn == null)
-            return;
+            return null;
 
         AudioSource audioSource = Instantiate(instance.source, spawn.position, Quaternion.identity);
         audioSource.outputAudioMixerGroup = instance.sfxMixerGroup;
@@ -84,6 +85,7 @@ public class AudioManager : MonoBehaviour
         audioSource.volume = Mathf.Clamp01(volume);
         audioSource.Play();
         Destroy(audioSource.gameObject, audioSource.clip.length);
+        return audioSource;
     }
 
     public static void PlaySFX(AudioClip clip, Vector3 position, float volume = 1f)
