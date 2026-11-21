@@ -1,57 +1,70 @@
 # Base Builder
-**Base Builder** is a Unity game project about building an automated planetary base after a spaceship crash.
 
-The player gathers raw resources, refines them into materials and components, and uses a fleet of worker bots to expand the base and ultimately repair the ship.
+## Game Description and its mechanics
+
+*Base Builder is a Unity 2D game.you have to build bots that build and mine minerals in order to repair the spaceship.*
+
 ## Gallery
-![Base Builder main menu](bb.png) Build Menu (Week 1)
-![Base Builder waypoints](waypoint.png) Waypoints (Week 2)
-![Base Builder Build Mode](buildMode.png) Build Mode (Week 3)
-![Base Builder Power System](powerSystem.png) Power System (Week 4)
-![Base Builder Power System](furnace.png) (Week 6)
-![Base Builder Bot Working](botWorking.png) Bot Working (Week 7))
 
-## Project highlights
+![Build menu](bb.png)
 
-- Tilemap-based planet map
-- Resource gathering, smelting, and crafting
-- Electricity system
-- Five bot roles: miner, carrier, builder, worker, and specialist
-- Progression from the crash site to spaceship repair
+![Waypoints](waypoint.png)
 
+![Build mode](buildMode.png)
 
-## Current systems
+![Power system](powerSystem.png)
 
-- Build-mode placement
-- Mineral nodes and raw-resource data
-- Machine recipe UI
-- Generator and power-pole prototypes
-- Waypoint system for future bots pathfinding
-- Machine system employment for all machinery that comunicates with recipe and resources 
-- Bot walking system to all Machines and Mineralode
-- Path finding A* for every type of Bot
-- Fixed build mode 
-- Started inventory UI
-- Power system
-- Camera movement system
-- Power System Graphic Integration
-- Spaceship obj
-- Spaceship UI
-- Machine UI
-- Player 
-- auto smleting(on furnace,alloy furnace)
-- bot's IA
-- furnace UI
-- new Scriptable object for recipe and other
-- obsidian updates
-- Generator UI
-- Adding new sprite for the game
-- GDD featuring everything about the game
-- Every bot can work with every machine and mineral node
-- Carrier bot system
-- Tech tree for unlocking new machines and recipes
-- Save System still WIP
-- Furnaces works without a bot standing on them
-## Current status
-The game is still in early development, none of the features are fully implemented yet, and the game is not yet playable.
-## Installation
-Visit the [itch.io page](https://blackhole-studio.itch.io/base-builder=) to download the game.
+![Furnace](furnace.png)
+
+![Bot working](botWorking.png)
+
+# Building your base
+
+*Use build mode to place buildings on the map. Builders can then travel to construction sites and finish the work.*
+
+![Build mode](buildMode.png)
+
+*Buildings include storage, mineral crates, production machines, generators and power poles. Machines use recipes to turn gathered resources into new materials.*
+
+![Furnace](furnace.png)
+
+# Bots
+
+*Bots do most of the work in the outpost.Miners collect resources from mineral nodes, carriers move items between buildings, builders complete construction sites, and workers operate machines.*
+
+*Bots move around the grid and need power to keep working.*
+
+![Bot working](botWorking.png)
+
+# Power system
+
+*Generators produce power for your base. Use power poles to create a power network and supply machines*
+
+![Power system](powerSystem.png)
+
+# Tech tree
+
+*The tech tree lets you spend resources to unlock recipes and progress to new buildings.*
+
+# Spaceship
+
+*The spaceship is the main objective of the game. Build up your base and produce the parts needed to repair it.*
+
+# Controls
+
+* **WASD:** *Move the player.*
+* **E:** *Interact with a nearby object.*
+* **Tab:** *Open the inventory.*
+* **Escape:** *Pause the game.*
+* **Mouse wheel:** *Zoom in and out.*
+* **Build mode:** *Choose a building, then left-click to place it. Use the destroy option to remove a building.*
+
+# How to Install
+
+visit the [Page](https://blackhole-studio.itch.io/base-builder) and then install "Week 8" build,then unzip the folder and run "Base Builder.exe"
+
+# License
+
+This project is proprietary software.
+The repository is public for portfolio and viewing purposes only.
+Unauthorized use, reproduction, or redistribution is prohibited.
